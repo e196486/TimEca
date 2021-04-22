@@ -6,7 +6,7 @@ public class PecaPeao {
     		 SO = null,
     		 SE = null;
     char P;
-    
+    // Santanche perdidão
     public void pecaNO(PecaPeao pc) {
         NO = pc;
     }
