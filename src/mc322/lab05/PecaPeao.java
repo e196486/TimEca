@@ -23,4 +23,5 @@ public class PecaPeao {
     public void pecaComida() {
         P = '-';
     } 
+    // linha 26 teste 
 }
