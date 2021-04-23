@@ -71,6 +71,7 @@ public class Tabuleiro {
 	}
 	
 	public void printTab() {
+
 		String tabuleiro = "";
 		
 		System.out.println("Source: " + (char) (Ysource + 96) + Xsource);
@@ -90,5 +91,23 @@ public class Tabuleiro {
 		System.out.println(tabuleiro);
 		return;
 	}
+
 	
+	public void MovePeca () {
+		
+	}
+
+	public void MovePeaoPreto() {
+		
+	}
+	public void MovePeaoBranco(){
+		
+	}
+	public void MoveDamaPreta(){
+		
+	}
+	public void MoveDamaBranca(){
+		
+	}
+
 }
