@@ -1,23 +1,24 @@
 package mc322.lab05;
 
 public class PecaDama {
-	PecaDama NO = null,
-    		 NE = null,
-    		 SO = null,
-    		 SE = null;
-    char P;
+	PecaDama Noroeste = null,
+   		 	 Nordeste = null,
+   		 	 Sudoeste = null,
+   		 	 Sudeste = null;
+	char P;
+
     
-    public void pecaNO(PecaDama pc) {
-        NO = pc;
+	public void pecaNoroeste(PecaDama pc) {
+        Noroeste = pc;
     }
-    public void pecaNE(PecaDama pc) {
-        NE = pc;
+    public void pecaNordeste(PecaDama pc) {
+        Nordeste = pc;
     }
-    public void pecaSO(PecaDama pc) {
-        SO = pc;
+    public void pecaSudoeste(PecaDama pc) {
+        Sudoeste = pc;
     }
-    public void pecaSE(PecaDama pc) {
-    	SE = pc;
+    public void pecaSudeste(PecaDama pc) {
+    	Sudeste = pc;
     }
 
     public void pecaComida() {
