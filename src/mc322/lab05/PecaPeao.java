@@ -1,27 +1,26 @@
 package mc322.lab05;
 
 public class PecaPeao {
-    PecaPeao NO = null,
-    		 NE = null,
-    		 SO = null,
-    		 SE = null;
+    PecaPeao Noroeste = null,
+    		 Nordeste = null,
+    		 Sudoeste = null,
+    		 Sudeste = null;
     char P;
-    // Santanche perdidão
-    public void pecaNO(PecaPeao pc) {
-        NO = pc;
+  
+    public void pecaNoroeste(PecaPeao pc) {
+        Noroeste = pc;
     }
-    public void pecaNE(PecaPeao pc) {
-        NE = pc;
+    public void pecaNordeste(PecaPeao pc) {
+        Nordeste = pc;
     }
-    public void pecaSO(PecaPeao pc) {
-        SO = pc;
+    public void pecaSudoeste(PecaPeao pc) {
+        Sudoeste = pc;
     }
-    public void pecaSE(PecaPeao pc) {
-    	SE = pc;
+    public void pecaSudeste(PecaPeao pc) {
+    	Sudeste = pc;
     }
 
     public void pecaComida() {
         P = '-';
-    } 
-    // linha 26 teste 
+    }  
 }
