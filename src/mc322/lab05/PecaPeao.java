@@ -5,8 +5,7 @@ public class PecaPeao {
     		 NE = null,
     		 SO = null,
     		 SE = null;
-    char P;
-    // Santanche perdidão
+    char P; 
     public void pecaNO(PecaPeao pc) {
         NO = pc;
     }
@@ -22,6 +21,5 @@ public class PecaPeao {
 
     public void pecaComida() {
         P = '-';
-    } 
-    // linha 26 teste 
+    }  
 }
