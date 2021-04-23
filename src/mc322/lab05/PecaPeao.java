@@ -22,5 +22,17 @@ public class PecaPeao {
 
     public void pecaComida() {
         P = '-';
-    }  
+    }
+    
+    /*peças comuns se movem uma casa na diagonal para frente somente se a 
+      posição estiver livre e for o seu lance;
+    */
+    
+    public void TestaPeao() {
+    	
+    }
+    
+    public void TestaTabuleiro() {
+    	
+    }
 }

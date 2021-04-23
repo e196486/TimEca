@@ -23,4 +23,13 @@ public class PecaDama {
     public void pecaComida() {
         P = '-';
     } 
+    
+    
+    public void TestaDama() {
+    	
+    }
+    
+    public void TestaTabuleiro() {
+    	
+    }
 }
