@@ -3,14 +3,14 @@ package mc322.lab05;
 public class Tabuleiro {
 	PecaPeao tabPeao[][] = new PecaPeao[8][9];
 	PecaDama tabDama[][] = new PecaDama[8][9];
-	int Xsource;
-	int Xtarget;
-	int Ysource;
-	int Ytarget;
+ 
+	Coordenada Ctarget;
 
 	public void inserePeca(int x, int y, char c) {
 		if (y <= 8 && x < 8) {
-			PecaPeao pc = new PecaPeao("P4");
+			PecaPeao pc = new PecaPeao("P4"); 
+			// aqui ^^^  temos que passar o parametro recebido. coloquei "P4" como momentaneo
+			//talvez arrumar de acordo com a coordenada
 			tabPeao[x][y] = pc;
 			pc.P = c;
 			if (y > 0 && x > 0) {
@@ -72,8 +72,8 @@ public class Tabuleiro {
 	public void printTab() {
 		String tabuleiro = "";
 
-		System.out.println("Source: " + (char) (Ysource + 96) + Xsource);
-		System.out.println("Target: " + (char) (Ytarget + 96) + Xtarget);
+		//System.out.println("Source: " + (char) (Ysource + 96) + Xsource);
+		//System.out.println("Target: " + (char) (Ytarget + 96) + Xtarget);
 
 		for (int i = 0; i < 8; i++) {
 			tabuleiro = tabuleiro + (8 - i) + " ";
@@ -97,8 +97,12 @@ public class Tabuleiro {
 
 	}
 
-	public boolean movePeaoPreto(PecaPeao Peao, int Xtarget, int Ytarget) {
-		if (Peao.coordenada.linha == Xtarget && Peao.coordenada.coluna == Ytarget) {
+	public boolean movePeaoPreto(PecaPeao Peao, String Target) {
+		boolean movimentoCorreto = false;
+		
+		Ctarget = new Coordenada(Target);
+		
+		if (Peao.coordenada.linha == Ctarget.linha && Peao.coordenada.coluna == Ctarget.coluna) {
 			if (Peao.P == '-') // só atribuo se a peça final é vazia.
 				Peao.P = 'P';
 			    return (true);
@@ -106,7 +110,7 @@ public class Tabuleiro {
 		} else {
 			if (Peao.TestaPeao("Movimento para Sudoeste ")) {
 				if (Peao.TestaTabuleiro("Movimento para Sudoeste ")) {
-					boolean movimentoCorreto = movePeaoPreto(Peao.Sudoeste, 1, 1);
+					movimentoCorreto = movePeaoPreto(Peao.Sudoeste, "P4");
 					if (Peao.P == 'B' && movimentoCorreto) { // casa atras para comer
 						CapturaOponente();
 						return (true);
@@ -116,14 +120,15 @@ public class Tabuleiro {
 			}
 			if (Peao.TestaPeao("Movimento para Sudeste ")) {
 				if (Peao.TestaTabuleiro("Movimento para Sudeste ")) {
-					movePeaoPreto(Peao.Sudoeste, 1, 1);
-					if (Peao.P == 'B') { // casa atras para comer
+					movimentoCorreto = movePeaoPreto(Peao.Sudoeste, "P4");
+					if (Peao.P == 'B' && movimentoCorreto) { // casa atras para comer
 						CapturaOponente();
+						return (true);
 					}
 				}
 
 			}
-
+			return (false);
 		}
 
 	}

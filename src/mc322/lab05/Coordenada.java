@@ -3,10 +3,19 @@ package mc322.lab05;
 public class Coordenada {
 
 	int coluna, linha;
-
+	String coordenada; 
+	
 	public Coordenada(String s) {
+		
+		this.coordenada = s;
+ 
+		this.coluna  = Coluna(coordenada);
+		this.linha  = Linha(coordenada);
 
-		switch (s.substring(0, 1)) {
+	}
+	
+	public int Coluna (String coordenada) {
+		switch (coordenada.substring(0, 1)) {
 		case "a":
 			coluna = 1;
 			break;
@@ -29,8 +38,16 @@ public class Coordenada {
 			coluna = 7;
 			break;
 		}
+		
+		return (coluna);
+	}
+	
+	public int Linha (String coordenada) {
 
-		linha = Integer.parseInt(s.substring(1, 2));
+		linha = Integer.parseInt(coordenada.substring(1, 2));
+		
+		return (linha);
+		
 	}
 
 }
