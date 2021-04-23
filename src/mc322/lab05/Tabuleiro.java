@@ -10,29 +10,29 @@ public class Tabuleiro {
             tabPeao[x][y] = pc;
             pc.P = c;
             if (y > 0 && x > 0) {
-                pc.pecaNO(tabPeao[x-1][y-1]);
+                pc.pecaNoroeste(tabPeao[x-1][y-1]);
                 if (tabPeao[x-1][y-1] != null)
-                    tabPeao[x-1][y-1].pecaSE(pc);
+                    tabPeao[x-1][y-1].pecaSudeste(pc);
             } else
-                pc.pecaNO(null);
+                pc.pecaNoroeste(null);
             if (y < 7 && x > 0) {
-                pc.pecaNE(tabPeao[x-1][y+1]);
+                pc.pecaNordeste(tabPeao[x-1][y+1]);
                 if (tabPeao[x-1][y+1] != null)
-                    tabPeao[x-1][y+1].pecaSO(pc);
+                    tabPeao[x-1][y+1].pecaSudoeste(pc);
             } else
-                pc.pecaNE(null);
+                pc.pecaNoroeste(null);
             if (y > 0 && x < 7) {
-            	pc.pecaSO(tabPeao[x+1][y-1]);
+            	pc.pecaSudoeste(tabPeao[x+1][y-1]);
             	if (tabPeao[x+1][y-1] != null)
-                	tabPeao[x+1][y-1].pecaNE(pc);
+                	tabPeao[x+1][y-1].pecaNordeste(pc);
             } else
-            	pc.pecaSO(null);
+            	pc.pecaSudoeste(null);
             if (y < 8 && x < 7) {
-            	pc.pecaSE(tabPeao[x+1][y+1]);	
+            	pc.pecaSudeste(tabPeao[x+1][y+1]);	
             	if (tabPeao[x+1][y+1] != null)
-            		tabPeao[x+1][y+1].pecaNO(pc);
+            		tabPeao[x+1][y+1].pecaNoroeste(pc);
             } else
-            	pc.pecaSE(null);
+            	pc.pecaSudeste(null);
         }
     }
 	
