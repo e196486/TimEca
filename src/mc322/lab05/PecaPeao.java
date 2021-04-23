@@ -6,10 +6,11 @@ public class PecaPeao {
     		 Sudoeste = null,
     		 Sudeste = null;
     char P;
-	Coordenada coordenada;
+	Coordenada coordenada = new Coordenada("a1");
 	
-	public PecaPeao(String Posicao) {
-		this.coordenada = new Coordenada (Posicao);
+	public PecaPeao(int x, int y) {
+		this.coordenada.linha = x;
+		this.coordenada.coluna = y;
 	}  
 	
     public void pecaNoroeste(PecaPeao pc) {

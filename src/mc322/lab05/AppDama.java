@@ -35,7 +35,8 @@ public class AppDama {
 		tab.printTab();
 		
 		
-		//tab.movePeca("d6:c5");
+		tab.movePeca("d6:c5");
+		tab.printTab();
 
 		
 		
