@@ -6,7 +6,12 @@ public class PecaPeao {
     		 Sudoeste = null,
     		 Sudeste = null;
     char P;
-  
+	Coordenada coordenada;
+	
+	public PecaPeao(String Posicao) {
+		this.coordenada = new Coordenada (Posicao);
+	}  
+	
     public void pecaNoroeste(PecaPeao pc) {
         Noroeste = pc;
     }
@@ -28,11 +33,13 @@ public class PecaPeao {
       posição estiver livre e for o seu lance;
     */
     
-    public void TestaPeao(String Movimento) {
-    	
+    public boolean TestaPeao(String Movimento) {
+
+        return true;	
     }
     
-    public void TestaTabuleiro() {
-    	
+    public  boolean TestaTabuleiro(String Movimento) {
+
+        return true;
     }
 }
