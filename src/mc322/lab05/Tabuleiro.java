@@ -97,30 +97,33 @@ public class Tabuleiro {
 
 	}
 
-	public void movePeaoPreto(PecaPeao Peao, int Xtarget, int Ytarget) {
+	public boolean movePeaoPreto(PecaPeao Peao, int Xtarget, int Ytarget) {
 		if (Peao.coordenada.linha == Xtarget && Peao.coordenada.coluna == Ytarget) {
-			// caso base
+			if (Peao.P == '-') // só atribuo se a peça final é vazia.
+				Peao.P = 'P';
+			    return (true);
 
 		} else {
 			if (Peao.TestaPeao("Movimento para Sudoeste ")) {
 				if (Peao.TestaTabuleiro("Movimento para Sudoeste ")) {
+					boolean movimentoCorreto = movePeaoPreto(Peao.Sudoeste, 1, 1);
+					if (Peao.P == 'B' && movimentoCorreto) { // casa atras para comer
+						CapturaOponente();
+						return (true);
+					} 
+				}
+
+			}
+			if (Peao.TestaPeao("Movimento para Sudeste ")) {
+				if (Peao.TestaTabuleiro("Movimento para Sudeste ")) {
 					movePeaoPreto(Peao.Sudoeste, 1, 1);
 					if (Peao.P == 'B') { // casa atras para comer
 						CapturaOponente();
 					}
 				}
 
-			} else {
-				if (Peao.TestaPeao("Movimento para Sudeste ")) {
-					if (Peao.TestaTabuleiro("Movimento para Sudeste ")) {
-						movePeaoPreto(Peao.Sudoeste, 1, 1);
-						if (Peao.P == 'B') { // casa atras para comer
-							CapturaOponente();
-						}
-					}
-
-				}
 			}
+
 		}
 
 	}
