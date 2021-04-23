@@ -1,9 +1,9 @@
 package mc322.lab05;
 
 public class Tabuleiro {
-	PecaPeao tabPeao[][] = new PecaPeao[8][9];
-	PecaDama tabDama[][] = new PecaDama[8][9];
- 
+	PecaPeao tabPeao[][] = new PecaPeao[9][9];
+	PecaDama tabDama[][] = new PecaDama[9][9];
+	Coordenada Csource;
 	Coordenada Ctarget;
 
 	public void inserePeca(int x, int y, char c) {
@@ -14,29 +14,29 @@ public class Tabuleiro {
 			tabPeao[x][y] = pc;
 			pc.P = c;
 			if (y > 0 && x > 0) {
-				pc.pecaNoroeste(tabPeao[x - 1][y - 1]);
+				pc.pecaSudoeste(tabPeao[x - 1][y - 1]);
 				if (tabPeao[x - 1][y - 1] != null)
-					tabPeao[x - 1][y - 1].pecaSudeste(pc);
-			} else
-				pc.pecaNoroeste(null);
-			if (y < 7 && x > 0) {
-				pc.pecaNordeste(tabPeao[x - 1][y + 1]);
-				if (tabPeao[x - 1][y + 1] != null)
-					tabPeao[x - 1][y + 1].pecaSudoeste(pc);
-			} else
-				pc.pecaNoroeste(null);
-			if (y > 0 && x < 7) {
-				pc.pecaSudoeste(tabPeao[x + 1][y - 1]);
-				if (tabPeao[x + 1][y - 1] != null)
-					tabPeao[x + 1][y - 1].pecaNordeste(pc);
+					tabPeao[x - 1][y - 1].pecaNordeste(pc);
 			} else
 				pc.pecaSudoeste(null);
-			if (y < 8 && x < 7) {
-				pc.pecaSudeste(tabPeao[x + 1][y + 1]);
-				if (tabPeao[x + 1][y + 1] != null)
-					tabPeao[x + 1][y + 1].pecaNoroeste(pc);
+			if (y < 7 && x > 0) {
+				pc.pecaSudeste(tabPeao[x - 1][y + 1]);
+				if (tabPeao[x - 1][y + 1] != null)
+					tabPeao[x - 1][y + 1].pecaNoroeste(pc);
 			} else
-				pc.pecaSudeste(null);
+				pc.pecaSudoeste(null);
+			if (y > 0 && x < 7) {
+				pc.pecaNoroeste(tabPeao[x + 1][y - 1]);
+				if (tabPeao[x + 1][y - 1] != null)
+					tabPeao[x + 1][y - 1].pecaSudeste(pc);
+			} else
+				pc.pecaNoroeste(null);
+			if (y < 8 && x < 7) {
+				pc.pecaNordeste(tabPeao[x + 1][y + 1]);
+				if (tabPeao[x + 1][y + 1] != null)
+					tabPeao[x + 1][y + 1].pecaSudoeste(pc);
+			} else
+				pc.pecaNordeste(null);
 		}
 	}
 
@@ -44,49 +44,50 @@ public class Tabuleiro {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 8; j++) {
 				if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0)) {
-					inserePeca(i, j, '-');
+					inserePeca(i+1, j, '-');
 				} else {
-					inserePeca(i, j, 'p');
+					inserePeca(i+1, j, 'b');
 				}
 			}
-			inserePeca(i, 8, '\n');
+			inserePeca(i+1, 8, '\n');
 		}
 		for (int i = 3; i < 5; i++) {
 			for (int j = 0; j < 8; j++) {
-				inserePeca(i, j, '-');
+				inserePeca(i+1, j, '-');
 			}
-			inserePeca(i, 8, '\n');
+			inserePeca(i+1, 8, '\n');
 		}
 		for (int i = 5; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0)) {
-					inserePeca(i, j, '-');
+					inserePeca(i+1, j, '-');
 				} else {
-					inserePeca(i, j, 'b');
+					inserePeca(i+1, j, 'p');
 				}
 			}
-			inserePeca(i, 8, '\n');
+			inserePeca(i+1, 8, '\n');
 		}
 	}
 
-	public void printTab() {
-		String tabuleiro = "";
+	public String printTab() {
+		String EstadoTabuleiro = "";
 
-		//System.out.println("Source: " + (char) (Ysource + 96) + Xsource);
-		//System.out.println("Target: " + (char) (Ytarget + 96) + Xtarget);
+ 
+		for (int i = 7; i > 0; i--) {
+			System.out.print(i);
+			for (int j = 1; j < 8; j++) {
 
-		for (int i = 0; i < 8; i++) {
-			tabuleiro = tabuleiro + (8 - i) + " ";
-			for (int j = 0; j < 9; j++) {
-				if (tabPeao[i][j] != null)
-					tabuleiro = tabuleiro + Character.toString(tabPeao[i][j].P);
-				if (j < 7)
-					tabuleiro = tabuleiro + " ";
+				System.out.print(" "+ tabPeao[i][j].P /*+"["+i+"]"+"["+j+"]"*/);
+				EstadoTabuleiro += " " + tabPeao[i][j].P;
 			}
+			EstadoTabuleiro += "\n";
+
+			System.out.println(" ");
 		}
-		tabuleiro = tabuleiro + "  a b c d e f g h\n";
-		System.out.println(tabuleiro);
-		return;
+		System.out.print("  a b c d e f g \n\n");
+
+		return (EstadoTabuleiro);
+
 	}
 
 	public void CapturaOponente() {
@@ -94,13 +95,37 @@ public class Tabuleiro {
 	}
 
 	public void movePeca(String Movimento) {
+		//separa a String em duas coordenadas 
+		
+		System.out.println("recebi o movimento e é:  " + Movimento);
+		
+		String Source = Movimento.substring(0, 2);
+		String Target = Movimento.substring(3, 5);
+		System.out.println("Meu Souce é :" + Source);
+		System.out.println("Meu Target é : " + Target);
+		
+		Csource = new Coordenada(Source);
+	    Ctarget = new Coordenada(Target);
+	    System.out.println("Meu Csource.linha é : " + Csource.linha);
+	    System.out.println("Meu Csource.coluna é : " + Csource.coluna);
+	    tabPeao[Csource.linha][Csource.coluna].P = 'X';
+	    tabPeao[Csource.linha][Csource.coluna].Nordeste.P = '1';
+	    tabPeao[Csource.linha][Csource.coluna].Noroeste.P = '2';
+	    tabPeao[Csource.linha][Csource.coluna].Sudeste.P = '3';
+	    tabPeao[Csource.linha][Csource.coluna].Sudoeste.P = '4';
+	    printTab();
+	    
+		if (tabPeao[Csource.coluna][Csource.linha].P =='P') { //Se a peça for um peao preto, vai 
+			movePeaoPreto (tabPeao[Csource.coluna][Csource.linha], Ctarget);
+
+			System.out.println("Estou movendo meu peao preto");
+		}
 
 	}
 
-	public boolean movePeaoPreto(PecaPeao Peao, String Target) {
+	public boolean movePeaoPreto(PecaPeao Peao, Coordenada Ctarget) {
 		boolean movimentoCorreto = false;
 		
-		Ctarget = new Coordenada(Target);
 		
 		if (Peao.coordenada.linha == Ctarget.linha && Peao.coordenada.coluna == Ctarget.coluna) {
 			if (Peao.P == '-') // só atribuo se a peça final é vazia.
@@ -110,7 +135,7 @@ public class Tabuleiro {
 		} else {
 			if (Peao.TestaPeao("Movimento para Sudoeste ")) {
 				if (Peao.TestaTabuleiro("Movimento para Sudoeste ")) {
-					movimentoCorreto = movePeaoPreto(Peao.Sudoeste, "P4");
+					movimentoCorreto = movePeaoPreto(Peao.Sudoeste, Ctarget);
 					if (Peao.P == 'B' && movimentoCorreto) { // casa atras para comer
 						CapturaOponente();
 						return (true);
@@ -120,7 +145,7 @@ public class Tabuleiro {
 			}
 			if (Peao.TestaPeao("Movimento para Sudeste ")) {
 				if (Peao.TestaTabuleiro("Movimento para Sudeste ")) {
-					movimentoCorreto = movePeaoPreto(Peao.Sudoeste, "P4");
+					movimentoCorreto = movePeaoPreto(Peao.Sudoeste, Ctarget);
 					if (Peao.P == 'B' && movimentoCorreto) { // casa atras para comer
 						CapturaOponente();
 						return (true);
