@@ -25,10 +25,13 @@ public class PecaDama {
         P = '-';
     } 
     
-    
+	/*damas se movem qualquer número de casas na diagonal para frente ou para trás,
+contanto que a diagonal esteja desimpedida e seja o seu lance.*/    
     public void TestaDama() {
     	
+
     }
+    
     
     public void TestaTabuleiro() {
     	

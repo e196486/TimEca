@@ -28,7 +28,7 @@ public class PecaPeao {
       posição estiver livre e for o seu lance;
     */
     
-    public void TestaPeao() {
+    public void TestaPeao(String Movimento) {
     	
     }
     
