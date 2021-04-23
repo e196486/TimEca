@@ -3,6 +3,11 @@ package mc322.lab05;
 public class Tabuleiro {
 	PecaPeao tabPeao[][] = new PecaPeao[8][9];
 	PecaDama tabDama[][] = new PecaDama[8][9];
+	int Xsource;
+	int Xtarget;
+	int Ysource;
+	int Ytarget;
+	
 	
 	public void inserePeca(int x, int y, char c) {
         if (y <= 8 && x < 8) {
@@ -67,6 +72,11 @@ public class Tabuleiro {
 	
 	public void printTab() {
 		String tabuleiro = "";
+		
+		System.out.println("Source: " + (char) (Ysource + 96) + Xsource);
+		System.out.println("Target: " + (char) (Ytarget + 96) + Xtarget);
+		
+		
 		for (int i = 0; i < 8; i++) {
 			tabuleiro = tabuleiro + (8 - i) + " ";
 			for (int j = 0; j < 9; j++) {
