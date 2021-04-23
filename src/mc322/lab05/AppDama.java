@@ -20,7 +20,7 @@ public class AppDama {
 			
 			Tab.movePeca(commands[i]);
 			
-			EstadoTabuleiro = Tab.printTab();
+			//EstadoTabuleiro = Tab.printTab();
 		}
 
 		return (EstadoTabuleiro);
@@ -35,7 +35,7 @@ public class AppDama {
 		tab.printTab();
 		
 		
-		tab.movePeca("d6:c5");
+		//tab.movePeca("d6:c5");
 
 		
 		
