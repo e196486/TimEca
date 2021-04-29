@@ -31,12 +31,12 @@ Coordenada coordenada = new Coordenada("a1");
         P = '-';
     }
     
-    public boolean TestaPeca(String Movimento) {
+    public boolean TestaPeca(Coordenada Ctarget) {
 
         return true;	
     }
     
-    public  boolean TestaTabuleiro(String Movimento) {
+    public  boolean TestaTabuleiro(Coordenada Ctarget) {
 
         return true;
     }

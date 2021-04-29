@@ -12,12 +12,12 @@ Coordenada coordenada = new Coordenada("a1");
       posição estiver livre e for o seu lance;
     */
     
-    public boolean TestaPeca(String Movimento) {
+    public boolean TestaPeca(Coordenada Ctarget) {
 
         return true;	
     }
     
-    public  boolean TestaTabuleiro(String Movimento) {
+    public  boolean TestaTabuleiro(Coordenada Ctarget) {
 
         return true;
     }
