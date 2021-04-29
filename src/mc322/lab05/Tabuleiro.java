@@ -86,8 +86,9 @@ public class Tabuleiro {
 
 	}
 
-	public void CapturaOponente() {
-
+	public void CapturaOponente(Peca Peca) {
+		Peca.P = '-';
+		//se meu oponente for inimigo , eu excluo ele.
 	}
 
 	public void movePeca(String Movimento) {
@@ -115,7 +116,7 @@ public class Tabuleiro {
 
 	public boolean movePecaPreta(Peca Peca, Coordenada Ctarget) {
 		boolean StatusMovimento = false;
-		System.out.println("\n\n >> Estou movendo meu Peca preto");
+		System.out.println("\n\n >> Estou movendo minha Peca preta");
 		System.out.print("Meu Peca.coordenada.linha : " + Peca.coordenada.linha);
 		System.out.println(" | Meu Ctarget.linha : " + Ctarget.linha);
 		System.out.print("Meu Peca.coordenada.coluna : " + Peca.coordenada.coluna);
@@ -140,7 +141,7 @@ public class Tabuleiro {
 
 					if (StatusMovimento) {
 						if (Peca.P == 'b') // casa atras para comer
-							CapturaOponente();
+							CapturaOponente(Peca);
 
 						if (Peca.P == 'p')
 							Peca.P = '-';
@@ -157,7 +158,7 @@ public class Tabuleiro {
 						StatusMovimento = true;
 					if (StatusMovimento) {
 						if (Peca.P == 'b') // casa atras para comer
-							CapturaOponente();
+							CapturaOponente(Peca);
 
 						if (Peca.P == 'p')
 							Peca.P = '-';
@@ -191,14 +192,14 @@ public class Tabuleiro {
 
 				if (Peca.TestaTabuleiro(Ctarget/*"Movimento para Nordeste"*/)) {
 
-					System.out.println("pode mover para Nordeste:" + Peca.Sudoeste.P);
+					System.out.println("pode mover para Nordeste:" + Peca.Nordeste.P);
 
-					if (movePecaPreta(Peca.Nordeste, Ctarget))
+					if (movePecaBranca(Peca.Nordeste, Ctarget))
 						StatusMovimento = true;
 
 					if (StatusMovimento) {
 						if (Peca.P == 'p') // casa atras para comer
-							CapturaOponente();
+							CapturaOponente(Peca);
 
 						if (Peca.P == 'b')
 							Peca.P = '-';
@@ -211,11 +212,11 @@ public class Tabuleiro {
 
 			if (Peca.TestaPeca(Ctarget/*"Movimento para Noroeste"*/) && !StatusMovimento) {
 				if (Peca.TestaTabuleiro(Ctarget/*"Movimento para Noroeste"*/)) {
-					if (movePecaPreta(Peca.Noroeste, Ctarget))
+					if (movePecaBranca(Peca.Noroeste, Ctarget))
 						StatusMovimento = true;
 					if (StatusMovimento) {
 						if (Peca.P == 'p') // casa atras para comer
-							CapturaOponente();
+							CapturaOponente(Peca);
 
 						if (Peca.P == 'b')
 							Peca.P = '-';
