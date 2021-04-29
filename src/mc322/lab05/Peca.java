@@ -29,4 +29,14 @@ public class Peca {
     public void pecaComida() {
         P = '-';
     }
+    
+    public boolean TestaPeca(String Movimento) {
+
+        return true;	
+    }
+    
+    public  boolean TestaTabuleiro(String Movimento) {
+
+        return true;
+    
 }
