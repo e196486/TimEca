@@ -106,7 +106,11 @@ public class Tabuleiro {
 			movePecaPreta(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 
 		}
+		if (tabuleiro[Csource.linha][Csource.coluna].P == 'b' || tabuleiro[Csource.linha][Csource.coluna].P == 'B' ) { // Se a peça for um peao preto, vai
 
+			movePecaBranca(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
+
+		}
 	}
 
 	public boolean movePecaPreta(Peca Peca, Coordenada Ctarget) {
