@@ -1,38 +1,37 @@
 package mc322.lab05;
 
 public class Tabuleiro {
-	PecaPeao tabPeao[][] = new PecaPeao[10][10];
-	PecaDama tabDama[][] = new PecaDama[10][10];
+	Peca tabuleiro[][] = new PecaPeao[10][10]; 
 	Coordenada Csource;
 	Coordenada Ctarget;
 
 	public void inserePeca(int x, int y, char c) {
 		if (y <= 9 && x < 9) {
 			PecaPeao pc = new PecaPeao(x, y);
-			tabPeao[x][y] = pc;
+			tabuleiro[x][y] = pc;
 			pc.P = c;
 			if (y > 1 && x > 1) {
-				pc.pecaSudoeste(tabPeao[x - 1][y - 1]);
-				if (tabPeao[x - 1][y - 1] != null)
-					tabPeao[x - 1][y - 1].pecaNordeste(pc);
+				pc.pecaSudoeste(tabuleiro[x - 1][y - 1]);
+				if (tabuleiro[x - 1][y - 1] != null)
+					tabuleiro[x - 1][y - 1].pecaNordeste(pc);
 			} else
 				pc.pecaSudoeste(null);
 			if (y < 8 && x > 1) {
-				pc.pecaSudeste(tabPeao[x - 1][y + 1]);
-				if (tabPeao[x - 1][y + 1] != null)
-					tabPeao[x - 1][y + 1].pecaNoroeste(pc);
+				pc.pecaSudeste(tabuleiro[x - 1][y + 1]);
+				if (tabuleiro[x - 1][y + 1] != null)
+					tabuleiro[x - 1][y + 1].pecaNoroeste(pc);
 			} else
 				pc.pecaSudoeste(null);
 			if (y > 1 && x < 8) {
-				pc.pecaNoroeste(tabPeao[x + 1][y - 1]);
-				if (tabPeao[x + 1][y - 1] != null)
-					tabPeao[x + 1][y - 1].pecaSudeste(pc);
+				pc.pecaNoroeste(tabuleiro[x + 1][y - 1]);
+				if (tabuleiro[x + 1][y - 1] != null)
+					tabuleiro[x + 1][y - 1].pecaSudeste(pc);
 			} else
 				pc.pecaNoroeste(null);
 			if (y < 9 && x < 8) {
-				pc.pecaNordeste(tabPeao[x + 1][y + 1]);
-				if (tabPeao[x + 1][y + 1] != null)
-					tabPeao[x + 1][y + 1].pecaSudoeste(pc);
+				pc.pecaNordeste(tabuleiro[x + 1][y + 1]);
+				if (tabuleiro[x + 1][y + 1] != null)
+					tabuleiro[x + 1][y + 1].pecaSudoeste(pc);
 			} else
 				pc.pecaNordeste(null);
 		}
@@ -74,8 +73,8 @@ public class Tabuleiro {
 			System.out.print(i);
 			for (int j = 1; j < 8; j++) {
 
-				System.out.print(" " + tabPeao[i][j].P /* +"["+i+"]"+"["+j+"]" */);
-				EstadoTabuleiro += " " + tabPeao[i][j].P;
+				System.out.print(" " + tabuleiro[i][j].P /* +"["+i+"]"+"["+j+"]" */);
+				EstadoTabuleiro += " " + tabuleiro[i][j].P;
 			}
 			EstadoTabuleiro += "\n";
 
@@ -102,45 +101,45 @@ public class Tabuleiro {
 		Csource = new Coordenada(Source);
 		Ctarget = new Coordenada(Target);
 
-		if (tabPeao[Csource.linha][Csource.coluna].P == 'p') { // Se a peça for um peao preto, vai
+		if (tabuleiro[Csource.linha][Csource.coluna].P == 'p') { // Se a peça for um peao preto, vai
 
-			movePeaoPreto(tabPeao[Csource.linha][Csource.coluna], Ctarget);
+			movePecaPreta(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 
 		}
 
 	}
 
-	public boolean movePeaoPreto(PecaPeao Peao, Coordenada Ctarget) {
+	public boolean movePecaPreta(Peca Peca, Coordenada Ctarget) {
 		boolean StatusMovimento = false;
-		System.out.println("\n\n >> Estou movendo meu peao preto");
-		System.out.print("Meu Peao.coordenada.linha : " + Peao.coordenada.linha);
+		System.out.println("\n\n >> Estou movendo meu Peca preto");
+		System.out.print("Meu Peca.coordenada.linha : " + Peca.coordenada.linha);
 		System.out.println(" | Meu Ctarget.linha : " + Ctarget.linha);
-		System.out.print("Meu Peao.coordenada.coluna : " + Peao.coordenada.coluna);
+		System.out.print("Meu Peca.coordenada.coluna : " + Peca.coordenada.coluna);
 		System.out.println(" | Meu Ctarget.coluna : " + Ctarget.coluna);
 
-		if (Peao.coordenada.linha == Ctarget.linha && Peao.coordenada.coluna == Ctarget.coluna) {
-			if (Peao.P == '-') // só atribuo se a peça final é vazia.
-				Peao.P = 'P';
+		if (Peca.coordenada.linha == Ctarget.linha && Peca.coordenada.coluna == Ctarget.coluna) {
+			if (Peca.P == '-') // só atribuo se a peça final é vazia.
+				Peca.P = 'P';
 			System.out.println("chegamos no target");
 			return (true);
 
 		} else {
 
-			if (Peao.TestaPeao("Movimento para Sudoeste")) {
+			if (Peca.TestaPeca("Movimento para Sudoeste")) {
 
-				if (Peao.TestaTabuleiro("Movimento para Sudoeste")) {
+				if (Peca.TestaTabuleiro("Movimento para Sudoeste")) {
 
-					System.out.println("pode mover para Sudoeste:" + Peao.Sudoeste.P);
+					System.out.println("pode mover para Sudoeste:" + Peca.Sudoeste.P);
 
-					if (movePeaoPreto(Peao.Sudoeste, Ctarget))
+					if (movePecaPreta(Peca.Sudoeste, Ctarget))
 						StatusMovimento = true;
 
 					if (StatusMovimento) {
-						if (Peao.P == 'b') // casa atras para comer
+						if (Peca.P == 'b') // casa atras para comer
 							CapturaOponente();
 
-						if (Peao.P == 'p')
-							Peao.P = '-';
+						if (Peca.P == 'p')
+							Peca.P = '-';
 						
 						return(true);
 					}
@@ -148,16 +147,16 @@ public class Tabuleiro {
 
 			}
 
-			if (Peao.TestaPeao("Movimento para Sudeste ") && !StatusMovimento) {
-				if (Peao.TestaTabuleiro("Movimento para Sudeste ")) {
-					if (movePeaoPreto(Peao.Sudoeste, Ctarget))
+			if (Peca.TestaPeca("Movimento para Sudeste ") && !StatusMovimento) {
+				if (Peca.TestaTabuleiro("Movimento para Sudeste ")) {
+					if (movePecaPreta(Peca.Sudoeste, Ctarget))
 						StatusMovimento = true;
 					if (StatusMovimento) {
-						if (Peao.P == 'b') // casa atras para comer
+						if (Peca.P == 'b') // casa atras para comer
 							CapturaOponente();
 
-						if (Peao.P == 'p')
-							Peao.P = '-';
+						if (Peca.P == 'p')
+							Peca.P = '-';
 						
 						return(true);
 					}
