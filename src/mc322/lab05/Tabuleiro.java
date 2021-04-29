@@ -7,7 +7,7 @@ public class Tabuleiro {
 	int Xtarget;
 	int Ysource;
 	int Ytarget;
-	
+	 
 	
 	public void inserePeca(int x, int y, char c) {
         if (y <= 8 && x < 8) {

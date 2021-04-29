@@ -1,6 +1,6 @@
 package mc322.lab05;
 
-public class Coordenada {
+public class Coordenada { 
 
 	int coluna, linha;
 

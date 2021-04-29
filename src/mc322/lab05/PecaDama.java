@@ -6,7 +6,7 @@ public class PecaDama {
    		 	 Sudoeste = null,
    		 	 Sudeste = null;
 	char P;
-
+ 
     
 	public void pecaNoroeste(PecaDama pc) {
         Noroeste = pc;
