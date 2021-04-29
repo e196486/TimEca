@@ -16,7 +16,7 @@ contanto que a diagonal esteja desimpedida e seja o seu lance.*/
     }
     
     
-    public  boolean TestaTabuleiro(Coordenada Ctarget) {
+    public  boolean TestaMovimento(Coordenada Ctarget) {
 
         return true;	
     }

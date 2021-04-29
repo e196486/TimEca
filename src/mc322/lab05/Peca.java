@@ -31,13 +31,15 @@ Coordenada coordenada = new Coordenada("a1");
         P = '-';
     }
     
+    
     public boolean TestaPeca(Coordenada Ctarget) {
-
+    	if (P == 'p' || P == '')
+    	if ((Ctarget.linha == coordenada.linha-1)&&(Ctarget.coluna == coordenada.coluna-1))
         return true;	
     }
     
-    public  boolean TestaTabuleiro(Coordenada Ctarget) {
-
+    public  boolean TestaMovimento(Coordenada Ctarget) {
+    	
         return true;
     }
 }
