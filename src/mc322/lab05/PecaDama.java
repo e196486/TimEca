@@ -1,6 +1,12 @@
 package mc322.lab05;
 
-public class PecaDama { 
+public class PecaDama extends Peca{ 
+	
+Coordenada coordenada = new Coordenada("a1");
+	
+	public PecaDama(int x, int y) {
+		super(x, y);
+	}  
     
 	/*damas se movem qualquer número de casas na diagonal para frente ou para trás,
 contanto que a diagonal esteja desimpedida e seja o seu lance.*/    
