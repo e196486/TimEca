@@ -6,7 +6,8 @@ public class Peca {
     	 Sudoeste = null,
     	 Sudeste = null;
     char P;
-	Coordenada coordenada = new Coordenada("a1");
+    
+Coordenada coordenada = new Coordenada("a1");
 	
 	public Peca(int x, int y) {
 		this.coordenada.linha = x;
