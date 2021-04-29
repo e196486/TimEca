@@ -6,7 +6,11 @@ public class PecaDama {
    		 	 Sudoeste = null,
    		 	 Sudeste = null;
 	char P;
- 
+	Coordenada coordenada;
+	
+	public PecaDama(String Posicao) {
+		this.coordenada = new Coordenada (Posicao);
+	}
     
 	public void pecaNoroeste(PecaDama pc) {
         Noroeste = pc;
@@ -27,13 +31,14 @@ public class PecaDama {
     
 	/*damas se movem qualquer número de casas na diagonal para frente ou para trás,
 contanto que a diagonal esteja desimpedida e seja o seu lance.*/    
-    public void TestaDama() {
+    public  boolean TestaDama(String Movimento) {
     	
-
+    return true;
     }
     
     
-    public void TestaTabuleiro() {
-    	
+    public  boolean TestaTabuleiro(String Movimento) {
+
+        return true;	
     }
 }
