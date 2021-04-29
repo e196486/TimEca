@@ -18,9 +18,9 @@ public class AppDama {
 			commands[i] = commands[i].replace("}","");
 			commands[i] = commands[i].replace(" ","");
 			
-			Tab.movePeca(commands[i]);
+			Tab.solicitaMovimento(commands[i]);
 			
-			//EstadoTabuleiro = Tab.printTab();
+			//EstadoTabuleiro = Tab.imprimirTabuleiro();
 		}
 
 		return (EstadoTabuleiro);
@@ -32,11 +32,11 @@ public class AppDama {
 		
 		Tabuleiro tab = new Tabuleiro();
 		tab.setTabuleiro();
-		tab.printTab();
+		tab.imprimirTabuleiro();
 		
 		
-		tab.movePeca("d3:e4");
-		tab.printTab();
+		tab.solicitaMovimento("c2:e4");
+		tab.imprimirTabuleiro();
 
 		
 		
