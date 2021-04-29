@@ -95,7 +95,34 @@ public class Tabuleiro {
 		// se meu oponente for inimigo , eu excluo ele.
 	}
 
+	public boolean RegraDama(Peca Peca) {
+    	if (Peca.P == 'p') {
+    		if (Peca.coordenada.linha == 1 ) {
+    			return true;
+    		} 
+    	}else if (Peca.P == 'b') {
+    		if (Peca.coordenada.linha == 8 ) {
+    			return true;
+    		} 
+    	}
+    		return false; 
+    }
+	
+	public void CriaDama(Peca Peca) {
+		char cor = Peca.P;
+		
+		PecaDama pc = new PecaDama(Peca.coordenada.linha, Peca.coordenada.coluna);
+		tabuleiro[Peca.coordenada.linha][ Peca.coordenada.coluna] = pc;
+		if (cor == 'p') {
+			pc.P = 'P';
+			
+		}else if (cor == 'b'){
+			pc.P = 'B';
+		}
+	}
+	
 	public void solicitaMovimento(String Movimento) {
+		boolean StatusMovimento = false;
 		// separa a String em duas coordenadas
 
 		System.out.println("recebi o movimento e é:  " + Movimento);
@@ -108,14 +135,17 @@ public class Tabuleiro {
 
 		if (tabuleiro[Csource.linha][Csource.coluna].P == 'p' || 
 				tabuleiro[Csource.linha][Csource.coluna].P == 'P') {
-			solicitaMovimentoPreta(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
-
+			StatusMovimento = solicitaMovimentoPreta(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 		}
 		if (tabuleiro[Csource.linha][Csource.coluna].P == 'b' || 
 				tabuleiro[Csource.linha][Csource.coluna].P == 'B') {
-			solicitaMovimentoBranca(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
-
+			StatusMovimento = solicitaMovimentoBranca(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 		}
+		
+		if (StatusMovimento && RegraDama(tabuleiro[Ctarget.linha][Ctarget.coluna])) 
+			CriaDama(tabuleiro[Ctarget.linha][Ctarget.coluna]);
+		
+		
 	}
 
 	public boolean solicitaMovimentoPreta(Peca Peca, Coordenada Ctarget) {
