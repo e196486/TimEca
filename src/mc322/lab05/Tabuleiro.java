@@ -69,7 +69,7 @@ public class Tabuleiro {
 	public String exportarArquivo() {
 		return "xxxx";
 	}
-	
+
 	public String imprimirTabuleiro() {
 		String EstadoTabuleiro = "";
 
@@ -96,31 +96,31 @@ public class Tabuleiro {
 	}
 
 	public boolean RegraDama(Peca Peca) {
-    	if (Peca.P == 'p') {
-    		if (Peca.coordenada.linha == 1 ) {
-    			return true;
-    		} 
-    	}else if (Peca.P == 'b') {
-    		if (Peca.coordenada.linha == 8 ) {
-    			return true;
-    		} 
-    	}
-    		return false; 
-    }
-	
+		if (Peca.P == 'p') {
+			if (Peca.coordenada.linha == 1) {
+				return true;
+			}
+		} else if (Peca.P == 'b') {
+			if (Peca.coordenada.linha == 8) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void CriaDama(Peca Peca) {
 		char cor = Peca.P;
-		
+
 		PecaDama pc = new PecaDama(Peca.coordenada.linha, Peca.coordenada.coluna);
-		tabuleiro[Peca.coordenada.linha][ Peca.coordenada.coluna] = pc;
+		tabuleiro[Peca.coordenada.linha][Peca.coordenada.coluna] = pc;
 		if (cor == 'p') {
 			pc.P = 'P';
-			
-		}else if (cor == 'b'){
+
+		} else if (cor == 'b') {
 			pc.P = 'B';
 		}
 	}
-	
+
 	public void solicitaMovimento(String Movimento) {
 		boolean StatusMovimento = false;
 		// separa a String em duas coordenadas
@@ -133,19 +133,16 @@ public class Tabuleiro {
 		Csource = new Coordenada(Source);
 		Ctarget = new Coordenada(Target);
 
-		if (tabuleiro[Csource.linha][Csource.coluna].P == 'p' || 
-				tabuleiro[Csource.linha][Csource.coluna].P == 'P') {
+		if (tabuleiro[Csource.linha][Csource.coluna].P == 'p' || tabuleiro[Csource.linha][Csource.coluna].P == 'P') {
 			StatusMovimento = solicitaMovimentoPreta(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 		}
-		if (tabuleiro[Csource.linha][Csource.coluna].P == 'b' || 
-				tabuleiro[Csource.linha][Csource.coluna].P == 'B') {
+		if (tabuleiro[Csource.linha][Csource.coluna].P == 'b' || tabuleiro[Csource.linha][Csource.coluna].P == 'B') {
 			StatusMovimento = solicitaMovimentoBranca(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 		}
-		
-		if (StatusMovimento && RegraDama(tabuleiro[Ctarget.linha][Ctarget.coluna])) 
+
+		if (StatusMovimento && RegraDama(tabuleiro[Ctarget.linha][Ctarget.coluna]))
 			CriaDama(tabuleiro[Ctarget.linha][Ctarget.coluna]);
-		
-		
+
 	}
 
 	public boolean solicitaMovimentoPreta(Peca Peca, Coordenada Ctarget) {
@@ -165,39 +162,34 @@ public class Tabuleiro {
 		} else {
 			if (Peca.TestaPeca(Peca.Sudoeste.coordenada)) { /* "Movimento para Sudoeste" */
 
-				if (Peca.TestaTabuleiro(Peca.Sudoeste.coordenada)) { /* "Movimento para Sudoeste" */
+				System.out.println("pode mover para Sudoeste:" + Peca.Sudoeste.P);
 
-					System.out.println("pode mover para Sudoeste:" + Peca.Sudoeste.P);
+				if (solicitaMovimentoPreta(Peca.Sudoeste, Ctarget))
+					StatusMovimento = true;
 
-					if (solicitaMovimentoPreta(Peca.Sudoeste, Ctarget))
-						StatusMovimento = true;
+				if (StatusMovimento) {
+					if (Peca.P == 'b') // casa atras para comer
+						CapturaOponente(Peca);
 
-					if (StatusMovimento) {
-						if (Peca.P == 'b') // casa atras para comer
-							CapturaOponente(Peca);
+					if (Peca.P == 'p')
+						Peca.P = '-';
 
-						if (Peca.P == 'p')
-							Peca.P = '-';
-
-						return (true);
-					}
+					return (true);
 				}
 
 			}
 
 			if (Peca.TestaPeca(Peca.Sudeste.coordenada) && !StatusMovimento) { /* "Movimento para Sudeste " */
-				if (Peca.TestaTabuleiro(Peca.Sudeste.coordenada)) { /* "Movimento para Sudeste " */
-					if (solicitaMovimentoPreta(Peca.Sudoeste, Ctarget))
-						StatusMovimento = true;
-					if (StatusMovimento) {
-						if (Peca.P == 'b') // casa atras para comer
-							CapturaOponente(Peca);
+				if (solicitaMovimentoPreta(Peca.Sudoeste, Ctarget))
+					StatusMovimento = true;
+				if (StatusMovimento) {
+					if (Peca.P == 'b') // casa atras para comer
+						CapturaOponente(Peca);
 
-						if (Peca.P == 'p')
-							Peca.P = '-';
+					if (Peca.P == 'p')
+						Peca.P = '-';
 
-						return (true);
-					}
+					return (true);
 				}
 
 			}
@@ -223,40 +215,35 @@ public class Tabuleiro {
 
 			if (Peca.TestaPeca(Peca.Nordeste.coordenada)) { /* "Movimento para Nordeste" */
 
-				if (Peca.TestaTabuleiro(Peca.Nordeste.coordenada)) { /* "Movimento para Nordeste" */
+				System.out.println("pode mover para Nordeste:" + Peca.Nordeste.P);
 
-					System.out.println("pode mover para Nordeste:" + Peca.Nordeste.P);
+				if (solicitaMovimentoBranca(Peca.Nordeste, Ctarget))
+					StatusMovimento = true;
 
-					if (solicitaMovimentoBranca(Peca.Nordeste, Ctarget))
-						StatusMovimento = true;
+				if (StatusMovimento) {
+					if (Peca.P == 'p') // casa atras para comer
+						CapturaOponente(Peca);
 
-					if (StatusMovimento) {
-						if (Peca.P == 'p') // casa atras para comer
-							CapturaOponente(Peca);
+					if (Peca.P == 'b')
+						Peca.P = '-';
 
-						if (Peca.P == 'b')
-							Peca.P = '-';
-
-						return (true);
-					}
+					return (true);
 				}
 
 			}
 
 			if (Peca.TestaPeca(Peca.Noroeste.coordenada) && !StatusMovimento) { /* "Movimento para Noroeste" */
 
-				if (Peca.TestaTabuleiro(Peca.Noroeste.coordenada)) { /* "Movimento para Noroeste" */
-					if (solicitaMovimentoBranca(Peca.Noroeste, Ctarget))
-						StatusMovimento = true;
-					if (StatusMovimento) {
-						if (Peca.P == 'p') // casa atras para comer
-							CapturaOponente(Peca);
+				if (solicitaMovimentoBranca(Peca.Noroeste, Ctarget))
+					StatusMovimento = true;
+				if (StatusMovimento) {
+					if (Peca.P == 'p') // casa atras para comer
+						CapturaOponente(Peca);
 
-						if (Peca.P == 'b')
-							Peca.P = '-';
+					if (Peca.P == 'b')
+						Peca.P = '-';
 
-						return (true);
-					}
+					return (true);
 				}
 
 			}

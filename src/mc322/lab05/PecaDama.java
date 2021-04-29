@@ -16,22 +16,10 @@ contanto que a diagonal esteja desimpedida e seja o seu lance.*/
     }
     
     
-    public  boolean TestaMovimento(Coordenada Ctarget) {
+    public  boolean TestaTabuleiro(Coordenada Ctarget) {
 
         return true;	
     }
     
-    
-    public boolean RegraDama(Peca Peca) {
-    	if (Peca.P == 'p') {
-    		if (Peca.coordenada.linha == 1 ) {
-    			return true;
-    		} 
-    	}else if (Peca.P == 'b') {
-    		if (Peca.coordenada.linha == 8 ) {
-    			return true;
-    		} 
-    	}
-    		return false; 
-    }
+   
 }
