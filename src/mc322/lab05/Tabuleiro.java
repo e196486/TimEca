@@ -101,7 +101,7 @@ public class Tabuleiro {
 		Csource = new Coordenada(Source);
 		Ctarget = new Coordenada(Target);
 
-		if (tabuleiro[Csource.linha][Csource.coluna].P == 'p') { // Se a peça for um peao preto, vai
+		if (tabuleiro[Csource.linha][Csource.coluna].P == 'p' || tabuleiro[Csource.linha][Csource.coluna].P == 'P' ) { // Se a peça for um peao preto, vai
 
 			movePecaPreta(tabuleiro[Csource.linha][Csource.coluna], Ctarget);
 
@@ -119,15 +119,15 @@ public class Tabuleiro {
 
 		if (Peca.coordenada.linha == Ctarget.linha && Peca.coordenada.coluna == Ctarget.coluna) {
 			if (Peca.P == '-') // só atribuo se a peça final é vazia.
-				Peca.P = 'P';
+				Peca.P = 'p';
 			System.out.println("chegamos no target");
 			return (true);
 
 		} else {
 
-			if (Peca.TestaPeca("Movimento para Sudoeste")) {
+			if (Peca.TestaPeca(Ctarget /*"Movimento para Sudoeste"*/)) {
 
-				if (Peca.TestaTabuleiro("Movimento para Sudoeste")) {
+				if (Peca.TestaTabuleiro(Ctarget /*"Movimento para Sudoeste"*/)) {
 
 					System.out.println("pode mover para Sudoeste:" + Peca.Sudoeste.P);
 
@@ -147,8 +147,8 @@ public class Tabuleiro {
 
 			}
 
-			if (Peca.TestaPeca("Movimento para Sudeste ") && !StatusMovimento) {
-				if (Peca.TestaTabuleiro("Movimento para Sudeste ")) {
+			if (Peca.TestaPeca(Ctarget /*"Movimento para Sudeste "*/) && !StatusMovimento) {
+				if (Peca.TestaTabuleiro(Ctarget /*"Movimento para Sudeste "*/)) {
 					if (movePecaPreta(Peca.Sudoeste, Ctarget))
 						StatusMovimento = true;
 					if (StatusMovimento) {
@@ -156,6 +156,64 @@ public class Tabuleiro {
 							CapturaOponente();
 
 						if (Peca.P == 'p')
+							Peca.P = '-';
+						
+						return(true);
+					}
+				}
+
+			}
+			return (false);
+		}
+	}
+
+	public boolean movePecaBranca(Peca Peca, Coordenada Ctarget) {
+		boolean StatusMovimento = false;
+		System.out.println("\n\n >> Estou movendo minha peca branca");
+		System.out.print("Meu Peca.coordenada.linha : " + Peca.coordenada.linha);
+		System.out.println(" | Meu Ctarget.linha : " + Ctarget.linha);
+		System.out.print("Meu Peca.coordenada.coluna : " + Peca.coordenada.coluna);
+		System.out.println(" | Meu Ctarget.coluna : " + Ctarget.coluna);
+
+		if (Peca.coordenada.linha == Ctarget.linha && Peca.coordenada.coluna == Ctarget.coluna) {
+			if (Peca.P == '-') // só atribuo se a peça final é vazia.
+				Peca.P = 'b';
+			System.out.println("chegamos no target");
+			return (true);
+
+		} else {
+
+			if (Peca.TestaPeca(Ctarget/*"Movimento para Nordeste"*/)) {
+
+				if (Peca.TestaTabuleiro(Ctarget/*"Movimento para Nordeste"*/)) {
+
+					System.out.println("pode mover para Nordeste:" + Peca.Sudoeste.P);
+
+					if (movePecaPreta(Peca.Nordeste, Ctarget))
+						StatusMovimento = true;
+
+					if (StatusMovimento) {
+						if (Peca.P == 'p') // casa atras para comer
+							CapturaOponente();
+
+						if (Peca.P == 'b')
+							Peca.P = '-';
+						
+						return(true);
+					}
+				}
+
+			}
+
+			if (Peca.TestaPeca(Ctarget/*"Movimento para Noroeste"*/) && !StatusMovimento) {
+				if (Peca.TestaTabuleiro(Ctarget/*"Movimento para Noroeste"*/)) {
+					if (movePecaPreta(Peca.Noroeste, Ctarget))
+						StatusMovimento = true;
+					if (StatusMovimento) {
+						if (Peca.P == 'p') // casa atras para comer
+							CapturaOponente();
+
+						if (Peca.P == 'b')
 							Peca.P = '-';
 						
 						return(true);

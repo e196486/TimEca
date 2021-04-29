@@ -10,13 +10,13 @@ Coordenada coordenada = new Coordenada("a1");
     
 	/*damas se movem qualquer número de casas na diagonal para frente ou para trás,
 contanto que a diagonal esteja desimpedida e seja o seu lance.*/    
-    public  boolean TestaPeca(String Movimento) {
+    public  boolean TestaPeca(Coordenada Ctarget) {
     	
     return true;
     }
     
     
-    public  boolean TestaTabuleiro(String Movimento) {
+    public  boolean TestaTabuleiro(Coordenada Ctarget) {
 
         return true;	
     }
