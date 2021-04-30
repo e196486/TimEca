@@ -10,8 +10,7 @@ Coordenada coordenada = new Coordenada("a1");
     
 	/*damas se movem qualquer número de casas na diagonal para frente ou para trás,
 contanto que a diagonal esteja desimpedida e seja o seu lance.*/    
-    public  boolean TestaPeca(Coordenada Ctarget) {
-    	
+    public  boolean TestaPeca(Coordenada Ctarget) { 
     return true;
     }
     
@@ -19,7 +18,5 @@ contanto que a diagonal esteja desimpedida e seja o seu lance.*/
     public  boolean TestaTabuleiro(Coordenada Ctarget) {
 
         return true;	
-    }
-    
-   
+    } 
 }
