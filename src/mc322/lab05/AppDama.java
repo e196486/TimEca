@@ -37,6 +37,8 @@ public class AppDama {
 		
 		tab.solicitaMovimento("e7:c5");
 		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("f8:e7");
+		tab.imprimirTabuleiro(); 
 
 		
 		
