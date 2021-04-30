@@ -184,6 +184,7 @@ public class Tabuleiro {
 
 				if (Peca.P == tipoPeca)
 					Peca.P = '-';
+				return (StatusMovimento);
 			}
 			System.out.println("não deu certo. voltando.");
 			return (StatusMovimento);
