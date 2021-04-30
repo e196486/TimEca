@@ -16,7 +16,7 @@ public class Tabuleiro {
 					tabuleiro[x - 1][y - 1].pecaNordeste(pc);
 			} else
 				pc.pecaSudoeste(null);
-			if (y < 8 && x > 1) {
+			if (y < 9 && x > 1) {
 				pc.pecaSudeste(tabuleiro[x - 1][y + 1]);
 				if (tabuleiro[x - 1][y + 1] != null)
 					tabuleiro[x - 1][y + 1].pecaNoroeste(pc);
@@ -39,30 +39,30 @@ public class Tabuleiro {
 
 	public void setTabuleiro() {
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 8; j++) {
+			for (int j = 1; j <= 9; j++) {
 				if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0)) {
 					inserePeca(i + 1, j, 'b');
 				} else {
 					inserePeca(i + 1, j, '-');
 				}
 			}
-			inserePeca(i + 1, 8, '\n');
+			inserePeca(i + 1, 9, '\n');
 		}
 		for (int i = 3; i < 5; i++) {
-			for (int j = 0; j < 8; j++) {
+			for (int j = 1; j <= 9; j++) {
 				inserePeca(i + 1, j, '-');
 			}
-			inserePeca(i + 1, 8, '\n');
+			inserePeca(i + 1, 9, '\n');
 		}
 		for (int i = 6; i <= 8; i++) {
-			for (int j = 0; j <= 8; j++) {
-				if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0)) {
+			for (int j = 1; j <= 9; j++) {
+				if ((j % 2 == 0 && i % 2 != 0) || (j % 2 != 0 && i % 2 == 0)) {
 					inserePeca(i, j, 'p');
 				} else {
 					inserePeca(i, j, '-');
 				}
 			}
-			inserePeca(i, 8, '\n');
+			inserePeca(i, 9, '\n');
 		}
 	}
 
@@ -75,16 +75,14 @@ public class Tabuleiro {
 
 		for (int i = 8; i > 0; i--) {
 			System.out.print(i);
-			for (int j = 1; j < 8; j++) {
+			for (int j = 1; j <= 9; j++) {
 
-				System.out.print(" " + tabuleiro[i][j].P);
+				System.out.print(" " + tabuleiro[i][j].P );
 				EstadoTabuleiro += " " + tabuleiro[i][j].P;
 			}
-			EstadoTabuleiro += "\n";
-
-			System.out.println(" ");
+ 
 		}
-		System.out.print("  a b c d e f g \n\n");
+		System.out.print("  a b c d e f g h \n");
 
 		return (EstadoTabuleiro);
 
@@ -134,15 +132,14 @@ public class Tabuleiro {
 
 		if (StatusMovimento && RegraDama(PecaSource))
 			CriaDama(PecaTarget);
-		PecaTarget.TestaPeca(Ctarget);
+		PecaTarget.TestaPeca(tipoPeca,Ctarget);
 
 	}
 
- 
 	private boolean movePeca(char tipoPeca, Peca Peca, Coordenada Ctarget) {
 		boolean StatusMovimento = false;
-		
-		//linha de debug
+
+		// linha de debug
 		System.out.println("\n >> Estou movendo minha Peca" + "\nPeca.coordenada.linha : " + Peca.coordenada.linha
 				+ " | Ctarget.linha : " + Ctarget.linha + "\nPeca.coordenada.coluna : " + Peca.coordenada.coluna
 				+ " | Ctarget.coluna : " + Ctarget.coluna);
@@ -150,33 +147,45 @@ public class Tabuleiro {
 		if (Peca.coordenada.linha == Ctarget.linha && Peca.coordenada.coluna == Ctarget.coluna) {
 			if (Peca.P == '-') // só atribuo se a peça final é vazia.
 				Peca.P = tipoPeca;
-			
+
 			System.out.println("chegamos no target");
 			return true;
 
 		} else {
-
-			if (!StatusMovimento && Peca.TestaPeca(Peca.Sudoeste.coordenada))
-				StatusMovimento = movePeca(tipoPeca, Peca.Sudoeste, Ctarget); 
-
-			if (!StatusMovimento && Peca.TestaPeca(Peca.Sudeste.coordenada))
-				StatusMovimento = movePeca(tipoPeca, Peca.Sudoeste, Ctarget);
-
-			if (!StatusMovimento && Peca.TestaPeca(Peca.Nordeste.coordenada))
-				StatusMovimento = movePeca(tipoPeca, Peca.Nordeste, Ctarget); 
+			if (Peca.Sudoeste != null)
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Sudoeste.coordenada)) {
+					System.out.println("indo para Sudoeste");
+					StatusMovimento = movePeca(tipoPeca, Peca.Sudoeste, Ctarget);
+				}
+			if (Peca.Sudeste != null)
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Sudeste.coordenada)) {
+					System.out.println("indo para Sudeste");
+					StatusMovimento = movePeca(tipoPeca, Peca.Sudeste, Ctarget);
+				}
+			if (Peca.Nordeste != null)
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Nordeste.coordenada)) { 
+					System.out.println("indo para Nordeste");
+					StatusMovimento = movePeca(tipoPeca, Peca.Nordeste, Ctarget);
+					if (Peca.P == 'b' && Peca.Nordeste.P == 'p')
+					  System.out.println("ca estou eu ");
+					}
 			
-			if (!StatusMovimento && Peca.TestaPeca(Peca.Noroeste.coordenada))
-				StatusMovimento = movePeca(tipoPeca, Peca.Noroeste, Ctarget);
-		 
-			
+			if (Peca.Noroeste != null)
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Noroeste.coordenada)) {
+					System.out.println("indo para Noroeste");
+					StatusMovimento = movePeca(tipoPeca, Peca.Noroeste, Ctarget);
+				}
 			if (StatusMovimento) {
-				if (Peca.P != tipoPeca) // casa atras para comer
-					CapturaOponente(Peca);
+
+				
+				if (Peca.P != tipoPeca) { // casa atras para comer{
+					CapturaOponente(Peca); 
+				}
 
 				if (Peca.P == tipoPeca)
 					Peca.P = '-';
 			}
-
+			System.out.println("não deu certo. voltando.");
 			return (StatusMovimento);
 		}
 	}

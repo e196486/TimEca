@@ -34,13 +34,23 @@ public class AppDama {
 		tab.setTabuleiro();
 		tab.imprimirTabuleiro();
 		
-		
-		tab.solicitaMovimento("e7:c5");
+		 
+		tab.solicitaMovimento("e6:d5");
+		tab.imprimirTabuleiro();   
+		tab.solicitaMovimento("d5:c4");
+		tab.imprimirTabuleiro();    
+		tab.solicitaMovimento("d3:c4");
 		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("f8:e7");
+		tab.solicitaMovimento("e6:d5");
+		tab.imprimirTabuleiro();   
+		tab.solicitaMovimento("c4:e6");
 		tab.imprimirTabuleiro(); 
-
-		
+		tab.solicitaMovimento("f7:d5");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("d5:c4");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("b3:d5");
+		tab.imprimirTabuleiro(); 
 		
 		
 	}  
