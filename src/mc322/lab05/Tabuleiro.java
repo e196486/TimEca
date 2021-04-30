@@ -103,12 +103,16 @@ public class Tabuleiro {
 		Peca pDama = new PecaDama(Peca.coordenada.linha, Peca.coordenada.coluna);
 
 		tabuleiro[Peca.coordenada.linha][Peca.coordenada.coluna] = pDama;
+		
+		Peca.Nordeste = pDama.Nordeste;
+		Peca.Noroeste = pDama.Noroeste;
+		Peca.Sudeste = pDama.Sudeste;
+		Peca.Sudoeste = pDama.Sudoeste;
 
 		if (cor == 'p')
 			pDama.P = 'P';
 		if (cor == 'b')
 			pDama.P = 'B';
-
 	}
 
 	public void solicitaMovimento(String Movimento) {
@@ -130,7 +134,7 @@ public class Tabuleiro {
 
 		StatusMovimento = movePeca(tipoPeca, PecaSource, Ctarget);
 
-		if (StatusMovimento && RegraDama(PecaSource))
+		if (StatusMovimento && RegraDama(PecaTarget))
 			CriaDama(PecaTarget);
 		PecaTarget.TestaPeca(tipoPeca,Ctarget);
 
