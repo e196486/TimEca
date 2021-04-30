@@ -51,6 +51,10 @@ public class AppDama {
 		tab.imprimirTabuleiro(); 
 		tab.solicitaMovimento("b3:d5");
 		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("f3:e4");
+		tab.imprimirTabuleiro();
+		tab.solicitaMovimento("d5:f3");
+		tab.imprimirTabuleiro(); 
 		
 		
 	}  

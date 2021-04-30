@@ -50,7 +50,7 @@ Coordenada coordenada = new Coordenada("a1");
         	return false;
     	}
     	else if (TipoSource == 'b') {
-    		if (Noroeste != null)
+    		if (Noroeste != null) {
     			if (((Ctarget.linha == Noroeste.coordenada.linha)&&(Ctarget.coluna == Noroeste.coordenada.coluna)))
     				if (Noroeste.P == '-')
     					return true;
@@ -58,7 +58,8 @@ Coordenada coordenada = new Coordenada("a1");
     				if (((Ctarget.linha == Noroeste.Noroeste.coordenada.linha)&&(Ctarget.coluna == Noroeste.Noroeste.coordenada.coluna)))
     	    			if ((Noroeste.P == 'b' || Noroeste.P == 'B') && (Noroeste.Noroeste.P == '-'))
     	    				return true;
-    	    else if (Nordeste != null)
+    		}
+    	    else if (Nordeste != null) {
     	    	if (((Ctarget.linha == Nordeste.coordenada.linha)&&(Ctarget.coluna == Nordeste.coordenada.coluna)))
     	    		if (Nordeste.P == '-')
     	    			return true;
@@ -66,6 +67,7 @@ Coordenada coordenada = new Coordenada("a1");
     				if (((Ctarget.linha == Nordeste.Nordeste.coordenada.linha)&&(Ctarget.coluna == Nordeste.Nordeste.coordenada.coluna)))
     					if ((Nordeste.P == 'b' || Nordeste.P == 'B') && (Nordeste.Nordeste.P == '-'))
     						return true;
+    	    }
         	return false;
     	}
     	return false;
