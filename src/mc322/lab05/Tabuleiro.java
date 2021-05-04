@@ -104,10 +104,18 @@ public class Tabuleiro {
 
 		tabuleiro[Peca.coordenada.linha][Peca.coordenada.coluna] = pDama;
 		
-		Peca.Nordeste = pDama.Nordeste;
-		Peca.Noroeste = pDama.Noroeste;
-		Peca.Sudeste = pDama.Sudeste;
-		Peca.Sudoeste = pDama.Sudoeste;
+		pDama.Nordeste = Peca.Nordeste;
+		if (pDama.Nordeste != null)
+			pDama.Nordeste.Sudeste = pDama;
+		pDama.Noroeste = Peca.Noroeste;
+		if (pDama.Noroeste != null)
+			pDama.Noroeste.Sudoeste = pDama;
+		pDama.Sudeste = Peca.Sudeste;
+		if (pDama.Sudeste != null)
+			pDama.Sudeste.Noroeste = pDama;
+		pDama.Sudoeste = Peca.Sudoeste;
+		if (pDama.Sudoeste != null)
+			pDama.Sudoeste.Nordeste = pDama;
 
 		if (cor == 'p')
 			pDama.P = 'P';
@@ -136,7 +144,7 @@ public class Tabuleiro {
 
 		if (StatusMovimento && RegraDama(PecaTarget))
 			CriaDama(PecaTarget);
-		PecaTarget.TestaPeca(tipoPeca,Ctarget);
+		PecaTarget.TestaPeca(tipoPeca, Ctarget);
 
 	}
 
@@ -157,17 +165,17 @@ public class Tabuleiro {
 
 		} else {
 			if (Peca.Sudoeste != null)
-				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Sudoeste.coordenada)) {
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca, Peca.Sudoeste.coordenada)) {
 					System.out.println("indo para Sudoeste");
 					StatusMovimento = movePeca(tipoPeca, Peca.Sudoeste, Ctarget);
 				}
 			if (Peca.Sudeste != null)
-				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Sudeste.coordenada)) {
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca, Peca.Sudeste.coordenada)) {
 					System.out.println("indo para Sudeste");
 					StatusMovimento = movePeca(tipoPeca, Peca.Sudeste, Ctarget);
 				}
 			if (Peca.Nordeste != null)
-				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Nordeste.coordenada)) { 
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca, Peca.Nordeste.coordenada)) { 
 					System.out.println("indo para Nordeste");
 					StatusMovimento = movePeca(tipoPeca, Peca.Nordeste, Ctarget);
 					if (Peca.P == 'b' && Peca.Nordeste.P == 'p')
@@ -175,7 +183,7 @@ public class Tabuleiro {
 					}
 			
 			if (Peca.Noroeste != null)
-				if (!StatusMovimento && Peca.TestaPeca(tipoPeca,Peca.Noroeste.coordenada)) {
+				if (!StatusMovimento && Peca.TestaPeca(tipoPeca, Peca.Noroeste.coordenada)) {
 					System.out.println("indo para Noroeste");
 					StatusMovimento = movePeca(tipoPeca, Peca.Noroeste, Ctarget);
 				}

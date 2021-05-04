@@ -60,7 +60,9 @@ public class AppDama {
 		tab.solicitaMovimento("d1:e2");
 		tab.imprimirTabuleiro(); 
 		tab.solicitaMovimento("f3:d1");
-		tab.imprimirTabuleiro(); 
+		tab.imprimirTabuleiro();
+		tab.solicitaMovimento("d1:g4");
+		tab.imprimirTabuleiro();
 		
 		
 	}  
