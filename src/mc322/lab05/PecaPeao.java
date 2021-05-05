@@ -119,7 +119,6 @@ public class PecaPeao extends Peca {
 	}
 
 	public String TipodePeca() {
- 
 		return "Peao";
 	}
 }
