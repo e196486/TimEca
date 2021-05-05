@@ -21,6 +21,7 @@ public class PecaPeao extends Peca {
 		for (int i = 0; i < Caminho.length(); i++) {
 			posicao[i] = Caminho.charAt(i);
 		}
+		
 
 		if (posicao[0] == 'p') {
 			trajeto.TipoPeca = 'p';
@@ -65,8 +66,7 @@ public class PecaPeao extends Peca {
 					}
 				}
 			}
-		}
-		if (posicao[0] == 'b') {
+		}else if (posicao[0] == 'b') {
 			trajeto.TipoPeca = 'b';
 			if (Direcao.compareTo("Sudoeste") == 0 || Direcao.compareTo("Sudeste_") == 0) {
 				// come
@@ -110,14 +110,16 @@ public class PecaPeao extends Peca {
 				
 				
 			}
+		}else {
+			System.out.println("Jogada Impossível : a peça solicitada nao é um tipo de Peao.");
 		}
-
+		if (!trajeto.Possivel)
+			System.out.println("Jogada Impossível: o tabuleiro ou a peça não permite esse movimento.");
 		return trajeto;
 	}
 
 	public String TipodePeca() {
-
-		System.out.println("\n eh PEAO!!\n");
+ 
 		return "Peao";
 	}
 }
