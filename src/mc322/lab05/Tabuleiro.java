@@ -91,10 +91,13 @@ public class Tabuleiro {
 	}
 
 	public void CapturaOponente(Coordenada Inimigo[]) {
-		
-		for (int i = 0; Inimigo[i]!= null ; i++)
-			tabuleiro [Inimigo[i].linha][Inimigo[i].coluna].P = '-';
-		
+
+		for (int i = 0; Inimigo[i] != null; i++) {
+			System.out.println("Estou Capturando o inimigo da coordenada :");
+			System.out.println("Inimigo[i].linha :" + Inimigo[i].linha);
+			System.out.println("Inimigo[i].coluna :" + Inimigo[i].coluna);
+			tabuleiro[Inimigo[i].linha][Inimigo[i].coluna].P = '-';
+		}
 		// se meu oponente for inimigo , eu excluo ele.
 	}
 
@@ -134,7 +137,7 @@ public class Tabuleiro {
 	}
 
 	public void solicitaMovimento(String Movimento) {
-		 
+
 		// separa a String em duas coordenadas
 
 		System.out.println("recebi o movimento e é:  " + Movimento);
@@ -147,69 +150,75 @@ public class Tabuleiro {
 
 		Peca PecaSource = tabuleiro[Csource.linha][Csource.coluna];
 		Peca PecaTarget = tabuleiro[Ctarget.linha][Ctarget.coluna];
-		
-		Trajetoria trajeto = new Trajetoria (PecaSource);
-		
-		trajeto = TraduzMovimento(PecaSource, Ctarget); 
-		 
-		System.out.println(">>>>>>>>>>>>>>>"+ trajeto.Direcao +":"+ trajeto.Caminho + "<<<<<<<<<<<<<<<<<<<<<");
-		
-		if (PecaSource.TestaPeca(trajeto).Possivel) {
-			if (trajeto.PosicaoInimigo[0]!= null)
+
+		Trajetoria trajeto = new Trajetoria(PecaSource);
+
+		trajeto = TraduzMovimento(PecaSource, Ctarget);
+
+		System.out.println(">>>>>>>>>>>>>>>" + trajeto.Direcao + ":" + trajeto.Caminho + "<<<<<<<<<<<<<<<<<<<<<");
+
+		if (trajeto.Caminho != "" && PecaSource.TestaPeca(trajeto).Possivel) {
+			if (trajeto.PosicaoInimigo[0] != null)
 				CapturaOponente(trajeto.PosicaoInimigo);
-			
+
 			PecaTarget.P = PecaSource.P;
 			PecaSource.P = '-';
 		}
+
+		if (RegraDama(PecaTarget))
+			PecaTarget = CriaDama(PecaTarget);
+
+		if (PecaSource.TipodePeca() == "Dama") {
+			PecaTarget = CriaDama(PecaTarget);
+			PecaSource = inserePeca(PecaSource.coordenada.linha, PecaSource.coordenada.coluna, PecaSource.P);
+		}
+
 	}
 
-
 	public Trajetoria TraduzMovimento(Peca peca, Coordenada Ctarget) {
-		Trajetoria trajeto = new Trajetoria (peca);
-		String Caminho = "";  
-		Coordenada cAux = new Coordenada (null); 
-		
+		Trajetoria trajeto = new Trajetoria(peca);
+		String Caminho = "";
+		Coordenada cAux = new Coordenada(null);
+
 		cAux.linha = peca.coordenada.linha;
 		cAux.coluna = peca.coordenada.coluna;
-		
-		/*System.out.println("cAux.linha ("+cAux.linha+")= peca.coordenada.linha("+peca.coordenada.linha+")");
-		System.out.println("cAux.coluna ("+cAux.coluna+")= peca.coordenada.coluna("+peca.coordenada.coluna+")");
-		System.out.println("Ctarget.linha:"+Ctarget.linha);
-		System.out.println("Ctarget.coluna:"+Ctarget.coluna);*/
-		
-		if ((peca.coordenada.linha < Ctarget.linha) && (peca.coordenada.coluna < Ctarget.coluna)) { // caminho Nordeste 
-			trajeto.Direcao = "Nordeste"; 
-			while( (cAux.linha <= Ctarget.linha) && (cAux.coluna <= Ctarget.coluna) ) {
+
+		if ((peca.coordenada.linha < Ctarget.linha) && (peca.coordenada.coluna < Ctarget.coluna)) { // caminho Nordeste
+			trajeto.Direcao = "Nordeste";
+			while ((cAux.linha <= Ctarget.linha) && (cAux.coluna <= Ctarget.coluna)) {
 				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
 				cAux.linha++;
 				cAux.coluna++;
 			}
-			
+
 		}
 		if ((peca.coordenada.linha < Ctarget.linha) && (peca.coordenada.coluna > Ctarget.coluna)) { // caminho Noroeste
-			trajeto.Direcao = "Noroeste"; 
-			while( (cAux.linha <= Ctarget.linha) && (cAux.coluna >= Ctarget.coluna) ) {
+			trajeto.Direcao = "Noroeste";
+			while ((cAux.linha <= Ctarget.linha) && (cAux.coluna >= Ctarget.coluna)) {
 				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
 				cAux.linha++;
 				cAux.coluna--;
 			}
 		}
-		if ((peca.coordenada.linha > Ctarget.linha) && (peca.coordenada.coluna < Ctarget.coluna)) { // caminho Sudeste  
-			trajeto.Direcao = "Sudeste_"; 
-			while( (cAux.linha >= Ctarget.linha) && (cAux.coluna <= Ctarget.coluna) ) {
+		if ((peca.coordenada.linha > Ctarget.linha) && (peca.coordenada.coluna < Ctarget.coluna)) { // caminho Sudeste
+			trajeto.Direcao = "Sudeste_";
+			while ((cAux.linha >= Ctarget.linha) && (cAux.coluna <= Ctarget.coluna)) {
 				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
 				cAux.linha--;
 				cAux.coluna++;
 			}
-		}		
-		if ( ((peca.coordenada.linha > Ctarget.linha) && (peca.coordenada.coluna > Ctarget.coluna))  ) { // caminho Sudoeste
-			trajeto.Direcao = "Sudoeste"; 
-			while( ((cAux.linha >= Ctarget.linha) && (cAux.coluna >= Ctarget.coluna)) ) {
+		}
+		if (((peca.coordenada.linha > Ctarget.linha) && (peca.coordenada.coluna > Ctarget.coluna))) { // caminho
+																										// Sudoeste
+			trajeto.Direcao = "Sudoeste";
+			while (((cAux.linha >= Ctarget.linha) && (cAux.coluna >= Ctarget.coluna))) {
 				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
 				cAux.linha--;
 				cAux.coluna--;
 			}
 		}
+		if (Caminho == "")
+			System.out.println("Jogada Impossível : viola as regras de movimento diagonal.");
 		trajeto.Caminho = Caminho;
 		return trajeto;
 	}
