@@ -36,15 +36,16 @@ public class PecaDama extends Peca {
 		}
 		
 			
-				// anda 
-			for (i=0; i < posicao.length; i++) 
-					trajeto.Possivel = (posicao[i] != '-');
+				// anda
+			trajeto.Possivel = true;
+			for (i=1; (i < posicao.length); i++) 
+					trajeto.Possivel = (posicao[i] == '-');
 			
 				// come 
 			if (posicao[posicao.length - 1 ] == '-'  && (posicao[posicao.length -2] == inimigoPeao || posicao[posicao.length -2] == inimigoDama) ) {
 				trajeto.Possivel = true;
 				for (i= (posicao.length - 3) ; i > 1; i-- ) 
-					trajeto.Possivel = (posicao[i] != '-');
+					trajeto.Possivel = (posicao[i] == '-');
 				
 				if (trajeto.Possivel) {
 				if (Direcao.compareTo("Sudoeste") == 0) {
