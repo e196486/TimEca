@@ -43,23 +43,18 @@ public class Tabuleiro {
 		}
 	}
 
-	public String exportarArquivo() {
-		return "xxxx";
-	}
-
 	public String imprimirTabuleiro() {
 		String EstadoTabuleiro = "";
 
 		for (int i = 8; i > 0; i--) {
-			System.out.print(i);
+			EstadoTabuleiro += i;
 			for (int j = 1; j <= 9; j++) {
-
-				System.out.print(" " + tabuleiro[i][j].P);
+				
 				EstadoTabuleiro += " " + tabuleiro[i][j].P;
 			}
 
 		}
-		System.out.print("  a b c d e f g h \n");
+		EstadoTabuleiro += "  a b c d e f g h \n";
 
 		return (EstadoTabuleiro);
 
@@ -68,9 +63,7 @@ public class Tabuleiro {
 	public void CapturaOponente(Coordenada Inimigo[]) {
 
 		for (int i = 0; Inimigo[i] != null; i++) {
-			System.out.println("Estou Capturando o inimigo da coordenada :");
-			System.out.println("Inimigo[i].linha :" + Inimigo[i].linha);
-			System.out.println("Inimigo[i].coluna :" + Inimigo[i].coluna);
+			
 			tabuleiro[Inimigo[i].linha][Inimigo[i].coluna].P = '-';
 		}
 		// se meu oponente for inimigo , eu excluo ele.
@@ -92,17 +85,12 @@ public class Tabuleiro {
 		if (cor == 'b' || cor == 'B')
 			pDama.P = 'B';
 
-		System.out.println("CRIEI DAMA HEIN \n");
-		System.out.println("Peca.coordenada.linha : " + pDama.coordenada.linha);
-		System.out.println("Peca.coordenada.coluna : " + pDama.coordenada.coluna);
 		return (pDama);
 	}
 
 	public void solicitaMovimento(String Movimento) {
 
 		// separa a String em duas coordenadas
-
-		System.out.println("recebi o movimento e é:  " + Movimento);
 
 		String Source = Movimento.substring(0, 2);
 		String Target = Movimento.substring(3, 5);
@@ -117,8 +105,6 @@ public class Tabuleiro {
 
 		trajeto = TraduzMovimento(PecaSource, Ctarget);
 
-		System.out.println(">>>>>>>>>>>>>>>" + trajeto.Direcao + ":" + trajeto.Caminho + "<<<<<<<<<<<<<<<<<<<<<");
-
 		if (trajeto.Caminho != "" && PecaSource.TestaPeca(trajeto).Possivel) {
 			if (trajeto.PosicaoInimigo[0] != null)
 				CapturaOponente(trajeto.PosicaoInimigo);
@@ -130,7 +116,7 @@ public class Tabuleiro {
 		if (RegraDama(PecaTarget))
 			PecaTarget = CriaDama(PecaTarget);
 
-		if (PecaSource.TipodePeca() == "Dama") {
+		if (PecaSource.TipodePeca() == "Dama" && trajeto.Possivel == true) {
 			PecaTarget = CriaDama(PecaTarget);
 			inserePeca(PecaSource.coordenada.linha, PecaSource.coordenada.coluna, PecaSource.P);
 		}
