@@ -46,6 +46,9 @@ public class Coordenada {
 		case "g":
 			coluna = 7;
 			break;
+		case "h":
+			coluna = 8;
+			break;
 		}
 		
 		return (coluna);
