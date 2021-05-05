@@ -27,7 +27,12 @@ Coordenada coordenada = new Coordenada("a1");
     	Sudeste = pc;
     }
     
-    public boolean TestaPeca(char TipoSource, Coordenada Ctarget) {
-    	return false;
+    public boolean TestaPeca(Peca PecaSource, Coordenada Ctarget) {
+    	return true;
+    }
+    
+    public String TipodePeca() {
+    	return "";
+    	
     }
 }
