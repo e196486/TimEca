@@ -7,14 +7,23 @@ public class Coordenada {
 	
 	public Coordenada(String s) {
 		
+		if (s == null) { 
+			this.coluna  = 0;
+			this.linha  = 0;
+			
+		}else {
+			
 		this.coordenada = s;
- 
 		this.coluna  = Coluna(coordenada);
 		this.linha  = Linha(coordenada);
+		}
 
 	}
 	
 	public int Coluna (String coordenada) {
+		if (coordenada == null)
+			return 0;
+		
 		switch (coordenada.substring(0, 1)) {
 		case "a":
 			coluna = 1;
@@ -43,6 +52,8 @@ public class Coordenada {
 	}
 	
 	public int Linha (String coordenada) {
+		if (coordenada == null)
+			return 0;
 
 		linha = Integer.parseInt(coordenada.substring(1, 2));
 		

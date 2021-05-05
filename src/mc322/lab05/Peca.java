@@ -27,8 +27,8 @@ Coordenada coordenada = new Coordenada("a1");
     	Sudeste = pc;
     }
     
-    public boolean TestaPeca(Peca PecaSource, Coordenada Ctarget) {
-    	return true;
+    public Trajetoria TestaPeca(Trajetoria trajeto) {
+    	return trajeto;
     }
     
     public String TipodePeca() {

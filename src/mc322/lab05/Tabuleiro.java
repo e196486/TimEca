@@ -90,8 +90,11 @@ public class Tabuleiro {
 
 	}
 
-	public void CapturaOponente(Peca Peca) {
-		Peca.P = '-';
+	public void CapturaOponente(Coordenada Inimigo[]) {
+		
+		for (int i = 0; Inimigo[i]!= null ; i++)
+			tabuleiro [Inimigo[i].linha][Inimigo[i].coluna].P = '-';
+		
 		// se meu oponente for inimigo , eu excluo ele.
 	}
 
@@ -131,7 +134,7 @@ public class Tabuleiro {
 	}
 
 	public void solicitaMovimento(String Movimento) {
-		boolean StatusMovimento = false;
+		 
 		// separa a String em duas coordenadas
 
 		System.out.println("recebi o movimento e é:  " + Movimento);
@@ -144,155 +147,70 @@ public class Tabuleiro {
 
 		Peca PecaSource = tabuleiro[Csource.linha][Csource.coluna];
 		Peca PecaTarget = tabuleiro[Ctarget.linha][Ctarget.coluna];
-
-		StatusMovimento = movePeca(PecaSource, PecaSource, Ctarget);
-
-		if (StatusMovimento && RegraDama(PecaTarget))
-			CriaDama(PecaTarget);
-		// PecaTarget.TestaPeca(PecaSource, Ctarget);
-
-	}
-
-	private boolean movePeca(Peca pecaSource, Peca Peca, Coordenada Ctarget) {
-		boolean StatusMovimento = false;
-		char PecaAux = ' ';
-		// linha de debug
-		System.out.println("\n >> Estou movendo minha Peca" + "\nPeca.coordenada.linha : " + Peca.coordenada.linha
-				+ " | Ctarget.linha : " + Ctarget.linha + "\nPeca.coordenada.coluna : " + Peca.coordenada.coluna
-				+ " | Ctarget.coluna : " + Ctarget.coluna);
-
-		if (Peca.coordenada.linha == Ctarget.linha && Peca.coordenada.coluna == Ctarget.coluna) {
-			if (Peca.P == '-' || Peca.TipodePeca() == "Dama") { // só atribuo se a peça final é vazia.
-				Peca.P = pecaSource.P;
-				pecaSource.P = '-';
-				System.out.println("\nchegamos no target");
-				return true;
-			} else {
-				System.out.println("Jogada Impossível");
-				return false;
-			}
-
-		} else {
-			if (Peca.Sudoeste != null)
-				if (!StatusMovimento && Peca.TestaPeca(pecaSource, Peca.Sudoeste.coordenada)) {
-
-					/* movimento falso */
-					System.out.println("indo para Sudoeste. Tabuleiro : \n");
-
-					if (pecaSource.P == 'P' || pecaSource.P == 'B') {
-
-						PecaAux = Peca.Sudoeste.P;
-						Peca.Sudoeste.P = pecaSource.P;
-						Peca.Sudoeste = CriaDama(Peca.Sudoeste);
-					}
-					/*----------*/
-
-					StatusMovimento = movePeca(pecaSource, Peca.Sudoeste, Ctarget);
-
-					/* retira movimento falso */
-					if (!StatusMovimento && pecaSource.P == 'P' || pecaSource.P == 'B') {
-						Peca.Sudoeste = inserePeca(Peca.Sudoeste.coordenada.linha, Peca.Sudoeste.coordenada.coluna,
-								Peca.Sudoeste.P);
-						Peca.Sudoeste.P = PecaAux;
-					}
-					/*---*/
-
-				}
-			if (Peca.Sudeste != null)
-				if (!StatusMovimento && Peca.TestaPeca(pecaSource, Peca.Sudeste.coordenada)) {
-
-					/* movimento falso */
-					System.out.println("indo para Sudeste. Tabuleiro : \n");
-
-					if (pecaSource.P == 'P' || pecaSource.P == 'B') {
-
-						PecaAux = Peca.Sudeste.P;
-						Peca.Sudeste.P = pecaSource.P;
-						Peca.Sudeste = CriaDama(Peca.Sudeste);
-					}
-					/*----------*/
-
-					StatusMovimento = movePeca(pecaSource, Peca.Sudeste, Ctarget);
-
-					/* retira movimento falso */
-					if (!StatusMovimento && pecaSource.P == 'P' || pecaSource.P == 'B') {
-						Peca.Sudeste = inserePeca(Peca.Sudeste.coordenada.linha, Peca.Sudeste.coordenada.coluna,
-								Peca.Sudeste.P);
-						Peca.Sudeste.P = PecaAux;
-					}
-					/*---*/
-
-				}
-			if (Peca.Nordeste != null && ((Ctarget.linha >= Peca.Nordeste.coordenada.linha)&&(Ctarget.coluna >= Peca.Nordeste.coordenada.coluna)))
-				if (!StatusMovimento && Peca.TestaPeca(pecaSource, Peca.Nordeste.coordenada)) {
-
-					/* movimento falso */
-					System.out.println("indo para Nordeste. Tabuleiro : \n");
-
-					if (pecaSource.TipodePeca()=="Dama") {
-						PecaAux = Peca.Nordeste.P;
-						if (Peca.Noroeste.P == '-')
-						Peca.Nordeste.P = pecaSource.P;
-						Peca.Nordeste = CriaDama(Peca.Nordeste);
-					}
-					imprimirTabuleiro();
-					Peca.Nordeste.TipodePeca();
-
-					/*----------*/
-
-					StatusMovimento = movePeca(pecaSource, Peca.Nordeste, Ctarget);
-
-					/* retira movimento falso */
-
-					if (!StatusMovimento && pecaSource.TipodePeca()=="Dama") {
-						Peca.Nordeste = inserePeca(Peca.Nordeste.coordenada.linha, Peca.Nordeste.coordenada.coluna,
-								Peca.Nordeste.P);
-						Peca.Nordeste.P = PecaAux;
-						imprimirTabuleiro();
-					}
-					/*---*/
-
-				}
-
-			if (Peca.Noroeste != null && (((Ctarget.linha >= Peca.Nordeste.coordenada.linha)&&(Ctarget.coluna < Peca.Nordeste.coordenada.coluna))))
-				if (!StatusMovimento && Peca.TestaPeca(pecaSource, Peca.Noroeste.coordenada)) {
-					/* movimento falso */
-					System.out.println("indo para Noroeste. Tabuleiro : \n");
-
-					imprimirTabuleiro();
-					if (pecaSource.TipodePeca()=="Dama") {
-						PecaAux = Peca.Noroeste.P;
-						if (Peca.Noroeste.P == '-')
-							Peca.Noroeste.P = pecaSource.P;
-						Peca.Noroeste = CriaDama(Peca.Noroeste);
-					}
-					/*----------*/
-					StatusMovimento = movePeca(pecaSource, Peca.Noroeste, Ctarget);
-
-					/* retira movimento falso */
-					if (!StatusMovimento && pecaSource.TipodePeca()=="Dama") {
-						Peca.Noroeste = inserePeca(Peca.Noroeste.coordenada.linha, Peca.Noroeste.coordenada.coluna,
-								Peca.Noroeste.P);
-						Peca.Noroeste.P = PecaAux;
-					}
-					/*---*/
-				}
-			if (StatusMovimento) {
-
-				if (Peca.P != pecaSource.P) { // casa atras para comer
-					CapturaOponente(Peca);
-				}
-
-				if (Peca.P == pecaSource.P && ((Peca.coordenada.linha != pecaSource.coordenada.linha)
-						&& (Peca.coordenada.coluna != pecaSource.coordenada.coluna)))
-					;
-				Peca.P = '-';
-
-				return (StatusMovimento);
-			}
-			System.out.println("não deu certo. voltando.");
-			return (StatusMovimento);
+		
+		Trajetoria trajeto = new Trajetoria (PecaSource);
+		
+		trajeto = TraduzMovimento(PecaSource, Ctarget); 
+		 
+		System.out.println(">>>>>>>>>>>>>>>"+ trajeto.Direcao +":"+ trajeto.Caminho + "<<<<<<<<<<<<<<<<<<<<<");
+		
+		if (PecaSource.TestaPeca(trajeto).Possivel) {
+			if (trajeto.PosicaoInimigo[0]!= null)
+				CapturaOponente(trajeto.PosicaoInimigo);
+			
+			PecaTarget.P = PecaSource.P;
+			PecaSource.P = '-';
 		}
 	}
 
+
+	public Trajetoria TraduzMovimento(Peca peca, Coordenada Ctarget) {
+		Trajetoria trajeto = new Trajetoria (peca);
+		String Caminho = "";  
+		Coordenada cAux = new Coordenada (null); 
+		
+		cAux.linha = peca.coordenada.linha;
+		cAux.coluna = peca.coordenada.coluna;
+		
+		/*System.out.println("cAux.linha ("+cAux.linha+")= peca.coordenada.linha("+peca.coordenada.linha+")");
+		System.out.println("cAux.coluna ("+cAux.coluna+")= peca.coordenada.coluna("+peca.coordenada.coluna+")");
+		System.out.println("Ctarget.linha:"+Ctarget.linha);
+		System.out.println("Ctarget.coluna:"+Ctarget.coluna);*/
+		
+		if ((peca.coordenada.linha < Ctarget.linha) && (peca.coordenada.coluna < Ctarget.coluna)) { // caminho Nordeste 
+			trajeto.Direcao = "Nordeste"; 
+			while( (cAux.linha <= Ctarget.linha) && (cAux.coluna <= Ctarget.coluna) ) {
+				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
+				cAux.linha++;
+				cAux.coluna++;
+			}
+			
+		}
+		if ((peca.coordenada.linha < Ctarget.linha) && (peca.coordenada.coluna > Ctarget.coluna)) { // caminho Noroeste
+			trajeto.Direcao = "Noroeste"; 
+			while( (cAux.linha <= Ctarget.linha) && (cAux.coluna >= Ctarget.coluna) ) {
+				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
+				cAux.linha++;
+				cAux.coluna--;
+			}
+		}
+		if ((peca.coordenada.linha > Ctarget.linha) && (peca.coordenada.coluna < Ctarget.coluna)) { // caminho Sudeste  
+			trajeto.Direcao = "Sudeste_"; 
+			while( (cAux.linha >= Ctarget.linha) && (cAux.coluna <= Ctarget.coluna) ) {
+				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
+				cAux.linha--;
+				cAux.coluna++;
+			}
+		}		
+		if ( ((peca.coordenada.linha > Ctarget.linha) && (peca.coordenada.coluna > Ctarget.coluna))  ) { // caminho Sudoeste
+			trajeto.Direcao = "Sudoeste"; 
+			while( ((cAux.linha >= Ctarget.linha) && (cAux.coluna >= Ctarget.coluna)) ) {
+				Caminho += tabuleiro[cAux.linha][cAux.coluna].P;
+				cAux.linha--;
+				cAux.coluna--;
+			}
+		}
+		trajeto.Caminho = Caminho;
+		return trajeto;
+	}
 }
