@@ -16,21 +16,22 @@ public class AppDama{
 		for (int k = 0; k < commands.length; k++) {
 			tab.solicitaMovimento(commands[k]);
 			estados[k] = tab.imprimirTabuleiro();
-			System.out.println("Source: " + commands[k].substring(0, 2));
+			/*System.out.println("Source: " + commands[k].substring(0, 2));
 			System.out.println("Target: " + commands[k].substring(3, 5));
-			System.out.println(tab.imprimirTabuleiro());
+			System.out.println(tab.imprimirTabuleiro());*/
 		}
 		
 		CSVHandling hand = new CSVHandling();
 		hand.setDataExport(saida);
 		
-		String ultimo[] = new String[63];
+		String ultimo[] = new String[64];
 		int count = 0;
 		
 		for (int i = 1; i < 9; i++) {
 			for (int j = 1; j < 9; j++) {
 				ultimo[count] = tab.tabuleiro[j][i].leitura();
 				System.out.println(ultimo[count]);
+				count++;
 			}
 		}
 		

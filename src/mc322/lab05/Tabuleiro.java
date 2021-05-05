@@ -5,47 +5,22 @@ public class Tabuleiro {
 	Coordenada Csource;
 	Coordenada Ctarget;
 
-	public Peca inserePeca(int x, int y, char c) {
+	public void inserePeca(int x, int y, char c) {
 		Peca pc = null;
 		if (y <= 9 && x < 9) {
 			pc = new PecaPeao(x, y);
 			tabuleiro[x][y] = pc;
 			pc.P = c;
-			if (y > 1 && x > 1) {
-				pc.pecaSudoeste(tabuleiro[x - 1][y - 1]);
-				if (tabuleiro[x - 1][y - 1] != null)
-					tabuleiro[x - 1][y - 1].pecaNordeste(pc);
-			} else
-				pc.pecaSudoeste(null);
-			if (y < 9 && x > 1) {
-				pc.pecaSudeste(tabuleiro[x - 1][y + 1]);
-				if (tabuleiro[x - 1][y + 1] != null)
-					tabuleiro[x - 1][y + 1].pecaNoroeste(pc);
-			} else
-				pc.pecaSudoeste(null);
-			if (y > 1 && x < 8) {
-				pc.pecaNoroeste(tabuleiro[x + 1][y - 1]);
-				if (tabuleiro[x + 1][y - 1] != null)
-					tabuleiro[x + 1][y - 1].pecaSudeste(pc);
-			} else
-				pc.pecaNoroeste(null);
-			if (y < 9 && x < 8) {
-				pc.pecaNordeste(tabuleiro[x + 1][y + 1]);
-				if (tabuleiro[x + 1][y + 1] != null)
-					tabuleiro[x + 1][y + 1].pecaSudoeste(pc);
-			} else
-				pc.pecaNordeste(null);
 		}
-		return (pc);
 	}
 
 	public void setTabuleiro() {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 1; j <= 9; j++) {
 				if ((j % 2 == 0 && i % 2 == 0) || (j % 2 != 0 && i % 2 != 0)) {
-					inserePeca(i + 1, j, 'b');
-				} else {
 					inserePeca(i + 1, j, '-');
+				} else {
+					inserePeca(i + 1, j, 'b');
 				}
 			}
 			inserePeca(i + 1, 9, '\n');
@@ -59,9 +34,9 @@ public class Tabuleiro {
 		for (int i = 6; i <= 8; i++) {
 			for (int j = 1; j <= 9; j++) {
 				if ((j % 2 == 0 && i % 2 != 0) || (j % 2 != 0 && i % 2 == 0)) {
-					inserePeca(i, j, 'p');
-				} else {
 					inserePeca(i, j, '-');
+				} else {
+					inserePeca(i, j, 'p');
 				}
 			}
 			inserePeca(i, 9, '\n');
@@ -112,19 +87,6 @@ public class Tabuleiro {
 
 		tabuleiro[Peca.coordenada.linha][Peca.coordenada.coluna] = pDama;
 
-		pDama.Nordeste = Peca.Nordeste;
-		if (pDama.Nordeste != null)
-			pDama.Nordeste.Sudeste = pDama;
-		pDama.Noroeste = Peca.Noroeste;
-		if (pDama.Noroeste != null)
-			pDama.Noroeste.Sudoeste = pDama;
-		pDama.Sudeste = Peca.Sudeste;
-		if (pDama.Sudeste != null)
-			pDama.Sudeste.Noroeste = pDama;
-		pDama.Sudoeste = Peca.Sudoeste;
-		if (pDama.Sudoeste != null)
-			pDama.Sudoeste.Nordeste = pDama;
-
 		if (cor == 'p' || cor == 'P')
 			pDama.P = 'P';
 		if (cor == 'b' || cor == 'B')
@@ -170,7 +132,7 @@ public class Tabuleiro {
 
 		if (PecaSource.TipodePeca() == "Dama") {
 			PecaTarget = CriaDama(PecaTarget);
-			PecaSource = inserePeca(PecaSource.coordenada.linha, PecaSource.coordenada.coluna, PecaSource.P);
+			inserePeca(PecaSource.coordenada.linha, PecaSource.coordenada.coluna, PecaSource.P);
 		}
 
 	}
