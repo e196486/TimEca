@@ -4,7 +4,7 @@ public class Peca {
 	
 	char P;
 
-	Coordenada coordenada = new Coordenada(null);
+	Coordenada coordenada = new Coordenada (null);
 
 	public Peca(int x, int y) {
 		this.coordenada.linha = x;
