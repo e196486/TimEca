@@ -39,30 +39,30 @@ public class AppDama {
 		tab.imprimirTabuleiro();   
 		tab.solicitaMovimento("d5:c4");
 		tab.imprimirTabuleiro();    
-		tab.solicitaMovimento("d3:c4");
-		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("e6:d5");
-		tab.imprimirTabuleiro();   
-		tab.solicitaMovimento("c4:e6");
-		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("f7:d5");
-		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("d5:c4");
-		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("b3:d5");
-		tab.imprimirTabuleiro(); 
 		tab.solicitaMovimento("f3:e4");
-		tab.imprimirTabuleiro();
-		tab.solicitaMovimento("d5:f3");
 		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("e2:d3");
+		tab.solicitaMovimento("e2:f3");
+		tab.imprimirTabuleiro();   
+		tab.solicitaMovimento("f3:g4");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("f1:e2");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("e2:f3");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("c4:e2");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("e2:f1");
+		tab.imprimirTabuleiro();
+		tab.solicitaMovimento("b3:c4");
 		tab.imprimirTabuleiro(); 
 		tab.solicitaMovimento("d1:e2");
 		tab.imprimirTabuleiro(); 
-		tab.solicitaMovimento("f3:d1");
+		tab.solicitaMovimento("f1:d3");
+		tab.imprimirTabuleiro(); 
+		tab.solicitaMovimento("d3:b5");
 		tab.imprimirTabuleiro();
-		tab.solicitaMovimento("d1:g4");
-		tab.imprimirTabuleiro();
+		/*tab.solicitaMovimento("d1:g4");
+		tab.imprimirTabuleiro();*/
 		
 		
 	}  
