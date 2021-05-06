@@ -21,20 +21,7 @@ public class AppDama{
 			System.out.println(tab.imprimirTabuleiro());
 		}
 		
-		CSVHandling hand = new CSVHandling();
-		hand.setDataExport(saida);
-		
-		String ultimo[] = new String[64];
-		int count = 0;
-		
-		for (int i = 1; i < 9; i++) {
-			for (int j = 1; j < 9; j++) {
-				ultimo[count] = tab.tabuleiro[j][i].leitura();
-				count++;
-			}
-		}
-		
-		hand.exportState(ultimo);
+		tab.exportarArquivo(saida);
 		
 		return estados;
 	}

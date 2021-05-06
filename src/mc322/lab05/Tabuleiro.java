@@ -4,6 +4,7 @@ public class Tabuleiro {
 	Peca tabuleiro[][] = new Peca[10][10];
 	Coordenada Csource;
 	Coordenada Ctarget;
+	boolean erro = false;
 
 	public void inserePeca(int x, int y, char c) {
 		Peca pc = null;
@@ -41,6 +42,28 @@ public class Tabuleiro {
 			}
 			inserePeca(i, 9, '\n');
 		}
+	}
+
+	public void exportarArquivo(String saida) {
+		CSVHandling hand = new CSVHandling();
+		hand.setDataExport(saida);
+		
+		String ultimo[] = new String[64];
+		String errado[] = new String[1];
+		int count = 0;
+		
+		if (erro == false) {		
+			for (int i = 1; i < 9; i++) {
+				for (int j = 1; j < 9; j++) {
+					ultimo[count] = tabuleiro[j][i].leitura();
+					count++;
+				}
+			}
+			hand.exportState(ultimo);
+		} else {
+			errado[0] = "erro";
+			hand.exportState(errado);
+		}	
 	}
 
 	public String imprimirTabuleiro() {
@@ -120,7 +143,8 @@ public class Tabuleiro {
 			PecaTarget = CriaDama(PecaTarget);
 			inserePeca(PecaSource.coordenada.linha, PecaSource.coordenada.coluna, PecaSource.P);
 		}
-
+		if (trajeto.Possivel == false)
+			erro = true;
 	}
 
 	public Trajetoria TraduzMovimento(Peca peca, Coordenada Ctarget) {
@@ -166,7 +190,7 @@ public class Tabuleiro {
 			}
 		}
 		if (Caminho == "")
-			System.out.println("Jogada Impossível : viola as regras de movimento diagonal.");
+			erro = true;
 		trajeto.Caminho = Caminho;
 		return trajeto;
 	}
