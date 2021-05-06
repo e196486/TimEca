@@ -27,6 +27,6 @@ public class AppDama{
 	}
 	
 	public static void main(String[] args) {
-		executaJogo("C:\\Users\\henri\\OneDrive\\Documentos\\Lab05\\src\\mc322\\lab05\\arq001.csv","C:\\Users\\henri\\OneDrive\\Documentos\\Lab05\\src\\mc322\\lab05\\arq002.csv");
+		executaJogo("C:\\Users\\muril\\Desktop\\lab05\\data\\arq001.csv","C:\\Users\\muril\\Desktop\\lab05\\data\\arq002.csv");
 	}
 }
