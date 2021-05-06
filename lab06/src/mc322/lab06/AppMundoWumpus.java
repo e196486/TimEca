@@ -1,4 +1,4 @@
-package lab06;
+package mc322.lab06;
 
 public class AppMundoWumpus {
 
