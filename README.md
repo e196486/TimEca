@@ -1,6 +1,6 @@
 ## Aluno
   * Erica Yuri Nunes de Oliveira RA 196486
-  * Henrique Akira Akagu 198741
+  * Henrique Akira Akagi 198741
 
 Repositório dedicado a entregas de trabalho em equipe. 
 
