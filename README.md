@@ -5,8 +5,8 @@
 Repositório dedicado a entregas de trabalho em equipe. 
 
 ## 
-   *Grupo : TimEca
-   *SIGLA : TECA
+   * Grupo : TimEca
+   * SIGLA : TECA
   
 ## Curso 
   * Engenharia de Controle e Automação (ECA)
