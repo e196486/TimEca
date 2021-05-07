@@ -7,7 +7,7 @@ public class Caverna {
 	public void criaCaverna() {
 		
 	}
-	public void insereComponente(Coordenada mov) {
+	public void insereComponente(Componente comp) {
 		
 	}
 

@@ -5,7 +5,7 @@ public class MontadorCaverna {
 	
 	public MontadorCaverna(String arq) {
 		
-		Coordenada movimentos[] = leArquivo(arq); 
+		Componente movimentos[] = leArquivo(arq); 
 		
 		Caverna cav = new Caverna();
 		
@@ -14,19 +14,19 @@ public class MontadorCaverna {
 	}
 	
 	
-	public Coordenada[] leArquivo(String arq) {
+	public Componente[] leArquivo(String arq) {
 		
-		Coordenada coordenadas[] = new Coordenada[16];
+		Componente componentes[] = new Componente[16];
 		
 		CSVHandling csv = new CSVHandling();
 		csv.setDataSource(arq);
 		String comandos[][] = csv.requestCommands();
 		
 		for (int i=0; i<16; i++) 
-				coordenadas[i] = new Coordenada (comandos[i]);
+				componentes[i] = new Componente (comandos[i]);
 		
 		
-		return coordenadas ;
+		return componentes ;
 		
 	}
 
