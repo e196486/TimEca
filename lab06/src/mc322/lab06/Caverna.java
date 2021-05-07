@@ -4,7 +4,10 @@ public class Caverna {
 	
 	
 	
-	public void criaCaverna(Coordenada mov[] ) {
+	public void criaCaverna() {
+		
+	}
+	public void insereComponente(Coordenada mov[] ) {
 		
 	}
 

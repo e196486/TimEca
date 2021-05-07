@@ -7,7 +7,9 @@ public class MontadorCaverna {
 		
 		Coordenada movimentos[] = leArquivo(arq); 
 		
-		new Caverna().criaCaverna(movimentos);
+		Caverna cav = new Caverna();
+		
+			cav.insereComponente(movimentos);
 	}
 	
 	
