@@ -30,16 +30,22 @@ public class Sala {
 			}
 			else if (C.componente == 'P') {
 				Heroi = C;
-				P = 'P';
+				if(Wumpus == null && Buraco == null && Ouro == null)
+					P = 'P';
 			}
-			else if (C.componente == 'b') {
-				Brisa = C;
-				P = 'b';
-			}else {
+			else if (C.componente == 'f') {
 				Fedor = C;
-				P = 'f';
+				if(Wumpus == null && Buraco == null && Ouro == null && Heroi == null)
+					P = 'f';
+			}else {
+				Brisa = C;
+				if(Wumpus == null && Buraco == null && Ouro == null && Heroi == null && Fedor == null)
+					P = 'b';
 			}
 			return true;
 		}
 	}
+	
+	
+	
 }

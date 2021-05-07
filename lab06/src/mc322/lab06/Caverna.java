@@ -26,8 +26,9 @@ public class Caverna {
 		return Estado;
 	}
 	
-	public void insereComponente(Componente mov) {
-		
+	public void insereComponente(Componente C) {
+		boolean erro = cav[C.linha][C.coluna].insereC(C);
+		if (!erro)
+			System.out.println("Erro");
 	}
-
 }
