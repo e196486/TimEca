@@ -9,7 +9,8 @@ public class MontadorCaverna {
 		
 		Caverna cav = new Caverna();
 		
-			cav.insereComponente(movimentos);
+		for (int i=0; i<16; i++) 
+			cav.insereComponente(movimentos[i]);
 	}
 	
 	
