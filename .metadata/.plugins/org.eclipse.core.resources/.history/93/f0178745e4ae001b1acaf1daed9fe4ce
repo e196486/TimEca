@@ -1,0 +1,9 @@
+package mc322.lab06;
+
+public class Sala {
+	char P = '-';
+	
+	public void insereComponente(Componente C) {
+		
+	}
+}

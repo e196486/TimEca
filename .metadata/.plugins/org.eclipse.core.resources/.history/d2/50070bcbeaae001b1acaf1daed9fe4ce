@@ -1,0 +1,45 @@
+package mc322.lab06;
+
+public class Sala {
+	char P = '-';
+	Componente Wumpus = null,
+			Buraco = null,
+			Ouro = null,
+			Heroi = null,
+			Brisa = null,
+			Fedor = null;
+			
+	
+	
+	public boolean insereC(Componente C) {
+		if (Wumpus != null || Buraco != null || Ouro != null)// se já houver algum desses componentes na sala, retorna falso para a caverna.
+			return false;
+		else {
+			P = C.coordenada.componente;
+			if (C.coordenada.componente == 'W') {
+				Wumpus = C;
+				P = 'W';
+			}
+			else if (C.coordenada.componente == 'B') {
+				Buraco = C;
+				P = 'B';
+			}
+			else if (C.coordenada.componente == 'O') {
+				Ouro = C;
+				P = 'O';
+			}
+			else if (C.coordenada.componente == 'P') {
+				Heroi = C;
+				P = 'P';
+			}
+			else if (C.coordenada.componente == 'b') {
+				Brisa = C;
+				P = 'b';
+			}else {
+				Fedor = C;
+				P = 'f';
+			}
+			return true;
+		}
+	}
+}
