@@ -1,7 +1,7 @@
 package mc322.lab06;
 
 public class Sala {
-	char P = '-';
+	char P = '-'; 
 	Componente Wumpus = null,
 			Buraco = null,
 			Ouro = null,
@@ -19,6 +19,14 @@ public class Sala {
 			if (C.componente == 'W') {
 				Wumpus = C;
 				P = 'W';
+	
+			/* adicionei essas duas casas que estavam faltando ( _ e # */	
+			}else if (C.componente == '_') {
+				Buraco = C;
+				P = '-';
+			}else if (C.componente == '#') {
+				Buraco = C;
+				P = '#';
 			}
 			else if (C.componente == 'B') {
 				Buraco = C;
@@ -46,6 +54,19 @@ public class Sala {
 		}
 	}
 	
-	
+	public String confronto() {
+		
+		//se for o wumpus 
+		
+		//se for o buraco
+		
+		//se for ouro 
+		
+		//se for Fedor 
+		
+		//se for Brisa 
+		
+		return "Status do Movimento";
+	}
 	
 }

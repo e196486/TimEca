@@ -1,16 +1,20 @@
 package mc322.lab06;
 
 public class MontadorCaverna {
+	Caverna cave ;
+	StatusJogo status; 
 	
 	
 	public MontadorCaverna(String arq) {
+		status = new StatusJogo();
+		cave = new Caverna(status);
+		Componente peca[] = leArquivo(arq); 
 		
-		Componente movimentos[] = leArquivo(arq); 
 		
-		Caverna cav = new Caverna();
+		for (int i=0; i<16; i++)  
+			cave.insereComponente(peca[i]);
 		
-		for (int i=0; i<16; i++) 
-			cav.insereComponente(movimentos[i]);
+		
 	}
 	
 	
@@ -22,7 +26,10 @@ public class MontadorCaverna {
 		csv.setDataSource(arq);
 		String comandos[][] = csv.requestCommands();
 		
-		for (int i=0; i<16; i++) 
+		
+		componentes[0] = new Heroi(comandos[0], status, cave);
+		
+		for (int i=1; i<16; i++) 
 				componentes[i] = new Componente (comandos[i]);
 		
 		
