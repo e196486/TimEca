@@ -3,11 +3,15 @@ package mc322.lab06;
 public class Heroi extends Componente {
 	StatusJogo status;
 	Caverna cave;
+	boolean flecha, // se tem flecha disponível
+			flechaEquip; // se a flecha está equipada
 
 	public Heroi(String str[], StatusJogo status, Caverna cave) {
 		super(str);
 		this.cave = cave;
 		this.status = status;
+		flecha = true;
+		flechaEquip = false;
 
 	}
 
@@ -39,10 +43,15 @@ public class Heroi extends Componente {
 	}
 
 	public boolean equipaFlecha() {
-		return false;
+		if (flecha)
+			flechaEquip = true;
+		else
+			flechaEquip = false;
+		return flechaEquip;
 	}
 
 	public boolean capturaOuro() {
+		cave.retiraOuro(linha, coluna); //Tirando o Ouro da sala sem fazer referência direta a ela.
 		status.pegaOuro();
 		return true;
 	}

@@ -56,8 +56,6 @@ public class Caverna {
 
 		if (cav[linhaTarget][colunaTarget] != null) {
 
-			status.Confronto(cav[linhaTarget][colunaTarget].confronto());
-
 			/*String SalaAcessada[] = { (String.valueOf(heroi.linha) + ":" + String.valueOf(heroi.coluna)), "#" };
 			insereComponente(new Componente(SalaAcessada));*/
 			
@@ -67,8 +65,15 @@ public class Caverna {
 			heroi.coluna = colunaTarget;
 
 			insereComponente(heroi);
+			
+			status.Confronto(cav[linhaTarget][colunaTarget].confronto());
 
 		}
 		return status;
+	}
+	
+	public void retiraOuro(int linha, int coluna) {
+		cav[linha][coluna].Ouro = null;
+		cav[linha][coluna].atualizaChar();
 	}
 }
