@@ -13,5 +13,25 @@ public class Componente {
 		coluna = Integer.parseInt(coordenadaComposta.substring(2, 3));
 		componente = str[1].charAt(0);	
 	}
+	
+	public Componente () {
+		linha = 0;
+		coluna = 0;
+		componente = '_';
+	}
+	
+	public boolean movimenta(String direcao) {
+		return false;
+	} 
+	
+	public boolean equipaFlecha() {
+		return false;
+	}
+	
+	public boolean capturaOuro() {
+		return false;
+	}
+	
+
 
 }
