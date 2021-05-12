@@ -27,7 +27,8 @@ public class Caverna {
 	}
 	
 	public void insereComponente(Componente C) {
-		boolean erro = cav[C.linha][C.coluna].insereC(C);
+		
+		boolean erro = cav[C.linha-1][C.coluna-1].insereC(C);
 		if (!erro)
 			System.out.println("Erro");
 	}

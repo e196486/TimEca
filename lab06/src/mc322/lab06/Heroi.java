@@ -1,5 +1,7 @@
 package mc322.lab06;
 
-public class Heroi {
-
+public class Heroi extends Componente{
+	public Heroi(String str[]) {
+		super(str);
+	}
 }
