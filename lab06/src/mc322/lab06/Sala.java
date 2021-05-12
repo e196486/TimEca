@@ -1,7 +1,10 @@
 package mc322.lab06;
 
+import java.util.Random;
+
 public class Sala {
 	char P = '-'; 
+	boolean salaVisitada = false;// eu mudo o char pra # se tiver sido visitada.
 	Componente Wumpus = null,
 			Buraco = null,
 			Ouro = null,
@@ -16,57 +19,88 @@ public class Sala {
 			return false;
 		else {
 			P = C.componente;
-			if (C.componente == 'W') {
+			if (C.componente == 'W')
 				Wumpus = C;
-				P = 'W';
 	
 			/* adicionei essas duas casas que estavam faltando ( _ e # */	
-			}else if (C.componente == '_') {
+			//Estou deixando a sala vazia quando é "_"
+				
+			else if (C.componente == 'B')
 				Buraco = C;
-				P = '-';
-			}else if (C.componente == '#') {
-				Buraco = C;
-				P = '#';
-			}
-			else if (C.componente == 'B') {
-				Buraco = C;
-				P = 'B';
-			}
-			else if (C.componente == 'O') {
+			else if (C.componente == 'O') 
 				Ouro = C;
-				P = 'O';
-			}
 			else if (C.componente == 'P') {
 				Heroi = C;
-				if(Wumpus == null && Buraco == null && Ouro == null)
-					P = 'P';
+				salaVisitada = true;
 			}
-			else if (C.componente == 'f') {
+			else if (C.componente == 'f') 
 				Fedor = C;
-				if(Wumpus == null && Buraco == null && Ouro == null && Heroi == null)
-					P = 'f';
-			}else {
+			else if (C.componente == 'b')
 				Brisa = C;
-				if(Wumpus == null && Buraco == null && Ouro == null && Heroi == null && Fedor == null)
-					P = 'b';
-			}
+			
+			atualizaChar();
 			return true;
 		}
 	}
 	
+	public void atualizaChar() {
+		if (salaVisitada) {
+			if (Wumpus != null)
+				P = 'W';
+			else if (Buraco != null)
+				P = 'B';
+			else if (Ouro != null)
+				P = 'O';
+			else if (Heroi != null)
+				P = 'P';
+			else if (Fedor != null)
+				P = 'f';
+			else if (Brisa != null)
+				P = 'b';
+			else
+				P = '#';
+		} else {
+			P = '-';
+		}
+		return;
+	}
+	
 	public String confronto() {
 		
+		String confronto = "";
+		
 		//se for o wumpus 
+		if (Wumpus != null) {
+			if (Heroi.equipaFlecha) {// considerando que o herói sempre está na sala quando confronto é chamado.
+				Random rand = new Random();
+				int x = rand.nextInt(100);
+				if (x < 50)
+					confronto = "no:Wumpus derrotou Heroi";
+				else {
+					confronto = "ok:Wumpus derrotado";
+					Wumpus = null;
+					atualizaChar();
+				}
+			}
+		}
 		
 		//se for o buraco
 		
+		if (Buraco != null) {
+			confronto = "no:Tinha buraco";
+		}
+		
 		//se for ouro 
+		
+		if (Ouro != null) {
+			confronto = "ok:Tem ouro";
+		}
 		
 		//se for Fedor 
 		
 		//se for Brisa 
 		
-		return "Status do Movimento";
+		return confronto;
 	}
 	
 }

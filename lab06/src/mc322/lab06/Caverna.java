@@ -58,8 +58,10 @@ public class Caverna {
 
 			status.Confronto(cav[linhaTarget][colunaTarget].confronto());
 
-			String SalaAcessada[] = { (String.valueOf(heroi.linha) + ":" + String.valueOf(heroi.coluna)), "#" };
-			insereComponente(new Componente(SalaAcessada));
+			/*String SalaAcessada[] = { (String.valueOf(heroi.linha) + ":" + String.valueOf(heroi.coluna)), "#" };
+			insereComponente(new Componente(SalaAcessada));*/
+			
+			//Não precisa mais, porque eu coloco o # quando o herói entra na sala. Achei melhor pra encapsular mais.
 
 			heroi.linha = linhaTarget;
 			heroi.coluna = colunaTarget;

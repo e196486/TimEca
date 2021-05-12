@@ -10,9 +10,10 @@ public class MontadorCaverna {
 		
 		status = new StatusJogo();
 		cav = new Caverna(status);
-		
-		for (int i=0; i<16; i++) 
+	
+		for (int i=0; i<vetorComponentes.length; i++) {
 			cav.insereComponente(vetorComponentes[i]);
+		}
 		cav.imprimeEstado();
 	}
 	
