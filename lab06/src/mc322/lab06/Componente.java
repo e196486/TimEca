@@ -31,7 +31,5 @@ public class Componente {
 	public boolean capturaOuro() {
 		return false;
 	}
-	
-
 
 }

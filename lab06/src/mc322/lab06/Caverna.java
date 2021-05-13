@@ -2,12 +2,12 @@ package mc322.lab06;
 
 public class Caverna {
 
-	Sala cav[][];
+	Sala cave[][];
 	StatusJogo status;
 
 	public Caverna(StatusJogo status) {
 		this.status = status;
-		cav = new Sala[5][5];
+		cave = new Sala[5][5];
 		criaCaverna();
 	}
 
@@ -15,7 +15,7 @@ public class Caverna {
 		for (int i = 1; i < 5; i++) {
 			for (int j = 1; j < 5; j++) {
 				Sala sala = new Sala();
-				cav[i][j] = sala;
+				cave[i][j] = sala;
 			}
 		}
 	}
@@ -25,7 +25,7 @@ public class Caverna {
 		for (int i = 1; i < 5; i++) {
 			Estado += i + " ";
 			for (int j = 1; j < 5; j++) {
-				Estado += cav[i][j].P + " ";
+				Estado += cave[i][j].P + " ";
 			}
 			Estado += "\n";
 		}
@@ -40,9 +40,45 @@ public class Caverna {
 
 	public void insereComponente(Componente C) {
 		
-		boolean erro = cav[C.linha][C.coluna].insereC(C);
-		if (!erro)
+		boolean erro = cave[C.linha][C.coluna].insereC(C);
+		if (erro)
 			System.out.println("Erro");
+		else if (C.componente == 'W'){
+			if (C.coluna > 1) {
+				Componente f = new Fedor(C.linha, C.coluna-1);
+				cave[C.linha][C.coluna-1].insereC(f);
+			}
+			if (C.coluna < 4) {
+				Componente f = new Fedor(C.linha, C.coluna+1);
+				cave[C.linha][C.coluna+1].insereC(f);
+			}	
+			if (C.linha > 1) {
+				Componente f = new Fedor(C.linha-1, C.coluna);
+				cave[C.linha-1][C.coluna].insereC(f);
+			}
+			if (C.linha < 4) {
+				Componente f = new Fedor(C.linha+1, C.coluna);
+				cave[C.linha+1][C.coluna].insereC(f);
+			}
+		}
+		else if (C.componente == 'B') {
+			if (C.coluna > 1) {
+				Componente b = new Brisa(C.linha, C.coluna-1);
+				cave[C.linha][C.coluna-1].insereC(b);
+			}
+			if (C.coluna < 4) {
+				Componente b = new Brisa(C.linha, C.coluna+1);
+				cave[C.linha][C.coluna+1].insereC(b);
+			}	
+			if (C.linha > 1) {
+				Componente b = new Brisa(C.linha-1, C.coluna);
+				cave[C.linha-1][C.coluna].insereC(b);
+			}
+			if (C.linha < 4) {
+				Componente b = new Brisa(C.linha+1, C.coluna);
+				cave[C.linha+1][C.coluna].insereC(b);
+			}
+		}
 
 	}
 
@@ -54,7 +90,7 @@ public class Caverna {
 		// ocorrer dentro do confronto ou então o resultado do confronto sair do
 		// inserePeca na Sala
 
-		if (cav[linhaTarget][colunaTarget] != null) {
+		if (cave[linhaTarget][colunaTarget] != null) {
 
 			/*String SalaAcessada[] = { (String.valueOf(heroi.linha) + ":" + String.valueOf(heroi.coluna)), "#" };
 			insereComponente(new Componente(SalaAcessada));*/
@@ -66,14 +102,21 @@ public class Caverna {
 
 			insereComponente(heroi);
 			
-			status.Confronto(cav[linhaTarget][colunaTarget].confronto());
+			status.Confronto(cave[linhaTarget][colunaTarget].confronto());
 
 		}
 		return status;
 	}
 	
 	public void retiraOuro(int linha, int coluna) {
-		cav[linha][coluna].Ouro = null;
-		cav[linha][coluna].atualizaChar();
+		cave[linha][coluna].Ouro = null;
+		cave[linha][coluna].atualizaChar();
+	}
+	
+	public boolean temSala(int x, int y) {
+		if (cave[x][y] != null)
+			return true;
+		else
+			return false;
 	}
 }

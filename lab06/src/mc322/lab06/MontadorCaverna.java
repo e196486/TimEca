@@ -1,7 +1,7 @@
 package mc322.lab06;
 
 public class MontadorCaverna {
-	Caverna cav;
+	Caverna cave;
 	StatusJogo status;
 	
 	public MontadorCaverna(String arq) {
@@ -9,12 +9,12 @@ public class MontadorCaverna {
 		Componente vetorComponentes[] = leArquivo(arq); 
 		
 		status = new StatusJogo();
-		cav = new Caverna(status);
+		cave = new Caverna(status);
 	
 		for (int i=0; i<vetorComponentes.length; i++) {
-			cav.insereComponente(vetorComponentes[i]);
+			cave.insereComponente(vetorComponentes[i]);
 		}
-		cav.imprimeEstado();
+		cave.imprimeEstado();
 	}
 	
 	
@@ -30,7 +30,7 @@ public class MontadorCaverna {
 		//O montador instancia o componente na classe certa.
 		for (int i=0; i<16; i++) {
 			if (comandos[i][1] == "P")
-				componentes[i] = new Heroi (comandos[i], status, cav);
+				componentes[i] = new Heroi (comandos[i], status, cave);
 			else if (comandos[i][1] == "B")
 				componentes[i] = new Buraco (comandos[i]);
 			else if (comandos[i][1] == "W")

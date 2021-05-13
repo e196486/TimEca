@@ -21,7 +21,7 @@ public class Sala {
 			P = C.componente;
 			if (C.componente == 'W')
 				Wumpus = C;
-	
+				
 			/* adicionei essas duas casas que estavam faltando ( _ e # */	
 			//Estou deixando a sala vazia quando é "_"
 				
@@ -39,7 +39,7 @@ public class Sala {
 				Brisa = C;
 			
 			atualizaChar();
-			return true;
+			return false;
 		}
 	}
 	
