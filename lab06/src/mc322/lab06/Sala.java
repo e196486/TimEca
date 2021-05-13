@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Sala {
 	char P = '-'; 
-	boolean salaVisitada = true;// eu mudo o char pra # se tiver sido visitada.
+	boolean salaVisitada = false;// eu mudo o char pra # se tiver sido visitada.
 	Componente Wumpus = null,
 			Buraco = null,
 			Ouro = null,
@@ -71,7 +71,7 @@ public class Sala {
 		
 		//se for o wumpus 
 		if (Wumpus != null) {
-			if (Heroi.flechaEquip) {// considerando que o herói sempre está na sala quando confronto é chamado.
+			if (Heroi.flechaEquip) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
 				Random rand = new Random();
 				int x = rand.nextInt(100);
 				if (x < 50)

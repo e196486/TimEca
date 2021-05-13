@@ -7,6 +7,8 @@ public class AppMundoWumpus {
 		MontadorCaverna M = new MontadorCaverna(Arquivo);
 		M.cave.retiraOuro(4, 3);
 		M.cave.imprimeEstado();
+		M.cave.cave[1][1].Heroi.movimenta("Baixo");
+		M.cave.imprimeEstado();
 	}
 
 }

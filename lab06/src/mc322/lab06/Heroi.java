@@ -23,16 +23,16 @@ public class Heroi extends Componente {
 
 		switch (direcao) {
 		case "Cima":
-			status = cave.solicitaMovimento(this, linha + 1, coluna);
+			status = cave.solicitaMovimento(this, linha - 1, coluna);
 			break;
 		case "Baixo":
-			status = cave.solicitaMovimento(this, linha - 1, coluna);
+			status = cave.solicitaMovimento(this, linha + 1, coluna);
 			break;
 		case "Esquerda":
 			status = cave.solicitaMovimento(this, linha, coluna - 1);
 			break;
 		case "Direita":
-			status = cave.solicitaMovimento(this, linha + 1, coluna + 1);
+			status = cave.solicitaMovimento(this, linha, coluna + 1);
 			break;
 		}
 

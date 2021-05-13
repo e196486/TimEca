@@ -4,11 +4,13 @@ public class Caverna {
 
 	Sala cave[][];
 	StatusJogo status;
+	int buracos;
 
 	public Caverna(StatusJogo status) {
 		this.status = status;
 		cave = new Sala[5][5];
 		criaCaverna();
+		buracos = 0;
 	}
 
 	public void criaCaverna() {
@@ -39,47 +41,59 @@ public class Caverna {
 	}
 
 	public void insereComponente(Componente C) {
-		
-		boolean erro = cave[C.linha][C.coluna].insereC(C);
-		if (erro)
-			System.out.println("Erro");
-		else if (C.componente == 'W'){
-			if (C.coluna > 1) {
-				Componente f = new Fedor(C.linha, C.coluna-1);
-				cave[C.linha][C.coluna-1].insereC(f);
-			}
-			if (C.coluna < 4) {
-				Componente f = new Fedor(C.linha, C.coluna+1);
-				cave[C.linha][C.coluna+1].insereC(f);
-			}	
-			if (C.linha > 1) {
-				Componente f = new Fedor(C.linha-1, C.coluna);
-				cave[C.linha-1][C.coluna].insereC(f);
-			}
-			if (C.linha < 4) {
-				Componente f = new Fedor(C.linha+1, C.coluna);
-				cave[C.linha+1][C.coluna].insereC(f);
+		if (C.componente == 'W'){
+			boolean erro = cave[C.linha][C.coluna].insereC(C);
+			if (erro)
+				System.out.println("Erro");
+			else {
+				if (C.coluna > 1) {
+					Componente f = new Fedor(C.linha, C.coluna-1);
+					cave[C.linha][C.coluna-1].insereC(f);
+				}
+				if (C.coluna < 4) {
+					Componente f = new Fedor(C.linha, C.coluna+1);
+					cave[C.linha][C.coluna+1].insereC(f);
+				}	
+				if (C.linha > 1) {
+					Componente f = new Fedor(C.linha-1, C.coluna);
+					cave[C.linha-1][C.coluna].insereC(f);
+				}
+				if (C.linha < 4) {
+					Componente f = new Fedor(C.linha+1, C.coluna);
+					cave[C.linha+1][C.coluna].insereC(f);
+				}
 			}
 		}
 		else if (C.componente == 'B') {
-			if (C.coluna > 1) {
-				Componente b = new Brisa(C.linha, C.coluna-1);
-				cave[C.linha][C.coluna-1].insereC(b);
+			if (buracos <= 3) {
+				boolean erro = cave[C.linha][C.coluna].insereC(C);
+				if (erro)
+					System.out.println("Erro");
+				else {
+					if (C.coluna > 1) {
+						Componente b = new Brisa(C.linha, C.coluna-1);
+						cave[C.linha][C.coluna-1].insereC(b);
+					}
+					if (C.coluna < 4) {
+						Componente b = new Brisa(C.linha, C.coluna+1);
+						cave[C.linha][C.coluna+1].insereC(b);
+					}	
+					if (C.linha > 1) {
+						Componente b = new Brisa(C.linha-1, C.coluna);
+						cave[C.linha-1][C.coluna].insereC(b);
+					}
+					if (C.linha < 4) {
+						Componente b = new Brisa(C.linha+1, C.coluna);
+						cave[C.linha+1][C.coluna].insereC(b);
+					}
+					buracos++;
+				}
 			}
-			if (C.coluna < 4) {
-				Componente b = new Brisa(C.linha, C.coluna+1);
-				cave[C.linha][C.coluna+1].insereC(b);
-			}	
-			if (C.linha > 1) {
-				Componente b = new Brisa(C.linha-1, C.coluna);
-				cave[C.linha-1][C.coluna].insereC(b);
-			}
-			if (C.linha < 4) {
-				Componente b = new Brisa(C.linha+1, C.coluna);
-				cave[C.linha+1][C.coluna].insereC(b);
-			}
+		} else {
+			boolean erro = cave[C.linha][C.coluna].insereC(C);
+			if (erro)
+				System.out.println("Erro");
 		}
-
 	}
 
 	public StatusJogo solicitaMovimento(Componente heroi, int linhaTarget, int colunaTarget) {
