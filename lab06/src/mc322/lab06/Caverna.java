@@ -110,13 +110,18 @@ public class Caverna {
 			insereComponente(new Componente(SalaAcessada));*/
 			
 			//Não precisa mais, porque eu coloco o # quando o herói entra na sala. Achei melhor pra encapsular mais.
-
+			
+			cave[heroi.linha][heroi.coluna].Heroi = null;
+			cave[heroi.linha][heroi.coluna].atualizaChar();
+			
 			heroi.linha = linhaTarget;
 			heroi.coluna = colunaTarget;
 
 			insereComponente(heroi);
+			cave[heroi.linha][heroi.coluna].atualizaChar();
 			
-			status.Confronto(cave[linhaTarget][colunaTarget].confronto());
+			
+			//status.Confronto(cave[linhaTarget][colunaTarget].confronto());
 
 		}
 		return status;

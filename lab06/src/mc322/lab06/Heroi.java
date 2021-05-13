@@ -20,7 +20,7 @@ public class Heroi extends Componente {
 		// Aqui nesse método, o Heroi recebe de controle as direções e a partir disso,
 		// manda para a caverna o pedido de movimento. Se for possível, ela irá se
 		// movimentar. Tudo será devolvido através do Status.
-
+		System.out.println("move");
 		switch (direcao) {
 		case "Cima":
 			status = cave.solicitaMovimento(this, linha - 1, coluna);
@@ -35,7 +35,7 @@ public class Heroi extends Componente {
 			status = cave.solicitaMovimento(this, linha, coluna + 1);
 			break;
 		}
-
+		System.out.println("move");
 		if (status.movimento)
 			status.moveHeroi();
 

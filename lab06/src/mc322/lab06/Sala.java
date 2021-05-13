@@ -71,7 +71,7 @@ public class Sala {
 		
 		//se for o wumpus 
 		if (Wumpus != null) {
-			if (Heroi.flechaEquip) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
+			if (1 == 1) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
 				Random rand = new Random();
 				int x = rand.nextInt(100);
 				if (x < 50)
