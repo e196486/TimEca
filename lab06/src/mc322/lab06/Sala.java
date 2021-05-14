@@ -15,8 +15,10 @@ public class Sala {
 	
 	
 	public boolean insereC(Componente C) {
-		if (Wumpus != null || Buraco != null || Ouro != null)// se já houver algum desses componentes na sala, retorna falso para a caverna.
-			return false;
+		if ((C.componente != 'P') && (Wumpus != null || Buraco != null || Ouro != null))// se já houver algum desses componentes na sala, retorna falso para a caverna.
+			return true;
+		else if((C.componente == 'P')&& Buraco != null) 
+			return true;
 		else {
 			P = C.componente;
 			if (C.componente == 'W')
@@ -71,7 +73,7 @@ public class Sala {
 		
 		//se for o wumpus 
 		if (Wumpus != null) {
-			if (1 == 1) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
+			if (Heroi.flechaEquip) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
 				Random rand = new Random();
 				int x = rand.nextInt(100);
 				if (x < 50)

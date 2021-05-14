@@ -9,6 +9,10 @@ public class AppMundoWumpus {
 		M.cave.imprimeEstado();
 		//System.out.println(M.cave.cave[1][1].Heroi.componente);
 		M.cave.solicitaMovimento(M.cave.cave[1][1].Heroi, 2, 1);
+		M.cave.solicitaMovimento(M.cave.cave[2][1].Heroi, 2, 2);
+		M.cave.solicitaMovimento(M.cave.cave[2][2].Heroi, 2, 3);
+		M.cave.solicitaMovimento(M.cave.cave[2][3].Heroi, 3, 3);
+		M.cave.solicitaMovimento(M.cave.cave[3][3].Heroi, 3, 2);
 		M.cave.imprimeEstado();
 	}
 
