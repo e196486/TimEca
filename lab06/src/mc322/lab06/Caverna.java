@@ -2,13 +2,13 @@ package mc322.lab06;
 
 public class Caverna {
 
-	Sala cave[][];
+	Sala room[][];
 	StatusJogo status;
 	int buracos;
 
 	public Caverna(StatusJogo status) {
 		this.status = status;
-		cave = new Sala[5][5];
+		room = new Sala[5][5];
 		criaCaverna();
 		buracos = 0;
 	}
@@ -17,7 +17,7 @@ public class Caverna {
 		for (int i = 1; i < 5; i++) {
 			for (int j = 1; j < 5; j++) {
 				Sala sala = new Sala();
-				cave[i][j] = sala;
+				room[i][j] = sala;
 			}
 		}
 	}
@@ -27,13 +27,13 @@ public class Caverna {
 		for (int i = 1; i < 5; i++) {
 			Estado += i + " ";
 			for (int j = 1; j < 5; j++) {
-				Estado += cave[i][j].P + " ";
+				Estado += room[i][j].P + " ";
 			}
 			Estado += "\n";
 		}
 		Estado += "  1 2 3 4";
 
-		Estado += ("\n\nPlayer: " + status.player + "\nScore: " + status.score);
+		Estado += ("\n\nPlayer: " + status.player + "\nScore: " + status.score +"\n"+ status.mensagemFinal);
 
 		System.out.println(Estado);
 
@@ -42,100 +42,109 @@ public class Caverna {
 
 	public void insereComponente(Componente C) {
 		if (C.componente == 'W'){
-			boolean erro = cave[C.linha][C.coluna].insereC(C);
+			
+			boolean erro = room[C.linha][C.coluna].insereC(C);
 			if (erro)
 				System.out.println("Erro");
-			else {
+			else { 
 				if (C.coluna > 1) {
 					Componente f = new Fedor(C.linha, C.coluna-1);
-					cave[C.linha][C.coluna-1].insereC(f);
+					room[C.linha][C.coluna-1].insereC(f);
 				}
 				if (C.coluna < 4) {
 					Componente f = new Fedor(C.linha, C.coluna+1);
-					cave[C.linha][C.coluna+1].insereC(f);
+					room[C.linha][C.coluna+1].insereC(f);
 				}	
 				if (C.linha > 1) {
 					Componente f = new Fedor(C.linha-1, C.coluna);
-					cave[C.linha-1][C.coluna].insereC(f);
+					room[C.linha-1][C.coluna].insereC(f);
 				}
 				if (C.linha < 4) {
 					Componente f = new Fedor(C.linha+1, C.coluna);
-					cave[C.linha+1][C.coluna].insereC(f);
+					room[C.linha+1][C.coluna].insereC(f);
 				}
 			}
 		}
 		else if (C.componente == 'B') {
 			if (buracos <= 3) {
-				boolean erro = cave[C.linha][C.coluna].insereC(C);
+				boolean erro = room[C.linha][C.coluna].insereC(C);
 				if (erro)
 					System.out.println("Erro");
-				else {
+				else { 
 					if (C.coluna > 1) {
 						Componente b = new Brisa(C.linha, C.coluna-1);
-						cave[C.linha][C.coluna-1].insereC(b);
+						room[C.linha][C.coluna-1].insereC(b);
 					}
 					if (C.coluna < 4) {
 						Componente b = new Brisa(C.linha, C.coluna+1);
-						cave[C.linha][C.coluna+1].insereC(b);
+						room[C.linha][C.coluna+1].insereC(b);
 					}	
 					if (C.linha > 1) {
 						Componente b = new Brisa(C.linha-1, C.coluna);
-						cave[C.linha-1][C.coluna].insereC(b);
+						room[C.linha-1][C.coluna].insereC(b);
 					}
 					if (C.linha < 4) {
 						Componente b = new Brisa(C.linha+1, C.coluna);
-						cave[C.linha+1][C.coluna].insereC(b);
+						room[C.linha+1][C.coluna].insereC(b);
 					}
 					buracos++;
 				}
 			}
-		} else {
-			boolean erro = cave[C.linha][C.coluna].insereC(C);
+		} else if (C.componente == 'P') {
+			boolean erro = room[C.linha][C.coluna].insereC(C);
 			if (erro)
 				System.out.println("Erro");
+		} 
+		
+		
+		else {
+			boolean erro = room[C.linha][C.coluna].insereC(C);
+			if (erro)
+				System.out.println("Erro"); 
 		}
 	}
 
 	public StatusJogo solicitaMovimento(Componente heroi, int linhaTarget, int colunaTarget) {
 		// O solicita movimento testa se o movimento é possivel, pede para as salas
-		// testarem o "confronto" e atualiza tudo isso no Status.
-		// caso seja possível, ele insere a peça # na sala que estava e se move para o
-		// Target. Temos que pensar direito nessa lógica pq as vezes a troca poderá
-		// ocorrer dentro do confronto ou então o resultado do confronto sair do
-		// inserePeca na Sala
+		// testarem o "confronto" e atualiza tudo isso no Status. 
+		
+		if (linhaTarget == 1 && colunaTarget == 1 && status.temOuro) {
+			status.win();
+		}
 
-		if (cave[linhaTarget][colunaTarget] != null) {
-
-			/*String SalaAcessada[] = { (String.valueOf(heroi.linha) + ":" + String.valueOf(heroi.coluna)), "#" };
-			insereComponente(new Componente(SalaAcessada));*/
+		if (temSala(linhaTarget,colunaTarget)) { 
 			
-			//Não precisa mais, porque eu coloco o # quando o herói entra na sala. Achei melhor pra encapsular mais.
-			
-			cave[heroi.linha][heroi.coluna].Heroi = null;
-			cave[heroi.linha][heroi.coluna].atualizaChar();
+			room[heroi.linha][heroi.coluna].Heroi = null;
+			room[heroi.linha][heroi.coluna].atualizaChar();
 			
 			heroi.linha = linhaTarget;
 			heroi.coluna = colunaTarget;
 
 			insereComponente(heroi);
-			cave[heroi.linha][heroi.coluna].atualizaChar();
+			room[heroi.linha][heroi.coluna].atualizaChar();
 			
+			String resultadoConfronto = room[linhaTarget][colunaTarget].confronto(status);
 			
-			//status.Confronto(cave[linhaTarget][colunaTarget].confronto());
+			status.Confronto(resultadoConfronto);
+			
 
 		}
+		else  {
+			System.err.println("Movimento impossível! ");
+		}
+		
+		if (status.JogoAtivo)
+			imprimeEstado();
+		
 		return status;
 	}
 	
 	public void retiraOuro(int linha, int coluna) {
-		cave[linha][coluna].Ouro = null;
-		cave[linha][coluna].atualizaChar();
+		room[linha][coluna].Ouro = null;
+		room[linha][coluna].atualizaChar();
 	}
 	
 	public boolean temSala(int x, int y) {
-		if (cave[x][y] != null)
-			return true;
-		else
-			return false;
+		return (x >= 1 && x <= 4 && y >=1 && y <=4 );
 	}
 }

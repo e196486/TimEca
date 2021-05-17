@@ -13,6 +13,14 @@ public class ControleJogo {
 	Componente heroi;
 	String command = "";
 	StatusJogo status;
+	String ComandosPermitidos = 
+			  " w -> Herói movimenta para a sala acima,\n"
+			+ " s -> Herói movimenta para a sala abaixo,\n"
+			+ " d -> Herói movimenta para a sala a direita,\n"
+			+ " a -> Herói movimenta para a sala a esquerda,\n"
+			+ " k -> Herói equipa a flecha,\n"
+			+ " c -> Herói captura o ouro,\n"
+			+ " q -> O usuário sai do jogo.\n";
 
 	public ControleJogo(Componente heroijogo, StatusJogo status) {
 		this.heroi = heroijogo;
@@ -23,17 +31,19 @@ public class ControleJogo {
 
 		status.player = keyboard.nextLine();
 		
-		System.out.println("Comece a jogar");
+		System.out.println("Comece a jogar. Os comandos permitidos são : \n" + ComandosPermitidos);
+		
+		
 		
 
 	}
 
 	public void leInput() {
 
-		do {
+		 while (status.JogoAtivo) {
 			command = keyboard.nextLine();
-			status.JogoAtivo = comando(command);
-		} while (status.JogoAtivo);
+			comando(command);
+		}
 
 		keyboard.close();
 
@@ -68,12 +78,12 @@ public class ControleJogo {
 			break;
 
 		case "q": // O usuário sai do jogo.
-			System.out.println("“Volte sempre !”");
+			status.quit();
 			estado = false;
 			break;
 
 		default:
-			System.err.println("Entrada Inválida. Tente novamente.");
+			System.err.println("Entrada Inválida. Tente novamente. Os comandos Permitidos São: \n" + ComandosPermitidos);
 			break;
 		}
 

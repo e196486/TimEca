@@ -3,16 +3,37 @@ package mc322.lab06;
 public class Heroi extends Componente {
 	StatusJogo status;
 	Caverna cave;
-	boolean flecha, // se tem flecha disponível
+	boolean temFlecha, // se tem flecha disponível
 			flechaEquip; // se a flecha está equipada
 
 	public Heroi(String str[], StatusJogo status, Caverna cave) {
 		super(str);
 		this.cave = cave;
 		this.status = status;
-		flecha = true;
+		temFlecha = true;
 		flechaEquip = false;
 
+	}
+
+	public void setStatus(StatusJogo status) {
+		this.status = status;
+	}
+
+	public void setCave(Caverna cave) {
+		this.cave = cave;
+	}
+
+	public boolean equipaFlecha() {
+
+		flechaEquip = temFlecha;
+
+		if (flechaEquip) {
+			status.flechaEquipada = true;
+			System.out.println("Flecha Equipada");
+		} else {
+			System.out.println("Não temos flechas disponíveis");
+		}
+		return flechaEquip;
 	}
 
 	public boolean movimenta(String direcao) {
@@ -20,7 +41,7 @@ public class Heroi extends Componente {
 		// Aqui nesse método, o Heroi recebe de controle as direções e a partir disso,
 		// manda para a caverna o pedido de movimento. Se for possível, ela irá se
 		// movimentar. Tudo será devolvido através do Status.
-		System.out.println("move");
+
 		switch (direcao) {
 		case "Cima":
 			status = cave.solicitaMovimento(this, linha - 1, coluna);
@@ -35,23 +56,15 @@ public class Heroi extends Componente {
 			status = cave.solicitaMovimento(this, linha, coluna + 1);
 			break;
 		}
-		System.out.println("move");
-		if (status.movimento)
-			status.moveHeroi();
+
+		temFlecha = status.numFlechas == 1;
+		flechaEquip = status.flechaEquipada;
 
 		return true;
 	}
 
-	public boolean equipaFlecha() {
-		if (flecha)
-			flechaEquip = true;
-		else
-			flechaEquip = false;
-		return flechaEquip;
-	}
-
 	public boolean capturaOuro() {
-		cave.retiraOuro(linha, coluna); //Tirando o Ouro da sala sem fazer referência direta a ela.
+		cave.retiraOuro(linha, coluna); // Tirando o Ouro da sala sem fazer referência direta a ela.
 		status.pegaOuro();
 		return true;
 	}

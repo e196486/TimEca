@@ -4,6 +4,8 @@ public class Componente {
 	int linha;
 	int coluna;
 	char componente;
+	StatusJogo status;
+	Caverna cave;
 	
 	public Componente (String str[]) {
 		
@@ -13,6 +15,7 @@ public class Componente {
 		coluna = Integer.parseInt(coordenadaComposta.substring(2, 3));
 		componente = str[1].charAt(0);	
 	}
+	
 	
 	public Componente () {
 		linha = 0;
@@ -31,5 +34,12 @@ public class Componente {
 	public boolean capturaOuro() {
 		return false;
 	}
-
+	public void setStatus (StatusJogo status) {
+	}
+	
+	public void setCave (Caverna cave) {
+	}
+	
+	public void usaflecha() {
+	}
 }

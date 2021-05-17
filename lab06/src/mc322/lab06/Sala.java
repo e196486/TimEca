@@ -23,16 +23,14 @@ public class Sala {
 			P = C.componente;
 			if (C.componente == 'W')
 				Wumpus = C;
-				
-			/* adicionei essas duas casas que estavam faltando ( _ e # */	
-			//Estou deixando a sala vazia quando é "_"
-				
+			 
 			else if (C.componente == 'B')
 				Buraco = C;
 			else if (C.componente == 'O') 
 				Ouro = C;
 			else if (C.componente == 'P') {
 				Heroi = C;
+				
 				salaVisitada = true;
 			}
 			else if (C.componente == 'f') 
@@ -67,44 +65,48 @@ public class Sala {
 		return;
 	}
 	
-	public String confronto() {
-		
-		String confronto = "";
+	public String confronto(StatusJogo status) {
+		 
 		
 		//se for o wumpus 
 		if (Wumpus != null) {
-			if (Heroi.flechaEquip) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
+			if (status.flechaEquipada) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
 				Random rand = new Random();
 				int x = rand.nextInt(100);
+				System.out.print("batalha com o wumpus. chance: " + x);
 				if (x < 50)
-					confronto = "no:Wumpus derrotou Heroi";
+					return "no:Wumpus derrotou Heroi";
 				else {
-					confronto = "ok:Wumpus derrotado";
 					Wumpus = null;
 					atualizaChar();
+					return "ok:Wumpus derrotado";
 				}
 			} else {
-				confronto = "no:Wumpus derrotou Heroi";
+				return  "no:Wumpus derrotou Heroi";
 			}
 		}
 		
-		//se for o buraco
+		if (status.flechaEquipada) {
+			status.usaFlecha();
+			}
 		
-		if (Buraco != null) {
-			confronto = "no:Tinha buraco";
-		}
+		if (Buraco != null) 
+			return "no:Tinha buraco";
 		
-		//se for ouro 
 		
-		if (Ouro != null) {
-			confronto = "ok:Tem ouro";
-		}
+		if (Ouro != null) 
+			return  "ok:Tem ouro";
 		
-		//se for Fedor 
 		
-		//se for Brisa 
+		if (Fedor != null) 
+			return  "ok: Tem Fedor";
 		
-		return confronto;
+		
+		if (Brisa != null) 
+			return  "ok: Tem Brisa";
+		
+		 
+		return "ok: Vazio";
 	}
 	
 }
