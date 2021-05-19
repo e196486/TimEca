@@ -6,7 +6,7 @@ public class AppMundoWumpus {
 		
 		String Arquivo = args[0];
 		
-		MontadorCaverna mont = new MontadorCaverna(Arquivo); 
+		MontadorCaverna mont = new MontadorCaverna(Arquivo);
 		
 		StatusJogo status = mont.status; 
 		

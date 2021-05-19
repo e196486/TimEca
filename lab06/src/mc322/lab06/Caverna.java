@@ -112,6 +112,7 @@ public class Caverna {
 			status.win();
 		}
 
+		
 		if (temSala(linhaTarget,colunaTarget)) { 
 			
 			room[heroi.linha][heroi.coluna].Heroi = null;
@@ -123,7 +124,7 @@ public class Caverna {
 			insereComponente(heroi);
 			room[heroi.linha][heroi.coluna].atualizaChar();
 			
-			String resultadoConfronto = room[linhaTarget][colunaTarget].confronto(status);
+			String[] resultadoConfronto = room[linhaTarget][colunaTarget].confronto(status);
 			
 			status.Confronto(resultadoConfronto);
 			

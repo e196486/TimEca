@@ -15,9 +15,10 @@ public class Sala {
 	
 	
 	public boolean insereC(Componente C) {
-		if ((C.componente != 'P') && (Wumpus != null || Buraco != null || Ouro != null))// se já houver algum desses componentes na sala, retorna falso para a caverna.
+		if ((C.componente == 'W'||C.componente == 'B'||C.componente == 'O') && (Wumpus != null || Buraco != null || Ouro != null))// se já houver algum desses componentes na sala, retorna falso para a caverna.
 			return true;
-		else if((C.componente == 'P')&& Buraco != null) 
+		else if((C.componente == 'P'|| C.componente == 'f'||C.componente == 'b'
+				)&& Buraco != null) 
 			return true;
 		else {
 			P = C.componente;
@@ -65,24 +66,37 @@ public class Sala {
 		return;
 	}
 	
-	public String confronto(StatusJogo status) {
-		 
+	public String[] confronto(StatusJogo status) {
+		String result[] = new String[4]; 
 		
+		if (Fedor != null) { 
+			result[1] =  "Tem Fedor";
+			result[0] = "ok";
+		}
+		if (Brisa != null) {
+			result[0] = "ok";
+			result[2] = "Tem Brisa";
+		}
 		//se for o wumpus 
 		if (Wumpus != null) {
-			if (status.flechaEquipada) {// considerando que o herói sempre está na sala quando confronto é chamado. Tem que arrumar.
+			if (status.flechaEquipada) {
 				Random rand = new Random();
 				int x = rand.nextInt(100);
-				System.out.print("batalha com o wumpus. chance: " + x);
-				if (x < 50)
-					return "no:Wumpus derrotou Heroi";
+				System.out.print("batalha com o wumpus. chance: " + x + "\n");
+				if (x < 50) {
+					result[0] = "no";
+					result[3] = "Wumpus derrotou Heroi";
+				}
 				else {
+
 					Wumpus = null;
 					atualizaChar();
-					return "ok:Wumpus derrotado";
+					result[0] = "ok";
+					result[3] = "Wumpus derrotado";
 				}
 			} else {
-				return  "no:Wumpus derrotou Heroi";
+				result[0] = "no";
+				result[3] = "Wumpus derrotou Heroi";
 			}
 		}
 		
@@ -90,23 +104,20 @@ public class Sala {
 			status.usaFlecha();
 			}
 		
-		if (Buraco != null) 
-			return "no:Tinha buraco";
+		if (Buraco != null) {
+			result[0] = "no";
+			result[3] = "Tinha buraco";
+		}
 		
-		
-		if (Ouro != null) 
-			return  "ok:Tem ouro";
-		
-		
-		if (Fedor != null) 
-			return  "ok: Tem Fedor";
-		
-		
-		if (Brisa != null) 
-			return  "ok: Tem Brisa";
-		
-		 
-		return "ok: Vazio";
+		if (Ouro != null) {
+			result[0] = "ok";
+			result[3] =  "Tem ouro";
+		}
+		if (result[3] == null && result[1] == null && result[2] == null) {
+			result[0] = "ok";
+			result[3] = "Vazio";
+		}
+		return result;
 	}
 	
 }

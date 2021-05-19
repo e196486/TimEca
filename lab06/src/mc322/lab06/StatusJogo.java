@@ -64,7 +64,7 @@ public class StatusJogo {
 	}
 	
 
-	public boolean Confronto(String confronto) {
+	public boolean Confronto(String[] confronto) {
 		/*
 		 * Esse método tem por objetivo traduzir o que é pego a partir do confronto que
 		 * acontece nas classes sala e atualizar o status do jogo
@@ -76,18 +76,21 @@ public class StatusJogo {
 		// ok: Tem ouro
 		// No: Tinha buraco
 		// No: Wumpus derrotou Heroi
+		if (confronto[3] != null)
+			System.out.println(confronto[3]);
+		if (confronto[1] != null)
+			System.out.println(confronto[1]);
+		if (confronto[2] != null)
+			System.out.println(confronto[2]);
 		
-		System.out.println(confronto.substring(3) );
+		movimento = (confronto[0].equals("ok"));
+		
+		if (movimento)
+			moveHeroi();
 
-		if (confronto != null) {
-			movimento = (confronto.substring(0, 2).equals("ok"));
-			
-			if (movimento)
-				moveHeroi();
+		if (confronto[3] != null) {
 
-			String statMov = confronto.substring(3);
-
-			switch (statMov) {
+			switch (confronto[3]) {
 			case "Wumpus derrotado":
 				derrotaWumpus();
 				break;
