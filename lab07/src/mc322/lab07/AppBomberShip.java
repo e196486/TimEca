@@ -1,5 +1,5 @@
 package mc322.lab07;
 
-public class App {
+public class AppBomberShip {
 
 }
