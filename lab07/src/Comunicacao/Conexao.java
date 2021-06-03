@@ -27,8 +27,7 @@ public class Conexao {
 		this.ip = ip;
 		this.porta = porta;
 		conexaoAceita = false;
-		
-		
+
 	}
 
 	public boolean conecta() {
@@ -50,15 +49,14 @@ public class Conexao {
 
 		try {
 			serverSocket = new ServerSocket(porta, 8, InetAddress.getByName(ip));
-			System.out.println("Server Aberto. Chame seu amigo pelos dados: \n --ip: >" + ip + "< \n --porta: " + porta);
+			System.out
+					.println("Server Aberto. Chame seu amigo pelos dados: \n --ip: >" + ip + "< \n --porta: " + porta);
 			this.Player = "Host";
 			aguardaServerRequest();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
 
 	}
 

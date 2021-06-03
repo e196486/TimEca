@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Comunicacao.*;
-
 public class TelaMenu extends JFrame {
 
 	String IP;
@@ -73,8 +71,8 @@ public class TelaMenu extends JFrame {
 		btnIniciaJogo.addActionListener(e -> {
 			this.IP = campoIP.getText();
 			this.Porta = Integer.parseInt(campoPorta.getText());
-			
-			this.setVisible(false); 
+
+			this.setVisible(false);
 			setComecaJogo(true);
 
 		});
@@ -82,29 +80,29 @@ public class TelaMenu extends JFrame {
 		menuInicial.add(btnIniciaJogo);
 
 	}
-	
+
 	public synchronized boolean aguardaIniciaJogo() throws InterruptedException {
 		System.out.println("estamos aguardando o Jogo iniciar");
-		
+
 		while (!comecaJogo) {
-	           wait(); 
-	          }
-		
+			wait();
+		}
+
 		return true;
 	}
-	
+
 	public synchronized void setComecaJogo(boolean comecaJogo) {
-		this.comecaJogo = comecaJogo; 
-        if (this.comecaJogo)
-           notifyAll();
+		this.comecaJogo = comecaJogo;
+		if (this.comecaJogo)
+			notifyAll();
 	}
 
 	public String getIP() {
 		return IP;
 	}
-	
+
 	public int getPorta() {
 		return Porta;
 	}
-	
+
 }
