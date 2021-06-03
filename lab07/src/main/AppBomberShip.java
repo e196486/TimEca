@@ -21,6 +21,8 @@ public class AppBomberShip implements Runnable {
 	}
 
 	
+	
+	
 	public void run() {
 
 		try {
@@ -30,10 +32,12 @@ public class AppBomberShip implements Runnable {
 			e.printStackTrace();
 		}
 		
+		//o trecho de  conexao vai ter que começar dentro do Construct. mudo isso quando o construct estiver pronto)
 		conexao = new Conexao(menu.getIP(), menu.getPorta());
 		
 		if (!conexao.conecta())
 			conexao.iniciaServer();
+		
 		
 		new TelaJogo (conexao);
 		

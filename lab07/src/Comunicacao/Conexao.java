@@ -50,13 +50,15 @@ public class Conexao {
 
 		try {
 			serverSocket = new ServerSocket(porta, 8, InetAddress.getByName(ip));
-			System.out.println("Server Aberto. Chame seu amigo pelo ip: >" + ip + "< e pela porta: " + porta);
+			System.out.println("Server Aberto. Chame seu amigo pelos dados: \n --ip: >" + ip + "< \n --porta: " + porta);
+			this.Player = "Host";
+			aguardaServerRequest();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		this.Player = "Host";
+		
 
 	}
 
@@ -68,7 +70,7 @@ public class Conexao {
 			dos = new DataOutputStream(socket.getOutputStream());
 			dis = new DataInputStream(socket.getInputStream());
 			conexaoAceita = true;
-			System.out.println("CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED");
+			System.out.println("Aceitamos o cliente");
 
 		} catch (IOException e) {
 			e.printStackTrace();
