@@ -1,4 +1,4 @@
-package mc322.lab07;
+package main;
 
 public class AppBomberShip {
 
