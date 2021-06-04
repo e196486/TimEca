@@ -2,20 +2,21 @@ package celulas;
 
 import bomba.Bomba;
 
-public class Agua extends Celula{
-	public Agua(int linha, int coluna) {
+public class Navio extends Celula{
+	
+	public Navio(int linha, int coluna) {
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
-		//imagem = agua normal
+		//imagem =
 	}
-	
+
 	public void explode(Bomba bomba) {
 		setCelulaRevelada(true);
-		//imagem = splash
+		//imagem = explosão 
 		if (bomba.getDica()) {
 			dicaIlumina();
 		}
-			
+		// ganha pontos
 	}
 }

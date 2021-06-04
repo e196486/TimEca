@@ -1,5 +1,5 @@
 package celulas;
 
-public class BauDoTesouro {
+public class BauDoTesouro extends Celula{
 
 }
