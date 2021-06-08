@@ -46,7 +46,7 @@ public class TelaMenu extends JFrame {
 		campoNome.setEditable(true);
 		menuInicial.add(campoNome);
 
-		JLabel lblInsiraIP = new JLabel("Insira o IP:");
+		JLabel lblInsiraIP = new JLabel("Insira seu IP:");
 		lblInsiraIP.setBounds(50, 185, 300, 20);
 		menuInicial.add(lblInsiraIP);
 
@@ -56,7 +56,7 @@ public class TelaMenu extends JFrame {
 		campoIP.setEditable(true);
 		menuInicial.add(campoIP);
 
-		JLabel lblInsiraPorta = new JLabel("Insira a Porta:");
+		JLabel lblInsiraPorta = new JLabel("Insira sua Porta:");
 		lblInsiraPorta.setBounds(50, 245, 300, 20);
 		menuInicial.add(lblInsiraPorta);
 

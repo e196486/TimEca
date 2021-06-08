@@ -2,8 +2,8 @@ package mar;
 
 import comunicacao.*;
 import celulas.*;
-import main.*;
-import mc322.lab06.CSVHandling;
+import main.*; 
+import mar.CSVHandling;
 import pecas.Submarino;
 
 public class Construtor {
@@ -60,7 +60,8 @@ public class Construtor {
 				marConstrutor.inserePeca(n2);
 				Submarino sub = new Submarino(n1, n2);
 				marConstrutor.setSubmarino(sub);
-			}*/
+				*/
+			}
 		}
 	}
 }

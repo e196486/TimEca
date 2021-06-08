@@ -28,7 +28,7 @@ public class AppBomberShip implements Runnable {
 			e.printStackTrace();
 		}
 
-		new Construtor(menu.getIP(), menu.getPorta());
+		new Construtor(menu.getIP(), menu.getPorta(),"Arquivo");
 
 	}
 
