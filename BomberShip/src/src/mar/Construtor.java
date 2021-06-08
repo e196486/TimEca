@@ -24,6 +24,8 @@ public class Construtor {
 		criaMar();
 		
 		leArquivo(Arq);
+		
+		montaMar();
 
 	}
 	
@@ -36,31 +38,61 @@ public class Construtor {
 	
 	public void leArquivo(String Arq) {
 		
-		CSVHandling csv = new CSVHandling();
-		csv.setDataSource(Arq);
-		String comandos[][] = csv.requestCommands();
-		
-		for (int i = 0; i < 2; i++) {
-			int x = Integer.parseInt(comandos[i][0].substring(0, 1));
-			int y = Integer.parseInt(comandos[i][0].substring(2, 3));
-			String sentido = comandos[i][1];
-			if (comandos[i][2] == "S") {
-				marConstrutor.insereSubmarino(x, y, sentido);
-			/*if (comandos[i][1] == "h") {
-				Navio n1 = new Navio(x, y);
-				marConstrutor.inserePeca(n1);
-				Navio n2 = new Navio(x, y+1);
-				marConstrutor.inserePeca(n2);
-				Submarino sub = new Submarino(n1, n2);
-				marConstrutor.setSubmarino(sub);
-			} else {
-				Navio n1 = new Navio(x, y);
-				marConstrutor.inserePeca(n1);
-				Navio n2 = new Navio(x+1, y);
-				marConstrutor.inserePeca(n2);
-				Submarino sub = new Submarino(n1, n2);
-				marConstrutor.setSubmarino(sub);
-				*/
+		try {
+			CSVHandling csv = new CSVHandling();
+			csv.setDataSource(Arq);
+			String comandos[][] = csv.requestCommands();
+			
+			for (int i = 0; i < 10; i++) {
+				int x = Integer.parseInt(comandos[i][0].substring(0, 1));
+				int y = Integer.parseInt(comandos[i][0].substring(2, 3));
+				String sentido = comandos[i][1];
+				boolean a;
+				if (comandos[i][2] == "S") {
+					a = marConstrutor.insereSubmarino(x, y, sentido);
+					if (!a)
+						System.out.println("Há conflito entre os navios!");
+				}
+				else if (comandos[i][2] == "C") {
+					a = marConstrutor.insereCruzeiro(x, y, sentido);
+					if (!a)
+						System.out.println("Há conflito entre os navios!");
+				}
+				else if (comandos[i][2] == "N") {
+					a = marConstrutor.insereNavioTanque(x, y, sentido);
+					if (!a)
+						System.out.println("Há conflito entre os navios!");
+				}
+				else if (comandos[i][2] == "P") {
+					a = marConstrutor.inserePortaAviao(x, y, sentido);
+					if (!a)
+						System.out.println("Há conflito entre os navios!");
+				}
+				else if (comandos[i][2] == "A") {
+					a = marConstrutor.insereArmadilha(x, y);
+					if (!a)
+						System.out.println("Há conflito entre os navios!");
+				}
+				else if (comandos[i][2] == "B") {
+					a = marConstrutor.insereBauDoTesouro(x, y);
+					if (!a)
+						System.out.println("Há conflito entre os navios!");
+				}
+			}
+		} catch (Exception erro) {
+				System.err.println("Erro:"+erro.getMessage());
+				System.out.println("Insira um csv válido!");
+		}
+	}
+	
+	// coloca Água em todas as células vazias.
+	public void montaMar() {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (celulasConstrutor[i][j] == null) {
+					Agua water = new Agua(i, j);
+					marConstrutor.insereCelula(water);
+				}
 			}
 		}
 	}
