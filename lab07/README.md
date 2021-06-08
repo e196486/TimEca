@@ -47,13 +47,7 @@ Interfaces | `<listagem das interfaces do componente>`
 Interfaces associadas a esse componente:
 
  
-
-Interface agregadora do componente em Java:
-
-~~~java
-public interface IDataSet extends ITableProducer, IDataSetProperties {
-}
-~~~
+ 
 
 ## Detalhamento das Interfaces
 
