@@ -11,7 +11,7 @@
 # Vídeos do Projeto
 
 ## Vídeo da Prévia
->  
+
 
 # Slides do Projeto
 
@@ -67,9 +67,14 @@ public interface IDataSet extends ITableProducer, IDataSetProperties {
 
 Método | Objetivo
 -------| --------
+`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
  
-~~~
+# Plano de Exceções
 
+## Diagrama da hierarquia de exceções
+`<Elabore um diagrama com a hierarquia de exceções como detalhado abaixo>`
+
+![Hierarquia Exceções](exception-hierarchy.png)
 
 ## Descrição das classes de exceção
 
