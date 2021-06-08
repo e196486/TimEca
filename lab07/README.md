@@ -11,11 +11,13 @@
 # Vídeos do Projeto
 
 ## Vídeo da Prévia
-
+[![Video Previa BomberShip](http://img.youtube.com/vi/sgqUdKl3V-0/0.jpg)](https://youtu.be/sgqUdKl3V-0)
 
 # Slides do Projeto
 
 ## Slides da Prévia
+[Slides Previa](https://drive.google.com/file/d/1fVwJ0_IudIibsqP890Q834rIGh3J3KBR/view?usp=sharing)
+
  
 
 # Documentação dos Componentes
@@ -67,8 +69,7 @@ Método | Objetivo
 
 ## Diagrama da hierarquia de exceções
 `<Elabore um diagrama com a hierarquia de exceções como detalhado abaixo>`
-
-![Hierarquia Exceções](exception-hierarchy.png)
+ 
 
 ## Descrição das classes de exceção
 
