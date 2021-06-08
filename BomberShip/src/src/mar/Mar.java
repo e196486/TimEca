@@ -43,11 +43,158 @@ public class Mar {
 		}
 	}
 	
-	public void insereSubmarino(int x, int y, String sentido) {
-		if (mar[x][y] != null) {
-			Navio n1 = new Navio(x, y);
-			insereCelula(n1);
+	public boolean insereSubmarino(int x, int y, String sentido) throws Exception{
+		if (sentido == "h") {
+			if (mar[x][y] != null && mar[x][y+1] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x, y+1);
+				insereCelula(n1);
+				insereCelula(n2);
+				Submarino sub = new Submarino(n1, n2);
+				setSubmarino(sub);
+				return true;
+			}
+			return false;
 		}
+		else if (sentido == "v") {
+			if (mar[x][y] != null && mar[x+1][y] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x+1, y);
+				insereCelula(n1);
+				insereCelula(n2);
+				Submarino sub = new Submarino(n1, n2);
+				setSubmarino(sub);
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception{
+		if (sentido == "h") {
+			if (mar[x][y] != null && mar[x][y+1] != null && mar[x][y+2] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x, y+1);
+				Navio n3 = new Navio(x, y+2);
+				insereCelula(n1);
+				insereCelula(n2);
+				insereCelula(n3);
+				Cruzeiro cruz = new Cruzeiro(n1, n2, n3);
+				setCruzeiro(cruz);
+				return true;
+			}
+			return false;
+		}
+		else if (sentido == "v") {
+			if (mar[x][y] != null && mar[x+1][y] != null && mar[x+2][y] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x+1, y);
+				Navio n3 = new Navio(x+2, y);
+				insereCelula(n1);
+				insereCelula(n2);
+				insereCelula(n3);
+				Cruzeiro sub = new Cruzeiro(n1, n2, n3);
+				setCruzeiro(sub);
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean insereNavioTanque(int x, int y, String sentido) throws Exception{
+		if (sentido == "h") {
+			if (mar[x][y] != null && mar[x][y+1] != null && mar[x][y+2] != null && mar[x][y+3] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x, y+1);
+				Navio n3 = new Navio(x, y+2);
+				Navio n4 = new Navio(x, y+3);
+				insereCelula(n1);
+				insereCelula(n2);
+				insereCelula(n3);
+				insereCelula(n4);
+				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
+				setNavioTanque(nt);
+				return true;
+			}
+			return false;
+		}
+		else if (sentido == "v") {
+			if (mar[x][y] != null && mar[x+1][y] != null && mar[x+2][y] != null && mar[x+3][y] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x+1, y);
+				Navio n3 = new Navio(x+2, y);
+				Navio n4 = new Navio(x+3, y);
+				insereCelula(n1);
+				insereCelula(n2);
+				insereCelula(n3);
+				insereCelula(n4);
+				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
+				setNavioTanque(nt);
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean inserePortaAviao(int x, int y, String sentido) throws Exception{
+		if (sentido == "h") {
+			if (mar[x][y] != null && mar[x][y+1] != null && mar[x][y+2] != null && mar[x][y+3] != null && mar[x][y+4] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x, y+1);
+				Navio n3 = new Navio(x, y+2);
+				Navio n4 = new Navio(x, y+3);
+				Navio n5 = new Navio(x, y+4);
+				insereCelula(n1);
+				insereCelula(n2);
+				insereCelula(n3);
+				insereCelula(n4);
+				insereCelula(n5);
+				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
+				setPortaAviao(pa);
+				return true;
+			}
+			return false;
+		}
+		else if (sentido == "v") {
+			if (mar[x][y] != null && mar[x+1][y] != null && mar[x+2][y] != null && mar[x+3][y] != null && mar[x+4][y] != null) {
+				Navio n1 = new Navio(x, y);
+				Navio n2 = new Navio(x+1, y);
+				Navio n3 = new Navio(x+2, y);
+				Navio n4 = new Navio(x+3, y);
+				Navio n5 = new Navio(x+4, y);
+				insereCelula(n1);
+				insereCelula(n2);
+				insereCelula(n3);
+				insereCelula(n4);
+				insereCelula(n5);
+				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
+				setPortaAviao(pa);
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public boolean insereArmadilha(int x, int y) {
+		if(mar[x][y] == null) {
+			Armadilha a = new Armadilha(x, y);
+			insereCelula(a);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean insereBauDoTesouro(int x, int y) {
+		if(mar[x][y] == null) {
+			BauDoTesouro a = new BauDoTesouro(x, y);
+			insereCelula(a);
+			return true;
+		}
+		return false;
 	}
 	
 	public void setMar(Celula[][] mar) {
