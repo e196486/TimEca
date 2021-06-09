@@ -4,11 +4,13 @@ import bomba.Bomba;
 
 public class Navio extends Celula{
 	
-	public Navio(int linha, int coluna) {
+	
+	
+	public Navio(int linha, int coluna, char tipo) {
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
-		//imagem =
+		this.tipo = tipo; 
 	}
 
 	public void explode(Bomba bomba) {

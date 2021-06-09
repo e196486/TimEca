@@ -3,7 +3,7 @@ package pecas;
 import celulas.Navio;
 
 public class PortaAviao {
-	protected Navio PortaAviao[];
+	protected Navio PortaAviao[] = new Navio[5];
 	protected char sentido;
 	protected int tamanho = 5;
 	

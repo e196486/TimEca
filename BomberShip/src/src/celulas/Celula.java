@@ -12,6 +12,7 @@ public class Celula implements ICelulaPropriedades{
 					baixo,
 					esquerda,
 					direita;
+	public char tipo; 
 	
 	public Image getImage() {
 		return imagem;

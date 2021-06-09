@@ -4,10 +4,11 @@ import bomba.Bomba;
 
 
 public class Armadilha extends Celula{
-	public Armadilha(int linha, int coluna) {
+	public Armadilha(int linha, int coluna, char tipo) {
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
+		this.tipo = tipo;
 		//imagem =
 	}
 	

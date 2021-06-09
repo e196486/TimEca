@@ -24,16 +24,20 @@ public class AppBomberShip implements Runnable {
 	public void run() {
 
 		try {
-			if (!menu.aguardaIniciaJogo())
-				;
+			if (menu.aguardaIniciaJogo()) {
+				
+				String Arquivo = "C:\\Users\\muril\\Desktop\\TimECA (mc322)\\BomberShip\\data\\arq0001.csv";
+				new Construtor(menu.getIP(), menu.getPorta(), Arquivo);
+				
+			}
+				
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		//TODO: Adicionar um catch exception da leitura do arquivo aqui 
 
-		String Arquivo = "C:\\Users\\muril\\Desktop\\TimECA (mc322)\\BomberShip\\data\\arq0001.csv";
 		
-		new Construtor(menu.getIP(), menu.getPorta(), Arquivo);
 
 	}
 

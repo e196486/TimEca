@@ -3,10 +3,11 @@ package celulas;
 import bomba.Bomba;
 
 public class Agua extends Celula{
-	public Agua(int linha, int coluna) {
+	public Agua(int linha, int coluna, char tipo) {
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
+		this.tipo = tipo;
 		//imagem = agua normal
 	}
 	
