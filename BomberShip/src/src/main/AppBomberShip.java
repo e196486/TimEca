@@ -1,7 +1,9 @@
 package main;
 
-
-//teste
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 import mar.Construtor;
 
@@ -25,19 +27,22 @@ public class AppBomberShip implements Runnable {
 
 		try {
 			if (menu.aguardaIniciaJogo()) {
+
+				URL res = getClass().getClassLoader().getResource("/BomberShip/data/arq0001.csv");
+				File file = Paths.get(res.toURI()).toFile();
+				String arquivo1 = file.getAbsolutePath();
 				
-				String Arquivo = "C:\\Users\\muril\\Desktop\\TimECA (mc322)\\BomberShip\\data\\arq0001.csv";
-				new Construtor(menu.getIP(), menu.getPorta(), Arquivo);
 				
+				System.out.println(arquivo1);
+				new Construtor(menu.getIP(), menu.getPorta(), arquivo1);
+
 			}
-				
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
-		//TODO: Adicionar um catch exception da leitura do arquivo aqui 
-
-		
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} 
 
 	}
 
