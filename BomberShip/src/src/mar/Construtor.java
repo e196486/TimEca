@@ -31,7 +31,7 @@ public class Construtor {
 	
 	public void criaMar() {
 		marConstrutor = new Mar();
-		Celula[][] celulas = new Celula[10][10];
+		Celula[][] celulas = new Celula[11][11];
 		celulasConstrutor = celulas;
 		marConstrutor.setMar(celulasConstrutor);
 	}

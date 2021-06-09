@@ -1,9 +1,6 @@
 package mar;
 
-import celulas.*;
-import celulas.Cruzeiro;
-import celulas.NavioTanque;
-import celulas.PortaAviao;
+import celulas.*; 
 import pecas.*;
 
 public class Mar {
@@ -17,6 +14,8 @@ public class Mar {
 	NavioTanque tank2;
 	PortaAviao pa;
 	
+	
+	//TODO : esse método está estourando os limites das celulas, aumentei para [11][11] como paleativo 
 	public void insereCelula (Celula c) {
 		int x = c.getLinha();
 		int y = c.getColuna();
@@ -26,7 +25,7 @@ public class Mar {
 			if (c.esquerda != null)
 				mar[x][y-1].direita = c;
 		}
-		if (y < 10) {
+		if (y <= 10) {
 			c.direita = mar[x][y+1];
 			if (c.direita != null)
 				mar[x][y+1].esquerda = c;
@@ -36,7 +35,7 @@ public class Mar {
 			if (c.cima != null)
 				mar[x-1][y].baixo = c;
 		}
-		if (x < 10) {
+		if (x <= 10) {
 			c.baixo = mar[x+1][y];
 			if (c.baixo != null)
 				mar[x+1][y].cima = c;

@@ -31,7 +31,7 @@ public class AppBomberShip implements Runnable {
 			e.printStackTrace();
 		}
 
-		String Arquivo = "C://users//henri//OneDrive//ÁreadeTrabalho//arq0001.csv";
+		String Arquivo = "C:\\Users\\muril\\Desktop\\TimECA (mc322)\\BomberShip\\data\\arq0001.csv";
 		
 		new Construtor(menu.getIP(), menu.getPorta(), Arquivo);
 
