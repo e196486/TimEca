@@ -10,6 +10,7 @@ public class Construtor {
 
 	Conexao conexao;
 	private Mar marConstrutor;
+	private String marInimigo;
 	private Celula[][] celulasConstrutor;
 
 	public Construtor(String ip, int porta, String Arq) {
@@ -20,11 +21,18 @@ public class Construtor {
 			conexao.iniciaServer();
 
 		criaMar();
-
 		leArquivo(Arq);
-
 		montaMar();
 		
+		/*conexao de cria tabuleiro inimigo
+		if (conexao.Player.equals("Host"))
+			conexao.SetMar(Arq);
+		
+		marInimigo = conexao.getMarInimigo();
+		
+		if (!conexao.Player.equals("Host"))
+			conexao.SetMar(Arq);
+		*/
 		new TelaJogo(marConstrutor);
 
 	}
@@ -83,13 +91,7 @@ public class Construtor {
 					marConstrutor.insereCelula(water);
 				}
 
-				/* Teste de impressão EXCLUIR DEPOIS!! */
-				System.out.print(marConstrutor.getTipoCelula(i, j) + " ");
-
 			}
-
-			System.out.println(" ");
-			/* fim do teste de impressão EXCLUIR sem o fecha chaves do for */
 		}
 	}
 }

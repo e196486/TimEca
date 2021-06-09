@@ -7,6 +7,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import mar.Mar;
+
 public class Conexao {
 
 	public DataOutputStream dos;
@@ -75,7 +77,7 @@ public class Conexao {
 		}
 	}
 
-	public void enviaJogada(String jogada) {
+	public void enviaDados(String jogada) {
 
 		try {
 			dos.writeUTF(jogada);
@@ -88,7 +90,7 @@ public class Conexao {
 
 	}
 
-	public String disLeMovimento() {
+	public String recebeDados() {
 
 		try {
 			if (conexaoAceita) {
@@ -101,6 +103,15 @@ public class Conexao {
 
 		return "";
 
+	}
+
+	public String getMarInimigo() {
+		return recebeDados();
+	}
+
+	public void SetMar(String Mar) {
+		enviaDados(Mar);
+		
 	}
 
 }

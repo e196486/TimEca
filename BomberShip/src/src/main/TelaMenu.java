@@ -30,11 +30,11 @@ public class TelaMenu extends JFrame {
 		menuInicial.setLayout(null);
 		setContentPane(menuInicial);
 
-		JLabel lblNewLabel = new JLabel("Bem Vindo ao BomberShip!");
-		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(0, 50, 440, 40);
-		menuInicial.add(lblNewLabel);
+		JLabel lblTitulo = new JLabel("Bem Vindo ao BomberShip!");
+		lblTitulo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setBounds(0, 50, 440, 40);
+		menuInicial.add(lblTitulo);
 
 		JLabel lblInsiraNome = new JLabel("Insira seu nome:");
 		lblInsiraNome.setBounds(50, 125, 300, 20);
