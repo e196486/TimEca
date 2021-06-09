@@ -20,6 +20,7 @@ public class Celula extends JButton implements ICelulaPropriedades,ActionListene
 					esquerda,
 					direita;
 	public char tipo; 
+	public String time; 
 	
 	public Celula () {
 		super();
@@ -27,6 +28,7 @@ public class Celula extends JButton implements ICelulaPropriedades,ActionListene
 		this.setOpaque(true);
 		this.setBorderPainted(true);
 		//this.setSize(10, 10);
+		addActionListener(this);
 	}
 	
 	public Image getImage() {
@@ -55,7 +57,8 @@ public class Celula extends JButton implements ICelulaPropriedades,ActionListene
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if ( time.equals("Aliado"))
+			System.out.println("você não pode mexer no seu tabuleiro");
 		
 	}
 }

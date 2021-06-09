@@ -1,17 +1,18 @@
 package mar;
 
-import comunicacao.*;
-import celulas.*;
-import main.*;
-import mar.CSVHandling;
-import pecas.Submarino;
+import celulas.Agua;
+import celulas.Celula;
+import comunicacao.Conexao;
+import main.TelaJogo; 
 
 public class Construtor {
 
 	Conexao conexao;
-	private Mar marConstrutor;
-	private String marInimigo;
+	private Mar marAliado;
+	private Mar marInimigo;
+	private String arqInimigo;
 	private Celula[][] celulasConstrutor;
+	private Celula[][] celulasInimigo;
 
 	public Construtor(String ip, int porta, String Arq) {
 
@@ -20,31 +21,38 @@ public class Construtor {
 		if (!conexao.conecta())
 			conexao.iniciaServer();
 
-		criaMar();
-		leArquivo(Arq);
-		montaMar();
+		marAliado = criaMar(marAliado, "Aliado");
+		marAliado = leArquivo(Arq, marAliado);
+		marAliado = montaMar(marAliado);
 		
-		/*conexao de cria tabuleiro inimigo
+		//conexao de cria tabuleiro inimigo
 		if (conexao.Player.equals("Host"))
 			conexao.SetMar(Arq);
 		
-		marInimigo = conexao.getMarInimigo();
-		
+		arqInimigo = conexao.getMarInimigo();
 		if (!conexao.Player.equals("Host"))
 			conexao.SetMar(Arq);
-		*/
-		new TelaJogo(marConstrutor);
+		
+		System.out.println(arqInimigo);
+		
+		marInimigo = criaMar(marInimigo, "Inimigo");
+		marInimigo = leArquivo(arqInimigo, marInimigo);
+		marInimigo = montaMar(marInimigo);
+		
+		
+		new TelaJogo(marAliado, marInimigo);
 
 	}
 
-	public void criaMar() {
-		marConstrutor = new Mar();
+	public Mar criaMar(Mar mar, String time) {
+		mar = new Mar();
 		// está estourando o numero de celulas no teste
 		celulasConstrutor = new Celula[11][11];
-		marConstrutor.setMar(celulasConstrutor);
+		mar.setMar(celulasConstrutor, time); 
+		return mar;
 	}
 
-	public void leArquivo(String Arq) {
+	public Mar leArquivo(String Arq, Mar mar) {
 
 		try {
 			CSVHandling csv = new CSVHandling();
@@ -58,18 +66,18 @@ public class Construtor {
 				System.out.println(comandos[i][2]);
 				boolean a = true;
 				if (comandos[i][2].equals("S")) {
-					a = marConstrutor.insereSubmarino(x, y, sentido);
+					a = mar.insereSubmarino(x, y, sentido);
 				} else if (comandos[i][2].equals("C")) {
-					a = marConstrutor.insereCruzeiro(x, y, sentido);
+					a = mar.insereCruzeiro(x, y, sentido);
 					System.out.println("entrou aq x: " + x + " y: " + y + " sentido: >" + sentido + "<");
 				} else if (comandos[i][2].equals("N")) {
-					a = marConstrutor.insereNavioTanque(x, y, sentido);
+					a = mar.insereNavioTanque(x, y, sentido);
 				} else if (comandos[i][2].equals("P")) {
-					a = marConstrutor.inserePortaAviao(x, y, sentido);
+					a = mar.inserePortaAviao(x, y, sentido);
 				} else if (comandos[i][2].equals("A")) {
-					a = marConstrutor.insereArmadilha(x, y);
+					a = mar.insereArmadilha(x, y);
 				} else if (comandos[i][2].equals("B")) {
-					a = marConstrutor.insereBauDoTesouro(x, y);
+					a = mar.insereBauDoTesouro(x, y);
 				}
 
 				if (!a)
@@ -80,18 +88,21 @@ public class Construtor {
 			System.out.println("Insira um csv válido!");
 			erro.printStackTrace();
 		}
+		
+		return mar;
 	}
 
 	// coloca Água em todas as células vazias.
-	public void montaMar() {
+	public Mar montaMar(Mar mar) {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				if (marConstrutor.getTipoCelula(i, j) == '-') {
+				if (mar.getTipoCelula(i, j) == '-') {
 					Agua water = new Agua(i, j, '~');
-					marConstrutor.insereCelula(water);
+					mar.insereCelula(water);
 				}
 
 			}
 		}
+		return mar;
 	}
 }

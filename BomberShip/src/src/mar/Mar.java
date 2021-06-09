@@ -13,6 +13,7 @@ public class Mar {
 	NavioTanque tank1;
 	NavioTanque tank2;
 	PortaAviao pa;
+	String time;
 
 	// TODO : esse método está estourando os limites das celulas, aumentei para
 	// [11][11] como paleativo
@@ -21,6 +22,10 @@ public class Mar {
 		int y = c.getColuna();
 		celulaMar[x][y] = c;
 		celulaMar[x][y].setText(c.tipo + " ");
+		celulaMar[x][y].time = time;
+		
+		
+		
 		if (y > 0) {
 			c.esquerda = celulaMar[x][y - 1];
 			if (c.esquerda != null)
@@ -218,8 +223,9 @@ public class Mar {
 		return false;
 	}
 
-	public void setMar(Celula[][] mar) {
+	public void setMar(Celula[][] mar,String  time) {
 		this.celulaMar = mar;
+		this.time = time;
 	}
 
 	public void setSubmarino(Submarino sub) {

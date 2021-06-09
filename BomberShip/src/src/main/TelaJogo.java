@@ -24,6 +24,7 @@ public class TelaJogo extends JFrame {
 	JPanel tabuleiroView;
 	Celula[][] celula;
 	Mar marPlayer1;
+	Mar marPlayer2;
 
 	public JTextField campoMunicaoPlayer1;
 	public JTextField campoDicasPlayer1;
@@ -33,9 +34,10 @@ public class TelaJogo extends JFrame {
 	public JTextField campoDicasPlayer2;
 	public JTextField campoPontosPlayer2;
 
-	public TelaJogo(Mar marPlayer1) {
+	public TelaJogo(Mar marPlayer1, Mar marPlayer2) {
 
 		this.marPlayer1 = marPlayer1;
+		this.marPlayer2 = marPlayer2;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1050, 650);
@@ -54,7 +56,7 @@ public class TelaJogo extends JFrame {
 		JPanel player1View = new JPanel();
 		JPanel itensPlayer1View = new JPanel();
 
-		tabuleiroView.add(criaPlayerView(player1View, itensPlayer1View, "MeuJogo"));
+		tabuleiroView.add(criaPlayerView(player1View, itensPlayer1View, "Aliado"));
 
 		JPanel player2View = new JPanel();
 		JPanel itensPlayer2View = new JPanel();
@@ -98,10 +100,10 @@ public class TelaJogo extends JFrame {
 		playerTabuleiroView.setLayout(new GridLayout(10, 10));
 		playerTabuleiroView.setBackground(Color.BLUE);
 
-		if (Player.equals("MeuJogo"))
-			adicionaMinhasPecas(playerTabuleiroView);
+		if (Player.equals("Aliado"))
+			adicionaCelulas(playerTabuleiroView, marPlayer1);
 		else
-			adicionaCelulas(playerTabuleiroView);
+			adicionaCelulas(playerTabuleiroView, marPlayer2);
 
 		playerTabuleiroView.setVisible(true);
 
@@ -149,7 +151,7 @@ public class TelaJogo extends JFrame {
 		campoMunicao.setEditable(false);
 		itensPlayerView.add(campoMunicao);
 
-		if (Player.equals("MeuJogo")) {
+		if (Player.equals("Aliado")) {
 			campoMunicaoPlayer1 = campoMunicao;
 			campoDicasPlayer1 = campoDicas;
 			campoPontosPlayer1 = campoPontos;
@@ -163,22 +165,12 @@ public class TelaJogo extends JFrame {
 
 	}
 
-	private void adicionaCelulas(Container playerView) { 
+	private void adicionaCelulas(Container playerView, Mar mar) { 
 
 		for (int coluna = 0; coluna < 10; coluna++)
 			for (int linha = 0; linha < 10; linha++)
-				playerView.add(marPlayer1.celulaMar[coluna][linha]);
+				playerView.add(mar.celulaMar[coluna][linha]);
 	}
 
-	private void adicionaMinhasPecas(Container playerView) {
-
-		Celula cel[][] = new Celula[10][10]; 
-
-		for (int coluna = 0; coluna < 10; coluna++)
-			for (int linha = 0; linha < 10; linha++) {
-				cel[coluna][linha] = new Celula();
-				playerView.add(cel[coluna][linha]);
-			}
-	}
 
 }
