@@ -4,7 +4,7 @@ import celulas.*;
 import pecas.*;
 
 public class Mar {
-	private Celula[][] celulaMar;
+	public Celula[][] celulaMar;
 	Submarino sub1;
 	Submarino sub2;
 	Submarino sub3;
@@ -20,6 +20,7 @@ public class Mar {
 		int x = c.getLinha();
 		int y = c.getColuna();
 		celulaMar[x][y] = c;
+		celulaMar[x][y].setText(c.tipo + " ");
 		if (y > 0) {
 			c.esquerda = celulaMar[x][y - 1];
 			if (c.esquerda != null)

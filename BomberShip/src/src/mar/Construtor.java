@@ -19,13 +19,13 @@ public class Construtor {
 		if (!conexao.conecta())
 			conexao.iniciaServer();
 
-		new TelaJogo();
-
 		criaMar();
 
 		leArquivo(Arq);
 
 		montaMar();
+		
+		new TelaJogo(marConstrutor);
 
 	}
 
