@@ -17,9 +17,7 @@ public class Celula extends JButton implements ICelulaPropriedades {
 	protected int linha, coluna;
 	protected boolean celulaRevelada;
 	public Celula cima, baixo, esquerda, direita;
-	public char tipo;
-	private Time time;
-	private outController controle;
+	public char tipo; 
 
 	public Celula() {
 		super();
@@ -67,15 +65,13 @@ public class Celula extends JButton implements ICelulaPropriedades {
 		return coluna;
 	}
 
-	public void setTime(Time time) {
-		this.time = time;
+	public void setTime(Time time) { 
 		Color cor = (time == Time.Aliado) ? new Color(223, 233, 247) : new Color(170, 202, 250);
 		this.setBackground(cor); 
 
 	}
 
-	public void setControle(outController controle) {
-		this.controle = controle;
+	public void setControle(outController controle) { 
 		System.out.println("controle declarado no time inimigo"); 
 		addActionListener(controle);
 		this.setEnabled(true);
