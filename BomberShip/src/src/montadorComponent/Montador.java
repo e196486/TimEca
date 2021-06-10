@@ -26,8 +26,6 @@ public class Montador {
 	private String arqInimigo;
 	private final String host = "Host";
 
-	private final String marPlayer1Level1 = "marPlayer1Level1.csv";
-
 	public Montador(String ip, int porta) {
 
 		try {
