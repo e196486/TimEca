@@ -3,6 +3,9 @@ package celulas;
 import bomba.Bomba;
 
 public class Agua extends Celula{
+	 
+	private static final long serialVersionUID = 7753065336797036453L;
+
 	public Agua(int linha, int coluna, char tipo) {
 		this.linha = linha;
 		this.coluna = coluna;

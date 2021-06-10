@@ -2,7 +2,7 @@ package mar;
 
 import javax.swing.ImageIcon;
 
-import celulas.*; 
+import celulas.*;
 import pecas.*;
 
 public class Mar {
@@ -49,7 +49,7 @@ public class Mar {
 			celulaMar[x][y].setText(c.tipo + "");
 
 		celulaMar[x][y].setTime(time);
- 
+
 		if (y > 0) {
 			c.esquerda = celulaMar[x][y - 1];
 			if (c.esquerda != null)

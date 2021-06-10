@@ -5,10 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
-import java.net.Socket;
-
-import mar.Mar;
-
+import java.net.Socket; 
 public class Conexao {
 
 	public DataOutputStream dos;
