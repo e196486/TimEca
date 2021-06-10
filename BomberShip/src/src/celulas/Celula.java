@@ -69,8 +69,7 @@ public class Celula extends JButton implements ICelulaPropriedades {
 
 	}
 
-	public void setControle(outController controle) { 
-		System.out.println("controle declarado no time inimigo"); 
+	public void setControle(outController controle) {  
 		addActionListener(controle);
 		this.setEnabled(true);
 	}

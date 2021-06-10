@@ -95,7 +95,8 @@ public class Conexao {
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("o Outro usuario saiu da jogada, Fim de Jogo!");
+			return "fimDeJogo";
 		}
 
 		return "";

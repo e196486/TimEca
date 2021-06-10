@@ -42,10 +42,7 @@ public class TelaJogo extends JFrame {
 		this.marPlayer1 = marPlayer1;
 		this.marPlayer2 = marPlayer2;
 		
-		if (Player.equals(host))
-			numPlayer = 1;
-		else 
-			numPlayer = 2;
+		numPlayer = (Player.equals(host)) ? 1 : 2 ;
 
 		this.setTitle("BomberShip - Player "+ numPlayer); 
 		
