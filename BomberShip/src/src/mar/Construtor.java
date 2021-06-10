@@ -9,6 +9,7 @@ import celulas.Celula;
 import celulas.Time;
 import comunicacao.Conexao;
 import comunicacao.InController;
+import comunicacao.outController;
 import main.TelaJogo;
 
 public class Construtor {
@@ -17,6 +18,8 @@ public class Construtor {
 	private Mar marAliado;
 	private Mar marInimigo;
 	private Celula[][] celulasConstrutor;
+
+	private outController controle;
 
 	private String arqInimigo;
 	private String host = "Host";
@@ -30,7 +33,6 @@ public class Construtor {
 				conexao.iniciaServer();
 
 			String Arq = getMapa(conexao.Player);
-			
 
 			marAliado = criaMar(marAliado, Time.Aliado);
 			marAliado = leArquivo(Arq, marAliado);
@@ -44,18 +46,15 @@ public class Construtor {
 			if (!conexao.Player.equals(host))
 				conexao.SetMar(Arq);
 
-			System.out.println(arqInimigo);
-
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
 
 			new TelaJogo(marAliado, marInimigo);
-			
-			Thread recebeInput = new Thread(new InController(conexao,marAliado));
+
+			Thread recebeInput = new Thread(new InController(conexao, marAliado));
 			recebeInput.start();
-			
-			
+
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -66,10 +65,10 @@ public class Construtor {
 		String mapaCSV;
 
 		if (Player.equals(host))
-			mapaCSV ="marPlayer1Level1.csv";
+			mapaCSV = "marPlayer1Level1.csv";
 		else
-			mapaCSV ="marPlayer2Level1.csv";
-			
+			mapaCSV = "marPlayer2Level1.csv";
+
 		URL res = Thread.currentThread().getContextClassLoader().getResource(mapaCSV);
 		File file = Paths.get(res.toURI()).toFile();
 		String arquivo1 = file.getAbsolutePath();
@@ -81,7 +80,12 @@ public class Construtor {
 		mar = new Mar();
 		// está estourando o numero de celulas no teste
 		celulasConstrutor = new Celula[11][11];
-		mar.setMar(celulasConstrutor, time); 
+
+		if (time == Time.Inimigo)
+			mar.setMar(celulasConstrutor, time, new outController(conexao));
+		else
+			mar.setMar(celulasConstrutor, time);
+		
 		return mar;
 	}
 
@@ -97,9 +101,8 @@ public class Construtor {
 				int y = Integer.parseInt(comandos[i][0].substring(2, 3));
 				String sentido = comandos[i][1];
 
-				
 				boolean a = true;
-				
+
 				if (comandos[i][2].equals("S")) {
 					a = mar.insereSubmarino(x, y, sentido);
 				} else if (comandos[i][2].equals("C")) {
@@ -125,8 +128,7 @@ public class Construtor {
 
 		return mar;
 	}
-	
-	 
+
 	// coloca Água em todas as células vazias.
 	public Mar montaMar(Mar mar) {
 		for (int i = 0; i < 10; i++) {

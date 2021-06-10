@@ -3,6 +3,7 @@ package mar;
 import javax.swing.ImageIcon;
 
 import celulas.*;
+import comunicacao.outController;
 import pecas.*;
 
 public class Mar {
@@ -21,6 +22,8 @@ public class Mar {
 	ImageIcon imgArmadilhaTubarao;
 	ImageIcon imgBauDoTesouro;
 	ImageIcon imgSplash;
+	
+	outController controle; 
 
 	public Mar() {
 		carregaImagens();
@@ -48,8 +51,11 @@ public class Mar {
 		if (c.tipo != 'A' && c.tipo != 'B')
 			celulaMar[x][y].setText(c.tipo + "");
 		
-		
 		celulaMar[x][y].setTime(time);
+		
+		if (time == Time.Inimigo)
+			celulaMar[x][y].setControle(controle);
+		
 
 		if (y > 0) {
 			c.esquerda = celulaMar[x][y - 1];
@@ -256,6 +262,11 @@ public class Mar {
 	public void setMar(Celula[][] mar, Time time) {
 		this.celulaMar = mar;
 		this.time = time;
+	}
+	public void setMar(Celula[][] mar, Time time, outController controle) {
+		this.controle = controle;
+		setMar(mar, time);
+		System.out.println("OPA");
 	}
 
 	public void setSubmarino(Submarino sub) {

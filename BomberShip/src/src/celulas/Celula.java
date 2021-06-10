@@ -8,9 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import bomba.Bomba;
+import comunicacao.outController;
 
-public class Celula extends JButton implements ICelulaPropriedades, ActionListener {
-	
+public class Celula extends JButton implements ICelulaPropriedades {
 
 	private static final long serialVersionUID = -4497235678407832554L;
 	protected ImageIcon imagem;
@@ -19,14 +19,16 @@ public class Celula extends JButton implements ICelulaPropriedades, ActionListen
 	public Celula cima, baixo, esquerda, direita;
 	public char tipo;
 	private Time time;
+	private outController controle;
 
 	public Celula() {
 		super();
 		this.setOpaque(true);
 		this.setBorderPainted(true);
+		this.setEnabled(false);
 		this.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 15)); // Depois tirar para trocar para imagens
-
-		addActionListener(this);
+		
+		
 	}
 
 	public ImageIcon getImage() {
@@ -66,22 +68,16 @@ public class Celula extends JButton implements ICelulaPropriedades, ActionListen
 	}
 
 	public void setTime(Time time) {
-
 		this.time = time;
-
 		Color cor = (time == Time.Aliado) ? new Color(223, 233, 247) : new Color(170, 202, 250);
-		this.setBackground(cor);
+		this.setBackground(cor); 
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (time == Time.Aliado)
-			System.out.println("você não pode mexer no seu tabuleiro");
-		
-		else {
-					
-		}
-
+	public void setControle(outController controle) {
+		this.controle = controle;
+		System.out.println("controle declarado no time inimigo"); 
+		addActionListener(controle);
+		this.setEnabled(true);
 	}
 }
