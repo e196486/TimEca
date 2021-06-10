@@ -33,14 +33,15 @@ public class Conexao {
 		try {
 			socket = new Socket(ip, porta);
 			dos = new DataOutputStream(socket.getOutputStream());
-			dis = new DataInputStream(socket.getInputStream());
-			// TODO : enviar feedback para o jogo dizendo que está conectado
+			dis = new DataInputStream(socket.getInputStream()); 
+			conexaoAceita = true;
+			System.out.println("Estamos conectados!");
+			
 		} catch (IOException e) {
 			System.out.println("Ainda nao existe: " + ip + ":" + porta + " | Estamos criando um Server...");
 			return false;
 		}
-		conexaoAceita = true;
-		System.out.println("Estamos conectados!");
+		
 		return true;
 	}
 
@@ -95,7 +96,7 @@ public class Conexao {
 			}
 
 		} catch (IOException e) {
-			System.out.println("o Outro usuario saiu da jogada, Fim de Jogo!");
+			System.out.println("o Outro usuario saiu da partida, Fim de Jogo!");
 			return "fimDeJogo";
 		}
 
