@@ -48,7 +48,7 @@ public class Construtor {
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
 
-			new TelaJogo(marAliado, marInimigo);
+			new TelaJogo(marAliado, marInimigo,conexao.Player);
 
 			Thread recebeInput = new Thread(new InController(conexao, marAliado));
 			recebeInput.start();

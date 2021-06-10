@@ -15,7 +15,7 @@ public class Mar {
 	NavioTanque tank1;
 	NavioTanque tank2;
 	PortaAviao pa;
-	Time time;
+	public Time time;
 
 	ImageIcon imgBombaExplodida;
 	ImageIcon imgArmadilhaTubarao;
@@ -24,9 +24,8 @@ public class Mar {
 
 	public Mar() {
 		carregaImagens();
-
 	}
-
+ 	
 	private void carregaImagens() {
 		imgBombaExplodida = new ImageIcon(new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage()
 				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));

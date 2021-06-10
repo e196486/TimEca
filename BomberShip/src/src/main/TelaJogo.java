@@ -25,6 +25,7 @@ public class TelaJogo extends JFrame {
 	Celula[][] celula;
 	Mar marPlayer1;
 	Mar marPlayer2;
+	int numPlayer;
 
 	public JTextField campoMunicaoPlayer1;
 	public JTextField campoDicasPlayer1;
@@ -33,12 +34,21 @@ public class TelaJogo extends JFrame {
 	public JTextField campoMunicaoPlayer2;
 	public JTextField campoDicasPlayer2;
 	public JTextField campoPontosPlayer2;
+	
+	String host = "Host";
 
-	public TelaJogo(Mar marPlayer1, Mar marPlayer2) {
+	public TelaJogo(Mar marPlayer1, Mar marPlayer2,String Player) {
 
 		this.marPlayer1 = marPlayer1;
 		this.marPlayer2 = marPlayer2;
+		
+		if (Player.equals(host))
+			numPlayer = 1;
+		else 
+			numPlayer = 2;
 
+		this.setTitle("BomberShip - Player "+ numPlayer); 
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1050, 650);
 		tela = new JPanel();
