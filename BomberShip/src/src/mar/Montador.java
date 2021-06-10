@@ -6,13 +6,13 @@ import java.net.URL;
 import java.nio.file.Paths;
 import celulas.Agua;
 import celulas.Celula;
-import celulas.Time;
 import comunicacao.Conexao;
 import comunicacao.InController;
+import comunicacao.Time;
 import comunicacao.outController;
 import main.TelaJogo;
 
-public class Construtor {
+public class Montador {
 
 	Conexao conexao;
 	private Mar marAliado;
@@ -24,7 +24,7 @@ public class Construtor {
 	private String arqInimigo;
 	private final String host = "Host";
 
-	public Construtor(String ip, int porta) {
+	public Montador(String ip, int porta) {
 
 		try {
 			conexao = new Conexao(ip, porta);

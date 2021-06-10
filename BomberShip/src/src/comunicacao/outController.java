@@ -3,8 +3,6 @@ package comunicacao;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import celulas.Time;
-
 public class outController implements ActionListener {
 
 	// TODO passar os dados de Celula para cá

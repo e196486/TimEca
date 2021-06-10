@@ -3,6 +3,7 @@ package mar;
 import javax.swing.ImageIcon;
 
 import celulas.*;
+import comunicacao.Time;
 import pecas.*;
 
 public class Mar {

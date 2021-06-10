@@ -1,4 +1,4 @@
-package celulas;
+package comunicacao;
 
 public enum Time {
 	Aliado,

@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import bomba.Bomba;
+import comunicacao.Time;
 import comunicacao.outController;
 
 public class Celula extends JButton implements ICelulaPropriedades {

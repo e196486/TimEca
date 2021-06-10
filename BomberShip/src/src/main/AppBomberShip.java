@@ -1,6 +1,6 @@
 package main;
 
-import mar.Construtor;
+import mar.Montador;
 
 public class AppBomberShip implements Runnable {
 
@@ -23,7 +23,7 @@ public class AppBomberShip implements Runnable {
 		try {
 			if (menu.aguardaIniciaJogo()) {
 
-				new Construtor(menu.getIP(), menu.getPorta());
+				new Montador(menu.getIP(), menu.getPorta());
 
 			}
 
