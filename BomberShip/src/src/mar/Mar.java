@@ -1,5 +1,7 @@
 package mar;
 
+import javax.swing.ImageIcon;
+
 import celulas.*;
 import pecas.*;
 
@@ -13,19 +15,42 @@ public class Mar {
 	NavioTanque tank1;
 	NavioTanque tank2;
 	PortaAviao pa;
-	String time;
+	Time time;
+
+	ImageIcon imgBombaExplodida;
+	ImageIcon imgArmadilhaTubarao;
+	ImageIcon imgBauDoTesouro;
+	ImageIcon imgSplash;
+
+	public Mar() {
+		carregaImagens();
+
+	}
+
+	private void carregaImagens() {
+		imgBombaExplodida = new ImageIcon(new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage()
+				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
+		imgArmadilhaTubarao = new ImageIcon(new ImageIcon(this.getClass().getResource("/imgArmadilhaTubarao.png"))
+				.getImage().getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH));
+		imgBauDoTesouro = new ImageIcon(new ImageIcon(this.getClass().getResource("/imgBauDoTesouro.png")).getImage()
+				.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH));
+		imgSplash = new ImageIcon(new ImageIcon(this.getClass().getResource("/imgSplash.png")).getImage()
+				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
+
+	}
 
 	// TODO : esse método está estourando os limites das celulas, aumentei para
 	// [11][11] como paleativo
-	public void insereCelula(Celula c) {
+	public Celula insereCelula(Celula c) {
 		int x = c.getLinha();
 		int y = c.getColuna();
 		celulaMar[x][y] = c;
-		celulaMar[x][y].setText(c.tipo + " ");
-		celulaMar[x][y].time = time;
+		if (c.tipo != 'A' && c.tipo != 'B')
+			celulaMar[x][y].setText(c.tipo + "");
 		
 		
-		
+		celulaMar[x][y].setTime(time);
+
 		if (y > 0) {
 			c.esquerda = celulaMar[x][y - 1];
 			if (c.esquerda != null)
@@ -46,6 +71,11 @@ public class Mar {
 			if (c.baixo != null)
 				celulaMar[x + 1][y].cima = c;
 		}
+		return celulaMar[x][y];
+	}
+
+	public void insereCelula(Celula c, ImageIcon img) {
+		insereCelula(c).SetImage(img);
 	}
 
 	public boolean insereSubmarino(int x, int y, String sentido) throws Exception {
@@ -204,7 +234,7 @@ public class Mar {
 	public boolean insereArmadilha(int x, int y) {
 		if (celulaMar[x][y] == null) {
 			Armadilha a = new Armadilha(x, y, 'A');
-			insereCelula(a);
+			insereCelula(a, imgArmadilhaTubarao);
 			// TESTE
 			System.out.println("inseriu :" + a.tipo);
 			return true;
@@ -215,7 +245,7 @@ public class Mar {
 	public boolean insereBauDoTesouro(int x, int y) {
 		if (celulaMar[x][y] == null) {
 			BauDoTesouro b = new BauDoTesouro(x, y, 'B');
-			insereCelula(b);
+			insereCelula(b, imgBauDoTesouro);
 			// TESTE
 			System.out.println("inseriu :" + b.tipo);
 			return true;
@@ -223,7 +253,7 @@ public class Mar {
 		return false;
 	}
 
-	public void setMar(Celula[][] mar,String  time) {
+	public void setMar(Celula[][] mar, Time time) {
 		this.celulaMar = mar;
 		this.time = time;
 	}

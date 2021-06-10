@@ -1,50 +1,83 @@
 package mar;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import celulas.Agua;
 import celulas.Celula;
+import celulas.Time;
 import comunicacao.Conexao;
-import main.TelaJogo; 
+import comunicacao.InController;
+import main.TelaJogo;
 
 public class Construtor {
 
 	Conexao conexao;
 	private Mar marAliado;
 	private Mar marInimigo;
-	private String arqInimigo;
 	private Celula[][] celulasConstrutor;
-	private Celula[][] celulasInimigo;
 
-	public Construtor(String ip, int porta, String Arq) {
+	private String arqInimigo;
+	private String host = "Host";
 
-		conexao = new Conexao(ip, porta);
+	public Construtor(String ip, int porta) {
 
-		if (!conexao.conecta())
-			conexao.iniciaServer();
+		try {
+			conexao = new Conexao(ip, porta);
 
-		marAliado = criaMar(marAliado, "Aliado");
-		marAliado = leArquivo(Arq, marAliado);
-		marAliado = montaMar(marAliado);
-		
-		//conexao de cria tabuleiro inimigo
-		if (conexao.Player.equals("Host"))
-			conexao.SetMar(Arq);
-		
-		arqInimigo = conexao.getMarInimigo();
-		if (!conexao.Player.equals("Host"))
-			conexao.SetMar(Arq);
-		
-		System.out.println(arqInimigo);
-		
-		marInimigo = criaMar(marInimigo, "Inimigo");
-		marInimigo = leArquivo(arqInimigo, marInimigo);
-		marInimigo = montaMar(marInimigo);
-		
-		
-		new TelaJogo(marAliado, marInimigo);
+			if (!conexao.conecta())
+				conexao.iniciaServer();
+
+			String Arq = getMapa(conexao.Player);
+			
+
+			marAliado = criaMar(marAliado, Time.Aliado);
+			marAliado = leArquivo(Arq, marAliado);
+			marAliado = montaMar(marAliado);
+
+			// conexao de criar tabuleiro inimigo
+			if (conexao.Player.equals(host))
+				conexao.SetMar(Arq);
+
+			arqInimigo = conexao.getMarInimigo();
+			if (!conexao.Player.equals(host))
+				conexao.SetMar(Arq);
+
+			System.out.println(arqInimigo);
+
+			marInimigo = criaMar(marInimigo, Time.Inimigo);
+			marInimigo = leArquivo(arqInimigo, marInimigo);
+			marInimigo = montaMar(marInimigo);
+
+			new TelaJogo(marAliado, marInimigo);
+			
+			Thread recebeInput = new Thread(new InController(conexao,marAliado));
+			recebeInput.start();
+			
+			
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 
 	}
 
-	public Mar criaMar(Mar mar, String time) {
+	public String getMapa(String Player) throws URISyntaxException {
+		String mapaCSV;
+
+		if (Player.equals(host))
+			mapaCSV ="marPlayer1Level1.csv";
+		else
+			mapaCSV ="marPlayer2Level1.csv";
+			
+		URL res = Thread.currentThread().getContextClassLoader().getResource(mapaCSV);
+		File file = Paths.get(res.toURI()).toFile();
+		String arquivo1 = file.getAbsolutePath();
+		return arquivo1;
+
+	}
+
+	public Mar criaMar(Mar mar, Time time) {
 		mar = new Mar();
 		// está estourando o numero de celulas no teste
 		celulasConstrutor = new Celula[11][11];
@@ -63,13 +96,14 @@ public class Construtor {
 				int x = Integer.parseInt(comandos[i][0].substring(0, 1));
 				int y = Integer.parseInt(comandos[i][0].substring(2, 3));
 				String sentido = comandos[i][1];
-				System.out.println(comandos[i][2]);
+
+				
 				boolean a = true;
+				
 				if (comandos[i][2].equals("S")) {
 					a = mar.insereSubmarino(x, y, sentido);
 				} else if (comandos[i][2].equals("C")) {
 					a = mar.insereCruzeiro(x, y, sentido);
-					System.out.println("entrou aq x: " + x + " y: " + y + " sentido: >" + sentido + "<");
 				} else if (comandos[i][2].equals("N")) {
 					a = mar.insereNavioTanque(x, y, sentido);
 				} else if (comandos[i][2].equals("P")) {
@@ -88,10 +122,11 @@ public class Construtor {
 			System.out.println("Insira um csv válido!");
 			erro.printStackTrace();
 		}
-		
+
 		return mar;
 	}
-
+	
+	 
 	// coloca Água em todas as células vazias.
 	public Mar montaMar(Mar mar) {
 		for (int i = 0; i < 10; i++) {
@@ -100,7 +135,6 @@ public class Construtor {
 					Agua water = new Agua(i, j, '~');
 					mar.insereCelula(water);
 				}
-
 			}
 		}
 		return mar;

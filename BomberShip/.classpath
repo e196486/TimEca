@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src/src"/>
-	<classpathentry kind="lib" path="data/arq0001.csv"/>
+	<classpathentry kind="src" path="data"/>
+	<classpathentry kind="src" path="assets"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
