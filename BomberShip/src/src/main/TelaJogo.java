@@ -5,9 +5,10 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import celulas.*;
-import mar.Mar;
+import java.awt.GridLayout; 
+import marComponent.Celula.Celula;
+import marComponent.Mar.Mar;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

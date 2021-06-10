@@ -1,7 +1,9 @@
-package comunicacao;
+package controleComponent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import conexaoComponent.Conexao;
 
 public class outController implements ActionListener {
 
@@ -15,7 +17,8 @@ public class outController implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Clicou no Inimigo");
+		System.out.println("Clicou no Inimigo"); 
+		
 
 	}
 

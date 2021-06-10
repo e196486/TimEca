@@ -1,16 +1,18 @@
-package mar;
+package montadorComponent;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-import celulas.Agua;
-import celulas.Celula;
-import comunicacao.Conexao;
-import comunicacao.InController;
-import comunicacao.Time;
-import comunicacao.outController;
+
+import conexaoComponent.Conexao;
+import controleComponent.InController;
+import controleComponent.Time;
+import controleComponent.outController;
 import main.TelaJogo;
+import marComponent.Celula.Agua;
+import marComponent.Celula.Celula;
+import marComponent.Mar.Mar;
 
 public class Montador {
 
@@ -23,6 +25,8 @@ public class Montador {
 
 	private String arqInimigo;
 	private final String host = "Host";
+
+	private final String marPlayer1Level1 = "marPlayer1Level1.csv";
 
 	public Montador(String ip, int porta) {
 
@@ -41,14 +45,14 @@ public class Montador {
 			// conexao de criar tabuleiro inimigo
 			conexao.SetMar(Arq);
 			arqInimigo = conexao.getMarInimigo();
-			
+
 			controle = new outController(conexao);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
 
-			new TelaJogo(marAliado, marInimigo,conexao.Player);
+			new TelaJogo(marAliado, marInimigo, conexao.Player);
 
 			Thread recebeInput = new Thread(new InController(conexao, marAliado));
 			recebeInput.start();
@@ -60,12 +64,15 @@ public class Montador {
 	}
 
 	public String getMapa(String Player) throws URISyntaxException {
-		String mapaCSV;
+
 		// TODO : transformar
-		if (Player.equals(host))
-			mapaCSV = "marPlayer1Level1.csv";
-		else
-			mapaCSV = "marPlayer2Level1.csv";
+
+		int numPlayer;
+		int nivel = 1;
+
+		numPlayer = (Player.equals(host)) ? 1 : 2;
+
+		String mapaCSV = "marPlayer" + numPlayer + "Level" + nivel + ".csv";
 
 		URL res = Thread.currentThread().getContextClassLoader().getResource(mapaCSV);
 		File file = Paths.get(res.toURI()).toFile();

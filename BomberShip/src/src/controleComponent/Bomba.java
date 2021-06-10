@@ -1,4 +1,4 @@
-package bomba;
+package controleComponent;
 
 public class Bomba {
 	protected int n_dicas;

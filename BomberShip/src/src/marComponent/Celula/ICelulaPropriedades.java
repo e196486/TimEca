@@ -1,7 +1,8 @@
-package celulas;
+package marComponent.Celula;
  
 import javax.swing.ImageIcon;
-import bomba.Bomba;
+
+import controleComponent.Bomba;
 
 public interface ICelulaPropriedades {
 	public ImageIcon getImage();
