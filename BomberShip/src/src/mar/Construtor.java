@@ -22,7 +22,7 @@ public class Construtor {
 	private outController controle;
 
 	private String arqInimigo;
-	private String host = "Host";
+	private final String host = "Host";
 
 	public Construtor(String ip, int porta) {
 
@@ -39,12 +39,10 @@ public class Construtor {
 			marAliado = montaMar(marAliado);
 
 			// conexao de criar tabuleiro inimigo
-			if (conexao.Player.equals(host))
-				conexao.SetMar(Arq);
-
+			conexao.SetMar(Arq);
 			arqInimigo = conexao.getMarInimigo();
-			if (!conexao.Player.equals(host))
-				conexao.SetMar(Arq);
+			
+			controle = new outController(conexao);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);
@@ -63,7 +61,7 @@ public class Construtor {
 
 	public String getMapa(String Player) throws URISyntaxException {
 		String mapaCSV;
-
+		// TODO : transformar
 		if (Player.equals(host))
 			mapaCSV = "marPlayer1Level1.csv";
 		else
@@ -80,12 +78,8 @@ public class Construtor {
 		mar = new Mar();
 		// está estourando o numero de celulas no teste
 		celulasConstrutor = new Celula[11][11];
+		mar.setMar(celulasConstrutor, time);
 
-		if (time == Time.Inimigo)
-			mar.setMar(celulasConstrutor, time, new outController(conexao));
-		else
-			mar.setMar(celulasConstrutor, time);
-		
 		return mar;
 	}
 
@@ -133,10 +127,14 @@ public class Construtor {
 	public Mar montaMar(Mar mar) {
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				if (mar.getTipoCelula(i, j) == '-') {
+				if (mar.getTipoCelula(i, j) == '~') {
 					Agua water = new Agua(i, j, '~');
 					mar.insereCelula(water);
 				}
+
+				if (mar.time == Time.Inimigo)
+					mar.celulaMar[i][j].setControle(controle);
+
 			}
 		}
 		return mar;
