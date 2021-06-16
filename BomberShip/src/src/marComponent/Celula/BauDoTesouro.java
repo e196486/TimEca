@@ -1,4 +1,4 @@
-package celulas;
+package marComponent.Celula;
 
 public class BauDoTesouro extends Celula{
 	 

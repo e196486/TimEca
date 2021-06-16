@@ -1,6 +1,6 @@
-package pecas;
+package marComponent.Pecas;
 
-import celulas.Navio;
+import marComponent.Celula.Navio;
 
 public class PortaAviao {
 	protected Navio PortaAviao[] = new Navio[5];

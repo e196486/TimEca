@@ -1,13 +1,13 @@
-package celulas;
+package marComponent.Celula;
 
 import java.awt.Color;
 import java.awt.Font; 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import bomba.Bomba;
-import comunicacao.Time;
-import comunicacao.outController;
+import controleComponent.Bomba;
+import controleComponent.Time;
+import controleComponent.outController;
 
 public class Celula extends JButton implements ICelulaPropriedades {
 
@@ -37,7 +37,7 @@ public class Celula extends JButton implements ICelulaPropriedades {
 	}
 
 	public void explode(Bomba bomba) {
-
+		//this.setIcon(img);
 	}
 
 	public boolean isCelulaRevelada() {

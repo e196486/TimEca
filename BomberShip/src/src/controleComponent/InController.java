@@ -1,6 +1,7 @@
-package comunicacao;
+package controleComponent;
 
-import mar.Mar;
+import conexaoComponent.Conexao;
+import marComponent.Mar.Mar;
 
 public class InController implements Runnable {
 

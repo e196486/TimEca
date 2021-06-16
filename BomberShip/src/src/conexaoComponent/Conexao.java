@@ -1,4 +1,4 @@
-package comunicacao;
+package conexaoComponent;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

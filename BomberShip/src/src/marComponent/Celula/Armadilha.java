@@ -1,6 +1,6 @@
-package celulas;
+package marComponent.Celula;
 
-import bomba.Bomba;
+import controleComponent.Bomba;
 
 
 public class Armadilha extends Celula{

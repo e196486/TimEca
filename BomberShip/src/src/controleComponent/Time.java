@@ -1,4 +1,4 @@
-package comunicacao;
+package controleComponent;
 
 public enum Time {
 	Aliado,

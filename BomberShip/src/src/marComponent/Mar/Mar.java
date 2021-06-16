@@ -1,10 +1,16 @@
-package mar;
+package marComponent.Mar;
 
 import javax.swing.ImageIcon;
 
-import celulas.*;
-import comunicacao.Time;
-import pecas.*;
+import controleComponent.Time;
+import marComponent.Celula.Armadilha;
+import marComponent.Celula.BauDoTesouro;
+import marComponent.Celula.Celula;
+import marComponent.Celula.Navio;
+import marComponent.Pecas.Cruzeiro;
+import marComponent.Pecas.NavioTanque;
+import marComponent.Pecas.PortaAviao;
+import marComponent.Pecas.Submarino; 
 
 public class Mar {
 	public Celula[][] celulaMar;

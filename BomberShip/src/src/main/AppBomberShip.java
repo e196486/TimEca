@@ -1,6 +1,6 @@
 package main;
 
-import mar.Montador;
+import montadorComponent.Montador;
 
 public class AppBomberShip implements Runnable {
 
