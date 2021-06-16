@@ -50,26 +50,6 @@ public class Mar {
 
 		celulaMar[x][y].setTime(time);
 
-		if (y > 0) {
-			c.esquerda = celulaMar[x][y - 1];
-			if (c.esquerda != null)
-				celulaMar[x][y - 1].direita = c;
-		}
-		if (y <= 10) {
-			c.direita = celulaMar[x][y + 1];
-			if (c.direita != null)
-				celulaMar[x][y + 1].esquerda = c;
-		}
-		if (x > 0) {
-			c.cima = celulaMar[x - 1][y];
-			if (c.cima != null)
-				celulaMar[x - 1][y].baixo = c;
-		}
-		if (x <= 10) {
-			c.baixo = celulaMar[x + 1][y];
-			if (c.baixo != null)
-				celulaMar[x + 1][y].cima = c;
-		}
 		return celulaMar[x][y];
 	}
 

@@ -15,7 +15,6 @@ public class Celula extends JButton implements ICelulaPropriedades {
 	protected ImageIcon imagem;
 	protected int linha, coluna;
 	protected boolean celulaRevelada;
-	public Celula cima, baixo, esquerda, direita;
 	public char tipo; 
 
 	public Celula() {
@@ -50,10 +49,7 @@ public class Celula extends JButton implements ICelulaPropriedades {
 	}
 
 	public void dicaIlumina() {
-		cima.setCelulaRevelada(true);
-		baixo.setCelulaRevelada(true);
-		esquerda.setCelulaRevelada(true);
-		direita.setCelulaRevelada(true);
+	
 	}
 
 	public int getLinha() {
