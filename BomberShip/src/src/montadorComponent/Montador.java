@@ -82,7 +82,8 @@ public class Montador {
 	public Mar criaMar(Mar mar, Time time) {
 		mar = new Mar();
 		// está estourando o numero de celulas no teste
-		celulasConstrutor = new Celula[11][11];
+		// eu não entendi porque estava estourando antes, mas acredito que esteja certo agora
+		celulasConstrutor = new Celula[10][10];
 		mar.setMar(celulasConstrutor, time);
 
 		return mar;
@@ -90,7 +91,7 @@ public class Montador {
 
 	public Mar leArquivo(String Arq, Mar mar) {
 
-		try {
+		try { // o try catch fala se estourou o limite ou se há conflito nos navios
 			CSVHandling csv = new CSVHandling();
 			csv.setDataSource(Arq);
 			String comandos[][] = csv.requestCommands();
@@ -117,11 +118,10 @@ public class Montador {
 				}
 
 				if (!a)
-					System.out.println("Há conflito entre os navios!");
+					throw new Exception("Há conflitos entre navios");
 			}
 		} catch (Exception erro) {
-			System.err.println("Erro:" + erro.getMessage());
-			System.out.println("Insira um csv válido!");
+			System.err.println("Erro:" + erro.getMessage() + "\nInsira um csv válido!");
 			erro.printStackTrace();
 		}
 
@@ -134,7 +134,12 @@ public class Montador {
 			for (int j = 0; j < 10; j++) {
 				if (mar.getTipoCelula(i, j) == '~') {
 					Agua water = new Agua(i, j, '~');
-					mar.insereCelula(water);
+					try {
+						mar.insereCelula(water);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 				if (mar.time == Time.Inimigo)

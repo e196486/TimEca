@@ -12,7 +12,7 @@ import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
 import marComponent.Pecas.Submarino; 
 
-public class Mar {
+public class Mar implements IBuildMar{
 	public Celula[][] celulaMar;
 	Submarino sub1;
 	Submarino sub2;
@@ -47,7 +47,7 @@ public class Mar {
 
 	// TODO : esse método está estourando os limites das celulas, aumentei para
 	// [11][11] como paleativo
-	public Celula insereCelula(Celula c) {
+	public Celula insereCelula(Celula c) throws Exception{
 		int x = c.getLinha();
 		int y = c.getColuna();
 		celulaMar[x][y] = c;
@@ -59,8 +59,8 @@ public class Mar {
 		return celulaMar[x][y];
 	}
 
-	public void insereCelula(Celula c, ImageIcon img) {
-		insereCelula(c).SetImage(img);
+	public void insereCelula(Celula c, ImageIcon img) throws Exception {
+			insereCelula(c).SetImage(img);
 	}
 
 	public boolean insereSubmarino(int x, int y, String sentido) throws Exception {
@@ -216,7 +216,7 @@ public class Mar {
 		return false;
 	}
 
-	public boolean insereArmadilha(int x, int y) {
+	public boolean insereArmadilha(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
 			Armadilha a = new Armadilha(x, y, 'A');
 			insereCelula(a, imgArmadilhaTubarao);
@@ -227,7 +227,7 @@ public class Mar {
 		return false;
 	}
 
-	public boolean insereBauDoTesouro(int x, int y) {
+	public boolean insereBauDoTesouro(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
 			BauDoTesouro b = new BauDoTesouro(x, y, 'B');
 			insereCelula(b, imgBauDoTesouro);
