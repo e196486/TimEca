@@ -4,11 +4,13 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-import conexaoComponent.*;
+
+import conexaoComponent.Conexao;
+import conexaoComponent.IBuildConexao;
 import controleComponent.*;
-import main.TelaJogo;
 import marComponent.Celula.*;
 import marComponent.Mar.Mar;
+import viewComponent.TelaJogo;
 
 public class Montador {
 

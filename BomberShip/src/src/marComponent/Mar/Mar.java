@@ -1,7 +1,10 @@
 package marComponent.Mar;
 
+import java.awt.Component;
+
 import javax.swing.ImageIcon;
 
+import controleComponent.IMarRefactor;
 import controleComponent.Time;
 import marComponent.Celula.Armadilha;
 import marComponent.Celula.BauDoTesouro;
@@ -10,9 +13,9 @@ import marComponent.Celula.Navio;
 import marComponent.Pecas.Cruzeiro;
 import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
-import marComponent.Pecas.Submarino; 
+import marComponent.Pecas.Submarino;
 
-public class Mar implements IBuildMar{
+public class Mar implements IBuildMar, IMarRefactor {
 	public Celula[][] celulaMar;
 	Submarino sub1;
 	Submarino sub2;
@@ -32,7 +35,7 @@ public class Mar implements IBuildMar{
 	public Mar() {
 		carregaImagens();
 	}
- 	
+
 	private void carregaImagens() {
 		imgBombaExplodida = new ImageIcon(new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage()
 				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
@@ -47,7 +50,7 @@ public class Mar implements IBuildMar{
 
 	// TODO : esse método está estourando os limites das celulas, aumentei para
 	// [11][11] como paleativo
-	public Celula insereCelula(Celula c) throws Exception{
+	public Celula insereCelula(Celula c) throws Exception {
 		int x = c.getLinha();
 		int y = c.getColuna();
 		celulaMar[x][y] = c;
@@ -60,7 +63,7 @@ public class Mar implements IBuildMar{
 	}
 
 	public void insereCelula(Celula c, ImageIcon img) throws Exception {
-			insereCelula(c).SetImage(img);
+		insereCelula(c).SetImage(img);
 	}
 
 	public boolean insereSubmarino(int x, int y, String sentido) throws Exception {
@@ -280,6 +283,10 @@ public class Mar implements IBuildMar{
 			return celulaMar[coluna][linha].tipo;
 		else
 			return '~';
+	}
+
+	public Component getcelulaMar(int coluna, int linha) {
+		return celulaMar[coluna][linha];
 	}
 
 }
