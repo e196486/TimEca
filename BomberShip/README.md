@@ -276,7 +276,14 @@ public interface IBuildConexao {
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`conecta()` | `Conecta estabelece uma conexão com o outro player ou inicia um servidor`
+`iniciaServer()` | `inicia o servidor caso o conecta não seja executado`
+`SetMar(String arq)` | `Estabelece o mar da jogada para a conexao se comunicar com o oponente. arq é o endereço do arquivo CSV contendo o mar`
+`getPlayer()` | `Pega se o jogador é o Host(Servidor da partida`
+`getMarInimigo()` | `pega o mar inimigo enviado pelo oponente`
+`getThis()` | `pega o proprio objeto para passar por parâmetro para outras classes`
+
+
 
 ### Interface `IBuildMar`
 
