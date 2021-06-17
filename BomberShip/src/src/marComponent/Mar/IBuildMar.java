@@ -5,8 +5,6 @@ import marComponent.Celula.Celula;
 
 // A interface é essa, mas não sei mexer direito com ela
 public interface IBuildMar {
-	Time time = null;
-	Object[][] celulaMar = null;
 	public Celula insereCelula(Celula c) throws Exception;
 	public boolean insereSubmarino(int x, int y, String sentido) throws Exception;
 	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception;
