@@ -58,7 +58,7 @@ item | detalhamento
 ----- | -----
 Classe | `viewComponent`
 Autores | `Erica e Henrique`
-Interfaces | `IMarVisual, IBuildView`
+Interfaces | `IMarVisual`
 
 ### Interfaces
 
@@ -193,18 +193,6 @@ Método | Objetivo
 ### Interface `IVisual`
 
 `Interface responsável por enviar para o Panel todos os dados de cada Visualização e imprimir`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-### Interface `IBuildView`
-
-`Interface responsável por criar os JPanel`
 
 ~~~
 <Interface em Java.>
