@@ -287,5 +287,7 @@ public class Mar implements IBuildMar{
 	public Component getcelulaMar(int coluna, int linha) {
 		return celulaMar[coluna][linha];
 	}
-
+	public Mar getThis() {
+		return this;
+	}
 }
