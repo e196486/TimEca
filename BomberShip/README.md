@@ -28,7 +28,9 @@
    ![Diagrama Geral](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/VisaoGeral.png)
 
 ## Diagrama Geral de Componentes
- ![Diagrama Analise](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Components.png)
+Este é o diagrama compondo componentes do projeto BomberShip:
+
+   ![Diagrama Analise](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Components.png)
 
 ## Componente `Mar`
 
@@ -46,6 +48,7 @@ Interfaces | `IMarListener, IBuildMar`
 
 Interfaces associadas a esse componente:
 
+  ![InterfaceMar](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceMar.png)
 
 
 ## Componente `View`
@@ -63,6 +66,8 @@ Interfaces | `IMarVisual`
 ### Interfaces
 
 Interfaces associadas a esse componente:
+
+![InterfaceView](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceView.png)
    
 
 ## Componente `Controle`
@@ -81,6 +86,8 @@ Interfaces | `IMarRefactor, ItemRefactor`
 
 Interfaces associadas a esse componente:
 
+![InterfaceControle](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceControle.png)
+
 ## Componente `Conexao`
 
 
@@ -98,6 +105,8 @@ Interfaces | `ICommandIn, ICommandOut, IBuildConexao`
 ### Interfaces
 
 Interfaces associadas a esse componente:
+
+![InterfaceConexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceConexao.png)
 
 
 ## Componente `Montador`
