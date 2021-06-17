@@ -176,12 +176,35 @@ Método | Objetivo
 `Interface responsável por criar o mar`
 
 ~~~
-<Interface em Java.>
+public interface IBuildMar {
+	public Celula insereCelula(Celula c) throws Exception;
+	public boolean insereSubmarino(int x, int y, String sentido) throws Exception;
+	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception;
+	public boolean insereNavioTanque(int x, int y, String sentido) throws Exception;
+	public boolean inserePortaAviao(int x, int y, String sentido) throws Exception;
+	public boolean insereArmadilha(int x, int y) throws Exception;
+	public boolean insereBauDoTesouro(int x, int y) throws Exception;
+	public void setMar(Celula[][] mar, Time time);
+	public Celula[][] getMar();
+	public char getTipoCelula(int coluna, int linha);
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`insereCelula(Celula c)` | `Coloca um objeto do tipo Celula no mar e joga um Exception`
+`insereSubmarino(int x, int y, String sentido)` | `Coloca o submarino e todas suas células no mar e joga um Exception`
+`insereCruzeiro(int x, int y, String sentido)` | `Coloca o cruzeiro e todas suas células no mar e joga um Exception`
+`insereNavioTanque(int x, int y, String sentido)` | `Coloca o NavioTanque e todas suas células no mar e joga um Exception`
+`inserePortaAviao(int x, int y, String sentido)` | `Coloca o PortaAviao e todas suas células no mar e joga um Exception`
+`insereArmadilha(int x, int y)` | `Coloca a Armadilha no mar e joga um Exception`
+`insereBauDoTesouro(int x, int y)` | `Coloca o BauDoTesouro no mar e joga um Exception`
+`setMar(Celula[][] mar, Time time)` | `Seta o mar recebido como o próprio mar e define o seu time`
+`getMar()` | `Devolve o mar setado`
+`getTipoCelula(int coluna, int linha)` | `Devolve o tipo da célula nas coordenadas dadas como parâmetro`
+
+
+
 
 ### Interface `IVisual`
 
