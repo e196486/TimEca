@@ -135,12 +135,16 @@ Método | Objetivo
 `Interface responsável por atualizar o controle das iterações no mar (cliques de botões)`
 
 ~~~
-<Interface em Java.>
+public interface IMarListener {
+	
+	public void celulaAcionada(int i, int j) ;
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`celulaAcionada(int i, int j)` | `Pega a celula acionada e faz os movimentos necessários`
 
 
 ### Interface `IMarRefactor`

@@ -78,9 +78,7 @@ public class Montador {
 	}
 
 	public Mar criaMar(Mar mar, Time time) {
-		mar = new Mar();
-		// está estourando o numero de celulas no teste
-		// eu não entendi porque estava estourando antes, mas acredito que esteja certo agora
+		mar = new Mar(); 
 		celulasConstrutor = new Celula[10][10];
 		mar.setMar(celulasConstrutor, time);
 
@@ -134,8 +132,7 @@ public class Montador {
 					Agua water = new Agua(i, j, '~');
 					try {
 						mar.insereCelula(water);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
+					} catch (Exception e) { 
 						e.printStackTrace();
 					}
 				}

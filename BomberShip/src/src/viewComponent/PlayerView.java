@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleComponent.Bomba;
 import marComponent.Celula.IMarRefactor;
 import marComponent.Mar.IBuildMar; 
 
@@ -50,6 +51,24 @@ public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
 			for (int linha = 0; linha < 10; linha++)
 				playerView.add(mar.getcelulaMar(coluna,linha));
 		// TODO: alterar aqui para interfaces
+	}
+
+	@Override
+	public void explode(Bomba bomba) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isCelulaRevelada() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setCelulaRevelada(boolean celulaRevelada) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
