@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Conexao implements IBuildConexao, ICommandIn {
+public class Conexao implements IBuildConexao, ICommandIn,ICommandOut {
 
 	public DataOutputStream dos;
 	public DataInputStream dis;
