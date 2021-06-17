@@ -187,21 +187,7 @@ Método | Objetivo
 `getMar()` | `Devolve o mar setado`
 `getTipoCelula(int coluna, int linha)` | `Devolve o tipo da célula nas coordenadas dadas como parâmetro`
 
-
-
-
-### Interface `IVisual`
-
-`Interface responsável por enviar para o Panel todos os dados de cada Visualização e imprimir`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
+ 
 
 ### Interface `ItemRefactor`
 
