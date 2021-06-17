@@ -28,7 +28,7 @@
    ![Diagrama Geral](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/VisaoGeral.png)
 
 ## Diagrama Geral de Componentes
- ![Diagrama Analise](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Diagrama%20de%20Components.png)
+ ![Diagrama Analise](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Components.png)
 
 ## Componente `Mar`
 
@@ -63,24 +63,7 @@ Interfaces | `IMarVisual, IBuildView`
 ### Interfaces
 
 Interfaces associadas a esse componente:
-
-
-## Componente `Panel`
-
-> O painel ficará responsável por exibir visualmente para o usuário e permitir que sejam criados os botoes, representados pelas celulas, para que o jogo inicie. 
-![Painel](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Panel%20component.png)
- 
-**Ficha Técnica**
-item | detalhamento
------ | -----
-Classe | `panelComponent`
-Autores | `Erica e Henrique`
-Interfaces | `IVisual, IBuildPanel`
-
-### Interfaces
-
-Interfaces associadas a esse componente:
-
+   
 
 ## Componente `Controle`
 
@@ -282,18 +265,6 @@ Método | Objetivo
 `enviaDados(String string)` | `O enviaDados manda a Jogada 'string' para o outro Player`
 
 
-### Interface `IBuildControle`
-
-`Interface responsável criar o Controle .`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
 ### Interface `IBuildConexao`
 
 `Interface responsável criar a conexao .`
@@ -327,19 +298,7 @@ Método | Objetivo
 -------| --------
 `<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
 
-### Interface `IBuildPanel`
-
-`Interface responsável criar o JPanel.`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-
+ 
  
 # Plano de Exceções
 
