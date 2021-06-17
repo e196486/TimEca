@@ -1,5 +1,7 @@
 package marComponent.Mar;
 
+import java.awt.Component;
+
 import controleComponent.Time;
 import marComponent.Celula.Celula;
 
@@ -15,4 +17,5 @@ public interface IBuildMar {
 	public void setMar(Celula[][] mar, Time time);
 	public Celula[][] getMar();
 	public char getTipoCelula(int coluna, int linha);
+	Component getcelulaMar(int coluna, int linha);
 }

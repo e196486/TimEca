@@ -1,4 +1,4 @@
-package main;
+package viewComponent;
 
 import java.awt.Container;
 import java.awt.Font;
