@@ -85,7 +85,8 @@ Interfaces associadas a esse componente:
 
 
 > A Conexao vai ser responsável através de socket por estar conectada com o outro player e receber e enviar dados para que o controle possa atuar no jogo 
-![Conexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Conexao%20component.png)
+
+![Conexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/ConexaoComponent.png)
  
 **Ficha Técnica**
 item | detalhamento
@@ -100,7 +101,7 @@ Interfaces associadas a esse componente:
 
 
 ## Componente `Montador`
-![Montador](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Montador%20component.png)
+![Montador](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/MontadorComponent.png)
 
 > O montador vai ser o primeiro componente ativado e atuar uma unica vez; Ele será responsável por criar o jogo e os demais componentes. Ao ativar a conexão, também pegará o tabuleiro inimigo para deixar a tela setada; 
 
