@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket; 
-public class Conexao {
+public class Conexao implements IBuildConexao {
 
 	public DataOutputStream dos;
 	public DataInputStream dis;
@@ -28,6 +28,10 @@ public class Conexao {
 		conexaoAceita = false;
 
 	}
+	
+	public String getPlayer() {
+		return Player;
+	}
 
 	public boolean conecta() {
 		try {
@@ -37,7 +41,7 @@ public class Conexao {
 			conexaoAceita = true;
 			System.out.println("Estamos conectados!");
 			
-		} catch (IOException e) {
+		} catch (IOException e) { //nullServer
 			System.out.println("Ainda nao existe: " + ip + ":" + porta + " | Estamos criando um Server...");
 			return false;
 		}
@@ -54,7 +58,7 @@ public class Conexao {
 			this.Player = "Host";
 			aguardaServerRequest();
 
-		} catch (Exception e) {
+		} catch (Exception e) { //invalidServer
 			e.printStackTrace();
 		}
 
@@ -70,7 +74,7 @@ public class Conexao {
 			conexaoAceita = true;
 			System.out.println("Aceitamos o cliente");
 
-		} catch (IOException e) {
+		} catch (IOException e) { //InvalidClient
 			e.printStackTrace();
 		}
 	}
@@ -81,7 +85,7 @@ public class Conexao {
 			dos.writeUTF(jogada);
 			dos.flush();
 			System.out.println("DATA WAS SENT");
-		} catch (IOException e) {
+		} catch (IOException e) { //InvalidMove && InvalidEnemy
 			erros++;
 			e.printStackTrace();
 		}
@@ -95,7 +99,7 @@ public class Conexao {
 				return dis.readUTF();
 			}
 
-		} catch (IOException e) {
+		} catch (IOException e) { //InvalidEnemy
 			System.out.println("o Outro usuario saiu da partida, Fim de Jogo!");
 			return "fimDeJogo";
 		}
@@ -111,6 +115,10 @@ public class Conexao {
 	public void SetMar(String Mar) {
 		enviaDados(Mar);
 		
+	}
+
+	public Conexao getThis() { 
+		return this;
 	}
 
 }

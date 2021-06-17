@@ -127,12 +127,8 @@ item | detalhamento
 ----- | -----
 Classe | `montadorComponent`
 Autores | `Erica e Henrique`
-Interfaces | `IGetMapa`
-
-### Interfaces
-
-Interfaces associadas a esse componente:
-
+Interfaces | `-`
+ 
  
 
 ## Detalhamento das Interfaces
@@ -266,7 +262,16 @@ Método | Objetivo
 `Interface responsável criar a conexao .`
 
 ~~~
-<Interface em Java.>
+public interface IBuildConexao {
+	
+	public boolean conecta();
+	public void iniciaServer();
+	public void SetMar(String arq);
+	public String getPlayer();
+	public String getMarInimigo();
+	public Conexao getThis();
+
+}
 ~~~
 
 Método | Objetivo
@@ -296,19 +301,6 @@ Método | Objetivo
 Método | Objetivo
 -------| --------
 `<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-### Interface `IGetMapa`
-
-`Interface responsável por receber o mapa inimigo.`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
 
 
  

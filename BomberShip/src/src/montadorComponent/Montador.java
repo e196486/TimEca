@@ -4,19 +4,15 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-
-import conexaoComponent.Conexao;
-import controleComponent.InController;
-import controleComponent.Time;
-import controleComponent.outController;
+import conexaoComponent.*;
+import controleComponent.*;
 import main.TelaJogo;
-import marComponent.Celula.Agua;
-import marComponent.Celula.Celula;
+import marComponent.Celula.*;
 import marComponent.Mar.Mar;
 
 public class Montador {
 
-	Conexao conexao;
+	IBuildConexao conexao;
 	private Mar marAliado;
 	private Mar marInimigo;
 	private Celula[][] celulasConstrutor;
@@ -34,7 +30,7 @@ public class Montador {
 			if (!conexao.conecta())
 				conexao.iniciaServer();
 
-			String Arq = getMapa(conexao.Player);
+			String Arq = getMapa(conexao.getPlayer());
 
 			marAliado = criaMar(marAliado, Time.Aliado);
 			marAliado = leArquivo(Arq, marAliado);
@@ -44,15 +40,15 @@ public class Montador {
 			conexao.SetMar(Arq);
 			arqInimigo = conexao.getMarInimigo();
 
-			controle = new outController(conexao);
+			controle = new outController(conexao.getThis());
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
 
-			new TelaJogo(marAliado, marInimigo, conexao.Player);
+			new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
-			Thread recebeInput = new Thread(new InController(conexao, marAliado));
+			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado));
 			recebeInput.start();
 
 		} catch (URISyntaxException e) {
