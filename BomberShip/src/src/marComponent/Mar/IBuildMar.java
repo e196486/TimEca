@@ -18,4 +18,5 @@ public interface IBuildMar {
 	public Celula[][] getMar();
 	public char getTipoCelula(int coluna, int linha);
 	Component getcelulaMar(int coluna, int linha);
+	public Mar getThis();
 }
