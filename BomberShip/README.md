@@ -148,12 +148,20 @@ Método | Objetivo
 `Interface responsável por atualizar o mar com base nos parâmetros definidos pelo controle`
 
 ~~~
-<Interface em Java.>
+public interface IMarRefactor {
+
+	public void explode(Bomba bomba);
+	public boolean isCelulaRevelada();
+	public void setCelulaRevelada(boolean celulaRevelada);
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`explode(Bomba bomba)` | `Explode a celula atual`
+`isCelulaRevelada()` | `Verifica se a celula atual está revelada`
+`setCelulaRevelada(boolean celulaRevelada)` | `seta a celula atual para revelada`
 
 ### Interface `IBuildMar`
 

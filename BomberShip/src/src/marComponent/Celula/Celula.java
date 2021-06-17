@@ -9,7 +9,7 @@ import controleComponent.Bomba;
 import controleComponent.Time;
 import controleComponent.outController;
 
-public class Celula extends JButton implements ICelulaPropriedades {
+public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor {
 
 	private static final long serialVersionUID = -4497235678407832554L;
 	protected ImageIcon imagem;

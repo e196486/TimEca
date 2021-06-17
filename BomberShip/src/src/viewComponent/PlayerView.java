@@ -10,7 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controleComponent.IMarRefactor;
+import marComponent.Celula.IMarRefactor;
 import marComponent.Mar.IBuildMar; 
 
 public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
