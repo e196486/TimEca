@@ -1,15 +1,15 @@
 package controleComponent;
 
-import conexaoComponent.Conexao;
+import conexaoComponent.*;
 import marComponent.Mar.Mar;
 
 public class InController implements Runnable {
 
-	private Conexao conexao;
+	private  ICommandIn conexao;
 	private Mar mar;
 	private boolean fimDeJogo = false;
 
-	public InController(Conexao conexao, Mar mar) {
+	public InController(ICommandIn conexao, Mar mar) {
 		this.conexao = conexao;
 		this.mar = mar;
 	}
@@ -18,7 +18,7 @@ public class InController implements Runnable {
 	public void run() {
 
 		while (true && !fimDeJogo) {
-			if (conexao.Player.equals("Host") && !conexao.conexaoAceita)
+			if (conexao.getPlayer().equals("Host") && !conexao.getConexaoAceita())
 				conexao.aguardaServerRequest();
 
 			String resposta = conexao.recebeDados();

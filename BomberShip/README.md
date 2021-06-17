@@ -225,12 +225,22 @@ Método | Objetivo
 `Interface responsável por receber informações .`
 
 ~~~
-<Interface em Java.>
+public interface ICommandIn {
+
+	void aguardaServerRequest();
+	Object getPlayer();
+	String recebeDados();
+	boolean getConexaoAceita();
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`aguardaServerRequest()` | `Aguarda a conexão do Client para dar andamento na jogada, caso não tenha conexão aceita`
+`getPlayer()` | `Pega o player`
+`recebeDados()` | `recebe os dados do outro player`
+`getConexaoAceita()` | `recebe o boolean conexãoAceita, que verifica se existe uma conexão`
 
 ### Interface `ICommandOut`
 

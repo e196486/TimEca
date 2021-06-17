@@ -5,8 +5,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
-import java.net.Socket; 
-public class Conexao implements IBuildConexao {
+import java.net.Socket;
+
+public class Conexao implements IBuildConexao, ICommandIn {
 
 	public DataOutputStream dos;
 	public DataInputStream dis;
@@ -28,7 +29,7 @@ public class Conexao implements IBuildConexao {
 		conexaoAceita = false;
 
 	}
-	
+
 	public String getPlayer() {
 		return Player;
 	}
@@ -37,15 +38,15 @@ public class Conexao implements IBuildConexao {
 		try {
 			socket = new Socket(ip, porta);
 			dos = new DataOutputStream(socket.getOutputStream());
-			dis = new DataInputStream(socket.getInputStream()); 
+			dis = new DataInputStream(socket.getInputStream());
 			conexaoAceita = true;
 			System.out.println("Estamos conectados!");
-			
-		} catch (IOException e) { //nullServer
+
+		} catch (IOException e) { // nullServer
 			System.out.println("Ainda nao existe: " + ip + ":" + porta + " | Estamos criando um Server...");
 			return false;
 		}
-		
+
 		return true;
 	}
 
@@ -58,7 +59,7 @@ public class Conexao implements IBuildConexao {
 			this.Player = "Host";
 			aguardaServerRequest();
 
-		} catch (Exception e) { //invalidServer
+		} catch (Exception e) { // invalidServer
 			e.printStackTrace();
 		}
 
@@ -74,7 +75,7 @@ public class Conexao implements IBuildConexao {
 			conexaoAceita = true;
 			System.out.println("Aceitamos o cliente");
 
-		} catch (IOException e) { //InvalidClient
+		} catch (IOException e) { // InvalidClient
 			e.printStackTrace();
 		}
 	}
@@ -85,7 +86,7 @@ public class Conexao implements IBuildConexao {
 			dos.writeUTF(jogada);
 			dos.flush();
 			System.out.println("DATA WAS SENT");
-		} catch (IOException e) { //InvalidMove && InvalidEnemy
+		} catch (IOException e) { // InvalidMove && InvalidEnemy
 			erros++;
 			e.printStackTrace();
 		}
@@ -99,7 +100,7 @@ public class Conexao implements IBuildConexao {
 				return dis.readUTF();
 			}
 
-		} catch (IOException e) { //InvalidEnemy
+		} catch (IOException e) { // InvalidEnemy
 			System.out.println("o Outro usuario saiu da partida, Fim de Jogo!");
 			return "fimDeJogo";
 		}
@@ -114,11 +115,16 @@ public class Conexao implements IBuildConexao {
 
 	public void SetMar(String Mar) {
 		enviaDados(Mar);
-		
+
 	}
 
-	public Conexao getThis() { 
+	public Conexao getThis() {
 		return this;
+	}
+
+	@Override
+	public boolean getConexaoAceita() {
+		return conexaoAceita;
 	}
 
 }
