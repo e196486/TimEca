@@ -261,19 +261,6 @@ Método | Objetivo
 -------| --------
 `<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
 
-### Interface `IBuildMar`
-
-`Interface responsável criar o Mar.`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
- 
  
 # Plano de Exceções
 
