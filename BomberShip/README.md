@@ -48,7 +48,7 @@ Interfaces | `IMarListener, IBuildMar`
 
 Interfaces associadas a esse componente:
 
-  ![InterfaceMar](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceMar.png)
+  ![InterfaceMar](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceMar.PNG)
 
 
 ## Componente `View`
@@ -67,7 +67,7 @@ Interfaces | `IMarVisual`
 
 Interfaces associadas a esse componente:
 
-![InterfaceView](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceView.png)
+![InterfaceView](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceView.PNG)
    
 
 ## Componente `Controle`
@@ -86,7 +86,7 @@ Interfaces | `IMarRefactor, ItemRefactor`
 
 Interfaces associadas a esse componente:
 
-![InterfaceControle](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceControle.png)
+![InterfaceControle](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceControle.PNG)
 
 ## Componente `Conexao`
 
@@ -106,7 +106,7 @@ Interfaces | `ICommandIn, ICommandOut, IBuildConexao`
 
 Interfaces associadas a esse componente:
 
-![InterfaceConexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceConexao.png)
+![InterfaceConexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceConexao.PNG)
 
 
 ## Componente `Montador`
