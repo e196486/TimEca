@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-public class ItensView extends JPanel {
- 
+public class ItensView extends JPanel implements IItemRefactor {
+
 	private static final long serialVersionUID = 1L;
 
 	public JPanel criaItensView(JPanel itensPlayerView, String Player) {
@@ -50,8 +50,19 @@ public class ItensView extends JPanel {
 		campoMunicao.setEditable(false);
 		itensPlayerView.add(campoMunicao);
 
-
 		return itensPlayerView;
+
+	}
+
+	public void setPontos(int Pontos) {
+
+	}
+
+	public void setMunicao(int Municao) {
+
+	}
+
+	public void setDicas(int Dicas) {
 
 	}
 }

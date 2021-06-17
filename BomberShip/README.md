@@ -194,12 +194,20 @@ Método | Objetivo
 `Interface responsável por atualizar os itens na View com base nos comandos do controle`
 
 ~~~
-<Interface em Java.>
+public interface IItemRefactor {
+	
+	void setPontos(int Pontos);
+	void setMunicao(int Municao);
+	void setDicas(int Dicas);
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`setPontos(int Pontos)` | `atualiza a quantidade de pontos para o int 'Pontos'`
+`setMunicao(int Municao)` | `atualiza a quantidade de munição para o int 'Municao'`
+`setDicas(int Dicas)` | `atualiza a quantidade de Dicas para o int 'Dicas'`
 
 ### Interface `ICommandIn`
 
