@@ -28,7 +28,7 @@
    ![Diagrama Geral](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/VisaoGeral.png)
 
 ## Diagrama Geral de Componentes
- ![Diagrama Analise](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Diagrama%20de%20Components.png)
+ ![Diagrama Analise](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Components.png)
 
 ## Componente `Mar`
 
@@ -58,29 +58,12 @@ item | detalhamento
 ----- | -----
 Classe | `viewComponent`
 Autores | `Erica e Henrique`
-Interfaces | `IMarVisual, IBuildView`
+Interfaces | `IMarVisual`
 
 ### Interfaces
 
 Interfaces associadas a esse componente:
-
-
-## Componente `Panel`
-
-> O painel ficará responsável por exibir visualmente para o usuário e permitir que sejam criados os botoes, representados pelas celulas, para que o jogo inicie. 
-![Painel](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Panel%20component.png)
- 
-**Ficha Técnica**
-item | detalhamento
------ | -----
-Classe | `panelComponent`
-Autores | `Erica e Henrique`
-Interfaces | `IVisual, IBuildPanel`
-
-### Interfaces
-
-Interfaces associadas a esse componente:
-
+   
 
 ## Componente `Controle`
 
@@ -102,7 +85,8 @@ Interfaces associadas a esse componente:
 
 
 > A Conexao vai ser responsável através de socket por estar conectada com o outro player e receber e enviar dados para que o controle possa atuar no jogo 
-![Conexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Conexao%20component.png)
+
+![Conexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/ConexaoComponent.png)
  
 **Ficha Técnica**
 item | detalhamento
@@ -117,7 +101,7 @@ Interfaces associadas a esse componente:
 
 
 ## Componente `Montador`
-![Montador](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/Montador%20component.png)
+![Montador](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/MontadorComponent.png)
 
 > O montador vai ser o primeiro componente ativado e atuar uma unica vez; Ele será responsável por criar o jogo e os demais componentes. Ao ativar a conexão, também pegará o tabuleiro inimigo para deixar a tela setada; 
 
@@ -151,12 +135,16 @@ Método | Objetivo
 `Interface responsável por atualizar o controle das iterações no mar (cliques de botões)`
 
 ~~~
-<Interface em Java.>
+public interface IMarListener {
+	
+	public void celulaAcionada(int i, int j) ;
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`celulaAcionada(int i, int j)` | `Pega a celula acionada e faz os movimentos necessários`
 
 
 ### Interface `IMarRefactor`
@@ -164,12 +152,20 @@ Método | Objetivo
 `Interface responsável por atualizar o mar com base nos parâmetros definidos pelo controle`
 
 ~~~
-<Interface em Java.>
+public interface IMarRefactor {
+
+	public void explode(Bomba bomba);
+	public boolean isCelulaRevelada();
+	public void setCelulaRevelada(boolean celulaRevelada);
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`explode(Bomba bomba)` | `Explode a celula atual`
+`isCelulaRevelada()` | `Verifica se a celula atual está revelada`
+`setCelulaRevelada(boolean celulaRevelada)` | `seta a celula atual para revelada`
 
 ### Interface `IBuildMar`
 
@@ -203,45 +199,27 @@ Método | Objetivo
 `getMar()` | `Devolve o mar setado`
 `getTipoCelula(int coluna, int linha)` | `Devolve o tipo da célula nas coordenadas dadas como parâmetro`
 
-
-
-
-### Interface `IVisual`
-
-`Interface responsável por enviar para o Panel todos os dados de cada Visualização e imprimir`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-### Interface `IBuildView`
-
-`Interface responsável por criar os JPanel`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
+ 
 
 ### Interface `ItemRefactor`
 
 `Interface responsável por atualizar os itens na View com base nos comandos do controle`
 
 ~~~
-<Interface em Java.>
+public interface IItemRefactor {
+	
+	void setPontos(int Pontos);
+	void setMunicao(int Municao);
+	void setDicas(int Dicas);
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`setPontos(int Pontos)` | `atualiza a quantidade de pontos para o int 'Pontos'`
+`setMunicao(int Municao)` | `atualiza a quantidade de munição para o int 'Municao'`
+`setDicas(int Dicas)` | `atualiza a quantidade de Dicas para o int 'Dicas'`
 
 ### Interface `ICommandIn`
 
@@ -282,18 +260,6 @@ Método | Objetivo
 `enviaDados(String string)` | `O enviaDados manda a Jogada 'string' para o outro Player`
 
 
-### Interface `IBuildControle`
-
-`Interface responsável criar o Controle .`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
 ### Interface `IBuildConexao`
 
 `Interface responsável criar a conexao .`
@@ -314,31 +280,6 @@ public interface IBuildConexao {
 Método | Objetivo
 -------| --------
 `<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-### Interface `IBuildMar`
-
-`Interface responsável criar o Mar.`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-### Interface `IBuildPanel`
-
-`Interface responsável criar o JPanel.`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
 
  
 # Plano de Exceções

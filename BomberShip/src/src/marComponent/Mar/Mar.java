@@ -4,8 +4,6 @@ import java.awt.Component;
 
 import javax.swing.ImageIcon;
 
-import conexaoComponent.Conexao;
-import controleComponent.IMarRefactor;
 import controleComponent.Time;
 import marComponent.Celula.Armadilha;
 import marComponent.Celula.BauDoTesouro;
@@ -16,7 +14,7 @@ import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
 import marComponent.Pecas.Submarino;
 
-public class Mar implements IBuildMar, IMarRefactor {
+public class Mar implements IBuildMar{
 	public Celula[][] celulaMar;
 	Submarino sub1;
 	Submarino sub2;
@@ -288,9 +286,6 @@ public class Mar implements IBuildMar, IMarRefactor {
 
 	public Component getcelulaMar(int coluna, int linha) {
 		return celulaMar[coluna][linha];
-	}
-	public Mar getThis() {
-		return this;
 	}
 
 }

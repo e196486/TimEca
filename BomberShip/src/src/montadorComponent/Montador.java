@@ -9,15 +9,15 @@ import conexaoComponent.Conexao;
 import conexaoComponent.IBuildConexao;
 import controleComponent.*;
 import marComponent.Celula.*;
-import marComponent.Mar.IBuildMar;
 import marComponent.Mar.Mar;
 import viewComponent.TelaJogo;
 
 public class Montador {
 
 	IBuildConexao conexao;
-	private IBuildMar marAliado;
-	private IBuildMar marInimigo;
+	private Mar marAliado;
+	private Mar marInimigo;
+	private Celula[][] celulasConstrutor;
 
 	private outController controle;
 
@@ -34,9 +34,9 @@ public class Montador {
 
 			String Arq = getMapa(conexao.getPlayer());
 
-			marAliado = criaMar(Time.Aliado);
-			marAliado = leArquivo(Arq, marAliado.getThis());
-			marAliado = montaMar(marAliado.getThis());
+			marAliado = criaMar(marAliado, Time.Aliado);
+			marAliado = leArquivo(Arq, marAliado);
+			marAliado = montaMar(marAliado);
 
 			// conexao de criar tabuleiro inimigo
 			conexao.SetMar(Arq);
@@ -44,13 +44,13 @@ public class Montador {
 
 			controle = new outController(conexao.getThis());
 
-			marInimigo = criaMar(Time.Inimigo);
-			marInimigo = leArquivo(arqInimigo, marInimigo.getThis());
-			marInimigo = montaMar(marInimigo.getThis());
+			marInimigo = criaMar(marInimigo, Time.Inimigo);
+			marInimigo = leArquivo(arqInimigo, marInimigo);
+			marInimigo = montaMar(marInimigo);
 
-			new TelaJogo(marAliado.getThis(), marInimigo.getThis(), conexao.getPlayer());
+			new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
-			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado.getThis()));
+			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado));
 			recebeInput.start();
 
 		} catch (URISyntaxException e) {
@@ -77,12 +77,10 @@ public class Montador {
 
 	}
 
-	public Mar criaMar(Time time) {
-		Mar mar = new Mar();
-		// está estourando o numero de celulas no teste
-		// eu não entendi porque estava estourando antes, mas acredito que esteja certo agora
-		Celula[][] celulas = new Celula[10][10];
-		mar.setMar(celulas, time);
+	public Mar criaMar(Mar mar, Time time) {
+		mar = new Mar(); 
+		celulasConstrutor = new Celula[10][10];
+		mar.setMar(celulasConstrutor, time);
 
 		return mar;
 	}
@@ -134,8 +132,7 @@ public class Montador {
 					Agua water = new Agua(i, j, '~');
 					try {
 						mar.insereCelula(water);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
+					} catch (Exception e) { 
 						e.printStackTrace();
 					}
 				}

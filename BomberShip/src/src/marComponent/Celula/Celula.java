@@ -1,21 +1,27 @@
 package marComponent.Celula;
 
 import java.awt.Color;
-import java.awt.Font; 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import controleComponent.Bomba;
+import controleComponent.IMarListener;
 import controleComponent.Time;
 import controleComponent.outController;
 
-public class Celula extends JButton implements ICelulaPropriedades {
+public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor, ActionListener  {
 
 	private static final long serialVersionUID = -4497235678407832554L;
 	protected ImageIcon imagem;
 	protected int linha, coluna;
 	protected boolean celulaRevelada;
 	public char tipo; 
+	
+	IMarListener controle;
 
 	public Celula() {
 		super();
@@ -66,8 +72,14 @@ public class Celula extends JButton implements ICelulaPropriedades {
 
 	}
 
-	public void setControle(outController controle) {  
-		addActionListener(controle);
+	public void setControle(outController control) {  
+		this.controle = control;
+		addActionListener(this);
 		this.setEnabled(true);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+	controle.celulaAcionada(1, 1);
+		
 	}
 }
