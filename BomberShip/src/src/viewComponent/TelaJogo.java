@@ -1,19 +1,14 @@
 package viewComponent;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Container;
+import java.awt.Color; 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import marComponent.Celula.Celula;
-import marComponent.Mar.Mar;
+import marComponent.Mar.IMarVisual;
 
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JFrame; 
+import javax.swing.JPanel; 
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
@@ -24,8 +19,8 @@ public class TelaJogo extends JFrame {
 	JPanel tela;
 	JPanel tabuleiroView;
 	Celula[][] celula;
-	Mar marPlayer1;
-	Mar marPlayer2;
+	IMarVisual marPlayer1;
+	IMarVisual marPlayer2;
 	int numPlayer;
 
 	IBuildView viewP1 = new PlayerView();
@@ -33,7 +28,7 @@ public class TelaJogo extends JFrame {
 
 	final String host = "Host";
 
-	public TelaJogo(Mar marPlayer1, Mar marPlayer2, String Player) {
+	public TelaJogo(IMarVisual marPlayer1, IMarVisual marPlayer2, String Player) {
 
 		this.marPlayer1 = marPlayer1;
 		this.marPlayer2 = marPlayer2;
@@ -59,12 +54,12 @@ public class TelaJogo extends JFrame {
 		JPanel player1View = new JPanel();
 		JPanel itensPlayer1View = new JPanel();
 
-		tabuleiroView.add(viewP1.criaPlayerView(player1View, itensPlayer1View, "Aliado", marPlayer1));
+		tabuleiroView.add(viewP1.criaPlayerView(player1View, itensPlayer1View, "Aliado", marPlayer1.getThis()));
 
 		JPanel player2View = new JPanel();
 		JPanel itensPlayer2View = new JPanel();
 
-		tabuleiroView.add(viewP2.criaPlayerView(player2View, itensPlayer2View, "Inimigo", marPlayer2));
+		tabuleiroView.add(viewP2.criaPlayerView(player2View, itensPlayer2View, "Inimigo", marPlayer2.getThis()));
 
 		tela.add(tabuleiroView);
 

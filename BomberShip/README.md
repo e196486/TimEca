@@ -131,12 +131,18 @@ Interfaces | `-`
 `Interface responsável pela comunicação com mar e impressão das atualizações de jogo`
 
 ~~~
-<Interface em Java.>
+public interface IMarVisual {
+
+	public Mar getThis();
+	public Component getcelulaMar(int coluna, int linha);
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`getThis()` | `Pega o objeto Mar para passar por parâmetro`
+`getcelulaMar(int coluna, int linha)` | `Pega a celula referente a linha e coluna da visualização.`
 
 
 ### Interface `IMarListener`
@@ -192,6 +198,8 @@ public interface IBuildMar {
 	public void setMar(Celula[][] mar, Time time);
 	public Celula[][] getMar();
 	public char getTipoCelula(int coluna, int linha);
+	Component getcelulaMar(int coluna, int linha);
+	public Mar getThis();
 }
 ~~~
 
@@ -204,9 +212,11 @@ Método | Objetivo
 `inserePortaAviao(int x, int y, String sentido)` | `Coloca o PortaAviao e todas suas células no mar e joga um Exception`
 `insereArmadilha(int x, int y)` | `Coloca a Armadilha no mar e joga um Exception`
 `insereBauDoTesouro(int x, int y)` | `Coloca o BauDoTesouro no mar e joga um Exception`
-`setMar(Celula[][] mar, Time time)` | `Seta o mar recebido como o próprio mar e define o seu time`
-`getMar()` | `Devolve o mar setado`
+`setMar(Celula[][] mar, Time time)` | `Seta a matriz recebida no mar e define o seu time`
+`getMar()` | `Devolve a matriz setada`
 `getTipoCelula(int coluna, int linha)` | `Devolve o tipo da célula nas coordenadas dadas como parâmetro`
+`getcelulaMar(int coluna, int linha)` | `Devolve a célula nas coordenadas dadas como parâmetro`
+`getThis()` | `Devolve o mar`
 
  
 
