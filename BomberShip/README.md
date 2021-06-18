@@ -18,6 +18,8 @@
 ## Slides da Prévia
 [Slides Previa](https://drive.google.com/file/d/1fVwJ0_IudIibsqP890Q834rIGh3J3KBR/view?usp=sharing)
 
+# Link para os arquivos java
+[Componentes](https://github.com/e196486/TimEca/tree/master/BomberShip/src/src)
  
 
 # Documentação dos Componentes
