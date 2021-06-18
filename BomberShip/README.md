@@ -131,12 +131,18 @@ Interfaces | `-`
 `Interface responsável pela comunicação com mar e impressão das atualizações de jogo`
 
 ~~~
-<Interface em Java.>
+public interface IMarVisual {
+
+	public Mar getThis();
+	public Component getcelulaMar(int coluna, int linha);
+
+}
 ~~~
 
 Método | Objetivo
 -------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
+`getThis()` | `Pega o objeto Mar para passar por parâmetro`
+`getcelulaMar(int coluna, int linha)` | `Pega a celula referente a linha e coluna da visualização.`
 
 
 ### Interface `IMarListener`

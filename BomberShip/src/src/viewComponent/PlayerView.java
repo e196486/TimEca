@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 
 import controleComponent.Bomba;
 import marComponent.Celula.IMarRefactor;
-import marComponent.Mar.IBuildMar; 
+import marComponent.Mar.IMarVisual; 
 
 public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
 
 	private static final long serialVersionUID = 1L;
 	ItensView itens = new ItensView();
 
-	public Component criaPlayerView(JPanel playerView, JPanel itensPlayerView, String Player, IBuildMar mar) {
+	public Component criaPlayerView(JPanel playerView, JPanel itensPlayerView, String Player, IMarVisual mar) {
 		playerView.setSize(450, 600);
 		playerView.setLayout(new BoxLayout(playerView, BoxLayout.PAGE_AXIS));
 		playerView.setVisible(true);
@@ -45,7 +45,7 @@ public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
 		return playerView;
 	}
 
-	private void adicionaCelulas(Container playerView, IBuildMar mar) {
+	private void adicionaCelulas(Container playerView, IMarVisual mar) {
 
 		for (int coluna = 0; coluna < 10; coluna++)
 			for (int linha = 0; linha < 10; linha++)
