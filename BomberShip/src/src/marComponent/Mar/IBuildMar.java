@@ -5,7 +5,6 @@ import java.awt.Component;
 import controleComponent.Time;
 import marComponent.Celula.Celula;
 
-// A interface é essa, mas não sei mexer direito com ela
 public interface IBuildMar {
 	public Celula insereCelula(Celula c) throws Exception;
 	public boolean insereSubmarino(int x, int y, String sentido) throws Exception;
@@ -17,6 +16,5 @@ public interface IBuildMar {
 	public void setMar(Celula[][] mar, Time time);
 	public Celula[][] getMar();
 	public char getTipoCelula(int coluna, int linha);
-	Component getcelulaMar(int coluna, int linha);
 	public Mar getThis();
 }
