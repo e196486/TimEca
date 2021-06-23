@@ -7,6 +7,6 @@ import marComponent.Mar.IMarVisual;
 
 public interface IBuildView {
 
-	public Component criaPlayerView(JPanel playerView, JPanel itensPlayerView, String Player, IMarVisual mar) ;
+	public Component criaPlayerView(JPanel playerView, ItensView itensPlayerView, String Player, IMarVisual mar) ;
 
 }

@@ -5,8 +5,6 @@ import marComponent.Mar.IBuildMar;
 
 public class outController implements IMarListener {
 
-	// TODO passar os dados de Celula para cá
-
 	IBuildMar mar;
 	Bomba bomba;
 
@@ -34,19 +32,21 @@ public class outController implements IMarListener {
 
 			conexao.enviaDados(Jogada);
 
-			if (bomba.getBombas() > 0)
+			if (bomba.getBombas() > 0) {
 				mar.getCelula(i, j).explode(bomba);
-			if (bomba.dicaEquipada()) {
-				mar.getCelula(i + 1, j).setCelulaRevelada(true);
-				mar.getCelula(i, j + 1).setCelulaRevelada(true);
-				mar.getCelula(i - 1, j).setCelulaRevelada(true);
-				mar.getCelula(i, j - 1).setCelulaRevelada(true);
+
+				if (bomba.dicaEquipada()) {
+					mar.getCelula(i + 1, j).setCelulaRevelada(true);
+					mar.getCelula(i, j + 1).setCelulaRevelada(true);
+					mar.getCelula(i - 1, j).setCelulaRevelada(true);
+					mar.getCelula(i, j - 1).setCelulaRevelada(true);
+				}
+				bomba.usaBomba();
 			}
 
 			bomba.setTurno(false);
 		} else {
 			System.out.println("Aguarde seu turno");
-
 		}
 	}
 

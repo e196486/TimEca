@@ -25,6 +25,9 @@ public class TelaJogo extends JFrame {
 
 	IBuildView viewP1 = new PlayerView();
 	IBuildView viewP2 = new PlayerView();
+	
+	ItensView itensPlayer1View;
+	ItensView itensPlayer2View;
 
 	final String host = "Host";
 
@@ -52,12 +55,12 @@ public class TelaJogo extends JFrame {
 		tabuleiroView.setLayout(tabuleiroLayout);
 
 		JPanel player1View = new JPanel();
-		JPanel itensPlayer1View = new JPanel();
+		itensPlayer1View = new ItensView();
 
 		tabuleiroView.add(viewP1.criaPlayerView(player1View, itensPlayer1View, "Aliado", marPlayer1.getThis()));
 
 		JPanel player2View = new JPanel();
-		JPanel itensPlayer2View = new JPanel();
+		itensPlayer2View = new ItensView();
 
 		tabuleiroView.add(viewP2.criaPlayerView(player2View, itensPlayer2View, "Inimigo", marPlayer2.getThis()));
 
@@ -81,6 +84,14 @@ public class TelaJogo extends JFrame {
 
 		this.setVisible(true);
 
+	}
+	
+	public IItemRefactor getItensPlayer1View(){
+		return itensPlayer1View.getThis();
+	}
+	
+	public IItemRefactor getItensPlayer2View(){
+		return itensPlayer2View;
 	}
 
 }

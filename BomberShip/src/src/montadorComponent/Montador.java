@@ -42,20 +42,25 @@ public class Montador {
 			conexao.SetMar(Arq);
 			arqInimigo = conexao.getMarInimigo();
 
-			Bomba bomba = new Bomba();
+			Bomba bombaAliada = new Bomba();
+			bombaAliada.setTurno(conexao.getPlayer().equals(host));
 
-			bomba.setTurno(conexao.getPlayer().equals(host));
-
-			controle = new outController(conexao.getThis(), bomba);
+			controle = new outController(conexao.getThis(), bombaAliada);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
 			controle.setMar(marInimigo);
 
-			new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
+			TelaJogo telaJogo = new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
-			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado, bomba));
+			bombaAliada.setItensView(telaJogo.getItensPlayer1View());
+			
+			Bomba bombaInimiga = new Bomba();
+			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
+			bombaInimiga.setItensView(telaJogo.getItensPlayer2View());
+			
+			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado, bombaInimiga));
 			recebeInput.start();
 
 		} catch (URISyntaxException e) {
@@ -65,9 +70,7 @@ public class Montador {
 	}
 
 	public String getMapa(String Player) throws URISyntaxException {
-
-		// TODO : transformar
-
+ 
 		int numPlayer;
 		int nivel = 1;
 

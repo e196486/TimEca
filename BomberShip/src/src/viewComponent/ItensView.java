@@ -12,57 +12,69 @@ import javax.swing.border.EmptyBorder;
 public class ItensView extends JPanel implements IItemRefactor {
 
 	private static final long serialVersionUID = 1L;
+	
+	JTextField campoPontos;
+	JTextField campoDicas;
+	JTextField campoMunicao;
+	
+	public ItensView() {
+		
+	}
 
-	public JPanel criaItensView(JPanel itensPlayerView, String Player) {
+	public JPanel criaItensView(String Player) {
 
-		itensPlayerView.setPreferredSize(new Dimension(450, 50));
-		itensPlayerView.setBorder(new EmptyBorder(10, 5, 10, 5));
+		this.setPreferredSize(new Dimension(450, 50));
+		this.setBorder(new EmptyBorder(10, 5, 10, 5));
 		GridLayout itensLayout = new GridLayout(0, 6);
 		itensLayout.setHgap(10);
 		itensLayout.setVgap(10);
-		itensPlayerView.setLayout(itensLayout);
+		this.setLayout(itensLayout);
 
 		JLabel lblPontos = new JLabel("Pontos");
 		lblPontos.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		itensPlayerView.add(lblPontos);
+		this.add(lblPontos);
 
-		JTextField campoPontos = new JTextField("1");
+		campoPontos = new JTextField("1");
 		campoPontos.setBackground(Color.white);
 		campoPontos.setEditable(false);
 		campoPontos.setBounds(1, 1, 50, 50);
-		itensPlayerView.add(campoPontos);
+		this.add(campoPontos);
 
 		JLabel lblDicas = new JLabel("Dicas");
 		lblDicas.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		itensPlayerView.add(lblDicas);
+		this.add(lblDicas);
 
-		JTextField campoDicas = new JTextField("1");
+		campoDicas = new JTextField("1");
 		campoDicas.setBackground(Color.white);
 		campoDicas.setEditable(false);
-		itensPlayerView.add(campoDicas);
+		this.add(campoDicas);
 
 		JLabel lblMunicao = new JLabel("Munição");
 		lblMunicao.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		itensPlayerView.add(lblMunicao);
+		this.add(lblMunicao);
 
-		JTextField campoMunicao = new JTextField("1");
+		campoMunicao = new JTextField("1");
 		campoMunicao.setBackground(Color.white);
 		campoMunicao.setEditable(false);
-		itensPlayerView.add(campoMunicao);
+		this.add(campoMunicao);
 
-		return itensPlayerView;
+		return this;
 
 	}
 
-	public void setPontos(int Pontos) {
-
+	public void setPontos(int Pontos) { 
+		campoPontos.setText(Pontos + "");
 	}
 
 	public void setMunicao(int Municao) {
-
+		campoMunicao.setText(Municao + "");
 	}
 
 	public void setDicas(int Dicas) {
-
+		campoDicas.setText(Dicas + "");
+	}
+	
+	public ItensView getThis() {
+		return this;
 	}
 }

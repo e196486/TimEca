@@ -27,6 +27,7 @@ public class InController implements Runnable {
 
 			if (resposta.equals("fimDeJogo"))
 				fimDeJogo = true;
+			
 			else {
 				System.out.println("novo in: " + resposta); 
 				

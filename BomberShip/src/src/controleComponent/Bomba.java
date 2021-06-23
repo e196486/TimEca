@@ -1,6 +1,9 @@
 package controleComponent;
 
+import viewComponent.IItemRefactor;
+
 public class Bomba {
+	protected IItemRefactor itemView;
 	protected int n_dicas;
 	protected int n_bombas;
 	protected boolean seuTurno;
@@ -9,6 +12,11 @@ public class Bomba {
 	public Bomba() {
 		n_dicas = 1;
 		n_bombas = 50;
+	}
+	public void setItensView(IItemRefactor itemView) {
+		this.itemView = itemView;
+		itemView.setDicas(n_dicas);
+		itemView.setMunicao(n_bombas);
 	}
 	
 	public boolean temDica() {
@@ -35,5 +43,9 @@ public class Bomba {
 	}
 	public Boolean getTurno () {
 		return seuTurno;
+	}
+	public void usaBomba() {
+		n_bombas --;
+		itemView.setMunicao(n_bombas);
 	}
 }

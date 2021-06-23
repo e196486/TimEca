@@ -17,9 +17,10 @@ import marComponent.Mar.IMarVisual;
 public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
 
 	private static final long serialVersionUID = 1L;
-	ItensView itens = new ItensView();
+	ItensView itens;
 
-	public Component criaPlayerView(JPanel playerView, JPanel itensPlayerView, String Player, IMarVisual mar) {
+	public Component criaPlayerView(JPanel playerView, ItensView itensPlayerView, String Player, IMarVisual mar) {
+		itens = itensPlayerView;
 		playerView.setSize(450, 600);
 		playerView.setLayout(new BoxLayout(playerView, BoxLayout.PAGE_AXIS));
 		playerView.setVisible(true);
@@ -40,7 +41,7 @@ public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
 
 		playerView.add(playerTabuleiroView);
 
-		playerView.add(itens.criaItensView(itensPlayerView, Player));
+		playerView.add(itens.criaItensView(Player));
 
 		return playerView;
 	}
