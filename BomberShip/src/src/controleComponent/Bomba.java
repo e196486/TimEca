@@ -3,6 +3,7 @@ package controleComponent;
 public class Bomba {
 	protected int n_dicas;
 	protected int n_bombas;
+	protected boolean seuTurno;
 	protected boolean dicaEquip;
 	
 	public Bomba() {
@@ -28,5 +29,11 @@ public class Bomba {
 	}
 	public int getBombas() {
 		return n_bombas;
+	}
+	public void setTurno (boolean turno) {
+		seuTurno = turno;
+	}
+	public Boolean getTurno () {
+		return seuTurno;
 	}
 }

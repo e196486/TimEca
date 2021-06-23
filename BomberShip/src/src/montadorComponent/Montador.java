@@ -41,8 +41,10 @@ public class Montador {
 			// conexao de criar tabuleiro inimigo
 			conexao.SetMar(Arq);
 			arqInimigo = conexao.getMarInimigo();
-			
+
 			Bomba bomba = new Bomba();
+
+			bomba.setTurno(conexao.getPlayer().equals(host));
 
 			controle = new outController(conexao.getThis(), bomba);
 
@@ -50,7 +52,6 @@ public class Montador {
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
 			controle.setMar(marInimigo);
-			
 
 			new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
@@ -82,7 +83,7 @@ public class Montador {
 	}
 
 	public Mar criaMar(Mar mar, Time time) {
-		mar = new Mar(); 
+		mar = new Mar();
 		celulasConstrutor = new Celula[10][10];
 		mar.setMar(celulasConstrutor, time);
 
@@ -136,7 +137,7 @@ public class Montador {
 					Agua water = new Agua(i, j, '~');
 					try {
 						mar.insereCelula(water);
-					} catch (Exception e) { 
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}

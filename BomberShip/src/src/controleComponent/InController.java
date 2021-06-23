@@ -29,11 +29,12 @@ public class InController implements Runnable {
 				fimDeJogo = true;
 			else {
 				System.out.println("novo in: " + resposta); 
+				
 				int i = Integer.parseInt(resposta.substring(1, 2));
 				int j = Integer.parseInt(resposta.substring(3, 4));
 				
 				mar.getCelula(i, j).explode(bomba);
-				// seta seuTurno = true;
+			    bomba.setTurno(true);
 			}
 
 		}
