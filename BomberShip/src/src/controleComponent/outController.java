@@ -30,7 +30,7 @@ public class outController implements IMarListener {
 	public void celulaAcionada(int i, int j) {
 
 		if (bomba.getTurno()) {
-			System.out.println("Clicou no Inimigo i: " + i + "  j:" + j);
+			logView.updateLog("Atingiu a celula inimiga :" +  "(" + i + ":" + j + ")");   
 			Jogada = "(" + i + ":" + j + ")";
 
 			conexao.enviaDados(Jogada);
@@ -45,11 +45,10 @@ public class outController implements IMarListener {
 					mar.getCelula(i, j - 1).setCelulaRevelada(true);
 				}
 				bomba.usaBomba();
+				logView.setMunicao(bomba.getBombas());
 			}
-
 			bomba.setTurno(false);
-		} else {
-			System.out.println("Aguarde seu turno");
+		} else { 
 			logView.updateLog("Aguarde seu turno");  
 		}
 	}

@@ -55,13 +55,16 @@ public class Montador {
 			TelaJogo telaJogo = new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
 			bombaAliada.setItensView(telaJogo.getItensPlayer1View(), telaJogo.getLogView());
-			controle.setLogView( telaJogo.getLogView());
+			controle.setLogView(telaJogo.getLogView());
 			
 			Bomba bombaInimiga = new Bomba();
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
 			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView()); 
 			
-			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga));
+			InController controleIn = new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga);
+			controleIn.setLogView(telaJogo.getLogView());
+			
+			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
 
 		} catch (URISyntaxException e) {

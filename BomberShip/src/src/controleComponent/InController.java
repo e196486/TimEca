@@ -2,6 +2,7 @@ package controleComponent;
 
 import conexaoComponent.*;
 import marComponent.Mar.Mar;
+import viewComponent.IItemRefactor;
 
 public class InController implements Runnable {
 
@@ -10,6 +11,7 @@ public class InController implements Runnable {
 	private Bomba bombaAliada; 
 	private Bomba bombaInimiga; 
 	private boolean fimDeJogo = false;
+	private IItemRefactor logView;
 
 	public InController(ICommandIn conexao, Mar mar, Bomba bombaAliada,Bomba bombaInimiga) {
 		this.conexao = conexao;
@@ -38,10 +40,16 @@ public class InController implements Runnable {
 				
 				marAliado.getCelula(i, j).explode(bombaInimiga);
 				bombaInimiga.usaBomba();
-			    bombaAliada.setTurno(true);
+			    bombaAliada.setTurno(true); 
+			    logView.updateLog("Sua vez...");
 			}
 
 		}
+	}
+	
+	public void setLogView(IItemRefactor logView) {
+		this.logView = logView;
+		
 	}
 
 }

@@ -74,9 +74,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
-				setSubmarino(sub);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setSubmarino(sub); 
 				return true;
 			}
 			return false;
@@ -87,9 +85,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
-				setSubmarino(sub);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setSubmarino(sub); 
 				return true;
 			}
 			return false;
@@ -107,9 +103,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n2);
 				insereCelula(n3);
 				Cruzeiro cruz = new Cruzeiro(n1, n2, n3);
-				setCruzeiro(cruz);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setCruzeiro(cruz); 
 				return true;
 			}
 			return false;
@@ -122,9 +116,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n2);
 				insereCelula(n3);
 				Cruzeiro sub = new Cruzeiro(n1, n2, n3);
-				setCruzeiro(sub);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setCruzeiro(sub); 
 				return true;
 			}
 			return false;
@@ -145,9 +137,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n3);
 				insereCelula(n4);
 				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
-				setNavioTanque(nt);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setNavioTanque(nt); 
 				return true;
 			}
 			return false;
@@ -163,9 +153,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n3);
 				insereCelula(n4);
 				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
-				setNavioTanque(nt);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setNavioTanque(nt); 
 				return true;
 			}
 			return false;
@@ -188,9 +176,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n4);
 				insereCelula(n5);
 				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
-				setPortaAviao(pa);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setPortaAviao(pa); 
 				return true;
 			}
 			return false;
@@ -208,9 +194,7 @@ public class Mar implements IBuildMar, IMarVisual{
 				insereCelula(n4);
 				insereCelula(n5);
 				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
-				setPortaAviao(pa);
-				// TESTE
-				System.out.println("inseriu :" + n1.tipo);
+				setPortaAviao(pa); 
 				return true;
 			}
 			return false;
@@ -221,9 +205,7 @@ public class Mar implements IBuildMar, IMarVisual{
 	public boolean insereArmadilha(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
 			Celula a = new Armadilha(x, y, 'A');
-			insereCelula(a, imgArmadilhaTubarao);
-			// TESTE
-			System.out.println("inseriu :" + a.tipo);
+			insereCelula(a, imgArmadilhaTubarao); 
 			return true;
 		}
 		return false;
@@ -232,9 +214,7 @@ public class Mar implements IBuildMar, IMarVisual{
 	public boolean insereBauDoTesouro(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
 			Celula b = new BauDoTesouro(x, y, 'B');
-			insereCelula(b, imgBauDoTesouro);
-			// TESTE
-			System.out.println("inseriu :" + b.tipo);
+			insereCelula(b, imgBauDoTesouro); 
 			return true;
 		}
 		return false;

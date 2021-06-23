@@ -20,26 +20,27 @@ public class LogView extends JPanel implements IItemRefactor {
 	}
 
 	public void setPontos(int Pontos) {
-		// TODO Auto-generated method stub
+		texto = "Pontos atualizados!! Quantidade atual: " + Pontos;
+		updateLog(texto);
 		
 	}
 
 	@Override
 	public void setMunicao(int Municao) {
-		// TODO Auto-generated method stub
-		
+		texto = "Munição utilizada. Quantidade restante: " + Municao;
+		updateLog(texto);
 	}
 
 	@Override
 	public void setDicas(int Dicas) {
-		// TODO Auto-generated method stub
-		
+		texto = "Dica utilizada. Quantidade restante: " + Dicas;
+		updateLog(texto);
 	}
 	
 	public void updateLog(String mensagem) {  
 		campoLog.setEditable(true);
-		campoLog.append( "\n" + mensagem );
-		campoLog.setCaretPosition(campoLog.getText().length() - 1);
+		campoLog.append( "\n" + mensagem ); 
+        campoLog.setCaretPosition(campoLog.getText().length() - 1);
 		campoLog.setEditable(false);
 		
 	}
