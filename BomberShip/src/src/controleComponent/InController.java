@@ -1,8 +1,7 @@
 package controleComponent;
 
 import conexaoComponent.*;
-import marComponent.Mar.Mar;
-import viewComponent.IItemRefactor;
+import marComponent.Mar.Mar; 
 import viewComponent.ILogRefactor;
 
 public class InController implements Runnable {
@@ -39,7 +38,7 @@ public class InController implements Runnable {
 				int j = Integer.parseInt(resposta.substring(3, 4));
 				
 				
-				bombaInimiga.usaBomba(marAliado.getCelula(i, j).explode());
+				bombaInimiga.usaBomba(marAliado.getCelula(i, j).explode(),"Inimigo");
 			    bombaAliada.setTurno(true); 
 			    
 			    logView.updateLog("Sua vez...");

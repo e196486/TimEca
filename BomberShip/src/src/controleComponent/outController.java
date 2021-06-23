@@ -2,8 +2,7 @@ package controleComponent;
  
 
 import conexaoComponent.ICommandOut;
-import marComponent.Mar.IMarRefactor;
-import viewComponent.IItemRefactor;
+import marComponent.Mar.IMarRefactor; 
 import viewComponent.ILogRefactor;
 
 public class outController implements IMarListener {
@@ -44,7 +43,7 @@ public class outController implements IMarListener {
 					mar.getCelula(i - 1, j).setCelulaRevelada(true);
 					mar.getCelula(i, j - 1).setCelulaRevelada(true);
 				}
-				bomba.usaBomba(mar.getCelula(i, j).explode( )); 
+				bomba.usaBomba(mar.getCelula(i, j).explode( ),"Você"); 
 			}
 			bomba.setTurno(false);
 		} else { 

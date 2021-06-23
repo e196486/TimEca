@@ -51,6 +51,14 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 
 	public void setCelulaRevelada(boolean celulaRevelada) {
 		this.celulaRevelada = celulaRevelada;
+		
+		if (!celulaRevelada) {
+			setIcon(null);
+			setText(null);
+		}else {
+			setText(tipo + "");
+			
+		}
 	}
 
 	public void dicaIlumina() {

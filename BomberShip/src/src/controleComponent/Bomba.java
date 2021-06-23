@@ -67,32 +67,38 @@ public class Bomba {
 		return seuTurno;
 	}
 
-	public void usaBomba(char tipo) {
+	public void usaBomba(char tipo, String nomeJogador) {
+		String tipoCelula = "";
 		n_bombas--;
 		n_pontos -= 10;
 
 		switch (tipo) {
 		case 'A': 
 			n_pontos += ptsArmadilha;
+			tipoCelula = "Armadilha";
 			break;
 		case 'B': 
 			sorteiaBau();
 			break;
 		case 'S': 
 			n_pontos += ptsSubmarino;
+			tipoCelula = "Submarino";
 			break;
 		case 'C': 
 			n_pontos += ptsCruzeiro;
+			tipoCelula = "Cruzeiro";
 			break;
 		case 'N': 
 			n_pontos += ptsNavioTanque;
+			tipoCelula = "Navio Tanque";
 			break;
 		case 'P':
 			n_pontos += ptsPortaAviao;
+			tipoCelula = "Porta Avião";
 			break;
 
 		}
-
+		logView.updateMunicao(n_bombas, tipoCelula, nomeJogador);
 		atualizaPontos();
 	}
 

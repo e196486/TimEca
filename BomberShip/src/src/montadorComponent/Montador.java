@@ -157,9 +157,10 @@ public class Montador {
 					}
 				}
 
-				if (mar.time == Time.Inimigo)
+				if (mar.time == Time.Inimigo) {
 					mar.celulaMar[i][j].setControle(controle);
-
+					mar.celulaMar[i][j].setCelulaRevelada(false);
+				}
 			}
 		}
 		return mar;
