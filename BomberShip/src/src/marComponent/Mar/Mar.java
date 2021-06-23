@@ -14,7 +14,7 @@ import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
 import marComponent.Pecas.Submarino;
 
-public class Mar implements IBuildMar, IMarVisual{
+public class Mar implements IMarRefactor, IMarVisual{
 	public Celula[][] celulaMar;
 	Submarino sub1;
 	Submarino sub2;

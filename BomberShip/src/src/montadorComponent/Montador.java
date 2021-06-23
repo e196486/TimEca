@@ -64,6 +64,9 @@ public class Montador {
 			InController controleIn = new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga);
 			controleIn.setLogView(telaJogo.getLogView());
 			
+			bombaAliada.setLogView(telaJogo.getLogView());
+			bombaInimiga.setLogView(telaJogo.getLogView());
+			
 			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
 

@@ -11,4 +11,8 @@ public class BauDoTesouro extends Celula{
 		this.tipo = tipo;
 		//imagem =
 	}
+	
+	public char getTipo() {
+		return tipo;
+	}
 }

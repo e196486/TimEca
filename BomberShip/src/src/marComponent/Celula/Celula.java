@@ -13,14 +13,14 @@ import controleComponent.IMarListener;
 import controleComponent.Time;
 import controleComponent.outController;
 
-public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor, ActionListener  {
+public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor, ActionListener {
 
 	private static final long serialVersionUID = -4497235678407832554L;
 	protected ImageIcon imagem;
 	protected int linha, coluna;
 	protected boolean celulaRevelada;
-	public char tipo; 
-	
+	public char tipo;
+
 	IMarListener controle;
 
 	public Celula() {
@@ -29,8 +29,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 		this.setBorderPainted(true);
 		this.setEnabled(false);
 		this.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 15)); // Depois tirar para trocar para imagens
-		
-		
+
 	}
 
 	public ImageIcon getImage() {
@@ -43,7 +42,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 	}
 
 	public void explode(Bomba bomba) {
-		//this.setIcon(img);
+		// this.setIcon(img);
 	}
 
 	public boolean isCelulaRevelada() {
@@ -55,7 +54,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 	}
 
 	public void dicaIlumina() {
-	
+
 	}
 
 	public int getLinha() {
@@ -66,20 +65,25 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 		return coluna;
 	}
 
-	public void setTime(Time time) { 
+	public void setTime(Time time) {
 		Color cor = (time == Time.Aliado) ? new Color(223, 233, 247) : new Color(170, 202, 250);
-		this.setBackground(cor); 
+		this.setBackground(cor);
 
 	}
 
-	public void setControle(outController control) {  
+	public void setControle(outController control) {
 		this.controle = control;
 		addActionListener(this);
 		this.setEnabled(true);
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		controle.celulaAcionada(linha, coluna);
-		
+
 	}
+
+	public char getTipo() {
+		return tipo;
+	}
+ 
 }

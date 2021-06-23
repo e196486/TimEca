@@ -3,7 +3,7 @@ package marComponent.Mar;
 import controleComponent.Time;
 import marComponent.Celula.Celula;
 
-public interface IBuildMar {
+public interface IMarRefactor {
 	public Celula insereCelula(Celula c) throws Exception;
 	public boolean insereSubmarino(int x, int y, String sentido) throws Exception;
 	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception;

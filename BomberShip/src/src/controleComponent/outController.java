@@ -2,12 +2,12 @@ package controleComponent;
  
 
 import conexaoComponent.ICommandOut;
-import marComponent.Mar.IBuildMar;
+import marComponent.Mar.IMarRefactor;
 import viewComponent.IItemRefactor;
 
 public class outController implements IMarListener {
 
-	IBuildMar mar;
+	IMarRefactor mar;
 	Bomba bomba;
 
 	public Time time;
@@ -22,7 +22,7 @@ public class outController implements IMarListener {
 		this.bomba = bomba;
 	}
 
-	public void setMar(IBuildMar mar) {
+	public void setMar(IMarRefactor mar) {
 		this.mar = mar;
 	}
 
@@ -30,7 +30,7 @@ public class outController implements IMarListener {
 	public void celulaAcionada(int i, int j) {
 
 		if (bomba.getTurno()) {
-			logView.updateLog("Atingiu a celula inimiga :" +  "(" + i + ":" + j + ")");   
+			logView.updateLog("Atingiu a celula inimiga: " +  "(" + i + ":" + j + ")");   
 			Jogada = "(" + i + ":" + j + ")";
 
 			conexao.enviaDados(Jogada);

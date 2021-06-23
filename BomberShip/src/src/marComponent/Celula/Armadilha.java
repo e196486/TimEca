@@ -11,12 +11,15 @@ public class Armadilha extends Celula{
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
-		this.tipo = tipo;
-		//imagem =
+		this.tipo = tipo; 
 	}
 	
 	public void explode(Bomba bomba) {
 		setCelulaRevelada(true);
 		// perde pontos
+	}
+	
+	public char getTipo() {
+		return tipo;
 	}
 }
