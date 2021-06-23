@@ -40,7 +40,7 @@ public class TelaJogo extends JFrame {
 		this.setTitle("BomberShip - Player " + numPlayer);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1050, 650);
+		setBounds(0, 0, 1050, 700);
 		tela = new JPanel();
 		tela.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(tela);

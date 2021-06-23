@@ -3,6 +3,7 @@ package viewComponent;
 import java.awt.Color; 
 import java.awt.Dimension; 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea; 
 
 public class LogView extends JPanel implements IItemRefactor {
@@ -10,8 +11,7 @@ public class LogView extends JPanel implements IItemRefactor {
 	private static final long serialVersionUID = -8692875603717573889L;
 	
 	private String texto;
-	JTextArea campoLog;
-	int position = 2;
+	JTextArea campoLog;  
 	
 	public LogView() {
 		texto = 
@@ -36,12 +36,11 @@ public class LogView extends JPanel implements IItemRefactor {
 		
 	}
 	
-	public void updateLog(String mensagem) { 
-		position++;
+	public void updateLog(String mensagem) {  
 		campoLog.setEditable(true);
 		campoLog.append( "\n" + mensagem );
+		campoLog.setCaretPosition(campoLog.getText().length() - 1);
 		campoLog.setEditable(false);
-		campoLog.setCaretPosition(campoLog.getText().length());
 		
 	}
 
@@ -53,10 +52,14 @@ public class LogView extends JPanel implements IItemRefactor {
 		campoLog = new JTextArea();
 		campoLog.setEditable(false);
 		campoLog.setForeground(Color.GRAY);
-		campoLog.setText(texto);
-		campoLog.setBounds(10, 10, 1000, 80);
-
-		this.add(campoLog);
+		campoLog.setText(texto); 
+		
+		JScrollPane scrollLog = new JScrollPane(campoLog);
+		scrollLog.setBounds(10, 10, 1000, 55);
+  
+		
+		
+		this.add(scrollLog);
 		this.setVisible(true);
 		return this;
 	}
