@@ -4,6 +4,7 @@ package controleComponent;
 import conexaoComponent.ICommandOut;
 import marComponent.Mar.IMarRefactor;
 import viewComponent.IItemRefactor;
+import viewComponent.ILogRefactor;
 
 public class outController implements IMarListener {
 
@@ -15,7 +16,7 @@ public class outController implements IMarListener {
 	int i;
 	int j;
 	String Jogada;
-	private IItemRefactor logView;
+	private ILogRefactor logView;
 
 	public outController(ICommandOut conexao, Bomba bomba) {
 		this.conexao = conexao;
@@ -36,7 +37,6 @@ public class outController implements IMarListener {
 			conexao.enviaDados(Jogada);
 
 			if (bomba.getBombas() > 0) {
-				mar.getCelula(i, j).explode(bomba);
 
 				if (bomba.dicaEquipada()) {
 					mar.getCelula(i + 1, j).setCelulaRevelada(true);
@@ -44,8 +44,7 @@ public class outController implements IMarListener {
 					mar.getCelula(i - 1, j).setCelulaRevelada(true);
 					mar.getCelula(i, j - 1).setCelulaRevelada(true);
 				}
-				bomba.usaBomba();
-				logView.setMunicao(bomba.getBombas());
+				bomba.usaBomba(mar.getCelula(i, j).explode( )); 
 			}
 			bomba.setTurno(false);
 		} else { 
@@ -53,8 +52,8 @@ public class outController implements IMarListener {
 		}
 	}
 
-	public void setLogView(IItemRefactor logView) {
-		this.logView = logView;
+	public void setLogView(ILogRefactor iLogRefactor) {
+		this.logView = iLogRefactor;
 		
 	}
 

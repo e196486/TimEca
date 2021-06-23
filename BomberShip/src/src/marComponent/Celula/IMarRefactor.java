@@ -1,10 +1,8 @@
-package marComponent.Celula;
-
-import controleComponent.Bomba;
+package marComponent.Celula; 
 
 public interface IMarRefactor {
 
-	public void explode(Bomba bomba);
+	public char explode( );
 	public boolean isCelulaRevelada();
 	public void setCelulaRevelada(boolean celulaRevelada);
 

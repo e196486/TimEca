@@ -1,8 +1,6 @@
 package marComponent.Celula;
 
-import java.awt.Font;
-
-import controleComponent.Bomba;
+import java.awt.Font; 
 
 public class Navio extends Celula {
 
@@ -15,12 +13,11 @@ public class Navio extends Celula {
 		this.tipo = tipo;
 	}
 
-	public void explode(Bomba bomba) {
+	public char explode() {
 		setCelulaRevelada(true);
-		this.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20)); // depois trocar 
+		this.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20)); 
 		
-		// imagem = explosão
-		// ganha pontos
+		return tipo;
 	}
 
 	public char getTipo() {

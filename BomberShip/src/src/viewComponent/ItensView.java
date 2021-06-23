@@ -77,10 +77,5 @@ public class ItensView extends JPanel implements IItemRefactor {
 	public ItensView getThis() {
 		return this;
 	}
-
-	@Override
-	public void updateLog(String mensagem) {
-		// TODO Auto-generated method stub
-		
-	}
+ 
 }

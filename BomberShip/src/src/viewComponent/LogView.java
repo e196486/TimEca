@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea; 
 
-public class LogView extends JPanel implements IItemRefactor {
+public class LogView extends JPanel implements ILogRefactor {
  
 	private static final long serialVersionUID = -8692875603717573889L;
 	
@@ -19,20 +19,20 @@ public class LogView extends JPanel implements IItemRefactor {
 				+ " Jogo Iniciado";
 	}
 
-	public void setPontos(int Pontos) {
+	public void updatePontos(int Pontos) {
 		texto = "Pontos atualizados!! Quantidade atual: " + Pontos;
 		updateLog(texto);
 		
 	}
 
 	@Override
-	public void setMunicao(int Municao) {
+	public void updateMunicao(int Municao, String tipoCelula) {
 		texto = "Munição utilizada. Quantidade restante: " + Municao;
 		updateLog(texto);
 	}
 
 	@Override
-	public void setDicas(int Dicas) {
+	public void updateDicas(int Dicas) {
 		texto = "Dica utilizada. Quantidade restante: " + Dicas;
 		updateLog(texto);
 	}

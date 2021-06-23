@@ -1,12 +1,10 @@
 package marComponent.Celula;
  
-import javax.swing.ImageIcon;
-
-import controleComponent.Bomba;
+import javax.swing.ImageIcon; 
 
 public interface ICelulaPropriedades {
 	public ImageIcon getImage();
-	public void explode(Bomba bomba);
+	public char explode( );
 	public boolean isCelulaRevelada();
 	public void setCelulaRevelada(boolean celulaRevelada);
 	public void dicaIlumina();

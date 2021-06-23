@@ -1,6 +1,5 @@
 package marComponent.Celula;
-
-import controleComponent.Bomba;
+ 
 
 public class Agua extends Celula{
 	 
@@ -14,8 +13,9 @@ public class Agua extends Celula{
 		//imagem = agua normal
 	}
 	
-	public void explode(Bomba bomba) {
+	public char explode( ) {
 		setCelulaRevelada(true);
 		//imagem = splash
+		return tipo;
 	}
 }

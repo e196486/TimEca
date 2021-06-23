@@ -7,8 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-import controleComponent.Bomba;
+ 
 import controleComponent.IMarListener;
 import controleComponent.Time;
 import controleComponent.outController;
@@ -41,8 +40,9 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 		this.setIcon(img);
 	}
 
-	public void explode(Bomba bomba) {
+	public char explode( ) {
 		// this.setIcon(img);
+		return tipo;
 	}
 
 	public boolean isCelulaRevelada() {

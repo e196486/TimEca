@@ -15,4 +15,9 @@ public class BauDoTesouro extends Celula{
 	public char getTipo() {
 		return tipo;
 	}
+	
+	public char explode( ) {
+		setCelulaRevelada(true); 
+		return tipo;
+	}
 }
