@@ -14,6 +14,7 @@ public class outController implements IMarListener {
 	private ICommandOut conexao;
 	int i;
 	int j;
+	String Jogada;
 	
 	public outController(ICommandOut conexao, Bomba bomba) {
 		this.conexao = conexao;
@@ -25,8 +26,13 @@ public class outController implements IMarListener {
 
 	//Adicionei mar e bomba nessa classe para controlar as açoes.
 	public void celulaAcionada(int i, int j) {
+		
 		System.out.println("Clicou no Inimigo i: "+i+"  j:"+j); 
-		conexao.enviaDados("Jogada");
+		Jogada = "("+i+":"+j+")";
+		
+		conexao.enviaDados(Jogada);
+		
+		
 		if (bomba.getBombas() > 0)
 			mar.getCelula(i, j).explode(bomba);
 		if (bomba.dicaEquipada()) {

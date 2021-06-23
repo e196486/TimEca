@@ -54,7 +54,7 @@ public class Montador {
 
 			new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
-			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado));
+			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado, bomba));
 			recebeInput.start();
 
 		} catch (URISyntaxException e) {
