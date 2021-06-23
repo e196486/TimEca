@@ -6,14 +6,16 @@ import marComponent.Mar.Mar;
 public class InController implements Runnable {
 
 	private ICommandIn conexao;
-	private Mar mar;
-	private Bomba bomba; 
+	private Mar marAliado;
+	private Bomba bombaAliada; 
+	private Bomba bombaInimiga; 
 	private boolean fimDeJogo = false;
 
-	public InController(ICommandIn conexao, Mar mar, Bomba bomba) {
+	public InController(ICommandIn conexao, Mar mar, Bomba bombaAliada,Bomba bombaInimiga) {
 		this.conexao = conexao;
-		this.mar = mar;
-		this.bomba = bomba;
+		this.marAliado = mar;
+		this.bombaAliada = bombaAliada;
+		this.bombaInimiga = bombaInimiga;
 	}
 
 	@Override
@@ -34,8 +36,9 @@ public class InController implements Runnable {
 				int i = Integer.parseInt(resposta.substring(1, 2));
 				int j = Integer.parseInt(resposta.substring(3, 4));
 				
-				mar.getCelula(i, j).explode(bomba);
-			    bomba.setTurno(true);
+				marAliado.getCelula(i, j).explode(bombaInimiga);
+				bombaInimiga.usaBomba();
+			    bombaAliada.setTurno(true);
 			}
 
 		}

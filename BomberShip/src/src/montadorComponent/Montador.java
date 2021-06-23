@@ -60,7 +60,7 @@ public class Montador {
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
 			bombaInimiga.setItensView(telaJogo.getItensPlayer2View());
 			
-			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado, bombaInimiga));
+			Thread recebeInput = new Thread(new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga));
 			recebeInput.start();
 
 		} catch (URISyntaxException e) {
