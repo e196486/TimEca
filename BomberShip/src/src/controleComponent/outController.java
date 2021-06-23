@@ -15,10 +15,12 @@ public class outController implements IMarListener {
 	int i;
 	int j;
 	
-	public outController(ICommandOut conexao, IBuildMar mar, Bomba bomba) {
+	public outController(ICommandOut conexao, Bomba bomba) {
 		this.conexao = conexao;
-		this.mar = mar;
 		this.bomba = bomba;
+	}
+	public void setMar(IBuildMar mar) {
+		this.mar = mar;	
 	}
 
 	//Adicionei mar e bomba nessa classe para controlar as açoes.

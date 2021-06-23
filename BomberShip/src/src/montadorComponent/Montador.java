@@ -44,11 +44,13 @@ public class Montador {
 			
 			Bomba bomba = new Bomba();
 
-			controle = new outController(conexao.getThis(), marAliado, bomba);
+			controle = new outController(conexao.getThis(), bomba);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);
 			marInimigo = montaMar(marInimigo);
+			controle.setMar(marInimigo);
+			
 
 			new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
 
