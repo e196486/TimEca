@@ -17,9 +17,6 @@ public class Armadilha extends Celula{
 	
 	public void explode(Bomba bomba) {
 		setCelulaRevelada(true);
-		if (bomba.getDica()) {
-			dicaIlumina();
-		}
 		// perde pontos
 	}
 }

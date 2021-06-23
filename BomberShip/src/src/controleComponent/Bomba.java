@@ -2,7 +2,13 @@ package controleComponent;
 
 public class Bomba {
 	protected int n_dicas;
+	protected int n_bombas;
 	protected boolean dicaEquip;
+	
+	public Bomba() {
+		n_dicas = 1;
+		n_bombas = 50;
+	}
 	
 	public boolean temDica() {
 		if (n_dicas > 0)
@@ -10,13 +16,17 @@ public class Bomba {
 		return false;
 	}
 	
-	public void equipaDica(boolean dicaEquip) {
-		this.dicaEquip = dicaEquip;
+	public void equipaDica() {
+		if (temDica())
+			this.dicaEquip = true;
 	}
 	
-	public boolean getDica() {
+	public boolean dicaEquipada() {
 		if (dicaEquip)
 			return true;
 		return false;
+	}
+	public int getBombas() {
+		return n_bombas;
 	}
 }

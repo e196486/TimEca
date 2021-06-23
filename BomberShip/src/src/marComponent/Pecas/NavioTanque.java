@@ -1,13 +1,14 @@
 package marComponent.Pecas;
 
+import marComponent.Celula.Celula;
 import marComponent.Celula.Navio;
 
 public class NavioTanque {
-	protected Navio[] NavioTanque = new Navio[4];
+	protected Celula[] NavioTanque = new Navio[4];
 	protected char sentido;
 	protected int tamanho = 4;
 	
-	public NavioTanque (Navio peca1, Navio peca2, Navio peca3, Navio peca4) {
+	public NavioTanque (Celula peca1, Celula peca2, Celula peca3, Celula peca4) {
 		NavioTanque[0] = peca1;
 		NavioTanque[1] = peca2;
 		NavioTanque[2] = peca3;

@@ -17,9 +17,5 @@ public class Agua extends Celula{
 	public void explode(Bomba bomba) {
 		setCelulaRevelada(true);
 		//imagem = splash
-		if (bomba.getDica()) {
-			dicaIlumina();
-		}
-			
 	}
 }

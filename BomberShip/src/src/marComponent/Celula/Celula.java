@@ -79,7 +79,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-	controle.celulaAcionada(linha, coluna);
+		controle.celulaAcionada(linha, coluna);
 		
 	}
 }

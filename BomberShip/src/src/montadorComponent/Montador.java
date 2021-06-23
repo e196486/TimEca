@@ -41,8 +41,10 @@ public class Montador {
 			// conexao de criar tabuleiro inimigo
 			conexao.SetMar(Arq);
 			arqInimigo = conexao.getMarInimigo();
+			
+			Bomba bomba = new Bomba();
 
-			controle = new outController(conexao.getThis());
+			controle = new outController(conexao.getThis(), marAliado, bomba);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
 			marInimigo = leArquivo(arqInimigo, marInimigo);

@@ -69,8 +69,8 @@ public class Mar implements IBuildMar, IMarVisual{
 		if (sentido.equals("h")) {
 
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null) {
-				Navio n1 = new Navio(x, y, 'S');
-				Navio n2 = new Navio(x, y + 1, 'S');
+				Celula n1 = new Navio(x, y, 'S');
+				Celula n2 = new Navio(x, y + 1, 'S');
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
@@ -82,8 +82,8 @@ public class Mar implements IBuildMar, IMarVisual{
 			return false;
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null) {
-				Navio n1 = new Navio(x, y, 'S');
-				Navio n2 = new Navio(x + 1, y, 'S');
+				Celula n1 = new Navio(x, y, 'S');
+				Celula n2 = new Navio(x + 1, y, 'S');
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
@@ -100,9 +100,9 @@ public class Mar implements IBuildMar, IMarVisual{
 	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception {
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null) {
-				Navio n1 = new Navio(x, y, 'C');
-				Navio n2 = new Navio(x, y + 1, 'C');
-				Navio n3 = new Navio(x, y + 2, 'C');
+				Celula n1 = new Navio(x, y, 'C');
+				Celula n2 = new Navio(x, y + 1, 'C');
+				Celula n3 = new Navio(x, y + 2, 'C');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
@@ -115,9 +115,9 @@ public class Mar implements IBuildMar, IMarVisual{
 			return false;
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null && celulaMar[x + 2][y] == null) {
-				Navio n1 = new Navio(x, y, 'C');
-				Navio n2 = new Navio(x + 1, y, 'C');
-				Navio n3 = new Navio(x + 2, y, 'C');
+				Celula n1 = new Navio(x, y, 'C');
+				Celula n2 = new Navio(x + 1, y, 'C');
+				Celula n3 = new Navio(x + 2, y, 'C');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
@@ -136,10 +136,10 @@ public class Mar implements IBuildMar, IMarVisual{
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null
 					&& celulaMar[x][y + 3] == null) {
-				Navio n1 = new Navio(x, y, 'N');
-				Navio n2 = new Navio(x, y + 1, 'N');
-				Navio n3 = new Navio(x, y + 2, 'N');
-				Navio n4 = new Navio(x, y + 3, 'N');
+				Celula n1 = new Navio(x, y, 'N');
+				Celula n2 = new Navio(x, y + 1, 'N');
+				Celula n3 = new Navio(x, y + 2, 'N');
+				Celula n4 = new Navio(x, y + 3, 'N');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
@@ -154,10 +154,10 @@ public class Mar implements IBuildMar, IMarVisual{
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null && celulaMar[x + 2][y] == null
 					&& celulaMar[x + 3][y] == null) {
-				Navio n1 = new Navio(x, y, 'N');
-				Navio n2 = new Navio(x + 1, y, 'N');
-				Navio n3 = new Navio(x + 2, y, 'N');
-				Navio n4 = new Navio(x + 3, y, 'N');
+				Celula n1 = new Navio(x, y, 'N');
+				Celula n2 = new Navio(x + 1, y, 'N');
+				Celula n3 = new Navio(x + 2, y, 'N');
+				Celula n4 = new Navio(x + 3, y, 'N');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
@@ -177,11 +177,11 @@ public class Mar implements IBuildMar, IMarVisual{
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null
 					&& celulaMar[x][y + 3] == null && celulaMar[x][y + 4] == null) {
-				Navio n1 = new Navio(x, y, 'P');
-				Navio n2 = new Navio(x, y + 1, 'P');
-				Navio n3 = new Navio(x, y + 2, 'P');
-				Navio n4 = new Navio(x, y + 3, 'P');
-				Navio n5 = new Navio(x, y + 4, 'P');
+				Celula n1 = new Navio(x, y, 'P');
+				Celula n2 = new Navio(x, y + 1, 'P');
+				Celula n3 = new Navio(x, y + 2, 'P');
+				Celula n4 = new Navio(x, y + 3, 'P');
+				Celula n5 = new Navio(x, y + 4, 'P');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
@@ -197,11 +197,11 @@ public class Mar implements IBuildMar, IMarVisual{
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null && celulaMar[x + 2][y] == null
 					&& celulaMar[x + 3][y] == null && celulaMar[x + 4][y] == null) {
-				Navio n1 = new Navio(x, y, 'P');
-				Navio n2 = new Navio(x + 1, y, 'P');
-				Navio n3 = new Navio(x + 2, y, 'P');
-				Navio n4 = new Navio(x + 3, y, 'P');
-				Navio n5 = new Navio(x + 4, y, 'P');
+				Celula n1 = new Navio(x, y, 'P');
+				Celula n2 = new Navio(x + 1, y, 'P');
+				Celula n3 = new Navio(x + 2, y, 'P');
+				Celula n4 = new Navio(x + 3, y, 'P');
+				Celula n5 = new Navio(x + 4, y, 'P');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
@@ -220,7 +220,7 @@ public class Mar implements IBuildMar, IMarVisual{
 
 	public boolean insereArmadilha(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
-			Armadilha a = new Armadilha(x, y, 'A');
+			Celula a = new Armadilha(x, y, 'A');
 			insereCelula(a, imgArmadilhaTubarao);
 			// TESTE
 			System.out.println("inseriu :" + a.tipo);
@@ -231,7 +231,7 @@ public class Mar implements IBuildMar, IMarVisual{
 
 	public boolean insereBauDoTesouro(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
-			BauDoTesouro b = new BauDoTesouro(x, y, 'B');
+			Celula b = new BauDoTesouro(x, y, 'B');
 			insereCelula(b, imgBauDoTesouro);
 			// TESTE
 			System.out.println("inseriu :" + b.tipo);
@@ -289,5 +289,8 @@ public class Mar implements IBuildMar, IMarVisual{
 	}
 	public Mar getThis() {
 		return this;
+	}
+	public Celula getCelula(int i, int j) {
+		return celulaMar[i][j];
 	}
 }
