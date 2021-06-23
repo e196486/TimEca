@@ -23,6 +23,8 @@ public class Montador {
 
 	private String arqInimigo;
 	private final String host = "Host";
+	
+	String  mapaCSV;
 
 	public Montador(String ip, int porta) {
 
@@ -32,14 +34,14 @@ public class Montador {
 			if (!conexao.conecta())
 				conexao.iniciaServer();
 
-			String Arq = getMapa(conexao.getPlayer());
+			String Arq = getResource(getMapa(conexao.getPlayer()));
 
 			marAliado = criaMar(marAliado, Time.Aliado);
 			marAliado = leArquivo(Arq, marAliado);
 			marAliado = montaMar(marAliado);
 
 			// conexao de criar tabuleiro inimigo
-			conexao.SetMar(Arq);
+			conexao.SetMar(mapaCSV);
 			arqInimigo = conexao.getMarInimigo();
 
 			Bomba bombaAliada = new Bomba();
@@ -48,7 +50,7 @@ public class Montador {
 			controle = new outController(conexao.getThis(), bombaAliada);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
-			marInimigo = leArquivo(arqInimigo, marInimigo);
+			marInimigo = leArquivo(getResource(arqInimigo), marInimigo);
 			marInimigo = montaMar(marInimigo);
 			controle.setMar(marInimigo);
 
@@ -76,20 +78,23 @@ public class Montador {
 
 	}
 
-	public String getMapa(String Player) throws URISyntaxException {
+	public String getMapa(String Player){
  
 		int numPlayer;
 		int nivel = 1;
 
 		numPlayer = (Player.equals(host)) ? 1 : 2;
 
-		String mapaCSV = "marPlayer" + numPlayer + "Level" + nivel + ".csv";
+		 mapaCSV = "marPlayer" + numPlayer + "Level" + nivel + ".csv";
 
+		 return mapaCSV;
+
+	}
+	public String getResource(String mapaCSV) throws URISyntaxException {
 		URL res = Thread.currentThread().getContextClassLoader().getResource(mapaCSV);
 		File file = Paths.get(res.toURI()).toFile();
 		String arquivo1 = file.getAbsolutePath();
 		return arquivo1;
-
 	}
 
 	public Mar criaMar(Mar mar, Time time) {

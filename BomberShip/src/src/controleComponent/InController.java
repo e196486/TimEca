@@ -32,8 +32,7 @@ public class InController implements Runnable {
 			if (resposta.equals("fimDeJogo"))
 				fimDeJogo = true;
 			
-			else {
-				System.out.println("novo in: " + resposta); 
+			else { 
 				
 				int i = Integer.parseInt(resposta.substring(1, 2));
 				int j = Integer.parseInt(resposta.substring(3, 4));

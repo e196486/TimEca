@@ -84,8 +84,7 @@ public class Conexao implements IBuildConexao, ICommandIn,ICommandOut {
 
 		try {
 			dos.writeUTF(jogada);
-			dos.flush();
-			System.out.println("DATA WAS SENT");
+			dos.flush(); 
 		} catch (IOException e) { // InvalidMove && InvalidEnemy
 			erros++;
 			e.printStackTrace();
