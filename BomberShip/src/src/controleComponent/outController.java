@@ -1,7 +1,9 @@
 package controleComponent;
+ 
 
 import conexaoComponent.ICommandOut;
 import marComponent.Mar.IBuildMar;
+import viewComponent.IItemRefactor;
 
 public class outController implements IMarListener {
 
@@ -13,6 +15,7 @@ public class outController implements IMarListener {
 	int i;
 	int j;
 	String Jogada;
+	private IItemRefactor logView;
 
 	public outController(ICommandOut conexao, Bomba bomba) {
 		this.conexao = conexao;
@@ -47,7 +50,13 @@ public class outController implements IMarListener {
 			bomba.setTurno(false);
 		} else {
 			System.out.println("Aguarde seu turno");
+			logView.updateLog("Aguarde seu turno");  
 		}
+	}
+
+	public void setLogView(IItemRefactor logView) {
+		this.logView = logView;
+		
 	}
 
 }

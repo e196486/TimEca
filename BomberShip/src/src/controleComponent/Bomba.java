@@ -4,6 +4,7 @@ import viewComponent.IItemRefactor;
 
 public class Bomba {
 	protected IItemRefactor itemView;
+	protected IItemRefactor logView;
 	protected int n_dicas;
 	protected int n_bombas;
 	protected boolean seuTurno;
@@ -13,8 +14,9 @@ public class Bomba {
 		n_dicas = 1;
 		n_bombas = 50;
 	}
-	public void setItensView(IItemRefactor itemView) {
+	public void setItensView(IItemRefactor itemView, IItemRefactor LogView) {
 		this.itemView = itemView;
+		this.logView = LogView;
 		itemView.setDicas(n_dicas);
 		itemView.setMunicao(n_bombas);
 	}

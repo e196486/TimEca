@@ -1,15 +1,12 @@
 package viewComponent;
-
-import java.awt.Color; 
+ 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import marComponent.Celula.Celula;
-import marComponent.Mar.IMarVisual;
-
+import marComponent.Mar.IMarVisual; 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame; 
-import javax.swing.JPanel; 
-import javax.swing.JTextPane;
+import javax.swing.JPanel;  
 import javax.swing.border.EmptyBorder;
 
 public class TelaJogo extends JFrame {
@@ -28,6 +25,8 @@ public class TelaJogo extends JFrame {
 	
 	ItensView itensPlayer1View;
 	ItensView itensPlayer2View;
+	
+	LogView logView;
 
 	final String host = "Host";
 
@@ -66,21 +65,8 @@ public class TelaJogo extends JFrame {
 
 		tela.add(tabuleiroView);
 
-		JPanel logView = new JPanel();
-		logView.setPreferredSize(new Dimension(1000, 100));
-		tela.setBorder(new EmptyBorder(5, 5, 5, 5));
-		logView.setLayout(null);
-
-		JTextPane campoLog = new JTextPane();
-		campoLog.setEditable(false);
-		campoLog.setForeground(Color.GRAY);
-		campoLog.setText(
-				"-------------------------------------------- campo de atualizações --------------------------------------------\n Jogo Iniciado");
-		campoLog.setBounds(10, 10, 1000, 80);
-
-		logView.add(campoLog);
-		logView.setVisible(true);
-		tela.add(logView);
+		logView = new LogView();
+		tela.add(logView.criaLog());
 
 		this.setVisible(true);
 
@@ -93,5 +79,9 @@ public class TelaJogo extends JFrame {
 	public IItemRefactor getItensPlayer2View(){
 		return itensPlayer2View;
 	}
-
+	
+	public IItemRefactor getLogView(){
+		return logView;
+	}
+	 
 }
