@@ -17,7 +17,8 @@ public class BauDoTesouro extends Celula{
 	}
 	
 	public char explode( ) {
-		setCelulaRevelada(true); 
+		setCelulaRevelada(true);
+		setCelulaDestruida(true);
 		return tipo;
 	}
 }

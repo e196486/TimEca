@@ -30,8 +30,7 @@ public class outController implements IMarListener {
 		if (!bomba.isFimDeJogo()) {
 			if (bomba.getTurno()) {
 				logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
-
-				if (bomba.getBombas() > 0) {
+				if (bomba.getBombas() > 0 && !mar.getCelula(i, j).isCelulaDestruida()) {
 
 					if (bomba.dicaEquipada() && bomba.temDica()) {
 						jogadaDica = true;
@@ -41,7 +40,6 @@ public class outController implements IMarListener {
 						mar.getCelula(i - 1, j).setCelulaRevelada(true);
 						mar.getCelula(i, j - 1).setCelulaRevelada(true);
 					}
-					System.out.println(i + "\n" + j);
 					char tipo = mar.getCelula(i, j).explode();
 					if (tipo == 'S'||tipo == 'C'||tipo == 'N'||tipo == 'P') {
 						boolean navio = mar.getCelula(i, j).getNavio().navioDestruido();
@@ -49,11 +47,12 @@ public class outController implements IMarListener {
 					}else {
 						bomba.usaBomba(tipo, "Você", false);
 					}
+					bomba.setTurno(false);
+					Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
+					conexao.enviaDados(Jogada);
+				} else {
+					logView.updateLog("Célula já destruída");
 				}
-				bomba.setTurno(false);
-
-				Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
-				conexao.enviaDados(Jogada);
 			} else {
 				logView.updateLog("Aguarde seu turno");
 			}

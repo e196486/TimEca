@@ -18,8 +18,8 @@ public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefac
 	private static final long serialVersionUID = -4497235678407832554L;
 	protected ImageIcon imagem;
 	protected int linha, coluna;
-	protected boolean celulaRevelada;
-	protected boolean celulaDestruida;
+	protected boolean celulaRevelada = false;
+	protected boolean celulaDestruida = false;
 	public char tipo;
 
 	IMarListener controle;
