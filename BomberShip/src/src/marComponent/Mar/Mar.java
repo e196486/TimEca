@@ -8,22 +8,15 @@ import controleComponent.Time;
 import marComponent.Celula.Armadilha;
 import marComponent.Celula.BauDoTesouro;
 import marComponent.Celula.Celula;
-import marComponent.Celula.Navio;
+import marComponent.Celula.Peca;
 import marComponent.Pecas.Cruzeiro;
+import marComponent.Pecas.Navio;
 import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
 import marComponent.Pecas.Submarino;
 
 public class Mar implements IMarRefactor, IMarVisual{
 	public Celula[][] celulaMar;
-	Submarino sub1;
-	Submarino sub2;
-	Submarino sub3;
-	Cruzeiro cruz1;
-	Cruzeiro cruz2;
-	NavioTanque tank1;
-	NavioTanque tank2;
-	PortaAviao pa;
 	public Time time;
 
 	ImageIcon imgBombaExplodida;
@@ -69,23 +62,25 @@ public class Mar implements IMarRefactor, IMarVisual{
 		if (sentido.equals("h")) {
 
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null) {
-				Celula n1 = new Navio(x, y, 'S');
-				Celula n2 = new Navio(x, y + 1, 'S');
+				Peca n1 = new Peca(x, y, 'S');
+				Peca n2 = new Peca(x, y + 1, 'S');
 				insereCelula(n1);
 				insereCelula(n2);
-				Submarino sub = new Submarino(n1, n2);
-				setSubmarino(sub); 
+				Navio sub = new Submarino(n1, n2);
+				n1.setNavio(sub);
+				n2.setNavio(sub);
 				return true;
 			}
 			return false;
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null) {
-				Celula n1 = new Navio(x, y, 'S');
-				Celula n2 = new Navio(x + 1, y, 'S');
+				Peca n1 = new Peca(x, y, 'S');
+				Peca n2 = new Peca(x + 1, y, 'S');
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
-				setSubmarino(sub); 
+				n1.setNavio(sub);
+				n2.setNavio(sub); 
 				return true;
 			}
 			return false;
@@ -96,27 +91,31 @@ public class Mar implements IMarRefactor, IMarVisual{
 	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception {
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null) {
-				Celula n1 = new Navio(x, y, 'C');
-				Celula n2 = new Navio(x, y + 1, 'C');
-				Celula n3 = new Navio(x, y + 2, 'C');
+				Peca n1 = new Peca(x, y, 'C');
+				Peca n2 = new Peca(x, y + 1, 'C');
+				Peca n3 = new Peca(x, y + 2, 'C');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
 				Cruzeiro cruz = new Cruzeiro(n1, n2, n3);
-				setCruzeiro(cruz); 
+				n1.setNavio(cruz);
+				n2.setNavio(cruz);
+				n3.setNavio(cruz);
 				return true;
 			}
 			return false;
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null && celulaMar[x + 2][y] == null) {
-				Celula n1 = new Navio(x, y, 'C');
-				Celula n2 = new Navio(x + 1, y, 'C');
-				Celula n3 = new Navio(x + 2, y, 'C');
+				Peca n1 = new Peca(x, y, 'C');
+				Peca n2 = new Peca(x + 1, y, 'C');
+				Peca n3 = new Peca(x + 2, y, 'C');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
-				Cruzeiro sub = new Cruzeiro(n1, n2, n3);
-				setCruzeiro(sub); 
+				Cruzeiro cruz = new Cruzeiro(n1, n2, n3);
+				n1.setNavio(cruz);
+				n2.setNavio(cruz);
+				n3.setNavio(cruz); 
 				return true;
 			}
 			return false;
@@ -128,32 +127,38 @@ public class Mar implements IMarRefactor, IMarVisual{
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null
 					&& celulaMar[x][y + 3] == null) {
-				Celula n1 = new Navio(x, y, 'N');
-				Celula n2 = new Navio(x, y + 1, 'N');
-				Celula n3 = new Navio(x, y + 2, 'N');
-				Celula n4 = new Navio(x, y + 3, 'N');
+				Peca n1 = new Peca(x, y, 'N');
+				Peca n2 = new Peca(x, y + 1, 'N');
+				Peca n3 = new Peca(x, y + 2, 'N');
+				Peca n4 = new Peca(x, y + 3, 'N');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
 				insereCelula(n4);
 				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
-				setNavioTanque(nt); 
+				n1.setNavio(nt);
+				n2.setNavio(nt);
+				n3.setNavio(nt);
+				n4.setNavio(nt);
 				return true;
 			}
 			return false;
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null && celulaMar[x + 2][y] == null
 					&& celulaMar[x + 3][y] == null) {
-				Celula n1 = new Navio(x, y, 'N');
-				Celula n2 = new Navio(x + 1, y, 'N');
-				Celula n3 = new Navio(x + 2, y, 'N');
-				Celula n4 = new Navio(x + 3, y, 'N');
+				Peca n1 = new Peca(x, y, 'N');
+				Peca n2 = new Peca(x + 1, y, 'N');
+				Peca n3 = new Peca(x + 2, y, 'N');
+				Peca n4 = new Peca(x + 3, y, 'N');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
 				insereCelula(n4);
 				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
-				setNavioTanque(nt); 
+				n1.setNavio(nt);
+				n2.setNavio(nt);
+				n3.setNavio(nt);
+				n4.setNavio(nt); 
 				return true;
 			}
 			return false;
@@ -165,36 +170,44 @@ public class Mar implements IMarRefactor, IMarVisual{
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null
 					&& celulaMar[x][y + 3] == null && celulaMar[x][y + 4] == null) {
-				Celula n1 = new Navio(x, y, 'P');
-				Celula n2 = new Navio(x, y + 1, 'P');
-				Celula n3 = new Navio(x, y + 2, 'P');
-				Celula n4 = new Navio(x, y + 3, 'P');
-				Celula n5 = new Navio(x, y + 4, 'P');
+				Peca n1 = new Peca(x, y, 'P');
+				Peca n2 = new Peca(x, y + 1, 'P');
+				Peca n3 = new Peca(x, y + 2, 'P');
+				Peca n4 = new Peca(x, y + 3, 'P');
+				Peca n5 = new Peca(x, y + 4, 'P');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
 				insereCelula(n4);
 				insereCelula(n5);
 				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
-				setPortaAviao(pa); 
+				n1.setNavio(pa);
+				n2.setNavio(pa);
+				n3.setNavio(pa);
+				n4.setNavio(pa);
+				n5.setNavio(pa);
 				return true;
 			}
 			return false;
 		} else if (sentido.equals("v")) {
 			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null && celulaMar[x + 2][y] == null
 					&& celulaMar[x + 3][y] == null && celulaMar[x + 4][y] == null) {
-				Celula n1 = new Navio(x, y, 'P');
-				Celula n2 = new Navio(x + 1, y, 'P');
-				Celula n3 = new Navio(x + 2, y, 'P');
-				Celula n4 = new Navio(x + 3, y, 'P');
-				Celula n5 = new Navio(x + 4, y, 'P');
+				Peca n1 = new Peca(x, y, 'P');
+				Peca n2 = new Peca(x + 1, y, 'P');
+				Peca n3 = new Peca(x + 2, y, 'P');
+				Peca n4 = new Peca(x + 3, y, 'P');
+				Peca n5 = new Peca(x + 4, y, 'P');
 				insereCelula(n1);
 				insereCelula(n2);
 				insereCelula(n3);
 				insereCelula(n4);
 				insereCelula(n5);
 				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
-				setPortaAviao(pa); 
+				n1.setNavio(pa);
+				n2.setNavio(pa);
+				n3.setNavio(pa);
+				n4.setNavio(pa);
+				n5.setNavio(pa); 
 				return true;
 			}
 			return false;
@@ -223,33 +236,6 @@ public class Mar implements IMarRefactor, IMarVisual{
 	public void setMar(Celula[][] mar, Time time) {
 		this.celulaMar = mar;
 		this.time = time;
-	}
-
-	public void setSubmarino(Submarino sub) {
-		if (sub1 == null)
-			this.sub1 = sub;
-		else if (sub2 == null)
-			this.sub2 = sub;
-		else
-			this.sub3 = sub;
-	}
-
-	public void setCruzeiro(Cruzeiro cruz) {
-		if (cruz1 == null)
-			this.cruz1 = cruz;
-		else
-			this.cruz2 = cruz;
-	}
-
-	public void setNavioTanque(NavioTanque tank) {
-		if (tank1 == null)
-			this.tank1 = tank;
-		else
-			this.tank2 = tank;
-	}
-
-	public void setPortaAviao(PortaAviao pa) {
-		this.pa = pa;
 	}
 
 	public Celula[][] getMar() {

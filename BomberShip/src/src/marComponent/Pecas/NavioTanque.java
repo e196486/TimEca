@@ -1,10 +1,10 @@
 package marComponent.Pecas;
 
 import marComponent.Celula.Celula;
-import marComponent.Celula.Navio;
+import marComponent.Celula.Peca;
 
-public class NavioTanque {
-	protected Celula[] NavioTanque = new Navio[4];
+public class NavioTanque extends Navio{
+	protected Celula[] NavioTanque = new Peca[4];
 	protected char sentido;
 	protected int tamanho = 4;
 	
