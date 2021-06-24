@@ -25,7 +25,7 @@ public class Bomba {
 	protected final int dicasMaxBau = 3;
 	protected final int bombasMaxBau = 10;
 	private Time time;
-	
+
 	private boolean fimDeJogo = false;
 
 	public Bomba(Time time) {
@@ -121,9 +121,12 @@ public class Bomba {
 	}
 
 	private void sorteiaBau() {
-		n_pontos += new Random().nextInt(ptsMaxBau);
-		n_bombas += new Random().nextInt(bombasMaxBau);
-		n_dicas += new Random().nextInt(dicasMaxBau);
+		int pontosGanhos = new Random().nextInt(ptsMaxBau);
+		int bombasGanhas = new Random().nextInt(bombasMaxBau);
+		int dicasGanhas = new Random().nextInt(dicasMaxBau);
+
+		logView.updateLog(
+				"você ganhou " + pontosGanhos + " pontos, " + bombasGanhas + " bombas e " + dicasGanhas + " dicas!!");
 
 	}
 
@@ -142,14 +145,12 @@ public class Bomba {
 	}
 
 	public String getResultado() {
-		String Resultado = (n_inimigos != 0)? "perdeu! =(":"ganhou!! =)";
+		String Resultado = (n_inimigos != 0) ? "perdeu! =(" : "ganhou!! =)";
 
-		return  "\n Numero de pontos: " + n_pontos + 
-				"\n Numero de Bombas: " + n_bombas + 
-				"\n Numero de dicas: " + n_dicas + 
-				"\n Numero de inimigos: " + n_inimigos +
-				"\n você "+ Resultado;
+		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
+				+ n_dicas + "\n Numero de inimigos: " + n_inimigos + "\n você " + Resultado;
 	}
+
 	public boolean isFimDeJogo() {
 		return fimDeJogo;
 	}
