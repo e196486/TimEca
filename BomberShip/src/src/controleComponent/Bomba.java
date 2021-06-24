@@ -100,26 +100,34 @@ public class Bomba {
 		case 'S':
 			n_pontos += ptsSubmarino;
 			tipoCelula = "um Submarino";
-			if (bonus)
+			if (bonus) {
 				n_pontos += ptsSubmarino;
+				tipoCelula += ", você o afundou";
+			}
 			break;
 		case 'C':
 			n_pontos += ptsCruzeiro;
 			tipoCelula = "um Cruzeiro";
-			if (bonus)
+			if (bonus) {
 				n_pontos += ptsCruzeiro;
+				tipoCelula += ", você o afundou";
+			}
 			break;
 		case 'N':
 			n_pontos += ptsNavioTanque;
 			tipoCelula = "um Navio Tanque";
-			if (bonus)
+			if (bonus) {
 				n_pontos += ptsNavioTanque;
+				tipoCelula += ", você o afundou";
+			}
 			break;
 		case 'P':
 			n_pontos += ptsPortaAviao;
 			tipoCelula = "um Porta Avião";
-			if (bonus)
+			if (bonus) {
 				n_pontos += ptsPortaAviao;
+				tipoCelula += ", você o afundou";
+			}
 			break;
 		case '~': 
 			tipoCelula = "o Mar";
@@ -127,7 +135,8 @@ public class Bomba {
 		}
 		if ((tipo != 'A') || (tipo != 'B') || (tipo != '~'))
 			n_inimigos--;
-
+		
+		System.out.println("chegou aqui");
 		logView.updateMunicao(n_bombas, tipoCelula, nomeJogador);
 		atualizaPontos();
 	}

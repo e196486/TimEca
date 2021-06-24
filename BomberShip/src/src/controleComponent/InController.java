@@ -36,6 +36,7 @@ public class InController implements Runnable {
 
 				int i = Integer.parseInt(resposta.substring(1, 2));
 				int j = Integer.parseInt(resposta.substring(3, 4));
+				System.out.println("linha:"+ i + "\n" + j);
 				String jogadaDica = resposta.substring(6);
 
 				if (jogadaDica.equals("true"))
@@ -43,7 +44,7 @@ public class InController implements Runnable {
 				
 				char tipo = marAliado.getCelula(i, j).explode();
 				if (tipo == 'S'||tipo == 'C'||tipo == 'N'||tipo == 'P')
-					bombaInimiga.usaBomba(tipo, "O Inimigo", marAliado.getCelula(tipo, j).getNavio().navioDestruido());
+					bombaInimiga.usaBomba(tipo, "O Inimigo", marAliado.getCelula(i, j).getNavio().navioDestruido());
 				else
 					bombaInimiga.usaBomba(tipo, "O Inimigo", false);
 
