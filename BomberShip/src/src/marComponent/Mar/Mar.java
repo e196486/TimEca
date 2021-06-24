@@ -46,9 +46,7 @@ public class Mar implements IMarRefactor, IMarVisual {
 				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
 
 	}
-
-	// TODO : esse método está estourando os limites das celulas, aumentei para
-	// [11][11] como paleativo
+ 
 	public Celula insereCelula(Celula c) throws Exception {
 		int x = c.getLinha();
 		int y = c.getColuna();

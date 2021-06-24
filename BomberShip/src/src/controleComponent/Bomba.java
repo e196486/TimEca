@@ -11,6 +11,7 @@ public class Bomba {
 	protected int n_dicas;
 	protected int n_bombas;
 	protected int n_pontos;
+	protected int n_inimigos;
 	protected boolean seuTurno;
 	protected boolean dicaEquip;
 
@@ -24,11 +25,14 @@ public class Bomba {
 	protected final int dicasMaxBau = 3;
 	protected final int bombasMaxBau = 10;
 	private Time time;
+	
+	private boolean fimDeJogo = false;
 
 	public Bomba(Time time) {
 		n_dicas = 1;
 		n_bombas = 50;
 		n_pontos = 0;
+		n_inimigos = 25;
 		this.time = time;
 
 	}
@@ -75,7 +79,7 @@ public class Bomba {
 
 	public void usaDica(String nomeJogador) {
 		n_dicas--;
-		logView.updateDicas(n_dicas,nomeJogador);
+		logView.updateDicas(n_dicas, nomeJogador);
 		itemView.setDicaUnclicked();
 	}
 
@@ -108,8 +112,10 @@ public class Bomba {
 			n_pontos += ptsPortaAviao;
 			tipoCelula = "Porta Avião";
 			break;
-
 		}
+		if ((tipo != 'A') || (tipo != 'B') || (tipo != '~'))
+			n_inimigos--;
+
 		logView.updateMunicao(n_bombas, tipoCelula, nomeJogador);
 		atualizaPontos();
 	}
@@ -129,5 +135,22 @@ public class Bomba {
 		itemView.setDicas(n_dicas);
 		itemView.setMunicao(n_bombas);
 		itemView.setPontos(n_pontos);
+	}
+
+	public boolean checaVencedor() {
+		return (n_inimigos == 0);
+	}
+
+	public String getResultado() {
+		String Resultado = (n_inimigos != 0)? "perdeu! =(":"ganhou!! =)";
+
+		return  "\n Numero de pontos: " + n_pontos + 
+				"\n Numero de Bombas: " + n_bombas + 
+				"\n Numero de dicas: " + n_dicas + 
+				"\n Numero de inimigos: " + n_inimigos +
+				"\n você "+ Resultado;
+	}
+	public boolean isFimDeJogo() {
+		return fimDeJogo;
 	}
 }

@@ -1,6 +1,5 @@
 package marComponent.Celula;
-
-import java.awt.Font;
+ 
 
 import javax.swing.ImageIcon; 
 

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
- 
+
 import controleComponent.IMarListener;
 import controleComponent.Time;
 import controleComponent.outController;
@@ -40,7 +40,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 		this.setIcon(img);
 	}
 
-	public char explode( ) { 
+	public char explode() {
 		return tipo;
 	}
 
@@ -50,16 +50,16 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 
 	public void setCelulaRevelada(boolean celulaRevelada) {
 		this.celulaRevelada = celulaRevelada;
-		
+
 		if (!celulaRevelada) {
 			setIcon(null);
 			setText(null);
-		}else {
-			if ((tipo=='P')||(tipo=='N')||(tipo=='C')||(tipo=='S')||(tipo=='~'))
+		} else {
+			if ((tipo == 'P') || (tipo == 'N') || (tipo == 'C') || (tipo == 'S') || (tipo == '~'))
 				setText(tipo + "");
 			else
 				setIcon(imagem);
-			
+
 		}
 	}
 
@@ -95,5 +95,5 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 	public char getTipo() {
 		return tipo;
 	}
- 
+
 }

@@ -27,28 +27,29 @@ public class outController implements IMarListener {
 
 	public void celulaAcionada(int i, int j) {
 		boolean jogadaDica = false;
+		if (!bomba.isFimDeJogo()) {
+			if (bomba.getTurno()) {
+				logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
 
-		if (bomba.getTurno()) {
-			logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
+				if (bomba.getBombas() > 0) {
 
-			if (bomba.getBombas() > 0) {
-
-				if (bomba.dicaEquipada() && bomba.temDica()) {
-					jogadaDica = true;
-					bomba.usaDica("Você");
-					mar.getCelula(i + 1, j).setCelulaRevelada(true);
-					mar.getCelula(i, j + 1).setCelulaRevelada(true);
-					mar.getCelula(i - 1, j).setCelulaRevelada(true);
-					mar.getCelula(i, j - 1).setCelulaRevelada(true);
+					if (bomba.dicaEquipada() && bomba.temDica()) {
+						jogadaDica = true;
+						bomba.usaDica("Você");
+						mar.getCelula(i + 1, j).setCelulaRevelada(true);
+						mar.getCelula(i, j + 1).setCelulaRevelada(true);
+						mar.getCelula(i - 1, j).setCelulaRevelada(true);
+						mar.getCelula(i, j - 1).setCelulaRevelada(true);
+					}
+					bomba.usaBomba(mar.getCelula(i, j).explode(), "Você");
 				}
-				bomba.usaBomba(mar.getCelula(i, j).explode(), "Você");
-			}
-			bomba.setTurno(false);
+				bomba.setTurno(false);
 
-			Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
-			conexao.enviaDados(Jogada);
-		} else {
-			logView.updateLog("Aguarde seu turno");
+				Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
+				conexao.enviaDados(Jogada);
+			} else {
+				logView.updateLog("Aguarde seu turno");
+			}
 		}
 	}
 
