@@ -27,7 +27,7 @@ public class InController implements Runnable {
 			if (conexao.getPlayer().equals("Host") && !conexao.getConexaoAceita())
 				conexao.aguardaServerRequest();
 
-			String resposta = conexao.recebeDados();
+			String resposta = conexao.recebeDados(); 
 
 			if (resposta.equals("fimDeJogo"))
 				fimDeJogo = true;
@@ -36,7 +36,10 @@ public class InController implements Runnable {
 				
 				int i = Integer.parseInt(resposta.substring(1, 2));
 				int j = Integer.parseInt(resposta.substring(3, 4));
+				String jogadaDica = resposta.substring(6);
 				
+				if (jogadaDica.equals("true"))
+					bombaInimiga.usaDica("Inimigo");
 				
 				bombaInimiga.usaBomba(marAliado.getCelula(i, j).explode(),"Inimigo");
 			    bombaAliada.setTurno(true); 

@@ -73,9 +73,9 @@ public class Bomba {
 		return seuTurno;
 	}
 
-	public void usaDica() {
+	public void usaDica(String nomeJogador) {
 		n_dicas--;
-		logView.updateDicas(n_dicas);
+		logView.updateDicas(n_dicas,nomeJogador);
 		itemView.setDicaUnclicked();
 	}
 
