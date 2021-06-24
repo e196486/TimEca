@@ -40,8 +40,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 		this.setIcon(img);
 	}
 
-	public char explode( ) {
-		// this.setIcon(img);
+	public char explode( ) { 
 		return tipo;
 	}
 
@@ -57,6 +56,7 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 			setText(null);
 		}else {
 			setText(tipo + "");
+			setIcon(imagem);
 			
 		}
 	}

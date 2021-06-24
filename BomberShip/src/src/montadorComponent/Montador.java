@@ -44,7 +44,7 @@ public class Montador {
 			conexao.SetMar(mapaCSV);
 			arqInimigo = conexao.getMarInimigo();
 
-			Bomba bombaAliada = new Bomba();
+			Bomba bombaAliada = new Bomba(Time.Aliado);
 			bombaAliada.setTurno(conexao.getPlayer().equals(host));
 
 			controle = new outController(conexao.getThis(), bombaAliada);
@@ -59,7 +59,7 @@ public class Montador {
 			bombaAliada.setItensView(telaJogo.getItensPlayer1View(), telaJogo.getLogView());
 			controle.setLogView(telaJogo.getLogView());
 			
-			Bomba bombaInimiga = new Bomba();
+			Bomba bombaInimiga = new Bomba(Time.Inimigo);
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
 			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView()); 
 			

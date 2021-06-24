@@ -13,35 +13,43 @@ public class Bomba {
 	protected int n_pontos;
 	protected boolean seuTurno;
 	protected boolean dicaEquip;
-	
-	
-	/*Pontos ganhos*/
-	protected final int ptsArmadilha = -500 ;
-	protected final int ptsSubmarino = 40 ;
-	protected final int ptsCruzeiro = 60 ;
-	protected final int ptsNavioTanque = 80 ;
-	protected final int ptsPortaAviao = 100 ;
-	protected final int ptsMaxBau = 600 ;
-	protected final int dicasMaxBau = 3 ;
-	protected final int bombasMaxBau = 10 ;
-	
 
-	public Bomba() {
+	/* Pontos ganhos */
+	protected final int ptsArmadilha = -500;
+	protected final int ptsSubmarino = 40;
+	protected final int ptsCruzeiro = 60;
+	protected final int ptsNavioTanque = 80;
+	protected final int ptsPortaAviao = 100;
+	protected final int ptsMaxBau = 600;
+	protected final int dicasMaxBau = 3;
+	protected final int bombasMaxBau = 10;
+	private Time time;
+
+	public Bomba(Time time) {
 		n_dicas = 1;
 		n_bombas = 50;
 		n_pontos = 0;
+		this.time = time;
+
 	}
 
 	public void setItensView(IItemRefactor itemView, ILogRefactor iLogRefactor) {
 		this.itemView = itemView;
 		this.logView = iLogRefactor;
+
+		if (time.equals(Time.Aliado))
+			itemView.setDicaEnable();
+
 		atualizaPontos();
 	}
 
 	public boolean temDica() {
-		if (n_dicas > 0)
-			return true;
-		return false;
+		if (!(n_dicas > 0)) {
+			itemView.setDicaUnclicked();
+			logView.updateLog("Você não tem mais dicas disponíveis");
+		}
+
+		return (n_dicas > 0);
 	}
 
 	public void equipaDica() {
@@ -50,9 +58,7 @@ public class Bomba {
 	}
 
 	public boolean dicaEquipada() {
-		if (dicaEquip)
-			return true;
-		return false;
+		return (itemView.isBtnDicas());
 	}
 
 	public int getBombas() {
@@ -67,28 +73,34 @@ public class Bomba {
 		return seuTurno;
 	}
 
+	public void usaDica() {
+		n_dicas--;
+		logView.updateDicas(n_dicas);
+		itemView.setDicaUnclicked();
+	}
+
 	public void usaBomba(char tipo, String nomeJogador) {
 		String tipoCelula = "";
 		n_bombas--;
 		n_pontos -= 10;
 
 		switch (tipo) {
-		case 'A': 
+		case 'A':
 			n_pontos += ptsArmadilha;
 			tipoCelula = "Armadilha";
 			break;
-		case 'B': 
+		case 'B':
 			sorteiaBau();
 			break;
-		case 'S': 
+		case 'S':
 			n_pontos += ptsSubmarino;
 			tipoCelula = "Submarino";
 			break;
-		case 'C': 
+		case 'C':
 			n_pontos += ptsCruzeiro;
 			tipoCelula = "Cruzeiro";
 			break;
-		case 'N': 
+		case 'N':
 			n_pontos += ptsNavioTanque;
 			tipoCelula = "Navio Tanque";
 			break;
@@ -106,7 +118,7 @@ public class Bomba {
 		n_pontos += new Random().nextInt(ptsMaxBau);
 		n_bombas += new Random().nextInt(bombasMaxBau);
 		n_dicas += new Random().nextInt(dicasMaxBau);
-		
+
 	}
 
 	public void setLogView(ILogRefactor logView) {

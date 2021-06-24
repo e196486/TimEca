@@ -25,8 +25,7 @@ public class outController implements IMarListener {
 	public void setMar(IMarRefactor mar) {
 		this.mar = mar;
 	}
-
-	// Adicionei mar e bomba nessa classe para controlar as açoes.
+ 
 	public void celulaAcionada(int i, int j) {
 
 		if (bomba.getTurno()) {
@@ -37,7 +36,8 @@ public class outController implements IMarListener {
 
 			if (bomba.getBombas() > 0) {
 
-				if (bomba.dicaEquipada()) {
+				if (bomba.dicaEquipada() && bomba.temDica()) {
+					bomba.usaDica();
 					mar.getCelula(i + 1, j).setCelulaRevelada(true);
 					mar.getCelula(i, j + 1).setCelulaRevelada(true);
 					mar.getCelula(i - 1, j).setCelulaRevelada(true);
