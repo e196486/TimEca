@@ -80,7 +80,7 @@ public class TelaJogo extends JFrame {
 		return itensPlayer2View;
 	}
 	
-	public IItemRefactor getLogView(){
+	public ILogRefactor getLogView(){
 		return logView;
 	}
 	 

@@ -23,10 +23,10 @@ public class Montador {
 
 	private String arqInimigo;
 	private final String host = "Host";
-	
-	String  mapaCSV;
 
-	public Montador(String ip, int porta) {
+	String mapaCSV;
+
+	public Montador(String ip, int porta, int nivel) {
 
 		try {
 			conexao = new Conexao(ip, porta);
@@ -34,7 +34,7 @@ public class Montador {
 			if (!conexao.conecta())
 				conexao.iniciaServer();
 
-			String Arq = getResource(getMapa(conexao.getPlayer()));
+			String Arq = getResource(getMapa(conexao.getPlayer(), nivel));
 
 			marAliado = criaMar(marAliado, Time.Aliado);
 			marAliado = leArquivo(Arq, marAliado);
@@ -44,7 +44,7 @@ public class Montador {
 			conexao.SetMar(mapaCSV);
 			arqInimigo = conexao.getMarInimigo();
 
-			Bomba bombaAliada = new Bomba();
+			Bomba bombaAliada = new Bomba(Time.Aliado);
 			bombaAliada.setTurno(conexao.getPlayer().equals(host));
 
 			controle = new outController(conexao.getThis(), bombaAliada);
@@ -58,17 +58,17 @@ public class Montador {
 
 			bombaAliada.setItensView(telaJogo.getItensPlayer1View(), telaJogo.getLogView());
 			controle.setLogView(telaJogo.getLogView());
-			
-			Bomba bombaInimiga = new Bomba();
+
+			Bomba bombaInimiga = new Bomba(Time.Inimigo);
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
-			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView()); 
-			
+			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView());
+
 			InController controleIn = new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga);
 			controleIn.setLogView(telaJogo.getLogView());
-			
+
 			bombaAliada.setLogView(telaJogo.getLogView());
 			bombaInimiga.setLogView(telaJogo.getLogView());
-			
+
 			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
 
@@ -78,18 +78,18 @@ public class Montador {
 
 	}
 
-	public String getMapa(String Player){
- 
+	public String getMapa(String Player, int nivel) {
+
 		int numPlayer;
-		int nivel = 1;
 
 		numPlayer = (Player.equals(host)) ? 1 : 2;
 
-		 mapaCSV = "marPlayer" + numPlayer + "Level" + nivel + ".csv";
+		mapaCSV = "marPlayer" + numPlayer + "Level" + nivel + ".csv";
 
-		 return mapaCSV;
+		return mapaCSV;
 
 	}
+
 	public String getResource(String mapaCSV) throws URISyntaxException {
 		URL res = Thread.currentThread().getContextClassLoader().getResource(mapaCSV);
 		File file = Paths.get(res.toURI()).toFile();
@@ -157,9 +157,10 @@ public class Montador {
 					}
 				}
 
-				if (mar.time == Time.Inimigo)
+				if (mar.time == Time.Inimigo) {
 					mar.celulaMar[i][j].setControle(controle);
-
+					mar.celulaMar[i][j].setCelulaRevelada(false);
+				}
 			}
 		}
 		return mar;

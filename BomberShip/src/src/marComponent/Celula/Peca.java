@@ -1,40 +1,28 @@
 package marComponent.Celula;
+ 
 
-import java.awt.Font;
+import javax.swing.ImageIcon; 
 
-import controleComponent.Bomba;
-import marComponent.Pecas.Navio;
-
-public class Peca extends Celula {
+public class Navio extends Celula {
 
 	private static final long serialVersionUID = -137272376822387627L;
-	
-	private Navio navio;
 
-	public Peca(int linha, int coluna, char tipo) {
+	public Navio(int linha, int coluna, char tipo) {
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
 		this.tipo = tipo;
 	}
 
-	public void explode(Bomba bomba) {
+	public char explode() {
 		setCelulaRevelada(true);
-		this.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20)); // depois trocar 
-		
-		// imagem = explosão
-		// ganha pontos
+		this.setText(""); 
+		this.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage()
+				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+		return tipo;
 	}
 
 	public char getTipo() {
 		return tipo;
-	}
-	
-	public void setNavio(Navio navio) {
-		this.navio = navio;
-	}
-	
-	public Navio getNavio() {
-		return navio;
 	}
 }

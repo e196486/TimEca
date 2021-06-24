@@ -1,6 +1,6 @@
 package marComponent.Celula;
 
-import controleComponent.Bomba;
+import javax.swing.ImageIcon;
 
 public class Agua extends Celula{
 	 
@@ -14,8 +14,11 @@ public class Agua extends Celula{
 		//imagem = agua normal
 	}
 	
-	public void explode(Bomba bomba) {
+	public char explode( ) {
 		setCelulaRevelada(true);
-		//imagem = splash
+		this.setText("");
+		this.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/imgSplash.png")).getImage()
+				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+		return tipo;
 	}
 }

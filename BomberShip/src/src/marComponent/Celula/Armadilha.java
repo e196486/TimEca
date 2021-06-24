@@ -1,6 +1,5 @@
 package marComponent.Celula;
-
-import controleComponent.Bomba;
+ 
 
 
 public class Armadilha extends Celula{
@@ -14,9 +13,10 @@ public class Armadilha extends Celula{
 		this.tipo = tipo; 
 	}
 	
-	public void explode(Bomba bomba) {
+	public char explode( ) {
 		setCelulaRevelada(true);
 		// perde pontos
+		return tipo;
 	}
 	
 	public char getTipo() {

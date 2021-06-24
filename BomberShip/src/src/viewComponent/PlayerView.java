@@ -8,13 +8,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import controleComponent.Bomba;
-import marComponent.Celula.IMarRefactor;
+import javax.swing.JPanel;  
 import marComponent.Mar.IMarVisual; 
 
-public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
+public class PlayerView extends JPanel implements IBuildView {
 
 	private static final long serialVersionUID = 1L;
 	ItensView itens;
@@ -53,23 +50,5 @@ public class PlayerView extends JPanel implements IBuildView,IMarRefactor {
 				playerView.add(mar.getcelulaMar(coluna,linha));
 		// TODO: alterar aqui para interfaces
 	}
-
-	@Override
-	public void explode(Bomba bomba) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isCelulaRevelada() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void setCelulaRevelada(boolean celulaRevelada) {
-		// TODO Auto-generated method stub
-		
-	}
-
+   
 }

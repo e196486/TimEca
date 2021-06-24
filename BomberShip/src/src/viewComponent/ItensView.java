@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -12,13 +16,15 @@ import javax.swing.border.EmptyBorder;
 public class ItensView extends JPanel implements IItemRefactor {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	JTextField campoPontos;
-	JTextField campoDicas;
+	JButton campoDicas;
 	JTextField campoMunicao;
-	
+
+	boolean btnDicas = false;
+
 	public ItensView() {
-		
+
 	}
 
 	public JPanel criaItensView(String Player) {
@@ -44,9 +50,9 @@ public class ItensView extends JPanel implements IItemRefactor {
 		lblDicas.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		this.add(lblDicas);
 
-		campoDicas = new JTextField("1");
+		campoDicas = new JButton("1");
 		campoDicas.setBackground(Color.white);
-		campoDicas.setEditable(false);
+		campoDicas.setEnabled(false);
 		this.add(campoDicas);
 
 		JLabel lblMunicao = new JLabel("Munição");
@@ -62,7 +68,7 @@ public class ItensView extends JPanel implements IItemRefactor {
 
 	}
 
-	public void setPontos(int Pontos) { 
+	public void setPontos(int Pontos) {
 		campoPontos.setText(Pontos + "");
 	}
 
@@ -73,14 +79,34 @@ public class ItensView extends JPanel implements IItemRefactor {
 	public void setDicas(int Dicas) {
 		campoDicas.setText(Dicas + "");
 	}
-	
+
+	public void setDicaEnable() {
+		campoDicas.setEnabled(true);
+		campoDicas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				if (!btnDicas) {
+					btnDicas = true;
+					campoDicas.setBackground(Color.lightGray);
+				} else {
+					btnDicas = false;
+					campoDicas.setBackground(Color.WHITE);
+				}
+
+			}
+		});
+	}
+
+	public boolean isBtnDicas() {
+		return btnDicas;
+	}
+
 	public ItensView getThis() {
 		return this;
 	}
 
-	@Override
-	public void updateLog(String mensagem) {
-		// TODO Auto-generated method stub
-		
+	public void setDicaUnclicked() {
+		btnDicas = false;
+		campoDicas.setBackground(Color.WHITE);
 	}
+
 }
