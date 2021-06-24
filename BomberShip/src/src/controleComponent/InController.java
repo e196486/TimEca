@@ -1,19 +1,19 @@
 package controleComponent;
 
-import conexaoComponent.*; 
-import marComponent.Mar.Mar;
+import conexaoComponent.*;
+import marComponent.Mar.IMarRefactor;
 import viewComponent.ILogRefactor;
 
 public class InController implements Runnable {
 
 	private ICommandIn conexao;
-	private Mar marAliado;
+	private IMarRefactor marAliado;
 	private Bomba bombaAliada;
 	private Bomba bombaInimiga;
 	private boolean fimDeJogo = false;
 	private ILogRefactor logView;
 
-	public InController(ICommandIn conexao, Mar mar, Bomba bombaAliada, Bomba bombaInimiga) {
+	public InController(ICommandIn conexao, IMarRefactor mar, Bomba bombaAliada, Bomba bombaInimiga) {
 		this.conexao = conexao;
 		this.marAliado = mar;
 		this.bombaAliada = bombaAliada;

@@ -1,6 +1,6 @@
 package marComponent.Celula; 
 
-public interface IMarRefactor {
+public interface ICelulaRefactor {
 
 	public char explode( );
 	public boolean isCelulaRevelada();
