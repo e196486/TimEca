@@ -55,8 +55,10 @@ public class Celula extends JButton implements ICelulaPropriedades, IMarRefactor
 			setIcon(null);
 			setText(null);
 		}else {
-			setText(tipo + "");
-			setIcon(imagem);
+			if ((tipo=='P')||(tipo=='N')||(tipo=='C')||(tipo=='S')||(tipo=='~'))
+				setText(tipo + "");
+			else
+				setIcon(imagem);
 			
 		}
 	}

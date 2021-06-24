@@ -1,6 +1,8 @@
 package marComponent.Celula;
 
-import java.awt.Font; 
+import java.awt.Font;
+
+import javax.swing.ImageIcon; 
 
 public class Navio extends Celula {
 
@@ -15,8 +17,9 @@ public class Navio extends Celula {
 
 	public char explode() {
 		setCelulaRevelada(true);
-		this.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20)); 
-		
+		this.setText(""); 
+		this.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage()
+				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
 		return tipo;
 	}
 

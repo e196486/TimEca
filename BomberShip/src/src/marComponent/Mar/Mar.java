@@ -14,7 +14,7 @@ import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
 import marComponent.Pecas.Submarino;
 
-public class Mar implements IMarRefactor, IMarVisual{
+public class Mar implements IMarRefactor, IMarVisual {
 	public Celula[][] celulaMar;
 	Submarino sub1;
 	Submarino sub2;
@@ -74,7 +74,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
-				setSubmarino(sub); 
+				setSubmarino(sub);
 				return true;
 			}
 			return false;
@@ -85,7 +85,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n1);
 				insereCelula(n2);
 				Submarino sub = new Submarino(n1, n2);
-				setSubmarino(sub); 
+				setSubmarino(sub);
 				return true;
 			}
 			return false;
@@ -103,7 +103,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n2);
 				insereCelula(n3);
 				Cruzeiro cruz = new Cruzeiro(n1, n2, n3);
-				setCruzeiro(cruz); 
+				setCruzeiro(cruz);
 				return true;
 			}
 			return false;
@@ -116,7 +116,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n2);
 				insereCelula(n3);
 				Cruzeiro sub = new Cruzeiro(n1, n2, n3);
-				setCruzeiro(sub); 
+				setCruzeiro(sub);
 				return true;
 			}
 			return false;
@@ -137,7 +137,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n3);
 				insereCelula(n4);
 				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
-				setNavioTanque(nt); 
+				setNavioTanque(nt);
 				return true;
 			}
 			return false;
@@ -153,7 +153,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n3);
 				insereCelula(n4);
 				NavioTanque nt = new NavioTanque(n1, n2, n3, n4);
-				setNavioTanque(nt); 
+				setNavioTanque(nt);
 				return true;
 			}
 			return false;
@@ -176,7 +176,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n4);
 				insereCelula(n5);
 				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
-				setPortaAviao(pa); 
+				setPortaAviao(pa);
 				return true;
 			}
 			return false;
@@ -194,7 +194,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 				insereCelula(n4);
 				insereCelula(n5);
 				PortaAviao pa = new PortaAviao(n1, n2, n3, n4, n5);
-				setPortaAviao(pa); 
+				setPortaAviao(pa);
 				return true;
 			}
 			return false;
@@ -205,7 +205,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 	public boolean insereArmadilha(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
 			Celula a = new Armadilha(x, y, 'A');
-			insereCelula(a, imgArmadilhaTubarao); 
+			insereCelula(a, imgArmadilhaTubarao);
 			return true;
 		}
 		return false;
@@ -214,7 +214,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 	public boolean insereBauDoTesouro(int x, int y) throws Exception {
 		if (celulaMar[x][y] == null) {
 			Celula b = new BauDoTesouro(x, y, 'B');
-			insereCelula(b, imgBauDoTesouro); 
+			insereCelula(b, imgBauDoTesouro);
 			return true;
 		}
 		return false;
@@ -267,10 +267,13 @@ public class Mar implements IMarRefactor, IMarVisual{
 	public Component getcelulaMar(int coluna, int linha) {
 		return celulaMar[coluna][linha];
 	}
+
 	public Mar getThis() {
 		return this;
 	}
+
 	public Celula getCelula(int i, int j) {
 		return celulaMar[i][j];
 	}
+
 }

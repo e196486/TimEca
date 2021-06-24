@@ -1,5 +1,6 @@
 package marComponent.Celula;
- 
+
+import javax.swing.ImageIcon;
 
 public class Agua extends Celula{
 	 
@@ -15,7 +16,8 @@ public class Agua extends Celula{
 	
 	public char explode( ) {
 		setCelulaRevelada(true);
-		//imagem = splash
+		this.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/imgSplash.png")).getImage()
+				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
 		return tipo;
 	}
 }
