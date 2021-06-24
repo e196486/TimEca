@@ -69,11 +69,11 @@ public class TelaMenu extends JFrame {
 		campoPorta.setEditable(true);
 		menuInicial.add(campoPorta);
 
-		JLabel lblInsiraNivel = new JLabel("Escolha um nível para jogar:");
+		JLabel lblInsiraNivel = new JLabel("Escolha um nível para seu tabuleiro:");
 		lblInsiraNivel.setBounds(50, 305, 300, 20);
 		menuInicial.add(lblInsiraNivel);
 
-		String fases[] = { "1 - Facil", "2 - Médio", "3 - Dificil" };
+		String fases[] = { "1 - Fácil", "2 - Médio", "3 - Difícil" };
 		JComboBox cb = new JComboBox(fases);
 		cb.setBackground(Color.white);
 		cb.setBounds(50, 330, 320, 30);
