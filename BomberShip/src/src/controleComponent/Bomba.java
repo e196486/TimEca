@@ -21,7 +21,7 @@ public class Bomba {
 	protected final int ptsCruzeiro = 60;
 	protected final int ptsNavioTanque = 80;
 	protected final int ptsPortaAviao = 100;
-	protected final int ptsMaxBau = 600;
+	protected final int ptsMaxBau = 12;
 	protected final int dicasMaxBau = 3;
 	protected final int bombasMaxBau = 10;
 	private Time time;
@@ -29,8 +29,6 @@ public class Bomba {
 	private boolean fimDeJogo = false;
 
 	public Bomba(Time time) {
-		n_dicas = 1;
-		n_bombas = 50;
 		n_pontos = 0;
 		n_inimigos = 25;
 		this.time = time;
@@ -67,6 +65,12 @@ public class Bomba {
 
 	public int getBombas() {
 		return n_bombas;
+	}
+	public void setBombas(int n_bombas) {
+		this.n_bombas = n_bombas;
+	}
+	public void setDicas(int n_dicas) {
+		this.n_dicas = n_dicas;
 	}
 
 	public void setTurno(boolean turno) {
@@ -145,9 +149,12 @@ public class Bomba {
 		int pontosGanhos = new Random().nextInt(ptsMaxBau);
 		int bombasGanhas = new Random().nextInt(bombasMaxBau);
 		int dicasGanhas = new Random().nextInt(dicasMaxBau);
+		n_pontos += pontosGanhos*50;
+		n_bombas += bombasGanhas;
+		n_dicas += dicasGanhas;
 
 		logView.updateLog(
-				"você ganhou " + pontosGanhos + " pontos, " + bombasGanhas + " bombas e " + dicasGanhas + " dicas!!");
+				"você ganhou " + pontosGanhos*50 + " pontos, " + bombasGanhas + " bombas e " + dicasGanhas + " dicas!!");
 
 	}
 

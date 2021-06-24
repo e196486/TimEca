@@ -8,6 +8,8 @@ public interface IBuildConexao {
 	public String getPlayer();
 	public String getMarInimigo();
 	public Conexao getThis();
+	public void setNivel(String snivel);
+	public String getNivelInimigo();
 
 }
 

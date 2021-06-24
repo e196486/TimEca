@@ -116,6 +116,13 @@ public class Conexao implements IBuildConexao, ICommandIn,ICommandOut {
 		enviaDados(Mar);
 
 	}
+	
+	public void setNivel(String nivel) {
+		enviaDados(nivel);
+	}
+	public String getNivelInimigo() {
+		return recebeDados();
+	}
 
 	public Conexao getThis() {
 		return this;

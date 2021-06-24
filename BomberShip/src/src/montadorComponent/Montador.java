@@ -25,7 +25,10 @@ public class Montador {
 	private final String host = "Host";
 
 	String mapaCSV;
+	String snivel;
+	int nivelInimigo;
 
+	
 	public Montador(String ip, int porta, int nivel) {
 
 		try {
@@ -33,24 +36,43 @@ public class Montador {
 
 			if (!conexao.conecta())
 				conexao.iniciaServer();
-
+			
+			snivel = Integer.toString(nivel);
+			conexao.setNivel(snivel);
+			nivelInimigo = Integer.parseInt(conexao.getNivelInimigo());
+			
 			String Arq = getResource(getMapa(conexao.getPlayer(), nivel));
 
 			marAliado = criaMar(marAliado, Time.Aliado);
-			marAliado = leArquivo(Arq, marAliado);
+			marAliado = leArquivo(Arq, marAliado, nivel);
 			marAliado = montaMar(marAliado);
 
 			// conexao de criar tabuleiro inimigo
 			conexao.SetMar(mapaCSV);
 			arqInimigo = conexao.getMarInimigo();
-
+			
 			Bomba bombaAliada = new Bomba(Time.Aliado);
+			
+			switch (nivel) {
+			case 1:
+				bombaAliada.setBombas(90);
+				bombaAliada.setDicas(3);
+				break;
+			case 2:
+				bombaAliada.setBombas(70);
+				bombaAliada.setDicas(2);
+				break;
+			case 3: 
+				bombaAliada.setBombas(50);
+				bombaAliada.setDicas(1);
+				break;
+			}
 			bombaAliada.setTurno(conexao.getPlayer().equals(host));
 
 			controle = new outController(conexao.getThis(), bombaAliada);
 
 			marInimigo = criaMar(marInimigo, Time.Inimigo);
-			marInimigo = leArquivo(getResource(arqInimigo), marInimigo);
+			marInimigo = leArquivo(getResource(arqInimigo), marInimigo, nivelInimigo);
 			marInimigo = montaMar(marInimigo);
 			controle.setMar(marInimigo);
 
@@ -60,6 +82,22 @@ public class Montador {
 			controle.setLogView(telaJogo.getLogView());
 
 			Bomba bombaInimiga = new Bomba(Time.Inimigo);
+			
+			switch (nivelInimigo) {
+			case 1:
+				bombaInimiga.setBombas(90);
+				bombaInimiga.setDicas(3);
+				break;
+			case 2:
+				bombaInimiga.setBombas(70);
+				bombaInimiga.setDicas(2);
+				break;
+			case 3: 
+				bombaInimiga.setBombas(50);
+				bombaInimiga.setDicas(1);
+				break;
+			}
+			
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
 			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView());
 
@@ -105,14 +143,14 @@ public class Montador {
 		return mar;
 	}
 
-	public Mar leArquivo(String Arq, Mar mar) {
+	public Mar leArquivo(String Arq, Mar mar, int nivel) {
 
 		try { // o try catch fala se estourou o limite ou se há conflito nos navios
 			CSVHandling csv = new CSVHandling();
 			csv.setDataSource(Arq);
 			String comandos[][] = csv.requestCommands();
 
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 11 + nivel; i++) {
 				int x = Integer.parseInt(comandos[i][0].substring(0, 1));
 				int y = Integer.parseInt(comandos[i][0].substring(2, 3));
 				String sentido = comandos[i][1];
