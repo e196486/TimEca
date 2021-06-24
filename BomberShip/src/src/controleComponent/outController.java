@@ -41,7 +41,12 @@ public class outController implements IMarListener {
 						mar.getCelula(i - 1, j).setCelulaRevelada(true);
 						mar.getCelula(i, j - 1).setCelulaRevelada(true);
 					}
-					bomba.usaBomba(mar.getCelula(i, j).explode(), "Você");
+					char tipo = mar.getCelula(i, j).explode();
+					if (tipo == 'S'||tipo == 'C'||tipo == 'N'||tipo == 'P') {
+						bomba.usaBomba(tipo, "Você", mar.getCelula(tipo, j).getNavio().navioDestruido());
+					}else {
+						bomba.usaBomba(tipo, "Você", false);
+					}
 				}
 				bomba.setTurno(false);
 

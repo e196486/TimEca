@@ -18,4 +18,10 @@ public class PortaAviao extends Navio{
 	public int getTamanho() {
 		return tamanho; 
 	}
+	
+	public boolean navioDestruido() {
+		if (PortaAviao[0].isCelulaDestruida()&&PortaAviao[1].isCelulaDestruida()&&PortaAviao[2].isCelulaDestruida()&&PortaAviao[3].isCelulaDestruida()&&PortaAviao[4].isCelulaDestruida())
+			return true;
+		return false;
+	}
 }

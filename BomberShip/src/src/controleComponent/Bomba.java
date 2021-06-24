@@ -83,7 +83,7 @@ public class Bomba {
 		itemView.setDicaUnclicked();
 	}
 
-	public void usaBomba(char tipo, String nomeJogador) {
+	public void usaBomba(char tipo, String nomeJogador, boolean bonus) {
 		String tipoCelula = "";
 		n_bombas--;
 		n_pontos -= 10;
@@ -100,18 +100,26 @@ public class Bomba {
 		case 'S':
 			n_pontos += ptsSubmarino;
 			tipoCelula = "um Submarino";
+			if (bonus)
+				n_pontos += ptsSubmarino;
 			break;
 		case 'C':
 			n_pontos += ptsCruzeiro;
 			tipoCelula = "um Cruzeiro";
+			if (bonus)
+				n_pontos += ptsCruzeiro;
 			break;
 		case 'N':
 			n_pontos += ptsNavioTanque;
 			tipoCelula = "um Navio Tanque";
+			if (bonus)
+				n_pontos += ptsNavioTanque;
 			break;
 		case 'P':
 			n_pontos += ptsPortaAviao;
 			tipoCelula = "um Porta Avião";
+			if (bonus)
+				n_pontos += ptsPortaAviao;
 			break;
 		case '~': 
 			tipoCelula = "o Mar";

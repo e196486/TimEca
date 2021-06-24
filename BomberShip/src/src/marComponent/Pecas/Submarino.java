@@ -15,4 +15,10 @@ public class Submarino extends Navio{
 	public int getTamanho() {
 		return tamanho; 
 	}
+	
+	public boolean navioDestruido() {
+		if (submarino[0].isCelulaDestruida()&&submarino[1].isCelulaDestruida())
+			return true;
+		return false;
+	}
 }

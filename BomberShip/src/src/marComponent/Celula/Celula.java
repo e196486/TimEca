@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import controleComponent.IMarListener;
 import controleComponent.Time;
 import controleComponent.outController;
+import marComponent.Pecas.Navio;
 
 public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefactor, ActionListener {
 
@@ -18,6 +19,7 @@ public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefac
 	protected ImageIcon imagem;
 	protected int linha, coluna;
 	protected boolean celulaRevelada;
+	protected boolean celulaDestruida;
 	public char tipo;
 
 	IMarListener controle;
@@ -47,7 +49,6 @@ public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefac
 	public boolean isCelulaRevelada() {
 		return celulaRevelada;
 	}
-
 	public void setCelulaRevelada(boolean celulaRevelada) {
 		this.celulaRevelada = celulaRevelada;
 
@@ -61,6 +62,12 @@ public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefac
 				setIcon(imagem);
 
 		}
+	}
+	public boolean isCelulaDestruida() {
+		return celulaDestruida;
+	}
+	public void setCelulaDestruida(boolean celulaDestruida) {
+		this.celulaDestruida = celulaDestruida;
 	}
 
 	public void dicaIlumina() {
@@ -94,6 +101,10 @@ public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefac
 
 	public char getTipo() {
 		return tipo;
+	}
+	
+	public Navio getNavio() {
+		return null;
 	}
 
 }

@@ -20,6 +20,7 @@ public class Peca extends Celula {
 
 	public char explode() {
 		setCelulaRevelada(true);
+		setCelulaDestruida(true);
 		this.setText(""); 
 		this.setIcon(new ImageIcon(new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage()
 				.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
@@ -32,5 +33,9 @@ public class Peca extends Celula {
 	
 	public void setNavio (Navio navio) {
 		this.navio = navio;
+	}
+	
+	public Navio getNavio() {
+		return navio;
 	}
 }

@@ -17,4 +17,10 @@ public class NavioTanque extends Navio{
 	public int getTamanho() {
 		return tamanho; 
 	}
+	
+	public boolean navioDestruido() {
+		if (NavioTanque[0].isCelulaDestruida()&&NavioTanque[1].isCelulaDestruida()&&NavioTanque[2].isCelulaDestruida()&&NavioTanque[3].isCelulaDestruida())
+			return true;
+		return false;
+	}
 }

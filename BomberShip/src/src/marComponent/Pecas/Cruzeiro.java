@@ -16,4 +16,10 @@ public class Cruzeiro extends Navio{
 	public int getTamanho() {
 		return tamanho; 
 	}
+	
+	public boolean navioDestruido() {
+		if (Cruzeiro[0].isCelulaDestruida()&&Cruzeiro[1].isCelulaDestruida()&&Cruzeiro[2].isCelulaDestruida())
+			return true;
+		return false;
+	}
 }
