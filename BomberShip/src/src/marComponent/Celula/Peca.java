@@ -1,13 +1,17 @@
 package marComponent.Celula;
  
 
-import javax.swing.ImageIcon; 
+import javax.swing.ImageIcon;
 
-public class Navio extends Celula {
+import marComponent.Pecas.Navio; 
+
+public class Peca extends Celula {
 
 	private static final long serialVersionUID = -137272376822387627L;
+	
+	private Navio navio;
 
-	public Navio(int linha, int coluna, char tipo) {
+	public Peca(int linha, int coluna, char tipo) {
 		this.linha = linha;
 		this.coluna = coluna;
 		celulaRevelada = false;
@@ -24,5 +28,9 @@ public class Navio extends Celula {
 
 	public char getTipo() {
 		return tipo;
+	}
+	
+	public void setNavio (Navio navio) {
+		this.navio = navio;
 	}
 }
