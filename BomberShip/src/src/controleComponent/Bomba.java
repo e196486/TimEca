@@ -91,26 +91,30 @@ public class Bomba {
 		switch (tipo) {
 		case 'A':
 			n_pontos += ptsArmadilha;
-			tipoCelula = "Armadilha";
+			tipoCelula = "uma Armadilha";
 			break;
 		case 'B':
 			sorteiaBau();
+			tipoCelula = "um Baú";
 			break;
 		case 'S':
 			n_pontos += ptsSubmarino;
-			tipoCelula = "Submarino";
+			tipoCelula = "um Submarino";
 			break;
 		case 'C':
 			n_pontos += ptsCruzeiro;
-			tipoCelula = "Cruzeiro";
+			tipoCelula = "um Cruzeiro";
 			break;
 		case 'N':
 			n_pontos += ptsNavioTanque;
-			tipoCelula = "Navio Tanque";
+			tipoCelula = "um Navio Tanque";
 			break;
 		case 'P':
 			n_pontos += ptsPortaAviao;
-			tipoCelula = "Porta Avião";
+			tipoCelula = "um Porta Avião";
+			break;
+		case '~': 
+			tipoCelula = "o Mar";
 			break;
 		}
 		if ((tipo != 'A') || (tipo != 'B') || (tipo != '~'))

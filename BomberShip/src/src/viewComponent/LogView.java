@@ -26,7 +26,7 @@ public class LogView extends JPanel implements ILogRefactor {
 
 	@Override
 	public void updateMunicao(int Municao, String tipoCelula, String nomeJogador) {
-		texto = nomeJogador + " atingiu o(a) " + tipoCelula + ". -  Quantidade de bombas restantes: " + Municao + ".";
+		texto = nomeJogador + " atingiu " + tipoCelula + ". -  Quantidade de bombas restantes: " + Municao + ".";
 		updateLog(texto);
 	}
 

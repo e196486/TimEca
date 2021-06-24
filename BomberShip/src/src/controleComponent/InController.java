@@ -41,7 +41,7 @@ public class InController implements Runnable {
 				if (jogadaDica.equals("true"))
 					bombaInimiga.usaDica("Inimigo");
 
-				bombaInimiga.usaBomba(marAliado.getCelula(i, j).explode(), "Inimigo");
+				bombaInimiga.usaBomba(marAliado.getCelula(i, j).explode(), "O Inimigo");
 				bombaAliada.setTurno(true);
 
 				logView.updateLog("Sua vez...");
