@@ -18,8 +18,8 @@ public class Bomba {
 	private String motivo;
 	/* Pontos ganhos */
 
-	protected final int ptsAtingeNavio = +40;
-	protected final int ptsUsaBomba = -10;
+	protected final int ptsAtingeNavio = +30;
+	protected final int ptsUsaBomba = -15;
 	protected final int ptsMaxRoubados = 5; // adiciono multiplicador de 50, -> 50 < pts roubados < 300
 	protected final int bombasMaxRoubadas = 10; // 1< bombasRoubadas < 11
 	protected final int dicasMaxRoubadas = 2; // 1< dicasRoubadas < 2
@@ -173,9 +173,12 @@ public class Bomba {
 	}
 
 	public void penalidadeRecebida(int pontos) {
-		n_pontos -= pontos/4;
+		if ((pontos/2) % 5 != 0)
+			pontos += 5;
+			
+		n_pontos -= pontos/2;
 		String winLose = (pontos>0) ? " perdeu ":" ganhou ";  
-		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos/4) + " pontos nessa jogada.");
+		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos/2) + " pontos nessa jogada.");
 		atualizaPontos();
 
 	}
