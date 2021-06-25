@@ -27,7 +27,7 @@ public class Bomba {
 	protected final int ptsCruzeiro = 60;
 	protected final int ptsNavioTanque = 80;
 	protected final int ptsPortaAviao = 100;
-	protected final int ptsMaxBau = 12; // 1 < pts Bau < 650
+	protected final int ptsMaxBau = 8; // 1 < pts Bau < 400
 	protected final int dicasMaxBau = 3;
 	protected final int bombasMaxBau = 10;
 	private Time time;
