@@ -69,7 +69,7 @@ public class InController implements Runnable {
 
 				logView.updateLog(status);
 				bombaAliada.setFimDeJogo();
-				JOptionPane.showMessageDialog((Component) logView, "Fim de Jogo!!\n" + status);
+				JOptionPane.showMessageDialog(null, "Fim de Jogo!!\n" + status);
 			}
 		}
 	}

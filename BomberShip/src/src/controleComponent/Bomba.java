@@ -173,11 +173,10 @@ public class Bomba {
 		return fimDeJogo = (n_inimigos == 0);
 	}
 
-	public String getResultado() {
-		String Resultado = (n_inimigos != 0) ? "perdeu! =(" : "ganhou!! =)";
+	public String getResultado() { 
 
 		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
-				+ n_dicas + "\n Numero de inimigos: " + n_inimigos + "\n você " + Resultado;
+				+ n_dicas + "\n Numero de inimigos: " + n_inimigos  ;
 	}
 
 	public boolean isFimDeJogo() {
