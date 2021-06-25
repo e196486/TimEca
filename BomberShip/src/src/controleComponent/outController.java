@@ -59,8 +59,9 @@ public class outController implements IMarListener {
 				} else
 					logView.updateLog("Célula já destruída");
 
-				if (ultimaBomba) {
-					logView.updateLog("você não tem mais bombas disponíveis :( ");
+				if (ultimaBomba || bombaAliada.getPontos() <= 0) {
+					
+					logView.updateLog("Acabaram os recursos :( ");
 					bombaAliada.setFimDeJogo();
 					conexao.enviaDados("fimDeJogo");
 				}

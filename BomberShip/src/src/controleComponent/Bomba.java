@@ -15,6 +15,7 @@ public class Bomba {
 	protected boolean seuTurno;
 	protected boolean dicaEquip;
 
+	private String motivo;
 	/* Pontos ganhos */
 
 	protected final int ptsAtingeNavio = +40;
@@ -36,7 +37,7 @@ public class Bomba {
 	private String nomePersonagem = "";
 
 	public Bomba(Time time, String nome, int nivel) {
-		n_pontos = 400;
+		n_pontos = 20;
 		n_inimigos = 25;
 		this.time = time;
 		this.nomePersonagem = nome;
@@ -242,25 +243,35 @@ public class Bomba {
 	}
 
 	public boolean checaFimDeJogo() {
+		 motivo =" ";
 
 		if (n_inimigos == 0) {
 			perdeu = false;
-			fimDeJogo = true;
+			fimDeJogo = true; 
+			motivo = nomePersonagem + " derrotou todos os seus inimigos !";
 		}
 
 		if (n_bombas == 0) {
 			perdeu = true;
 			fimDeJogo = true;
+			motivo = nomePersonagem + " não tem mais como atirar !";
+		}
+		
+		if (n_pontos <= 0) {
+			perdeu = true;
+			fimDeJogo = true;
+			motivo = nomePersonagem + " acabou com seus pontos vitais !";
 		}
 
 		return fimDeJogo;
 	}
 
 	public String getResultado() {
+		checaFimDeJogo();
 		String Resultado = (perdeu) ? "perdeu! =(" : "ganhou!! =)";
 
 		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
-				+ n_dicas + "\n você " + Resultado;
+				+ n_dicas + "\n você " + Resultado +"\n" + motivo;
 	}
 
 	public boolean isFimDeJogo() {
@@ -269,5 +280,9 @@ public class Bomba {
 
 	public void setFimDeJogo() {
 		fimDeJogo = true;
+	}
+
+	public int getPontos() { 
+		return n_pontos;
 	}
 }
