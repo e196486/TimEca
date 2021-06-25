@@ -170,19 +170,19 @@ public class TelaExplicativa extends JFrame {
 
 	private final String txtObjetivoJogo = "<html> \r\n" + "<br>" + "<h2>Objetivo do Jogo</h2>\r\n" + "\r\n"
 			+ "<p style=\"text-align:center;\">Voc&ecirc; dever&aacute; localizar e derrotar todos os navios inimigos!<br>"
-		    + " Para isso, <u>voc&ecirc; dever&aacute; poupar <b>muniç&atilde;o e pontos</b> de vida</u>, ou voc&ecirc; perder&aacute; por n&atilde;o ter <br>"
-		    + "como atacar mais sem muniç&atilde;o ou sem forças. <br>\r\n"
+		    + " Para isso, <u>voc&ecirc; dever&aacute; poupar <b>muni&ccedil;&atilde;o e pontos</b> de vida</u>, ou voc&ecirc; perder&aacute; por n&atilde;o ter <br>"
+		    + "como atacar mais sem muni&ccedil;&atilde;o ou sem for&ccedil;as. <br>\r\n"
 			+ "<b>Mas cuidado</b>: O campo inimigo est&aacute; cercado de tubar&otilde;es que podem roubar seus itens <br>"
 			+ " e repass&aacute;-los para o inimigo! Al&eacute;m disso, toda vez que o inimigo te atingir, voc&ecirc; ir&aacute; <br>"
 			+ "perder pontos de vida.<br>\r\n"
 			+ "A not&iacute;cia boa &eacute; que antigos aliados colocaram ba&uacute;s escondidos com pr&ecirc;mios <br>"
 			+ "para te ajudar! Ache-os e voc&ecirc; poder&aacute; recuperar alguns itens; Voc&ecirc; tamb&eacute;m poder&aacute; <br>"
 			+ "contar com a ajuda dos seus tubar&otilde;es infiltrados no inimigo para ganhar a batalha!\r\n" + "\r\n" + "</p> \r\n"
-			+ "<h2>Explicando as peças</h2>\r\n" + "</html>";
+			+ "<h2>Explicando as pe&ccedil;as</h2>\r\n" + "</html>";
 
 	private String explicaBomba = "<html>Bomba Explodida! <br>"
-			+ "Esse icone aparecer&aacute; em cima de cada embarcaç&atilde;o que voc&ecirc; <br>"
-			+ "destruir! Voc&ecirc; ganhar&aacute; x pontos por essa aç&atilde;o!<br>";
+			+ "Esse icone aparecer&aacute; em cima de cada embarca&ccedil;&atilde;o que voc&ecirc; <br>"
+			+ "destruir! Voc&ecirc; ganhar&aacute; x pontos por essa a&ccedil;&atilde;o!<br>";
 
 	private final String explicaArmadilhaTubarao = "<html>Tubar&atilde;o-Armadilha! <br>"
 			+ "Ele ir&aacute; roubar alguns itens de voc&ecirc;! Pode ser alguns pontos,<br>"
@@ -193,7 +193,7 @@ public class TelaExplicativa extends JFrame {
 
 	private final String explicaSplash = "<html><p>Splash! <br>"
 			+ "Esse icone aparecer&aacute; quando voc&ecirc; atingir o mar! Voc&ecirc; ir&aacute; <br>"
-			+ "perder 10 pontos por essa aç&atilde;o!</p></html>";
+			+ "perder 10 pontos por essa a&ccedil;&atilde;o!</p></html>";
 
 	private final String explicaSubmarino = "<html><p>Submarino! <br>"
 			+ "Esse navio inimigo ocupa duas celulas do mar! <br>" + "Afundando todas as partes, voc&ecirc; ganhar&aacute; mais "
