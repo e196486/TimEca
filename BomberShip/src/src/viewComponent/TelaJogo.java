@@ -32,46 +32,54 @@ public class TelaJogo extends JFrame {
 	final String host = "Host";
 
 	public TelaJogo(IMarVisual marPlayer1, IMarVisual marPlayer2, String Player, String meuNome) {
-
-		this.marPlayer1 = marPlayer1;
-		this.marPlayer2 = marPlayer2;
-
-		numPlayer = (Player.equals(host)) ? 1 : 2;
-
-		this.setTitle("BomberShip - Player " + numPlayer + " - " + meuNome);
-		this.setIconImage( new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage() );
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1050, 700); 
-		this.setLocationRelativeTo(null);
-		tela = new JPanel();
-		tela.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(tela);
-		tela.setLayout(new BoxLayout(tela, BoxLayout.PAGE_AXIS));
+		 
 
-		this.tabuleiroView = new JPanel();
-		tabuleiroView.setPreferredSize(new Dimension(1000, 600));
-		GridLayout tabuleiroLayout = new GridLayout(0, 2);
-		tabuleiroLayout.setHgap(10);
-		tabuleiroLayout.setVgap(10);
-		tabuleiroView.setLayout(tabuleiroLayout);
+		try {
+			this.marPlayer1 = marPlayer1;
+			this.marPlayer2 = marPlayer2;
 
-		JPanel player1View = new JPanel();
-		itensPlayer1View = new ItensView();
+			numPlayer = (Player.equals(host)) ? 1 : 2;
 
-		tabuleiroView.add(viewP1.criaPlayerView(player1View, itensPlayer1View, "Aliado", marPlayer1.getThis()));
+			this.setTitle("BomberShip - Player " + numPlayer + " - " + meuNome);
+			this.setIconImage( new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage() );
+			
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setBounds(0, 0, 1050, 700); 
+			this.setLocationRelativeTo(null);
+			tela = new JPanel();
+			tela.setBorder(new EmptyBorder(5, 5, 5, 5));
+			setContentPane(tela);
+			tela.setLayout(new BoxLayout(tela, BoxLayout.PAGE_AXIS));
 
-		JPanel player2View = new JPanel();
-		itensPlayer2View = new ItensView();
+			this.tabuleiroView = new JPanel();
+			tabuleiroView.setPreferredSize(new Dimension(1000, 600));
+			GridLayout tabuleiroLayout = new GridLayout(0, 2);
+			tabuleiroLayout.setHgap(10);
+			tabuleiroLayout.setVgap(10);
+			tabuleiroView.setLayout(tabuleiroLayout);
 
-		tabuleiroView.add(viewP2.criaPlayerView(player2View, itensPlayer2View, "Inimigo", marPlayer2.getThis()));
+			JPanel player1View = new JPanel();
+			itensPlayer1View = new ItensView();
 
-		tela.add(tabuleiroView);
+			tabuleiroView.add(viewP1.criaPlayerView(player1View, itensPlayer1View, "Aliado", marPlayer1.getThis()));
 
-		logView = new LogView();
-		tela.add(logView.criaLog());
+			JPanel player2View = new JPanel();
+			itensPlayer2View = new ItensView();
 
-		this.setVisible(true);
+			tabuleiroView.add(viewP2.criaPlayerView(player2View, itensPlayer2View, "Inimigo", marPlayer2.getThis()));
+
+			tela.add(tabuleiroView);
+
+			logView = new LogView();
+			tela.add(logView.criaLog());
+
+			this.setVisible(true);
+		} catch (Exception e) { 
+			e.printStackTrace();
+		}
+		
+		 
 
 	}
 	

@@ -15,8 +15,7 @@ public class Armadilha extends Celula{
 	
 	public char explode( ) {
 		setCelulaRevelada(true);
-		setCelulaDestruida(true);
-		// perde pontos
+		setCelulaDestruida(true); 
 		return tipo;
 	}
 	
