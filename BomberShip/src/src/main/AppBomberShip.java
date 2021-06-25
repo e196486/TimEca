@@ -1,6 +1,7 @@
 package main;
 
 import montadorComponent.Montador;
+import viewComponent.TelaExplicativa;
 import viewComponent.TelaMenu;
 
 public class AppBomberShip implements Runnable {
@@ -24,6 +25,8 @@ public class AppBomberShip implements Runnable {
 		try {
 			if (menu.aguardaIniciaJogo()) {
 
+				//new TelaExplicativa(menu.getNivel()); 
+				
 				new Montador(menu.getIP(), menu.getPorta(), menu.getNivel());
 
 			}
