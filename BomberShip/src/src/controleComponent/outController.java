@@ -1,8 +1,4 @@
-package controleComponent;
-
-import java.awt.Component;
-
-import javax.swing.JOptionPane;
+package controleComponent; 
 
 import conexaoComponent.ICommandOut;
 import marComponent.Mar.IMarRefactor;

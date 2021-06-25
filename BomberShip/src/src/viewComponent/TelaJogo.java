@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import marComponent.Celula.Celula;
 import marComponent.Mar.IMarVisual; 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame; 
 import javax.swing.JPanel;  
 import javax.swing.border.EmptyBorder;
@@ -38,7 +39,8 @@ public class TelaJogo extends JFrame {
 		numPlayer = (Player.equals(host)) ? 1 : 2;
 
 		this.setTitle("BomberShip - Player " + numPlayer);
-
+		this.setIconImage( new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage() );
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1050, 700); 
 		this.setLocationRelativeTo(null);

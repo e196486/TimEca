@@ -3,6 +3,8 @@ package viewComponent;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,6 +27,7 @@ public class TelaMenu extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Container menuInicial = getContentPane();
 		iniciaMenu(menuInicial);
+		this.setIconImage( new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage() );
 
 	}
 
