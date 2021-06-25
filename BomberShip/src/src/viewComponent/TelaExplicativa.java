@@ -94,7 +94,7 @@ public class TelaExplicativa extends JFrame {
 		telaExplicativa.setLayout(new BoxLayout(telaExplicativa, BoxLayout.PAGE_AXIS));
 		janela.add(BorderLayout.CENTER, scroll);
 
-		JLabel lblTitulo = new JLabel("BOMBERSHIP! N&iacute;vel: " + nivel);
+		JLabel lblTitulo = new JLabel("<html>BOMBERSHIP! N&iacute;vel: </html>" + nivel);
 		lblTitulo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(0, 10, 560, 30);
@@ -112,7 +112,7 @@ public class TelaExplicativa extends JFrame {
 		telaTexto.setLayout(new GridLayout(9, 0));
 
 		telaTexto.add(adicionaTela(imgArmadilhaTubarao, explicaArmadilhaTubarao + "<b>Ser&atilde;o "
-				+ getDadosNivel("Tubaroes") + " tubarões  atras de voc&ecirc;!</html>"));
+				+ getDadosNivel("Tubaroes") + " tubar&otilde;es  atras de voc&ecirc;!</html>"));
 		if (nivel != 3)
 			telaTexto.add(adicionaTela(imgBauDoTesouro,
 					explicaBauDoTesouro + "<b>Ser&atilde;o " + getDadosNivel("Baus") + " Baus espalhados para voc&ecirc;!</html>"));
@@ -172,12 +172,12 @@ public class TelaExplicativa extends JFrame {
 			+ "<p style=\"text-align:center;\">Voc&ecirc; dever&aacute; localizar e derrotar todos os navios inimigos!<br>"
 		    + " Para isso, <u>voc&ecirc; dever&aacute; poupar <b>muniç&atilde;o e pontos</b> de vida</u>, ou voc&ecirc; perder&aacute; por n&atilde;o ter <br>"
 		    + "como atacar mais sem muniç&atilde;o ou sem forças. <br>\r\n"
-			+ "<b>Mas cuidado</b>: O campo inimigo est&aacute; cercado de tubarões que podem roubar seus itens <br>"
+			+ "<b>Mas cuidado</b>: O campo inimigo est&aacute; cercado de tubar&otilde;es que podem roubar seus itens <br>"
 			+ " e repass&aacute;-los para o inimigo! Al&eacute;m disso, toda vez que o inimigo te atingir, voc&ecirc; ir&aacute; <br>"
 			+ "perder pontos de vida.<br>\r\n"
 			+ "A not&iacute;cia boa &eacute; que antigos aliados colocaram ba&uacute;s escondidos com pr&ecirc;mios <br>"
 			+ "para te ajudar! Ache-os e voc&ecirc; poder&aacute; recuperar alguns itens; Voc&ecirc; tamb&eacute;m poder&aacute; <br>"
-			+ "contar com a ajuda dos seus tubarões infiltrados no inimigo para ganhar a batalha!\r\n" + "\r\n" + "</p> \r\n"
+			+ "contar com a ajuda dos seus tubar&otilde;es infiltrados no inimigo para ganhar a batalha!\r\n" + "\r\n" + "</p> \r\n"
 			+ "<h2>Explicando as peças</h2>\r\n" + "</html>";
 
 	private String explicaBomba = "<html>Bomba Explodida! <br>"
