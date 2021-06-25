@@ -94,7 +94,7 @@ public class TelaExplicativa extends JFrame {
 		telaExplicativa.setLayout(new BoxLayout(telaExplicativa, BoxLayout.PAGE_AXIS));
 		janela.add(BorderLayout.CENTER, scroll);
 
-		JLabel lblTitulo = new JLabel("BOMBERSHIP! Nível: " + nivel);
+		JLabel lblTitulo = new JLabel("BOMBERSHIP! N&iacute;vel: " + nivel);
 		lblTitulo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(0, 10, 560, 30);
@@ -111,14 +111,14 @@ public class TelaExplicativa extends JFrame {
 		telaTexto.setBounds(10, 350, 520, 300);
 		telaTexto.setLayout(new GridLayout(9, 0));
 
-		telaTexto.add(adicionaTela(imgArmadilhaTubarao, explicaArmadilhaTubarao + "<b>Serão "
-				+ getDadosNivel("Tubaroes") + " tubarões  atras de você!</html>"));
+		telaTexto.add(adicionaTela(imgArmadilhaTubarao, explicaArmadilhaTubarao + "<b>Ser&atilde;o "
+				+ getDadosNivel("Tubaroes") + " tubarões  atras de voc&ecirc;!</html>"));
 		if (nivel != 3)
 			telaTexto.add(adicionaTela(imgBauDoTesouro,
-					explicaBauDoTesouro + "<b>Serão " + getDadosNivel("Baus") + " Baus espalhados para você!</html>"));
+					explicaBauDoTesouro + "<b>Ser&atilde;o " + getDadosNivel("Baus") + " Baus espalhados para voc&ecirc;!</html>"));
 
-		telaTexto.add(adicionaTela(imgBombaExplodida, explicaBomba + "<b>Você irá iniciar com " + getDadosNivel("Bomba")
-				+ " bombas disponíveis!</b>" + "</html>"));
+		telaTexto.add(adicionaTela(imgBombaExplodida, explicaBomba + "<b>Voc&ecirc; ir&aacute; iniciar com " + getDadosNivel("Bomba")
+				+ " bombas dispon&iacute;veis!</b>" + "</html>"));
 
 		telaTexto.add(adicionaTela(imgSplash, explicaSplash));
 		telaTexto.add(adicionaTela(imgSubmarino, explicaSubmarino));
@@ -126,8 +126,8 @@ public class TelaExplicativa extends JFrame {
 		telaTexto.add(adicionaTela(imgNavioTanque, explicaNavioTanque));
 		telaTexto.add(adicionaTela(imgPortaAviao, explicaPortaAviao));
 
-		telaTexto.add(adicionaTela(imgDicaRevelada, explicaDica + "<b>Você irá iniciar com " + getDadosNivel("Dica")
-				+ " dicas disponíveis!</b>" + "</html>"));
+		telaTexto.add(adicionaTela(imgDicaRevelada, explicaDica + "<b>Voc&ecirc; ir&aacute; iniciar com " + getDadosNivel("Dica")
+				+ " dicas dispon&iacute;veis!</b>" + "</html>"));
 
 		telaExplicativa.add(telaTexto);
 
@@ -169,48 +169,48 @@ public class TelaExplicativa extends JFrame {
 	}
 
 	private final String txtObjetivoJogo = "<html> \r\n" + "<br>" + "<h2>Objetivo do Jogo</h2>\r\n" + "\r\n"
-			+ "<p style=\"text-align:center;\">Você deverá localizar e derrotar todos os navios inimigos!<br>"
-		    + " Para isso, <u>você deverá poupar <b>munição e pontos</b> de vida</u>, ou você perderá por não ter <br>"
-		    + "como atacar mais sem munição ou sem forças. <br>\r\n"
-			+ "<b>Mas cuidado</b>: O campo inimigo está cercado de tubarões que podem roubar seus itens <br>"
-			+ " e repassá-los para o inimigo! Além disso, toda vez que o inimigo te atingir, você irá <br>"
+			+ "<p style=\"text-align:center;\">Voc&ecirc; dever&aacute; localizar e derrotar todos os navios inimigos!<br>"
+		    + " Para isso, <u>voc&ecirc; dever&aacute; poupar <b>muniç&atilde;o e pontos</b> de vida</u>, ou voc&ecirc; perder&aacute; por n&atilde;o ter <br>"
+		    + "como atacar mais sem muniç&atilde;o ou sem forças. <br>\r\n"
+			+ "<b>Mas cuidado</b>: O campo inimigo est&aacute; cercado de tubarões que podem roubar seus itens <br>"
+			+ " e repass&aacute;-los para o inimigo! Al&eacute;m disso, toda vez que o inimigo te atingir, voc&ecirc; ir&aacute; <br>"
 			+ "perder pontos de vida.<br>\r\n"
-			+ "A notícia boa é que antigos aliados colocaram baús escondidos com prêmios <br>"
-			+ "para te ajudar! Ache-os e você poderá recuperar alguns itens; Você também poderá <br>"
+			+ "A not&iacute;cia boa &eacute; que antigos aliados colocaram ba&uacute;s escondidos com pr&ecirc;mios <br>"
+			+ "para te ajudar! Ache-os e voc&ecirc; poder&aacute; recuperar alguns itens; Voc&ecirc; tamb&eacute;m poder&aacute; <br>"
 			+ "contar com a ajuda dos seus tubarões infiltrados no inimigo para ganhar a batalha!\r\n" + "\r\n" + "</p> \r\n"
 			+ "<h2>Explicando as peças</h2>\r\n" + "</html>";
 
 	private String explicaBomba = "<html>Bomba Explodida! <br>"
-			+ "Esse icone aparecerá em cima de cada embarcação que você <br>"
-			+ "destruir! Você ganhará x pontos por essa ação!<br>";
+			+ "Esse icone aparecer&aacute; em cima de cada embarcaç&atilde;o que voc&ecirc; <br>"
+			+ "destruir! Voc&ecirc; ganhar&aacute; x pontos por essa aç&atilde;o!<br>";
 
-	private final String explicaArmadilhaTubarao = "<html>Tubarão-Armadilha! <br>"
-			+ "Ele irá roubar alguns itens de você! Pode ser alguns pontos,<br>"
-			+ " algumas bombas ou até algumas dicas!! cuidado!<br>";
+	private final String explicaArmadilhaTubarao = "<html>Tubar&atilde;o-Armadilha! <br>"
+			+ "Ele ir&aacute; roubar alguns itens de voc&ecirc;! Pode ser alguns pontos,<br>"
+			+ " algumas bombas ou at&eacute; algumas dicas!! cuidado!<br>";
 
 	private final String explicaBauDoTesouro = "<html>Bau do Tesouro! <br>"
-			+ "Esse item te dará alguns bonus. Você poderá ganhar bombas," + "<br> pontos ou até mesmo dicas!<br>";
+			+ "Esse item te dar&aacute; alguns bonus. Voc&ecirc; poder&aacute; ganhar bombas," + "<br> pontos ou at&eacute; mesmo dicas!<br>";
 
 	private final String explicaSplash = "<html><p>Splash! <br>"
-			+ "Esse icone aparecerá quando você atingir o mar! Você irá <br>"
-			+ "perder 10 pontos por essa ação!</p></html>";
+			+ "Esse icone aparecer&aacute; quando voc&ecirc; atingir o mar! Voc&ecirc; ir&aacute; <br>"
+			+ "perder 10 pontos por essa aç&atilde;o!</p></html>";
 
 	private final String explicaSubmarino = "<html><p>Submarino! <br>"
-			+ "Esse navio inimigo ocupa duas celulas do mar! <br>" + "Afundando todas as partes, você ganhará mais "
+			+ "Esse navio inimigo ocupa duas celulas do mar! <br>" + "Afundando todas as partes, voc&ecirc; ganhar&aacute; mais "
 			+ ptsSubmarino + " pontos!! </p></html>";
 
 	private final String explicaCruzeiro = "<html><p>Cruzeiro! <br>"
-			+ "Esse navio inimigo ocupa três celulas do mar! <br>" + "Afundando todas as partes, você ganhará mais "
+			+ "Esse navio inimigo ocupa tr&ecirc;s celulas do mar! <br>" + "Afundando todas as partes, voc&ecirc; ganhar&aacute; mais "
 			+ ptsCruzeiro + " pontos!! </p></html>";
 
 	private final String explicaNavioTanque = "<html><p>Navio Tanque! <br>"
-			+ "Esse navio inimigo ocupa quatro celulas do mar! <br>" + "Afundando todas as partes, você ganhará mais "
+			+ "Esse navio inimigo ocupa quatro celulas do mar! <br>" + "Afundando todas as partes, voc&ecirc; ganhar&aacute; mais "
 			+ ptsNavioTanque + " pontos!! </p></html>";
 
-	private final String explicaPortaAviao = "<html><p>Porta Avião! <br>"
-			+ "Esse navio inimigo ocupa cinco celulas do mar! <br>" + "Afundando todas as partes, você ganhará mais "
+	private final String explicaPortaAviao = "<html><p>Porta Avi&atilde;o! <br>"
+			+ "Esse navio inimigo ocupa cinco celulas do mar! <br>" + "Afundando todas as partes, voc&ecirc; ganhar&aacute; mais "
 			+ ptsPortaAviao + " pontos!! </p></html>";
 
 	private String explicaDica = "<html><p>Dica! <br>" + "As dicas te ajudam espionando o inimigo! <br>"
-			+ "Use-as e a sua bomba irá revelar as 4 celulas adjacentes de onde atingir! </p>";
+			+ "Use-as e a sua bomba ir&aacute; revelar as 4 celulas adjacentes de onde atingir! </p>";
 }

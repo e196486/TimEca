@@ -55,7 +55,7 @@ public class ItensView extends JPanel implements IItemRefactor {
 		campoDicas.setEnabled(false);
 		this.add(campoDicas);
 
-		JLabel lblMunicao = new JLabel("Munição");
+		JLabel lblMunicao = new JLabel("<html>Muni&ccedil;&atilde;o</html>");
 		lblMunicao.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
 		this.add(lblMunicao);
 

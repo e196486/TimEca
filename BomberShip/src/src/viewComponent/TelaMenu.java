@@ -75,11 +75,11 @@ public class TelaMenu extends JFrame {
 		campoPorta.setEditable(true);
 		menuInicial.add(campoPorta);
 
-		JLabel lblInsiraNivel = new JLabel("Escolha um nível para seu tabuleiro:");
+		JLabel lblInsiraNivel = new JLabel("<html>Escolha um n&iacute;vel para seu tabuleiro:</html>");
 		lblInsiraNivel.setBounds(50, 305, 300, 20);
 		menuInicial.add(lblInsiraNivel);
 
-		String fases[] = { "1 - Fácil", "2 - Médio", "3 - Difícil" };
+		String fases[] = { "<html>1 - F&aacute;cil</html>", "<html>2 - M&eacute;dio</html>", "<html>3 - Dif&iacute;cil</html>" };
 		JComboBox cb = new JComboBox(fases);
 		cb.setBackground(Color.white);
 		cb.setBounds(50, 330, 320, 30);
