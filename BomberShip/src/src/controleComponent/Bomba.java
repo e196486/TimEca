@@ -19,8 +19,9 @@ public class Bomba {
 
 	protected final int ptsAtingeNavio = +40;
 	protected final int ptsUsaBomba = -10;
-	protected final int ptsArmadilha = -500;
-	protected final int bombasArmadilha = -5;
+	protected final int ptsMaxRoubados = 15; // adiciono multiplicador de 50
+	protected final int bombasMaxRoubadas = 10;
+	protected final int dicasMaxRoubadas = 2;
 	protected final int ptsSubmarino = 40;
 	protected final int ptsCruzeiro = 60;
 	protected final int ptsNavioTanque = 80;
@@ -101,8 +102,7 @@ public class Bomba {
 
 		switch (tipo) {
 		case 'A':
-			n_pontos += ptsArmadilha;
-			n_bombas += bombasArmadilha;
+			sorteiaArmadilha(nomeJogador);
 			tipoCelula = "uma Armadilha";
 			break;
 		case 'B':
@@ -159,6 +159,46 @@ public class Bomba {
 
 	}
 
+	private void sorteiaArmadilha(String nomeJogador) {
+		String tipoPenalidade = "";
+		int valorPenalidade = 0;
+		
+		int casoPenalidade = new Random().nextInt(2)+1;
+
+		switch (casoPenalidade) {
+
+		case 1:
+			valorPenalidade = (new Random().nextInt(ptsMaxRoubados)+1) * 50;			
+			tipoPenalidade = "ponto(s)";
+			n_pontos -= valorPenalidade;
+			break;
+
+		case 2:
+			valorPenalidade = new Random().nextInt(bombasMaxRoubadas)+1;
+			
+			if (n_bombas < valorPenalidade)
+				valorPenalidade = n_bombas; 
+			
+			tipoPenalidade = "bomba(s)";
+			n_bombas -= valorPenalidade;
+			break;
+
+		case 3:
+			valorPenalidade = new Random().nextInt(dicasMaxRoubadas)+1;
+			
+			if (n_dicas < valorPenalidade)
+				valorPenalidade = n_dicas;
+			
+			tipoPenalidade = "Dica(s)";
+			n_dicas -= valorPenalidade;
+			break;
+		}
+
+		atualizaPontos();
+		logView.updateLog("O tubarão roubou " + valorPenalidade + " " + tipoPenalidade + " de " + nomeJogador);
+
+	}
+
 	public void setLogView(ILogRefactor logView) {
 		this.logView = logView;
 	}
@@ -169,14 +209,14 @@ public class Bomba {
 		itemView.setPontos(n_pontos);
 	}
 
-	public boolean checaVencedor() { 
+	public boolean checaVencedor() {
 		return fimDeJogo = (n_inimigos == 0);
 	}
 
-	public String getResultado() { 
+	public String getResultado() {
 
 		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
-				+ n_dicas ;
+				+ n_dicas;
 	}
 
 	public boolean isFimDeJogo() {
