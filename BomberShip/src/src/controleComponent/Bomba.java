@@ -32,6 +32,7 @@ public class Bomba {
 	private Time time;
 
 	private boolean fimDeJogo = false;
+	private boolean perdeu = false;
 
 	public Bomba(Time time) {
 		n_pontos = 0;
@@ -162,33 +163,33 @@ public class Bomba {
 	private void sorteiaArmadilha(String nomeJogador) {
 		String tipoPenalidade = "";
 		int valorPenalidade = 0;
-		
-		int casoPenalidade = new Random().nextInt(2)+1;
+
+		int casoPenalidade = new Random().nextInt(2) + 1;
 
 		switch (casoPenalidade) {
 
 		case 1:
-			valorPenalidade = (new Random().nextInt(ptsMaxRoubados)+1) * 50;			
+			valorPenalidade = (new Random().nextInt(ptsMaxRoubados) + 1) * 50;
 			tipoPenalidade = "ponto(s)";
 			n_pontos -= valorPenalidade;
 			break;
 
 		case 2:
-			valorPenalidade = new Random().nextInt(bombasMaxRoubadas)+1;
-			
+			valorPenalidade = new Random().nextInt(bombasMaxRoubadas) + 1;
+
 			if (n_bombas < valorPenalidade)
-				valorPenalidade = n_bombas; 
-			
+				valorPenalidade = n_bombas;
+
 			tipoPenalidade = "bomba(s)";
 			n_bombas -= valorPenalidade;
 			break;
 
 		case 3:
-			valorPenalidade = new Random().nextInt(dicasMaxRoubadas)+1;
-			
+			valorPenalidade = new Random().nextInt(dicasMaxRoubadas) + 1;
+
 			if (n_dicas < valorPenalidade)
 				valorPenalidade = n_dicas;
-			
+
 			tipoPenalidade = "Dica(s)";
 			n_dicas -= valorPenalidade;
 			break;
@@ -209,21 +210,33 @@ public class Bomba {
 		itemView.setPontos(n_pontos);
 	}
 
-	public boolean checaVencedor() {
-		return fimDeJogo = (n_inimigos == 0);
+	public boolean checaFimDeJogo() {
+
+		if (n_inimigos == 0) {
+			perdeu = false;
+			fimDeJogo = true;
+		}
+
+		if (n_bombas == 0) {
+			perdeu = true;
+			fimDeJogo = true;
+		}
+
+		return fimDeJogo;
 	}
 
 	public String getResultado() {
+		String Resultado = (perdeu) ? "perdeu! =(" : "ganhou!! =)";
 
 		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
-				+ n_dicas;
+				+ n_dicas + "\n você " + Resultado;
 	}
 
 	public boolean isFimDeJogo() {
 		return fimDeJogo;
 	}
 
-	public void setFimDeJogo() {
+	public void setFimDeJogo() { 
 		fimDeJogo = true;
 	}
 }

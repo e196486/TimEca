@@ -54,15 +54,10 @@ public class InController implements Runnable {
 				logView.updateLog("Sua vez...");
 			}
 			if (fimDeJogo || temVencedor()) {
-				conexao.enviaDados("fimDeJogo");
-				String status = "";
-				if (temVencedor()) {
-					if (bombaAliada.checaVencedor())
-						status = "Você Ganhou!! =D";
-					else if (bombaInimiga.checaVencedor())
-						status = "Você Perdeu!! =(";
-				}
-				status += bombaAliada.getResultado();
+
+				if (temVencedor())
+					conexao.enviaDados("fimDeJogo");
+				String status = bombaAliada.getResultado();
 
 				logView.updateLog(status);
 				bombaAliada.setFimDeJogo();
@@ -72,7 +67,7 @@ public class InController implements Runnable {
 	}
 
 	private boolean temVencedor() {
-		return (bombaAliada.checaVencedor() || bombaInimiga.checaVencedor());
+		return (bombaAliada.checaFimDeJogo() || bombaInimiga.checaFimDeJogo());
 	}
 
 	public void setLogView(ILogRefactor logView) {

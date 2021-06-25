@@ -1,4 +1,4 @@
-package controleComponent; 
+package controleComponent;
 
 import conexaoComponent.ICommandOut;
 import marComponent.Mar.IMarRefactor;
@@ -11,9 +11,9 @@ public class outController implements IMarListener {
 
 	public Time time;
 	private ICommandOut conexao;
-	int i;
-	int j;
-	String Jogada;
+	private int i;
+	private int j;
+	private String Jogada;
 	private ILogRefactor logView;
 
 	public outController(ICommandOut conexao, Bomba bomba) {
@@ -27,6 +27,9 @@ public class outController implements IMarListener {
 
 	public void celulaAcionada(int i, int j) {
 		boolean jogadaDica = false;
+		boolean isNavioDestruido = false;
+		boolean ultimaBomba = false;
+
 		if (!bomba.isFimDeJogo()) {
 			if (bomba.getTurno()) {
 				logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
@@ -41,18 +44,27 @@ public class outController implements IMarListener {
 						mar.getCelula(i, j - 1).setCelulaRevelada(true);
 					}
 					char tipo = mar.getCelula(i, j).explode();
-					if (tipo == 'S'||tipo == 'C'||tipo == 'N'||tipo == 'P') {
-						boolean navio = mar.getCelula(i, j).getNavio().navioDestruido();
-						bomba.usaBomba(tipo, "Você", navio);
-					}else {
-						bomba.usaBomba(tipo, "Você", false);
-					}
+
+					if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
+						isNavioDestruido = mar.getCelula(i, j).getNavio().navioDestruido();
+
+					ultimaBomba = (bomba.getBombas() == 1);
+
+					bomba.usaBomba(tipo, "Você", isNavioDestruido);
+
 					bomba.setTurno(false);
 					Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
 					conexao.enviaDados(Jogada);
-				} else {
+
+				} else
 					logView.updateLog("Célula já destruída");
+
+				if (ultimaBomba) {
+					logView.updateLog("você não tem mais bombas disponíveis :( ");
+					bomba.setFimDeJogo();
+					conexao.enviaDados("fimDeJogo");
 				}
+
 			} else {
 				logView.updateLog("Aguarde seu turno");
 			}
