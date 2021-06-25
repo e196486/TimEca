@@ -56,13 +56,16 @@ public class InController implements Runnable {
 
 				logView.updateLog("Sua vez...");
 			}
-			if (temVencedor()) {
+			if (fimDeJogo || temVencedor()) {
 				conexao.enviaDados("fimDeJogo");
 				String status = "";
-				if (bombaAliada.checaVencedor())
-					status = "Você Ganhou!! =D";
-				else if (bombaInimiga.checaVencedor())
-					status = "Você Perdeu!! =(";
+				if (temVencedor()) {
+					if (bombaAliada.checaVencedor())
+						status = "Você Ganhou!! =D";
+					else if (bombaInimiga.checaVencedor())
+						status = "Você Perdeu!! =(";
+				}
+				status += bombaAliada.getResultado();
 
 				logView.updateLog(status);
 				bombaAliada.setFimDeJogo();

@@ -34,7 +34,7 @@ public class Bomba {
 
 	public Bomba(Time time) {
 		n_pontos = 0;
-		n_inimigos = 1;
+		n_inimigos = 25;
 		this.time = time;
 
 	}
