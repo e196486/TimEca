@@ -176,7 +176,7 @@ public class Bomba {
 	public String getResultado() { 
 
 		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
-				+ n_dicas + "\n Numero de inimigos: " + n_inimigos  ;
+				+ n_dicas ;
 	}
 
 	public boolean isFimDeJogo() {

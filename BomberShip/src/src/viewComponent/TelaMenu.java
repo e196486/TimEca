@@ -21,6 +21,7 @@ public class TelaMenu extends JFrame {
 
 	public TelaMenu() {
 		setBounds(100, 100, 450, 500);
+		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		Container menuInicial = getContentPane();
 		iniciaMenu(menuInicial);
