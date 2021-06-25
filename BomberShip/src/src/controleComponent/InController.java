@@ -1,5 +1,9 @@
 package controleComponent;
 
+import java.awt.Component;
+
+import javax.swing.JOptionPane;
+
 import conexaoComponent.*;
 import marComponent.Mar.IMarRefactor;
 import viewComponent.ILogRefactor;
@@ -36,27 +40,34 @@ public class InController implements Runnable {
 
 				int i = Integer.parseInt(resposta.substring(1, 2));
 				int j = Integer.parseInt(resposta.substring(3, 4));
-				System.out.println("linha:"+ i + "\n" + j);
+				System.out.println("linha:" + i + "\n" + j);
 				String jogadaDica = resposta.substring(6);
 
 				if (jogadaDica.equals("true"))
 					bombaInimiga.usaDica("Inimigo");
-				
+
 				char tipo = marAliado.getCelula(i, j).explode();
-				if (tipo == 'S'||tipo == 'C'||tipo == 'N'||tipo == 'P')
+				if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
 					bombaInimiga.usaBomba(tipo, "O Inimigo", marAliado.getCelula(i, j).getNavio().navioDestruido());
 				else
 					bombaInimiga.usaBomba(tipo, "O Inimigo", false);
 
-				
 				bombaAliada.setTurno(true);
 
 				logView.updateLog("Sua vez...");
 			}
-			if (bombaAliada.checaVencedor())
-				logView.updateLog("Você Ganhou!");
-			else if (bombaInimiga.checaVencedor())
-				logView.updateLog("Você Perdeu!");
+			if (temVencedor()) {
+				conexao.enviaDados("fimDeJogo");
+				String status = "";
+				if (bombaAliada.checaVencedor())
+					status = "Você Ganhou!! =D";
+				else if (bombaInimiga.checaVencedor())
+					status = "Você Perdeu!! =(";
+
+				logView.updateLog(status);
+				bombaAliada.setFimDeJogo();
+				JOptionPane.showMessageDialog((Component) logView, "Fim de Jogo!!\n" + status);
+			}
 		}
 	}
 

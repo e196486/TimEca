@@ -6,5 +6,6 @@ public interface ICommandIn {
 	Object getPlayer();
 	String recebeDados();
 	boolean getConexaoAceita();
+	void enviaDados(String string);
 
 }

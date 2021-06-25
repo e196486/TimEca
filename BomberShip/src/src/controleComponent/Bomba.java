@@ -17,9 +17,10 @@ public class Bomba {
 
 	/* Pontos ganhos */
 
-	protected final int ptsAtingeNavio = +25;
+	protected final int ptsAtingeNavio = +40;
 	protected final int ptsUsaBomba = -10;
 	protected final int ptsArmadilha = -500;
+	protected final int bombasArmadilha = -5;
 	protected final int ptsSubmarino = 40;
 	protected final int ptsCruzeiro = 60;
 	protected final int ptsNavioTanque = 80;
@@ -33,7 +34,7 @@ public class Bomba {
 
 	public Bomba(Time time) {
 		n_pontos = 0;
-		n_inimigos = 25;
+		n_inimigos = 1;
 		this.time = time;
 
 	}
@@ -101,6 +102,7 @@ public class Bomba {
 		switch (tipo) {
 		case 'A':
 			n_pontos += ptsArmadilha;
+			n_bombas += bombasArmadilha;
 			tipoCelula = "uma Armadilha";
 			break;
 		case 'B':
@@ -180,5 +182,9 @@ public class Bomba {
 
 	public boolean isFimDeJogo() {
 		return fimDeJogo;
+	}
+
+	public void setFimDeJogo() {
+		fimDeJogo = true;
 	}
 }
