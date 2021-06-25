@@ -31,14 +31,14 @@ public class TelaJogo extends JFrame {
 
 	final String host = "Host";
 
-	public TelaJogo(IMarVisual marPlayer1, IMarVisual marPlayer2, String Player) {
+	public TelaJogo(IMarVisual marPlayer1, IMarVisual marPlayer2, String Player, String meuNome) {
 
 		this.marPlayer1 = marPlayer1;
 		this.marPlayer2 = marPlayer2;
 
 		numPlayer = (Player.equals(host)) ? 1 : 2;
 
-		this.setTitle("BomberShip - Player " + numPlayer);
+		this.setTitle("BomberShip - Player " + numPlayer + " - " + meuNome);
 		this.setIconImage( new ImageIcon(this.getClass().getResource("/BombaExplodida.png")).getImage() );
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -45,9 +45,9 @@ public class InController implements Runnable {
 
 				char tipo = marAliado.getCelula(i, j).explode();
 				if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
-					bombaInimiga.usaBomba(tipo, "O Inimigo", marAliado.getCelula(i, j).getNavio().navioDestruido());
+					bombaInimiga.usaBomba(tipo, marAliado.getCelula(i, j).getNavio().navioDestruido());
 				else
-					bombaInimiga.usaBomba(tipo, "O Inimigo", false);
+					bombaInimiga.usaBomba(tipo, false);
 
 				bombaAliada.setTurno(true);
 

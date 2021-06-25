@@ -60,7 +60,7 @@ public class Montador {
 			marInimigo = leArquivo(getResource(arqInimigo), marInimigo, nivelInimigo);
 			marInimigo = montaMar(marInimigo);
 
-			telaJogo = new TelaJogo(marAliado, marInimigo, conexao.getPlayer());
+			telaJogo = new TelaJogo(marAliado, marInimigo, conexao.getPlayer(), meuNome);
 
 			bombaAliada.setItensView(telaJogo.getItensPlayer1View(), telaJogo.getLogView());
 

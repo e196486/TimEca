@@ -48,7 +48,7 @@ public class outController implements IMarListener {
 
 					ultimaBomba = (bomba.getBombas() == 1);
 
-					bomba.usaBomba(tipo, "Você", isNavioDestruido);
+					bomba.usaBomba(tipo, isNavioDestruido);
 
 					bomba.setTurno(false);
 					Jogada = "(" + i + ":" + j + ")|" + jogadaDica;

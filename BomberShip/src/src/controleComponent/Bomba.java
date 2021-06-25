@@ -33,15 +33,13 @@ public class Bomba {
 
 	private boolean fimDeJogo = false;
 	private boolean perdeu = false;
-	private String nomePersonagem = "";
-	private int nivel; 
+	private String nomePersonagem = ""; 
 
 	public Bomba(Time time, String nome, int nivel) {
 		n_pontos = 500;
 		n_inimigos = 25;
 		this.time = time;
-		this.nomePersonagem = nome;
-		this.nivel = nivel;
+		this.nomePersonagem = nome; 
 		
 		switch (nivel) {
 		case 1:
@@ -114,7 +112,7 @@ public class Bomba {
 		itemView.setDicaUnclicked();
 	}
 
-	public void usaBomba(char tipo, String nomeJogador, boolean bonus) {
+	public void usaBomba(char tipo, boolean bonus) {
 		String tipoCelula = "";
 		String txtAfunda = "";
 		n_bombas--;
@@ -122,7 +120,7 @@ public class Bomba {
 
 		switch (tipo) {
 		case 'A':
-			sorteiaArmadilha(nomeJogador);
+			sorteiaArmadilha(nomePersonagem);
 			tipoCelula = "uma Armadilha";
 			break;
 		case 'B':
@@ -159,10 +157,10 @@ public class Bomba {
 			n_inimigos--;
 			n_pontos += ptsAtingeNavio;
 			if (bonus)
-				txtAfunda += ", " + nomeJogador + " o afundou";
+				txtAfunda += ", " + nomePersonagem + " o afundou";
 		}
 
-		logView.updateMunicao(n_bombas, tipoCelula + txtAfunda, nomeJogador);
+		logView.updateMunicao(n_bombas, tipoCelula + txtAfunda, nomePersonagem);
 		atualizaPontos();
 	}
 

@@ -3,6 +3,7 @@ package viewComponent;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,7 +51,7 @@ public class TelaMenu extends JFrame {
 
 		JTextField campoNome = new JTextField(20);
 		campoNome.setBounds(50, 150, 320, 30);
-		campoNome.setText("Player");
+		campoNome.setText("Player_"+ new Random().nextInt(100));
 		campoNome.setEditable(true);
 		menuInicial.add(campoNome);
 
