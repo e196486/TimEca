@@ -80,10 +80,10 @@ public class Conexao implements IBuildConexao, ICommandIn,ICommandOut {
 		}
 	}
 
-	public void enviaDados(String jogada) {
+	public void enviaDados(String info) {
 
 		try {
-			dos.writeUTF(jogada);
+			dos.writeUTF(info);
 			dos.flush(); 
 		} catch (IOException e) { // InvalidMove && InvalidEnemy
 			erros++; 
@@ -106,22 +106,7 @@ public class Conexao implements IBuildConexao, ICommandIn,ICommandOut {
 		return "";
 
 	}
-
-	public String getMarInimigo() {
-		return recebeDados();
-	}
-
-	public void SetMar(String Mar) {
-		enviaDados(Mar);
-
-	}
-	
-	public void setNivel(String nivel) {
-		enviaDados(nivel);
-	}
-	public String getNivelInimigo() {
-		return recebeDados();
-	}
+  
 
 	public Conexao getThis() {
 		return this;

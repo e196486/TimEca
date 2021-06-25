@@ -27,7 +27,7 @@ public class AppBomberShip implements Runnable {
 
 				new TelaExplicativa(menu.getNivel()); 
 				
-				new Montador(menu.getIP(), menu.getPorta(), menu.getNivel());
+				new Montador(menu.getIP(), menu.getPorta(), menu.getNivel(), menu.getNomeJogador());
 
 			}
 

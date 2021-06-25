@@ -19,25 +19,44 @@ public class Bomba {
 
 	protected final int ptsAtingeNavio = +40;
 	protected final int ptsUsaBomba = -10;
-	protected final int ptsMaxRoubados = 15;    // adiciono multiplicador de 50, -> 50 < pts roubados < 800
-	protected final int bombasMaxRoubadas = 10; // 1< bombasRoubadas < 11 
-	protected final int dicasMaxRoubadas = 2;   // 1< dicasRoubadas < 2 
+	protected final int ptsMaxRoubados = 15; // adiciono multiplicador de 50, -> 50 < pts roubados < 800
+	protected final int bombasMaxRoubadas = 10; // 1< bombasRoubadas < 11
+	protected final int dicasMaxRoubadas = 2; // 1< dicasRoubadas < 2
 	protected final int ptsSubmarino = 40;
 	protected final int ptsCruzeiro = 60;
 	protected final int ptsNavioTanque = 80;
 	protected final int ptsPortaAviao = 100;
-	protected final int ptsMaxBau = 12;        // 1 < pts Bau < 650
+	protected final int ptsMaxBau = 12; // 1 < pts Bau < 650
 	protected final int dicasMaxBau = 3;
 	protected final int bombasMaxBau = 10;
 	private Time time;
 
 	private boolean fimDeJogo = false;
 	private boolean perdeu = false;
+	private String nomePersonagem = "";
+	private int nivel; 
 
-	public Bomba(Time time) {
-		n_pontos = 0;
+	public Bomba(Time time, String nome, int nivel) {
+		n_pontos = 500;
 		n_inimigos = 25;
 		this.time = time;
+		this.nomePersonagem = nome;
+		this.nivel = nivel;
+		
+		switch (nivel) {
+		case 1:
+			setBombas(90);
+			setDicas(3);
+			break;
+		case 2:
+			setBombas(70);
+			setDicas(2);
+			break;
+		case 3:
+			setBombas(50);
+			setDicas(1);
+			break;
+		}
 
 	}
 
@@ -140,7 +159,7 @@ public class Bomba {
 			n_inimigos--;
 			n_pontos += ptsAtingeNavio;
 			if (bonus)
-				txtAfunda += ", você o afundou";
+				txtAfunda += ", " + nomeJogador + " o afundou";
 		}
 
 		logView.updateMunicao(n_bombas, tipoCelula + txtAfunda, nomeJogador);
@@ -148,7 +167,7 @@ public class Bomba {
 	}
 
 	private void sorteiaBau() {
-		int pontosGanhos = (new Random().nextInt(ptsMaxBau)+1) * 50;
+		int pontosGanhos = (new Random().nextInt(ptsMaxBau) + 1) * 50;
 		int bombasGanhas = new Random().nextInt(bombasMaxBau);
 		int dicasGanhas = new Random().nextInt(dicasMaxBau);
 		n_pontos += pontosGanhos;
@@ -199,10 +218,7 @@ public class Bomba {
 		logView.updateLog("O tubarão roubou " + valorPenalidade + " " + tipoPenalidade + " de " + nomeJogador);
 
 	}
-
-	public void setLogView(ILogRefactor logView) {
-		this.logView = logView;
-	}
+ 
 
 	public void atualizaPontos() {
 		itemView.setDicas(n_dicas);
@@ -236,7 +252,7 @@ public class Bomba {
 		return fimDeJogo;
 	}
 
-	public void setFimDeJogo() { 
+	public void setFimDeJogo() {
 		fimDeJogo = true;
 	}
 }

@@ -21,52 +21,38 @@ public class Montador {
 
 	private outController controle;
 
-	private String arqInimigo;
 	private final String host = "Host";
-
-	String mapaCSV;
-	String snivel;
-	int nivelInimigo;
-
+ 
+	private String mapaCSV;
+	private String Arq;
 	
-	public Montador(String ip, int porta, int nivel) {
+	private int nivelInimigo;
+	private String nomeInimigo;
+	private String arqInimigo;
+
+	public Montador(String ip, int porta, int nivel, String meuNome) {
+		 
 
 		try {
 			conexao = new Conexao(ip, porta);
 
 			if (!conexao.conecta())
 				conexao.iniciaServer();
+
+			Arq = getResource(getMapa(conexao.getPlayer(), nivel));
+
+			comunicaInimigo(nivel, meuNome, mapaCSV);
 			
-			snivel = Integer.toString(nivel);
-			conexao.setNivel(snivel);
-			nivelInimigo = Integer.parseInt(conexao.getNivelInimigo());
-			
-			String Arq = getResource(getMapa(conexao.getPlayer(), nivel));
+			criaMeuTabuleiro(marAliado, Time.Aliado, Arq, nivel);
 
 			marAliado = criaMar(marAliado, Time.Aliado);
 			marAliado = leArquivo(Arq, marAliado, nivel);
 			marAliado = montaMar(marAliado);
 
-			// conexao de criar tabuleiro inimigo
-			conexao.SetMar(mapaCSV);
-			arqInimigo = conexao.getMarInimigo();
+			Bomba bombaAliada = new Bomba(Time.Aliado, meuNome, nivel);
+
 			
-			Bomba bombaAliada = new Bomba(Time.Aliado);
 			
-			switch (nivel) {
-			case 1:
-				bombaAliada.setBombas(90);
-				bombaAliada.setDicas(3);
-				break;
-			case 2:
-				bombaAliada.setBombas(70);
-				bombaAliada.setDicas(2);
-				break;
-			case 3: 
-				bombaAliada.setBombas(50);
-				bombaAliada.setDicas(1);
-				break;
-			}
 			bombaAliada.setTurno(conexao.getPlayer().equals(host));
 
 			controle = new outController(conexao.getThis(), bombaAliada);
@@ -81,31 +67,14 @@ public class Montador {
 			bombaAliada.setItensView(telaJogo.getItensPlayer1View(), telaJogo.getLogView());
 			controle.setLogView(telaJogo.getLogView());
 
-			Bomba bombaInimiga = new Bomba(Time.Inimigo);
-			
-			switch (nivelInimigo) {
-			case 1:
-				bombaInimiga.setBombas(90);
-				bombaInimiga.setDicas(3);
-				break;
-			case 2:
-				bombaInimiga.setBombas(70);
-				bombaInimiga.setDicas(2);
-				break;
-			case 3: 
-				bombaInimiga.setBombas(50);
-				bombaInimiga.setDicas(1);
-				break;
-			}
-			
+			Bomba bombaInimiga = new Bomba(Time.Inimigo, nomeInimigo, nivelInimigo);
+
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
 			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView());
 
 			InController controleIn = new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga);
 			controleIn.setLogView(telaJogo.getLogView());
-
-			bombaAliada.setLogView(telaJogo.getLogView());
-			bombaInimiga.setLogView(telaJogo.getLogView());
+ 
 
 			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
@@ -113,6 +82,27 @@ public class Montador {
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	private void criaMeuTabuleiro(Mar marAliado2, Time aliado, String arq2, int nivel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void comunicaInimigo(int nivel, String meuNome, String mapaCSV) {
+
+		// conexao de pegar nível do inimigo
+		conexao.enviaDados(Integer.toString(nivel));
+		nivelInimigo = Integer.parseInt(conexao.recebeDados());
+
+		// conexao de pegar nome do inimigo
+		conexao.enviaDados(meuNome);
+		nomeInimigo = conexao.recebeDados();
+
+		// conexao de criar tabuleiro inimigo
+		conexao.enviaDados(mapaCSV);
+		arqInimigo = conexao.recebeDados();
 
 	}
 

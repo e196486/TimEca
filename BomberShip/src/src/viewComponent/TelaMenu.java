@@ -18,6 +18,7 @@ public class TelaMenu extends JFrame {
 	int Porta;
 	boolean comecaJogo = false;
 	private int nivel;
+	private String nomeJogador;
 
 	private static final long serialVersionUID = -8873103691626125174L;
 
@@ -89,6 +90,7 @@ public class TelaMenu extends JFrame {
 			this.IP = campoIP.getText();
 			this.Porta = Integer.parseInt(campoPorta.getText());
 			this.nivel = cb.getSelectedIndex() + 1;
+			this.nomeJogador = campoNome.getText();
 
 			this.setVisible(false);
 			setComecaJogo(true);
@@ -125,6 +127,10 @@ public class TelaMenu extends JFrame {
 	
 	public int getNivel() {
 		return nivel;
+	}
+
+	public String getNomeJogador() { 
+		return nomeJogador;
 	}
 
 }

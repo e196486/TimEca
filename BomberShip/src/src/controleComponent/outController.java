@@ -10,9 +10,7 @@ public class outController implements IMarListener {
 	Bomba bomba;
 
 	public Time time;
-	private ICommandOut conexao;
-	private int i;
-	private int j;
+	private ICommandOut conexao; 
 	private String Jogada;
 	private ILogRefactor logView;
 
