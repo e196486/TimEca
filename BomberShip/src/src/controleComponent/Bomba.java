@@ -16,6 +16,9 @@ public class Bomba {
 	protected boolean dicaEquip;
 
 	/* Pontos ganhos */
+
+	protected final int ptsAtingeNavio = +25;
+	protected final int ptsUsaBomba = -10;
 	protected final int ptsArmadilha = -500;
 	protected final int ptsSubmarino = 40;
 	protected final int ptsCruzeiro = 60;
@@ -66,9 +69,11 @@ public class Bomba {
 	public int getBombas() {
 		return n_bombas;
 	}
+
 	public void setBombas(int n_bombas) {
 		this.n_bombas = n_bombas;
 	}
+
 	public void setDicas(int n_dicas) {
 		this.n_dicas = n_dicas;
 	}
@@ -89,8 +94,9 @@ public class Bomba {
 
 	public void usaBomba(char tipo, String nomeJogador, boolean bonus) {
 		String tipoCelula = "";
+		String txtAfunda = "";
 		n_bombas--;
-		n_pontos -= 10;
+		n_pontos += ptsUsaBomba;
 
 		switch (tipo) {
 		case 'A':
@@ -102,59 +108,52 @@ public class Bomba {
 			tipoCelula = "um Baú";
 			break;
 		case 'S':
-			n_pontos += ptsSubmarino;
 			tipoCelula = "um Submarino";
-			if (bonus) {
+			if (bonus)
 				n_pontos += ptsSubmarino;
-				tipoCelula += ", você o afundou";
-			}
+
 			break;
 		case 'C':
-			n_pontos += ptsCruzeiro;
 			tipoCelula = "um Cruzeiro";
-			if (bonus) {
+			if (bonus)
 				n_pontos += ptsCruzeiro;
-				tipoCelula += ", você o afundou";
-			}
 			break;
 		case 'N':
-			n_pontos += ptsNavioTanque;
 			tipoCelula = "um Navio Tanque";
-			if (bonus) {
+			if (bonus)
 				n_pontos += ptsNavioTanque;
-				tipoCelula += ", você o afundou";
-			}
 			break;
 		case 'P':
-			n_pontos += ptsPortaAviao;
 			tipoCelula = "um Porta Avião";
-			if (bonus) {
+			if (bonus)
 				n_pontos += ptsPortaAviao;
-				tipoCelula += ", você o afundou";
-			}
+
 			break;
-		case '~': 
+		case '~':
 			tipoCelula = "o Mar";
 			break;
 		}
-		if ((tipo != 'A') || (tipo != 'B') || (tipo != '~'))
+		if ((tipo != 'A') && (tipo != 'B') && (tipo != '~')) {
 			n_inimigos--;
-		
-		System.out.println("chegou aqui");
-		logView.updateMunicao(n_bombas, tipoCelula, nomeJogador);
+			n_pontos += ptsAtingeNavio;
+			if (bonus)
+				txtAfunda += ", você o afundou";
+		}
+
+		logView.updateMunicao(n_bombas, tipoCelula + txtAfunda, nomeJogador);
 		atualizaPontos();
 	}
 
 	private void sorteiaBau() {
-		int pontosGanhos = new Random().nextInt(ptsMaxBau);
+		int pontosGanhos = new Random().nextInt(ptsMaxBau) * 50;
 		int bombasGanhas = new Random().nextInt(bombasMaxBau);
 		int dicasGanhas = new Random().nextInt(dicasMaxBau);
-		n_pontos += pontosGanhos*50;
+		n_pontos += pontosGanhos;
 		n_bombas += bombasGanhas;
 		n_dicas += dicasGanhas;
 
 		logView.updateLog(
-				"você ganhou " + pontosGanhos*50 + " pontos, " + bombasGanhas + " bombas e " + dicasGanhas + " dicas!!");
+				"você ganhou " + pontosGanhos + " pontos, " + bombasGanhas + " bombas e " + dicasGanhas + " dicas!!");
 
 	}
 
@@ -168,8 +167,8 @@ public class Bomba {
 		itemView.setPontos(n_pontos);
 	}
 
-	public boolean checaVencedor() {
-		return (n_inimigos == 0);
+	public boolean checaVencedor() { 
+		return fimDeJogo = (n_inimigos == 0);
 	}
 
 	public String getResultado() {
