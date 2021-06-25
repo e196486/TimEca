@@ -37,7 +37,7 @@ public class Bomba {
 	private String nomePersonagem = "";
 
 	public Bomba(Time time, String nome, int nivel) {
-		n_pontos = 20;
+		n_pontos = 400;
 		n_inimigos = 25;
 		this.time = time;
 		this.nomePersonagem = nome;
@@ -243,6 +243,7 @@ public class Bomba {
 	}
 
 	public boolean checaFimDeJogo() {
+		atualizaPontos();
 		 motivo =" ";
 
 		if (n_inimigos == 0) {
@@ -284,5 +285,13 @@ public class Bomba {
 
 	public int getPontos() { 
 		return n_pontos;
+	}
+
+	public int getDicas() {
+		return n_dicas;
+	}
+
+	public void setPontos(int pts) {
+		this.n_pontos = pts;
 	}
 }

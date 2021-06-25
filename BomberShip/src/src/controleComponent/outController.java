@@ -53,7 +53,7 @@ public class outController implements IMarListener {
 					bombaInimiga.penalidadeRecebida(pontosPerdidos);
 					
 					bombaAliada.setTurno(false);
-					Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
+					Jogada = "(" + i + ":" + j + ")|(" + bombaAliada.getBombas() + ":" + bombaAliada.getPontos() + ":" + bombaAliada.getDicas() + ")|"+ jogadaDica;
 					conexao.enviaDados(Jogada);
 
 				} else
@@ -63,7 +63,7 @@ public class outController implements IMarListener {
 					
 					logView.updateLog("Acabaram os recursos :( ");
 					bombaAliada.setFimDeJogo();
-					conexao.enviaDados("fimDeJogo");
+					//conexao.enviaDados("fimDeJogo");
 				}
 
 			} else {
