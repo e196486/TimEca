@@ -33,14 +33,14 @@ public class Bomba {
 
 	private boolean fimDeJogo = false;
 	private boolean perdeu = false;
-	private String nomePersonagem = ""; 
+	private String nomePersonagem = "";
 
 	public Bomba(Time time, String nome, int nivel) {
-		n_pontos = 500;
+		n_pontos = 400;
 		n_inimigos = 25;
 		this.time = time;
-		this.nomePersonagem = nome; 
-		
+		this.nomePersonagem = nome;
+
 		switch (nivel) {
 		case 1:
 			setBombas(90);
@@ -112,15 +112,18 @@ public class Bomba {
 		itemView.setDicaUnclicked();
 	}
 
-	public void usaBomba(char tipo, boolean bonus) {
+	public int usaBomba(char tipo, boolean bonus) {
 		String tipoCelula = "";
 		String txtAfunda = "";
+		int pontos = 0;
 		n_bombas--;
-		n_pontos += ptsUsaBomba;
+
+		if ((tipo == '~'))
+			pontos += ptsUsaBomba;
 
 		switch (tipo) {
 		case 'A':
-			sorteiaArmadilha(nomePersonagem);
+			pontos = sorteiaArmadilha(nomePersonagem);
 			tipoCelula = "uma Armadilha";
 			break;
 		case 'B':
@@ -130,23 +133,23 @@ public class Bomba {
 		case 'S':
 			tipoCelula = "um Submarino";
 			if (bonus)
-				n_pontos += ptsSubmarino;
+				pontos += ptsSubmarino;
 
 			break;
 		case 'C':
 			tipoCelula = "um Cruzeiro";
 			if (bonus)
-				n_pontos += ptsCruzeiro;
+				pontos += ptsCruzeiro;
 			break;
 		case 'N':
 			tipoCelula = "um Navio Tanque";
 			if (bonus)
-				n_pontos += ptsNavioTanque;
+				pontos += ptsNavioTanque;
 			break;
 		case 'P':
 			tipoCelula = "um Porta Avião";
 			if (bonus)
-				n_pontos += ptsPortaAviao;
+				pontos += ptsPortaAviao;
 
 			break;
 		case '~':
@@ -155,13 +158,25 @@ public class Bomba {
 		}
 		if ((tipo != 'A') && (tipo != 'B') && (tipo != '~')) {
 			n_inimigos--;
-			n_pontos += ptsAtingeNavio;
+			pontos += ptsAtingeNavio;
 			if (bonus)
 				txtAfunda += ", " + nomePersonagem + " o afundou";
 		}
 
+		n_pontos += pontos;
+
 		logView.updateMunicao(n_bombas, tipoCelula + txtAfunda, nomePersonagem);
 		atualizaPontos();
+
+		return pontos;
+	}
+
+	public void penalidadeRecebida(int pontos) {
+		n_pontos -= pontos/3;
+		String winLose = (pontos>0) ? " perdeu ":" ganhou ";  
+		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos/3) + " pontos nessa jogada.");
+		atualizaPontos();
+
 	}
 
 	private void sorteiaBau() {
@@ -177,18 +192,19 @@ public class Bomba {
 
 	}
 
-	private void sorteiaArmadilha(String nomeJogador) {
+	private int sorteiaArmadilha(String nomeJogador) {
 		String tipoPenalidade = "";
+		int pontos = 0;
 		int valorPenalidade = 0;
 
-		int casoPenalidade = new Random().nextInt(2) + 1;
+		int casoPenalidade = new Random().nextInt(3) + 1;
 
 		switch (casoPenalidade) {
 
-		case 1:
+		case 1: case 4:
 			valorPenalidade = (new Random().nextInt(ptsMaxRoubados) + 1) * 50;
 			tipoPenalidade = "ponto(s)";
-			n_pontos -= valorPenalidade;
+			pontos -= valorPenalidade;
 			break;
 
 		case 2:
@@ -214,9 +230,10 @@ public class Bomba {
 
 		atualizaPontos();
 		logView.updateLog("O tubarão roubou " + valorPenalidade + " " + tipoPenalidade + " de " + nomeJogador);
-
+		
+		n_pontos += pontos;
+		return pontos;
 	}
- 
 
 	public void atualizaPontos() {
 		itemView.setDicas(n_dicas);

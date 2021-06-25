@@ -64,9 +64,6 @@ public class Montador {
 
 			bombaAliada.setItensView(telaJogo.getItensPlayer1View(), telaJogo.getLogView());
 
-			controleOut.setMar(marInimigo);
-			controleOut.setLogView(telaJogo.getLogView());
-
 			bombaInimiga = new Bomba(Time.Inimigo, nomeInimigo, nivelInimigo);
 			bombaInimiga.setTurno(conexao.getPlayer().equals(host));
 			bombaInimiga.setItensView(telaJogo.getItensPlayer2View(), telaJogo.getLogView());
@@ -74,6 +71,10 @@ public class Montador {
 			controleIn = new InController(conexao.getThis(), marAliado, bombaAliada, bombaInimiga);
 			controleIn.setLogView(telaJogo.getLogView());
 
+			controleOut.setMar(marInimigo);
+			controleOut.setLogView(telaJogo.getLogView());
+			controleOut.setBombaInimiga(bombaInimiga);
+			
 			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
 

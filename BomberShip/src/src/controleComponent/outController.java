@@ -7,16 +7,17 @@ import viewComponent.ILogRefactor;
 public class outController implements IMarListener {
 
 	IMarRefactor mar;
-	Bomba bomba;
+	Bomba bombaAliada;
+	Bomba bombaInimiga;
 
 	public Time time;
 	private ICommandOut conexao; 
 	private String Jogada;
 	private ILogRefactor logView;
 
-	public outController(ICommandOut conexao, Bomba bomba) {
+	public outController(ICommandOut conexao, Bomba bombaAliada) {
 		this.conexao = conexao;
-		this.bomba = bomba;
+		this.bombaAliada = bombaAliada; 
 	}
 
 	public void setMar(IMarRefactor mar) {
@@ -28,14 +29,14 @@ public class outController implements IMarListener {
 		boolean isNavioDestruido = false;
 		boolean ultimaBomba = false;
 
-		if (!bomba.isFimDeJogo()) {
-			if (bomba.getTurno()) {
+		if (!bombaAliada.isFimDeJogo()) {
+			if (bombaAliada.getTurno()) {
 				logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
-				if (bomba.getBombas() > 0 && !mar.getCelula(i, j).isCelulaDestruida()) {
+				if (bombaAliada.getBombas() > 0 && !mar.getCelula(i, j).isCelulaDestruida()) {
 
-					if (bomba.dicaEquipada() && bomba.temDica()) {
+					if (bombaAliada.dicaEquipada() && bombaAliada.temDica()) {
 						jogadaDica = true;
-						bomba.usaDica("Você");
+						bombaAliada.usaDica("Você");
 						mar.getCelula(i + 1, j).setCelulaRevelada(true);
 						mar.getCelula(i, j + 1).setCelulaRevelada(true);
 						mar.getCelula(i - 1, j).setCelulaRevelada(true);
@@ -46,11 +47,12 @@ public class outController implements IMarListener {
 					if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
 						isNavioDestruido = mar.getCelula(i, j).getNavio().navioDestruido();
 
-					ultimaBomba = (bomba.getBombas() == 1);
+					ultimaBomba = (bombaAliada.getBombas() == 1);
 
-					bomba.usaBomba(tipo, isNavioDestruido);
-
-					bomba.setTurno(false);
+					int pontosPerdidos = bombaAliada.usaBomba(tipo, isNavioDestruido);
+					bombaInimiga.penalidadeRecebida(pontosPerdidos);
+					
+					bombaAliada.setTurno(false);
 					Jogada = "(" + i + ":" + j + ")|" + jogadaDica;
 					conexao.enviaDados(Jogada);
 
@@ -59,7 +61,7 @@ public class outController implements IMarListener {
 
 				if (ultimaBomba) {
 					logView.updateLog("você não tem mais bombas disponíveis :( ");
-					bomba.setFimDeJogo();
+					bombaAliada.setFimDeJogo();
 					conexao.enviaDados("fimDeJogo");
 				}
 
@@ -72,6 +74,10 @@ public class outController implements IMarListener {
 	public void setLogView(ILogRefactor iLogRefactor) {
 		this.logView = iLogRefactor;
 
+	}
+
+	public void setBombaInimiga(Bomba bombaInimiga) {
+		this.bombaInimiga = bombaInimiga;
 	}
 
 }

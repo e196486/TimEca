@@ -44,11 +44,13 @@ public class InController implements Runnable {
 					bombaInimiga.usaDica("Inimigo");
 
 				char tipo = marAliado.getCelula(i, j).explode();
+				int pontosPerdidos;
 				if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
-					bombaInimiga.usaBomba(tipo, marAliado.getCelula(i, j).getNavio().navioDestruido());
+					pontosPerdidos = bombaInimiga.usaBomba(tipo, marAliado.getCelula(i, j).getNavio().navioDestruido());
 				else
-					bombaInimiga.usaBomba(tipo, false);
+					pontosPerdidos = bombaInimiga.usaBomba(tipo, false);
 
+				bombaAliada.penalidadeRecebida(pontosPerdidos);
 				bombaAliada.setTurno(true);
 
 				logView.updateLog("Sua vez...");
