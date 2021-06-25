@@ -170,11 +170,14 @@ public class TelaExplicativa extends JFrame {
 
 	private final String txtObjetivoJogo = "<html> \r\n" + "<br>" + "<h2>Objetivo do Jogo</h2>\r\n" + "\r\n"
 			+ "<p style=\"text-align:center;\">Você deverá localizar e derrotar todos os navios inimigos!<br>"
-		    + " Para isso, <u>você deverá poupar munição</u>, ou suas bombas acabarão e você perderá por <br>"
-		    + "não ter como atacar mais! <br>\r\n"
-			+ "<b>Mas cuidado</b>: O campo inimigo está cercado de tubarões que podem roubar seus itens! <br>\r\n"
+		    + " Para isso, <u>você deverá poupar <b>munição e pontos</b> de vida</u>, ou você perderá por não ter <br>"
+		    + "como atacar mais sem munição ou sem forças. <br>\r\n"
+			+ "<b>Mas cuidado</b>: O campo inimigo está cercado de tubarões que podem roubar seus itens <br>"
+			+ " e repassá-los para o inimigo! Além disso, toda vez que o inimigo te atingir, você irá <br>"
+			+ "perder pontos de vida.<br>\r\n"
 			+ "A notícia boa é que antigos aliados colocaram baús escondidos com prêmios <br>"
-			+ "para te ajudar! Ache-os e você poderá recuperar alguns itens;\r\n" + "\r\n" + "</p> \r\n"
+			+ "para te ajudar! Ache-os e você poderá recuperar alguns itens; Você também poderá <br>"
+			+ "contar com a ajuda dos seus tubarões infiltrados no inimigo para ganhar a batalha!\r\n" + "\r\n" + "</p> \r\n"
 			+ "<h2>Explicando as peças</h2>\r\n" + "</html>";
 
 	private String explicaBomba = "<html>Bomba Explodida! <br>"

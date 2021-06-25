@@ -173,9 +173,9 @@ public class Bomba {
 	}
 
 	public void penalidadeRecebida(int pontos) {
-		n_pontos -= pontos/3;
+		n_pontos -= pontos/4;
 		String winLose = (pontos>0) ? " perdeu ":" ganhou ";  
-		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos/3) + " pontos nessa jogada.");
+		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos/4) + " pontos nessa jogada.");
 		atualizaPontos();
 
 	}
