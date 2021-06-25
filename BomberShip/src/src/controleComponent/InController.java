@@ -1,4 +1,4 @@
-package controleComponent; 
+package controleComponent;
 
 import javax.swing.JOptionPane;
 import conexaoComponent.*;
@@ -24,36 +24,26 @@ public class InController implements Runnable {
 	@Override
 	public void run() {
 
-		while (true && !fimDeJogo && !temVencedor()) {
+		while (true && !fimDeJogo) {
 			if (conexao.getPlayer().equals("Host") && !conexao.getConexaoAceita())
 				conexao.aguardaServerRequest();
 
 			String resposta = conexao.recebeDados();
 
-			if (resposta.equals("fimDeJogo"))
-				fimDeJogo = true;
-
-			else {
+			if (!resposta.equals("fimDeJogo")) {
 
 				int i = Integer.parseInt(resposta.substring(1, 2));
-				int j = Integer.parseInt(resposta.substring(3, 4));
-				System.out.println(resposta);
-				
-				int a = posicao(resposta, 7, ':');
-				int b = posicao(resposta, a+1, ':');
-				int c = posicao(resposta, b+1, ')'); 
-				
-				int bombasInimigo = Integer.parseInt(resposta.substring(7, a));
-				int pontosInimigo = Integer.parseInt(resposta.substring(a+1, b));
-				int dicasInimigo = Integer.parseInt(resposta.substring(b+1, c));
+				int j = Integer.parseInt(resposta.substring(3, 4)); 
 
-				String jogadaDica = resposta.substring(c+2);
-				
-				/*System.out.println("bombasInimigo" + bombasInimigo +
-								"\n pontosInimigo" + pontosInimigo +
-								"\n dicasInimigo " + dicasInimigo + 
-								"\n jogada dica " + jogadaDica  );
-				*/
+				int a = posicao(resposta, 7, ':');
+				int b = posicao(resposta, a + 1, ':');
+				int c = posicao(resposta, b + 1, ')');
+
+				int bombasInimigo = Integer.parseInt(resposta.substring(7, a));
+				int pontosInimigo = Integer.parseInt(resposta.substring(a + 1, b));
+				int dicasInimigo = Integer.parseInt(resposta.substring(b + 1, c));
+
+				String jogadaDica = resposta.substring(c + 2);
 
 				if (jogadaDica.equals("true"))
 					bombaInimiga.usaDica("Inimigo");
@@ -68,15 +58,14 @@ public class InController implements Runnable {
 				bombaInimiga.setBombas(bombasInimigo);
 				bombaInimiga.setPontos(pontosInimigo);
 				bombaInimiga.setDicas(dicasInimigo);
-				
+
 				bombaAliada.penalidadeRecebida(pontosPerdidos);
 				bombaAliada.setTurno(true);
 
 				logView.updateLog("Sua vez...");
 			}
-			if (fimDeJogo || temVencedor()) {
+			if (resposta.equals("fimDeJogo") || temVencedor()) {
 
-				
 				conexao.enviaDados("fimDeJogo");
 				String status = bombaAliada.getResultado();
 
@@ -85,17 +74,21 @@ public class InController implements Runnable {
 				bombaAliada.atualizaPontos();
 				bombaInimiga.atualizaPontos();
 				JOptionPane.showMessageDialog(null, "Fim de Jogo!!\n" + status);
+				fimDeJogo = true;
 			}
+
 		}
+
 	}
-	private int posicao(String x, int inicio, char c) {  
+
+	private int posicao(String x, int inicio, char c) {
 		int fim;
 		char S = 'A';
-		 
-		for (fim = inicio ; S != c ; fim++ ) {
+
+		for (fim = inicio; S != c; fim++) {
 			S = x.charAt(fim);
 		}
-		return fim-1;
+		return fim - 1;
 	}
 
 	private boolean temVencedor() {

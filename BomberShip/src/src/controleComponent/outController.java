@@ -63,7 +63,7 @@ public class outController implements IMarListener {
 					
 					logView.updateLog("Acabaram os recursos :( ");
 					bombaAliada.setFimDeJogo();
-					//conexao.enviaDados("fimDeJogo");
+					conexao.enviaDados("fimDeJogo");
 				}
 
 			} else {
