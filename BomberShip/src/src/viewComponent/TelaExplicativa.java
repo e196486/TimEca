@@ -173,7 +173,7 @@ public class TelaExplicativa extends JFrame {
 		    + " Para isso, <u>você deverá poupar munição</u>, ou suas bombas acabarão e você perderá por <br>"
 		    + "não ter como atacar mais! <br>\r\n"
 			+ "<b>Mas cuidado</b>: O campo inimigo está cercado de tubarões que podem roubar seus itens! <br>\r\n"
-			+ "A notícia boa é que antigos aliados colocaram baús escondidos com premios <br>"
+			+ "A notícia boa é que antigos aliados colocaram baús escondidos com prêmios <br>"
 			+ "para te ajudar! Ache-os e você poderá recuperar alguns itens;\r\n" + "\r\n" + "</p> \r\n"
 			+ "<h2>Explicando as peças</h2>\r\n" + "</html>";
 
