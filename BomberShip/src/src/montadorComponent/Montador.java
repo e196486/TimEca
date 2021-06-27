@@ -4,9 +4,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
-
 import conexaoComponent.Conexao;
-import conexaoComponent.IBuildConexao;
 import controleComponent.*;
 import marComponent.Celula.*;
 import marComponent.Mar.Mar;
@@ -14,7 +12,7 @@ import viewComponent.TelaJogo;
 
 public class Montador {
 
-	IBuildConexao conexao;
+	Conexao conexao;
 	private Mar marAliado;
 	private Mar marInimigo;
 	private Celula[][] celulasConstrutor;
