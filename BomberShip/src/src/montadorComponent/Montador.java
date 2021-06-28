@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 
 import conexaoComponent.Conexao;
 import conexaoComponent.ConnectionError;
+import conexaoComponent.InvalidServer;
+import conexaoComponent.NullServer;
 import controleComponent.*;
 import marComponent.Celula.*;
 import marComponent.Mar.Mar;
@@ -18,7 +20,7 @@ public class Montador {
 	private Mar marAliado;
 	private Mar marInimigo;
 	private Celula[][] celulasConstrutor;
-	
+
 	private TelaJogo telaJogo;
 
 	private outController controleOut;
@@ -32,7 +34,7 @@ public class Montador {
 	private int nivelInimigo;
 	private String nomeInimigo;
 	private String arqInimigo;
-	
+
 	private Bomba bombaInimiga;
 	private Bomba bombaAliada;
 
@@ -41,12 +43,8 @@ public class Montador {
 		try {
 			conexao = new Conexao(ip, porta);
 
-			try {
-				if (!conexao.conecta())
-					conexao.iniciaServer();
-			} catch (ConnectionError e) {
-				e.printStackTrace();
-			}
+			if (!conexao.conecta())
+				conexao.iniciaServer();
 
 			Arq = getResource(getMapa(conexao.getPlayer(), nivel));
 
@@ -78,11 +76,11 @@ public class Montador {
 			controleOut.setMar(marInimigo);
 			controleOut.setLogView(telaJogo.getLogView());
 			controleOut.setBombaInimiga(bombaInimiga);
-			
+
 			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
 
-		} catch (InvalidMapImport e) {
+		} catch (InvalidMapImport | NullServer | InvalidServer e) {
 			e.printStackTrace();
 		}
 
@@ -94,17 +92,17 @@ public class Montador {
 			// conexao de pegar nível do inimigo
 			conexao.enviaDados(Integer.toString(nivel));
 			nivelInimigo = Integer.parseInt(conexao.recebeDados());
-	
+
 			// conexao de pegar nome do inimigo
 			conexao.enviaDados(meuNome);
 			nomeInimigo = conexao.recebeDados();
-	
+
 			// conexao de criar tabuleiro inimigo
 			conexao.enviaDados(mapaCSV);
 			arqInimigo = conexao.recebeDados();
 		} catch (ConnectionError e) {
 			e.printStackTrace();
-		}	
+		}
 	}
 
 	public String getMapa(String Player, int nivel) {
@@ -125,7 +123,6 @@ public class Montador {
 		try {
 			file = Paths.get(res.toURI()).toFile();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String arquivo1 = file.getAbsolutePath();
