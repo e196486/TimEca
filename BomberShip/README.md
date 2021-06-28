@@ -23,6 +23,8 @@
 # Descrição Resumida do Jogo
 
 > É um jogo multiplayer em que o objetivo será afundar todos os navios inimigos e obter a maior pontuação.
+> O Jogador que chegar a pontuação 0 e munição 0, perderá. 
+> Existirão vários tubarões-armadilha que roubarão aleatóriamente do jogador alguns itens. Também teremos disponível alguns baú do tesouro que recuperam determinados itens para o jogador. 
 
 # Equipe
 * `Erica Yuri Nunes de Oliveira ` - `196486`
@@ -85,14 +87,14 @@ public Montador(String ip, int porta, ...) {
 ~~~java
 public class Conexao implements ICommandIn,ICommandOut {
 ...
-public String recebeDados() {
+public String recebeDados() throws InvalidEnemy{
 
 		try {
 			if (conexaoAceita) {
 				return dis.readUTF();
 			}
 
-		} catch (IOException e) { // InvalidEnemy
+		} catch (IOException e) {  
 			System.out.println("o Outro usuario saiu da partida, Fim de Jogo!");
 			return "fimDeJogo";
 		}
@@ -103,7 +105,7 @@ public String recebeDados() {
 >  A forma como trabalhamos as celulas também é um ponto de destaque : cada celula contem uma peça, que é um pedaço de um navio específico, trabalhando com polimorfismo. Ele é inserido no mar conforme sua orientação Vertical ou horizontal.
 
 ~~~java
- public boolean insereSubmarino(int x, int y, String sentido) throws Exception {
+ public boolean insereSubmarino(int x, int y, String sentido) throws InvalidMapContent {
 		if (sentido.equals("h")) {
 
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null) {
