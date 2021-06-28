@@ -155,7 +155,7 @@ public class Montador {
 
 				boolean a = true;
 
-				mar.insereNavio(tipo, sentido, x, y);
+				mar.insere(tipo, sentido, x, y);
 
 				if (!a)
 					throw new InvalidMapContent("Há conflitos entre navios");
