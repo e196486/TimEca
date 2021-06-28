@@ -13,7 +13,7 @@ import controleComponent.Time;
 import controleComponent.outController;
 import marComponent.Pecas.Navio;
 
-public class Celula extends JButton implements ICelulaPropriedades, ICelulaRefactor, ActionListener {
+public class Celula extends JButton implements ICelulaRefactor, ActionListener {
 
 	private static final long serialVersionUID = -4497235678407832554L;
 	protected ImageIcon imagem;
