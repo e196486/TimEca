@@ -59,7 +59,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 		insereCelula(c).SetImage(img);
 	}
 	
-	public boolean insereNavio(String tipo, String sentido, int x, int y) throws InvalidMapContent {
+	public boolean insere(String tipo, String sentido, int x, int y) throws InvalidMapContent {
 		boolean a = false;
 		if (tipo.equals("S")) {
 			a = insereSubmarino(x, y, sentido);
