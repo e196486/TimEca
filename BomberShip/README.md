@@ -122,6 +122,39 @@ public String recebeDados() {
 			return false; 
 ~~~
 
+# Destaques de Pattern
+Factory Pattern
+
+## Diagrama do Pattern
+![Factory Pattern](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/FactoryPattern.png)
+
+## Código do Pattern
+~~~java
+public Mar leArquivo(String Arq, Mar mar, int nivel) {
+
+	//...
+
+	for (int i = 0; i < 11 + nivel; i++) {
+		int x = Integer.parseInt(comandos[i][0].substring(0, 1));
+		int y = Integer.parseInt(comandos[i][0].substring(2, 3));
+		String sentido = comandos[i][1];
+		String tipo = comandos[i][2];
+
+		boolean a = true;
+
+		mar.insere(tipo, sentido, x, y);
+
+		if (!a)
+			throw new InvalidMapContent("Há conflitos entre navios");
+	}
+	
+	//...
+~~~
+
+Utilizamos o Factory Pattern para instanciar todos os obejtos do mar, como navios, armadilhas e baús. Dessa forma, o montador utiliza apenas um método, passando por parâmetro as coordenadas e o tipo apenas no método insere().
+
+# Conclusão e trabalhos futuros
+Gostaríamos de ter implementado uma forma de montar o tabuleiro por escolha do jogador e não por um arquivo externo. Ao final do projeto, temos conhecimento suficiente para implementar, porém decidimos não implementar por falta de tempo. Com a experiência adquirida neste projeto, podemos pensar em formas mais eficientes para a arquitetura e utilizar patterns que ajudariam na estrutura do projeto, que melhorariam o jogo como um todo.
 
 # Documentação dos Componentes
 
