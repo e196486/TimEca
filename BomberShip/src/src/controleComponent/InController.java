@@ -13,6 +13,18 @@ public class InController implements Runnable {
 	private Bomba bombaInimiga;
 	private boolean fimDeJogo = false;
 	private ILogRefactor logView;
+	
+	int i ;
+	int j ;
+
+	int a ;
+	int b ;
+	int c ;
+
+	int bombasInimigo ;
+	int pontosInimigo ;
+	int dicasInimigo ;		
+	String jogadaDica;
 
 	public InController(ICommandIn conexao, IMarRefactor mar, Bomba bombaAliada, Bomba bombaInimiga) {
 		this.conexao = conexao;
@@ -32,21 +44,10 @@ public class InController implements Runnable {
 
 			if (!resposta.equals("fimDeJogo")) {
 
-				int i = Integer.parseInt(resposta.substring(1, 2));
-				int j = Integer.parseInt(resposta.substring(3, 4)); 
-
-				int a = posicao(resposta, 7, ':');
-				int b = posicao(resposta, a + 1, ':');
-				int c = posicao(resposta, b + 1, ')');
-
-				int bombasInimigo = Integer.parseInt(resposta.substring(7, a));
-				int pontosInimigo = Integer.parseInt(resposta.substring(a + 1, b));
-				int dicasInimigo = Integer.parseInt(resposta.substring(b + 1, c));
-
-				String jogadaDica = resposta.substring(c + 2);
+				traduzResposta(resposta);
 
 				if (jogadaDica.equals("true"))
-					bombaInimiga.usaDica("Inimigo");
+					bombaInimiga.usaDica();
 
 				char tipo = marAliado.getCelula(i, j).explode();
 				int pontosPerdidos;
@@ -62,7 +63,6 @@ public class InController implements Runnable {
 				bombaAliada.penalidadeRecebida(pontosPerdidos);
 				bombaAliada.setTurno(true);
 
-				logView.updateLog("Sua vez...");
 			}
 			if (resposta.equals("fimDeJogo") || temVencedor()) {
 
@@ -79,6 +79,20 @@ public class InController implements Runnable {
 
 		}
 
+	}
+
+	private void traduzResposta(String resposta) {
+		 i = Integer.parseInt(resposta.substring(1, 2));
+		 j = Integer.parseInt(resposta.substring(3, 4)); 
+
+		 a = posicao(resposta, 7, ':');
+		 b = posicao(resposta, a + 1, ':');
+		 c = posicao(resposta, b + 1, ')');
+
+		 bombasInimigo = Integer.parseInt(resposta.substring(7, a));
+		 pontosInimigo = Integer.parseInt(resposta.substring(a + 1, b));
+		 dicasInimigo = Integer.parseInt(resposta.substring(b + 1, c));	
+		 jogadaDica = resposta.substring(c + 2);
 	}
 
 	private int posicao(String x, int inicio, char c) {

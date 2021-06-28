@@ -94,7 +94,7 @@ public class TelaExplicativa extends JFrame {
 		telaExplicativa.setLayout(new BoxLayout(telaExplicativa, BoxLayout.PAGE_AXIS));
 		janela.add(BorderLayout.CENTER, scroll);
 
-		JLabel lblTitulo = new JLabel("<html>BOMBERSHIP! N&iacute;vel: </html>" + nivel);
+		JLabel lblTitulo = new JLabel(" BOMBERSHIP! Nível:" + nivel);
 		lblTitulo.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setBounds(0, 10, 560, 30);
@@ -110,6 +110,17 @@ public class TelaExplicativa extends JFrame {
 		JPanel telaTexto = new JPanel();
 		telaTexto.setBounds(10, 350, 520, 300);
 		telaTexto.setLayout(new GridLayout(9, 0));
+		
+
+		telaTexto.add(adicionaTela(imgSubmarino, explicaSubmarino));
+		telaTexto.add(adicionaTela(imgCruzeiro, explicaCruzeiro));
+		telaTexto.add(adicionaTela(imgNavioTanque, explicaNavioTanque));
+		telaTexto.add(adicionaTela(imgPortaAviao, explicaPortaAviao));
+		
+		telaTexto.add(adicionaTela(imgSplash, explicaSplash));
+		
+		telaTexto.add(adicionaTela(imgBombaExplodida, explicaBomba + "<b>Voc&ecirc; ir&aacute; iniciar com " + getDadosNivel("Bomba")
+		+ " bombas dispon&iacute;veis!</b>" + "</html>"));
 
 		telaTexto.add(adicionaTela(imgArmadilhaTubarao, explicaArmadilhaTubarao + "<b>Ser&atilde;o "
 				+ getDadosNivel("Tubaroes") + " tubar&otilde;es  atras de voc&ecirc;!</html>"));
@@ -117,14 +128,7 @@ public class TelaExplicativa extends JFrame {
 			telaTexto.add(adicionaTela(imgBauDoTesouro,
 					explicaBauDoTesouro + "<b>Ser&atilde;o " + getDadosNivel("Baus") + " Baus espalhados para voc&ecirc;!</html>"));
 
-		telaTexto.add(adicionaTela(imgBombaExplodida, explicaBomba + "<b>Voc&ecirc; ir&aacute; iniciar com " + getDadosNivel("Bomba")
-				+ " bombas dispon&iacute;veis!</b>" + "</html>"));
-
-		telaTexto.add(adicionaTela(imgSplash, explicaSplash));
-		telaTexto.add(adicionaTela(imgSubmarino, explicaSubmarino));
-		telaTexto.add(adicionaTela(imgCruzeiro, explicaCruzeiro));
-		telaTexto.add(adicionaTela(imgNavioTanque, explicaNavioTanque));
-		telaTexto.add(adicionaTela(imgPortaAviao, explicaPortaAviao));
+		
 
 		telaTexto.add(adicionaTela(imgDicaRevelada, explicaDica + "<b>Voc&ecirc; ir&aacute; iniciar com " + getDadosNivel("Dica")
 				+ " dicas dispon&iacute;veis!</b>" + "</html>"));
