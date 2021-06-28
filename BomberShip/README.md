@@ -81,7 +81,7 @@ item | detalhamento
 ----- | -----
 Classe | `viewComponent`
 Autores | `Erica e Henrique`
-Interfaces | `IMarVisual`
+Interfaces | `IBuildView, IItemRefactor, ILogRefactor`
 
 ### Interfaces
 
@@ -128,22 +128,6 @@ Interfaces associadas a esse componente:
 
 ![InterfaceConexao](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/InterfaceConexao.png)
 
-
-## Componente `Montador`
-![Montador](https://github.com/e196486/TimEca/blob/master/BomberShip/assets/docs/MontadorComponent.png)
-
-> O montador vai ser o primeiro componente ativado e atuar uma unica vez; Ele será responsável por criar o jogo e os demais componentes. Ao ativar a conexão, também pegará o tabuleiro inimigo para deixar a tela setada; 
-
- 
-**Ficha Técnica**
-item | detalhamento
------ | -----
-Classe | `montadorComponent`
-Autores | `Erica e Henrique`
-Interfaces | `-`
- 
- 
-
 ## Detalhamento das Interfaces
 
 ### Interface `IMarVisual`
@@ -189,58 +173,17 @@ Método | Objetivo
 ~~~
 public interface IMarRefactor {
 
-	public void explode(Bomba bomba);
-	public boolean isCelulaRevelada();
-	public void setCelulaRevelada(boolean celulaRevelada);
+	public Celula getCelula(int i, int j);
 
 }
 ~~~
 
 Método | Objetivo
 -------| --------
-`explode(Bomba bomba)` | `Explode a celula atual`
-`isCelulaRevelada()` | `Verifica se a celula atual está revelada`
-`setCelulaRevelada(boolean celulaRevelada)` | `seta a celula atual para revelada`
+`getCelula(int i, int j)` | `Devolve a célula localizada nas coordenadas do parêmetro`
 
-### Interface `IBuildMar`
 
-`Interface responsável por criar o mar`
-
-~~~
-public interface IBuildMar {
-	public Celula insereCelula(Celula c) throws Exception;
-	public boolean insereSubmarino(int x, int y, String sentido) throws Exception;
-	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception;
-	public boolean insereNavioTanque(int x, int y, String sentido) throws Exception;
-	public boolean inserePortaAviao(int x, int y, String sentido) throws Exception;
-	public boolean insereArmadilha(int x, int y) throws Exception;
-	public boolean insereBauDoTesouro(int x, int y) throws Exception;
-	public void setMar(Celula[][] mar, Time time);
-	public Celula[][] getMar();
-	public char getTipoCelula(int coluna, int linha);
-	Component getcelulaMar(int coluna, int linha);
-	public Mar getThis();
-}
-~~~
-
-Método | Objetivo
--------| --------
-`insereCelula(Celula c)` | `Coloca um objeto do tipo Celula no mar e joga um Exception`
-`insereSubmarino(int x, int y, String sentido)` | `Coloca o submarino e todas suas células no mar e joga um Exception`
-`insereCruzeiro(int x, int y, String sentido)` | `Coloca o cruzeiro e todas suas células no mar e joga um Exception`
-`insereNavioTanque(int x, int y, String sentido)` | `Coloca o NavioTanque e todas suas células no mar e joga um Exception`
-`inserePortaAviao(int x, int y, String sentido)` | `Coloca o PortaAviao e todas suas células no mar e joga um Exception`
-`insereArmadilha(int x, int y)` | `Coloca a Armadilha no mar e joga um Exception`
-`insereBauDoTesouro(int x, int y)` | `Coloca o BauDoTesouro no mar e joga um Exception`
-`setMar(Celula[][] mar, Time time)` | `Seta a matriz recebida no mar e define o seu time`
-`getMar()` | `Devolve a matriz setada`
-`getTipoCelula(int coluna, int linha)` | `Devolve o tipo da célula nas coordenadas dadas como parâmetro`
-`getcelulaMar(int coluna, int linha)` | `Devolve a célula nas coordenadas dadas como parâmetro`
-`getThis()` | `Devolve o mar`
-
- 
-
-### Interface `ItemRefactor`
+### Interface `IItemRefactor`
 
 `Interface responsável por atualizar os itens na View com base nos comandos do controle`
 
@@ -250,7 +193,10 @@ public interface IItemRefactor {
 	void setPontos(int Pontos);
 	void setMunicao(int Municao);
 	void setDicas(int Dicas);
-
+	void setDicaEnable();
+	boolean isBtnDicas();
+	void setDicaUnclicked();
+	
 }
 ~~~
 
@@ -259,6 +205,36 @@ Método | Objetivo
 `setPontos(int Pontos)` | `atualiza a quantidade de pontos para o int 'Pontos'`
 `setMunicao(int Municao)` | `atualiza a quantidade de munição para o int 'Municao'`
 `setDicas(int Dicas)` | `atualiza a quantidade de Dicas para o int 'Dicas'`
+`setDicaEnable()` | `faz com que o botão de dicas funcione`
+`isBtnDicas()` | `retorna se o campo dica é um botão`
+`setDicaUnclicked()` | `faz com que o botão dica não esteja clicado.`
+ 
+
+### Interface `IItemRefactor`
+
+`Interface responsável por atualizar os itens na View com base nos comandos do controle`
+
+~~~
+public interface IItemRefactor {
+	
+	void setPontos(int Pontos);
+	void setMunicao(int Municao);
+	void setDicas(int Dicas);
+	void setDicaEnable();
+	boolean isBtnDicas();
+	void setDicaUnclicked();
+	
+}
+~~~
+
+Método | Objetivo
+-------| --------
+`setPontos(int Pontos)` | `atualiza a quantidade de pontos para o int 'Pontos'`
+`setMunicao(int Municao)` | `atualiza a quantidade de munição para o int 'Municao'`
+`setDicas(int Dicas)` | `atualiza a quantidade de Dicas para o int 'Dicas'`
+`setDicaEnable()` | `faz com que o botão de dicas funcione`
+`isBtnDicas()` | `retorna se o campo dica é um botão`
+`setDicaUnclicked()` | `faz com que o botão dica não esteja clicado.`
 
 ### Interface `ICommandIn`
 
@@ -271,6 +247,7 @@ public interface ICommandIn {
 	Object getPlayer();
 	String recebeDados();
 	boolean getConexaoAceita();
+	void enviaDados(String string);
 
 }
 ~~~
@@ -281,6 +258,7 @@ Método | Objetivo
 `getPlayer()` | `Pega o player`
 `recebeDados()` | `recebe os dados do outro player`
 `getConexaoAceita()` | `recebe o boolean conexãoAceita, que verifica se existe uma conexão`
+`enviaDados(String string)` | `O enviaDados manda a Jogada 'string' para o outro Player`
 
 ### Interface `ICommandOut`
 
@@ -297,28 +275,6 @@ public interface ICommandOut {
 Método | Objetivo
 -------| --------
 `enviaDados(String string)` | `O enviaDados manda a Jogada 'string' para o outro Player`
-
-
-### Interface `IBuildConexao`
-
-`Interface responsável criar a conexao .`
-
-~~~
-public interface IBuildConexao {
-	
-	public boolean conecta();
-	public void iniciaServer();
-	public void SetMar(String arq);
-	public String getPlayer();
-	public String getMarInimigo();
-	public Conexao getThis();
-
-}
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
 
  
 # Plano de Exceções
