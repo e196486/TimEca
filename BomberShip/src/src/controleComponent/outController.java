@@ -1,6 +1,7 @@
 package controleComponent;
 
 import conexaoComponent.ICommandOut;
+import conexaoComponent.InvalidMove;
 import marComponent.Mar.IMarRefactor;
 import viewComponent.ILogRefactor;
 
@@ -53,8 +54,12 @@ public class outController implements IMarListener {
 					bombaInimiga.penalidadeRecebida(pontosPerdidos);
 					
 					bombaAliada.setTurno(false);
-					Jogada = "(" + i + ":" + j + ")|(" + bombaAliada.getBombas() + ":" + bombaAliada.getPontos() + ":" + bombaAliada.getDicas() + ")|"+ jogadaDica;
-					conexao.enviaDados(Jogada);
+					try {
+						Jogada = "(" + i + ":" + j + ")|(" + bombaAliada.getBombas() + ":" + bombaAliada.getPontos() + ":" + bombaAliada.getDicas() + ")|"+ jogadaDica;
+						conexao.enviaDados(Jogada);
+					} catch (InvalidMove e) {
+						e.printStackTrace();
+					}
 
 				} else
 					logView.updateLog("Célula já destruída");
@@ -63,7 +68,11 @@ public class outController implements IMarListener {
 					
 					logView.updateLog("Acabaram os recursos :( ");
 					bombaAliada.setFimDeJogo();
-					conexao.enviaDados("fimDeJogo");
+					try {
+						conexao.enviaDados("fimDeJogo");
+					} catch (InvalidMove e) {
+						e.printStackTrace();
+					}
 				}
 
 			} else {

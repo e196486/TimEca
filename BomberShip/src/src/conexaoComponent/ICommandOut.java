@@ -2,6 +2,6 @@ package conexaoComponent;
 
 public interface ICommandOut {
 
-	void enviaDados(String string);
+	void enviaDados(String string) throws InvalidMove;
 
 }

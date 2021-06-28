@@ -36,47 +36,51 @@ public class InController implements Runnable {
 	@Override
 	public void run() {
 
-		while (true && !fimDeJogo) {
-			if (conexao.getPlayer().equals("Host") && !conexao.getConexaoAceita())
-				conexao.aguardaServerRequest();
-
-			String resposta = conexao.recebeDados();
-
-			if (!resposta.equals("fimDeJogo")) {
-
-				traduzResposta(resposta);
-
-				if (jogadaDica.equals("true"))
-					bombaInimiga.usaDica();
-
-				char tipo = marAliado.getCelula(i, j).explode();
-				int pontosPerdidos;
-				if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
-					pontosPerdidos = bombaInimiga.usaBomba(tipo, marAliado.getCelula(i, j).getNavio().navioDestruido());
-				else
-					pontosPerdidos = bombaInimiga.usaBomba(tipo, false);
-
-				bombaInimiga.setBombas(bombasInimigo);
-				bombaInimiga.setPontos(pontosInimigo);
-				bombaInimiga.setDicas(dicasInimigo);
-
-				bombaAliada.penalidadeRecebida(pontosPerdidos);
-				bombaAliada.setTurno(true);
-
+		try {
+			while (true && !fimDeJogo) {
+				if (conexao.getPlayer().equals("Host") && !conexao.getConexaoAceita())
+					conexao.aguardaServerRequest();
+	
+				String resposta = conexao.recebeDados();
+	
+				if (!resposta.equals("fimDeJogo")) {
+	
+					traduzResposta(resposta);
+	
+					if (jogadaDica.equals("true"))
+						bombaInimiga.usaDica();
+	
+					char tipo = marAliado.getCelula(i, j).explode();
+					int pontosPerdidos;
+					if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
+						pontosPerdidos = bombaInimiga.usaBomba(tipo, marAliado.getCelula(i, j).getNavio().navioDestruido());
+					else
+						pontosPerdidos = bombaInimiga.usaBomba(tipo, false);
+	
+					bombaInimiga.setBombas(bombasInimigo);
+					bombaInimiga.setPontos(pontosInimigo);
+					bombaInimiga.setDicas(dicasInimigo);
+	
+					bombaAliada.penalidadeRecebida(pontosPerdidos);
+					bombaAliada.setTurno(true);
+	
+				}
+				if (resposta.equals("fimDeJogo") || temVencedor()) {
+	
+					conexao.enviaDados("fimDeJogo");
+					String status = bombaAliada.getResultado();
+	
+					logView.updateLog(status);
+					bombaAliada.setFimDeJogo();
+					bombaAliada.atualizaPontos();
+					bombaInimiga.atualizaPontos();
+					JOptionPane.showMessageDialog(null, "Fim de Jogo!!\n" + status);
+					fimDeJogo = true;
+				}
+	
 			}
-			if (resposta.equals("fimDeJogo") || temVencedor()) {
-
-				conexao.enviaDados("fimDeJogo");
-				String status = bombaAliada.getResultado();
-
-				logView.updateLog(status);
-				bombaAliada.setFimDeJogo();
-				bombaAliada.atualizaPontos();
-				bombaInimiga.atualizaPontos();
-				JOptionPane.showMessageDialog(null, "Fim de Jogo!!\n" + status);
-				fimDeJogo = true;
-			}
-
+		} catch (ConnectionError e) {
+			e.printStackTrace();
 		}
 
 	}

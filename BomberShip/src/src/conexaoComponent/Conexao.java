@@ -34,7 +34,7 @@ public class Conexao implements ICommandIn,ICommandOut {
 		return Player;
 	}
 
-	public boolean conecta() {
+	public boolean conecta() throws NullServer{
 		try {
 			socket = new Socket(ip, porta);
 			dos = new DataOutputStream(socket.getOutputStream());
@@ -50,7 +50,7 @@ public class Conexao implements ICommandIn,ICommandOut {
 		return true;
 	}
 
-	public void iniciaServer() {
+	public void iniciaServer() throws InvalidServer{
 
 		try {
 			serverSocket = new ServerSocket(porta, 8, InetAddress.getByName(ip));
@@ -65,7 +65,7 @@ public class Conexao implements ICommandIn,ICommandOut {
 
 	}
 
-	public void aguardaServerRequest() {
+	public void aguardaServerRequest() throws InvalidClient{
 		Socket socket = null;
 
 		try {
@@ -80,7 +80,7 @@ public class Conexao implements ICommandIn,ICommandOut {
 		}
 	}
 
-	public void enviaDados(String info) {
+	public void enviaDados(String info) throws InvalidMove{
 
 		try {
 			dos.writeUTF(info);
@@ -91,7 +91,7 @@ public class Conexao implements ICommandIn,ICommandOut {
 
 	}
 
-	public String recebeDados() {
+	public String recebeDados() throws InvalidEnemy{
 
 		try {
 			if (conexaoAceita) {

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 
 import conexaoComponent.Conexao;
+import conexaoComponent.ConnectionError;
 import controleComponent.*;
 import marComponent.Celula.*;
 import marComponent.Mar.Mar;
@@ -40,8 +41,12 @@ public class Montador {
 		try {
 			conexao = new Conexao(ip, porta);
 
-			if (!conexao.conecta())
-				conexao.iniciaServer();
+			try {
+				if (!conexao.conecta())
+					conexao.iniciaServer();
+			} catch (ConnectionError e) {
+				e.printStackTrace();
+			}
 
 			Arq = getResource(getMapa(conexao.getPlayer(), nivel));
 
@@ -77,7 +82,7 @@ public class Montador {
 			Thread recebeInput = new Thread(controleIn);
 			recebeInput.start();
 
-		} catch (URISyntaxException e) {
+		} catch (InvalidMapImport e) {
 			e.printStackTrace();
 		}
 
@@ -85,18 +90,21 @@ public class Montador {
 
 	private void comunicaInimigo(int nivel, String meuNome, String mapaCSV) {
 
-		// conexao de pegar nível do inimigo
-		conexao.enviaDados(Integer.toString(nivel));
-		nivelInimigo = Integer.parseInt(conexao.recebeDados());
-
-		// conexao de pegar nome do inimigo
-		conexao.enviaDados(meuNome);
-		nomeInimigo = conexao.recebeDados();
-
-		// conexao de criar tabuleiro inimigo
-		conexao.enviaDados(mapaCSV);
-		arqInimigo = conexao.recebeDados();
-
+		try {
+			// conexao de pegar nível do inimigo
+			conexao.enviaDados(Integer.toString(nivel));
+			nivelInimigo = Integer.parseInt(conexao.recebeDados());
+	
+			// conexao de pegar nome do inimigo
+			conexao.enviaDados(meuNome);
+			nomeInimigo = conexao.recebeDados();
+	
+			// conexao de criar tabuleiro inimigo
+			conexao.enviaDados(mapaCSV);
+			arqInimigo = conexao.recebeDados();
+		} catch (ConnectionError e) {
+			e.printStackTrace();
+		}	
 	}
 
 	public String getMapa(String Player, int nivel) {
@@ -111,9 +119,15 @@ public class Montador {
 
 	}
 
-	public String getResource(String mapaCSV) throws URISyntaxException {
+	public String getResource(String mapaCSV) throws InvalidMapImport {
 		URL res = Thread.currentThread().getContextClassLoader().getResource(mapaCSV);
-		File file = Paths.get(res.toURI()).toFile();
+		File file = null;
+		try {
+			file = Paths.get(res.toURI()).toFile();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String arquivo1 = file.getAbsolutePath();
 		return arquivo1;
 	}
@@ -155,9 +169,9 @@ public class Montador {
 				}
 
 				if (!a)
-					throw new Exception("Há conflitos entre navios");
+					throw new InvalidMapContent("Há conflitos entre navios");
 			}
-		} catch (Exception erro) {
+		} catch (InvalidMapContent erro) {
 			System.err.println("Erro:" + erro.getMessage() + "\nInsira um csv válido!");
 			erro.printStackTrace();
 		}

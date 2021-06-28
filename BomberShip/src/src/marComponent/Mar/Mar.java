@@ -14,6 +14,7 @@ import marComponent.Pecas.Navio;
 import marComponent.Pecas.NavioTanque;
 import marComponent.Pecas.PortaAviao;
 import marComponent.Pecas.Submarino;
+import montadorComponent.InvalidMapContent;
 
 public class Mar implements IMarRefactor, IMarVisual{
 	public Celula[][] celulaMar;
@@ -42,7 +43,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 
 	// TODO : esse método está estourando os limites das celulas, aumentei para
 	// [11][11] como paleativo
-	public Celula insereCelula(Celula c) throws Exception {
+	public Celula insereCelula(Celula c) throws InvalidMapContent {
 		int x = c.getLinha();
 		int y = c.getColuna();
 		celulaMar[x][y] = c;
@@ -58,7 +59,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 		insereCelula(c).SetImage(img);
 	}
 
-	public boolean insereSubmarino(int x, int y, String sentido) throws Exception {
+	public boolean insereSubmarino(int x, int y, String sentido) throws InvalidMapContent {
 		if (sentido.equals("h")) {
 
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null) {
@@ -88,7 +89,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 		return false;
 	}
 
-	public boolean insereCruzeiro(int x, int y, String sentido) throws Exception {
+	public boolean insereCruzeiro(int x, int y, String sentido) throws InvalidMapContent {
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null) {
 				Peca n1 = new Peca(x, y, 'C');
@@ -123,7 +124,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 		return false;
 	}
 
-	public boolean insereNavioTanque(int x, int y, String sentido) throws Exception {
+	public boolean insereNavioTanque(int x, int y, String sentido) throws InvalidMapContent {
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null
 					&& celulaMar[x][y + 3] == null) {
@@ -166,7 +167,7 @@ public class Mar implements IMarRefactor, IMarVisual{
 		return false;
 	}
 
-	public boolean inserePortaAviao(int x, int y, String sentido) throws Exception {
+	public boolean inserePortaAviao(int x, int y, String sentido) throws InvalidMapContent {
 		if (sentido.equals("h")) {
 			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null && celulaMar[x][y + 2] == null
 					&& celulaMar[x][y + 3] == null && celulaMar[x][y + 4] == null) {
@@ -215,19 +216,27 @@ public class Mar implements IMarRefactor, IMarVisual{
 		return false;
 	}
 
-	public boolean insereArmadilha(int x, int y) throws Exception {
+	public boolean insereArmadilha(int x, int y) throws InvalidMapContent {
 		if (celulaMar[x][y] == null) {
 			Celula a = new Armadilha(x, y, 'A');
-			insereCelula(a, imgArmadilhaTubarao); 
+			try {
+				insereCelula(a, imgArmadilhaTubarao);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
 			return true;
 		}
 		return false;
 	}
 
-	public boolean insereBauDoTesouro(int x, int y) throws Exception {
+	public boolean insereBauDoTesouro(int x, int y) throws InvalidMapContent {
 		if (celulaMar[x][y] == null) {
 			Celula b = new BauDoTesouro(x, y, 'B');
-			insereCelula(b, imgBauDoTesouro); 
+			try {
+				insereCelula(b, imgBauDoTesouro);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
 			return true;
 		}
 		return false;
