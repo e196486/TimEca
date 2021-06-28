@@ -1,25 +1,5 @@
 # Projeto `BomberShip`
 
-# Estrutura de Arquivos e Pastas
-
- 
-~~~
-├── README.md          <- apresentação do projeto
-│
-├── data               <- dados usados pelo jogo    
-│
-├── src                <- projeto em Java  
-│   │
-│   ├── src            <- arquivos-fonte do projeto (.java)
-│   │
-│   ├── bin            <- arquivos em bytecode (.class)
-│   │
-│   └── README.md      <- instruções básicas de instalação/execução
-│
-└── assets             <- mídias usadas no projeto
-~~~
-
- 
 # Descrição Resumida do Jogo
 
 > É um jogo multiplayer em que o objetivo será afundar todos os navios inimigos e obter a maior pontuação.
@@ -59,17 +39,6 @@ Uma das principais dificuldades do grupo nos primeiros laboratórios era a comun
 # Link para os arquivos java
 [Componentes](https://github.com/e196486/TimEca/tree/master/BomberShip/src/src)
  
-# Destaques de Código
-
-> 
-
-~~~java
-// Recorte do seu código
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
-}
-~~~
 
 # Documentação dos Componentes
 
@@ -214,31 +183,44 @@ Método | Objetivo
 `getCelula(int i, int j)` | `Devolve a célula localizada nas coordenadas do parêmetro`
 
 
-### Interface `IItemRefactor`
+### Interface `IBuildView`
 
-`Interface responsável por atualizar os itens na View com base nos comandos do controle`
+`Interface responsável por criar o painel do jogo, mostrando todos os itens e campos.`
 
 ~~~
-public interface IItemRefactor {
+public interface IBuildView {
 	
-	void setPontos(int Pontos);
-	void setMunicao(int Municao);
-	void setDicas(int Dicas);
-	void setDicaEnable();
-	boolean isBtnDicas();
-	void setDicaUnclicked();
+	public Component criaPlayerView(JPanel playerView, ItensView itensPlayerView, String Player, IMarVisual mar) ;
 	
 }
 ~~~
 
 Método | Objetivo
 -------| --------
-`setPontos(int Pontos)` | `atualiza a quantidade de pontos para o int 'Pontos'`
-`setMunicao(int Municao)` | `atualiza a quantidade de munição para o int 'Municao'`
-`setDicas(int Dicas)` | `atualiza a quantidade de Dicas para o int 'Dicas'`
-`setDicaEnable()` | `faz com que o botão de dicas funcione`
-`isBtnDicas()` | `retorna se o campo dica é um botão`
-`setDicaUnclicked()` | `faz com que o botão dica não esteja clicado.`
+`criaPlayerView(JPanel playerView, ItensView itensPlayerView, String Player, IMarVisual mar)` | `cria todos os campos e itens no painel do jogo`
+
+
+### Interface `ILogRefactor`
+
+`Interface responsável por atualizar o campo de atualizações na View com base nos comandos do controle`
+
+~~~
+public interface ILogRefactor {
+	
+	void updatePontos(int Pontos);
+	public void updateMunicao(int Municao, String tipoCelula, String nomeJogador);
+	void updateDicas(int Dicas, String nomeJogador);
+	void updateLog(String mensagem);
+	
+}
+~~~
+
+Método | Objetivo
+-------| --------
+`updatePontos(int Pontos)` | `mostra a quantidade de 'pontos' no log`
+`updateMunicao(int Municao, String tipoCelula, String nomeJogador)` | `mostra a quantidade de 'munição' no log`
+`updateDicas(int Dicas, String nomeJogador)` | `mostra a quantidade de 'Dicas' no log`
+`updateLog(String mensagem)` | `mostra a mensagem dada como parâmetro`
  
 
 ### Interface `IItemRefactor`
