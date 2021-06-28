@@ -34,7 +34,7 @@
 [![Video Previa BomberShip](http://img.youtube.com/vi/sgqUdKl3V-0/0.jpg)](https://youtu.be/sgqUdKl3V-0)
 
 ## Vídeo do jogo
-![Video Final](https://www.youtube.com/watch?v=GAyS4o4REPg)
+[![Video Final BomberShip](http://img.youtube.com/vi/GAyS4o4REPg/0.jpg)](https://youtu.be/GAyS4o4REPg)
 
 # Slides do Projeto
 
