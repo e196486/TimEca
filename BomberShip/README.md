@@ -61,15 +61,67 @@ Uma das principais dificuldades do grupo nos primeiros laboratórios era a comun
  
 # Destaques de Código
 
-> 
+> Um ponto interessante do programa é como o jogo se conecta via socket. 
+Com um mesmo programa, sem a necessidade de rodar um servidor externo, o montador cria o objeto conexão, que tenta se conectar ao endereço de IP e porta dado e caso não consiga, inicia um novo server; 
+
+~~~java 
+public Montador(String ip, int porta, ...) {
+
+		try {
+			conexao = new Conexao(ip, porta);
+
+			if (!conexao.conecta())
+				conexao.iniciaServer();
+
+		...
+		}
+	}
+~~~
+
+> A comunicação é feita através de Dois controles : o inController e outController; O inController trabalha com um thread que sempre está recebendo informações.
 
 ~~~java
-// Recorte do seu código
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
+public class Conexao implements ICommandIn,ICommandOut {
+...
+public String recebeDados() {
+
+		try {
+			if (conexaoAceita) {
+				return dis.readUTF();
+			}
+
+		} catch (IOException e) { // InvalidEnemy
+			System.out.println("o Outro usuario saiu da partida, Fim de Jogo!");
+			return "fimDeJogo";
+		}
+...
 }
 ~~~
+
+>  A forma como trabalhamos as celulas também é um ponto de destaque : cada celula contem uma peça, que é um pedaço de um navio específico, trabalhando com polimorfismo. Ele é inserido no mar conforme sua orientação Vertical ou horizontal.
+
+~~~java
+ public boolean insereSubmarino(int x, int y, String sentido) throws Exception {
+		if (sentido.equals("h")) {
+
+			if (celulaMar[x][y] == null && celulaMar[x][y + 1] == null) {
+				Peca n1 = new Peca(x, y, 'S');
+				Peca n2 = new Peca(x, y + 1, 'S');
+				insereCelula(n1);
+				insereCelula(n2);
+				Navio sub = new Submarino(n1, n2);
+				n1.setNavio(sub);
+				n2.setNavio(sub);
+				return true;
+			}
+			return false;
+		} else if (sentido.equals("v")) {
+			if (celulaMar[x][y] == null && celulaMar[x + 1][y] == null) {
+				...
+			}
+			return false; 
+~~~
+
 
 # Documentação dos Componentes
 
