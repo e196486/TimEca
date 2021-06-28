@@ -300,4 +300,12 @@ public class Bomba {
 	public void setPontos(int pts) {
 		this.n_pontos = pts;
 	}
+
+	public boolean isJogoGanho() {
+		return n_inimigos == 0 ;
+	}
+
+	public void setJogoPerdido() {
+		this.perdeu = true;
+	}
 }

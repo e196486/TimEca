@@ -13,17 +13,17 @@ public class InController implements Runnable {
 	private Bomba bombaInimiga;
 	private boolean fimDeJogo = false;
 	private ILogRefactor logView;
-	
-	int i ;
-	int j ;
 
-	int a ;
-	int b ;
-	int c ;
+	int i;
+	int j;
 
-	int bombasInimigo ;
-	int pontosInimigo ;
-	int dicasInimigo ;		
+	int a;
+	int b;
+	int c;
+
+	int bombasInimigo;
+	int pontosInimigo;
+	int dicasInimigo;
 	String jogadaDica;
 
 	public InController(ICommandIn conexao, IMarRefactor mar, Bomba bombaAliada, Bomba bombaInimiga) {
@@ -40,36 +40,42 @@ public class InController implements Runnable {
 			while (true && !fimDeJogo) {
 				if (conexao.getPlayer().equals("Host") && !conexao.getConexaoAceita())
 					conexao.aguardaServerRequest();
-	
+
 				String resposta = conexao.recebeDados();
-	
+
 				if (!resposta.equals("fimDeJogo")) {
-	
+
 					traduzResposta(resposta);
-	
+
 					if (jogadaDica.equals("true"))
 						bombaInimiga.usaDica();
-	
+
 					char tipo = marAliado.getCelula(i, j).explode();
 					int pontosPerdidos;
 					if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
-						pontosPerdidos = bombaInimiga.usaBomba(tipo, marAliado.getCelula(i, j).getNavio().navioDestruido());
+						pontosPerdidos = bombaInimiga.usaBomba(tipo,
+								marAliado.getCelula(i, j).getNavio().navioDestruido());
 					else
 						pontosPerdidos = bombaInimiga.usaBomba(tipo, false);
-	
+
 					bombaInimiga.setBombas(bombasInimigo);
 					bombaInimiga.setPontos(pontosInimigo);
 					bombaInimiga.setDicas(dicasInimigo);
-	
+
 					bombaAliada.penalidadeRecebida(pontosPerdidos);
 					bombaAliada.setTurno(true);
-	
+
 				}
 				if (resposta.equals("fimDeJogo") || temVencedor()) {
-	
+
+					if (bombaAliada.isJogoGanho())
+						bombaInimiga.setJogoPerdido();
+					else if (bombaInimiga.isJogoGanho())
+						bombaAliada.setJogoPerdido();
+
 					conexao.enviaDados("fimDeJogo");
 					String status = bombaAliada.getResultado();
-	
+
 					logView.updateLog(status);
 					bombaAliada.setFimDeJogo();
 					bombaAliada.atualizaPontos();
@@ -77,7 +83,7 @@ public class InController implements Runnable {
 					JOptionPane.showMessageDialog(null, "Fim de Jogo!!\n" + status);
 					fimDeJogo = true;
 				}
-	
+
 			}
 		} catch (ConnectionError e) {
 			e.printStackTrace();
@@ -86,17 +92,17 @@ public class InController implements Runnable {
 	}
 
 	private void traduzResposta(String resposta) {
-		 i = Integer.parseInt(resposta.substring(1, 2));
-		 j = Integer.parseInt(resposta.substring(3, 4)); 
+		i = Integer.parseInt(resposta.substring(1, 2));
+		j = Integer.parseInt(resposta.substring(3, 4));
 
-		 a = posicao(resposta, 7, ':');
-		 b = posicao(resposta, a + 1, ':');
-		 c = posicao(resposta, b + 1, ')');
+		a = posicao(resposta, 7, ':');
+		b = posicao(resposta, a + 1, ':');
+		c = posicao(resposta, b + 1, ')');
 
-		 bombasInimigo = Integer.parseInt(resposta.substring(7, a));
-		 pontosInimigo = Integer.parseInt(resposta.substring(a + 1, b));
-		 dicasInimigo = Integer.parseInt(resposta.substring(b + 1, c));	
-		 jogadaDica = resposta.substring(c + 2);
+		bombasInimigo = Integer.parseInt(resposta.substring(7, a));
+		pontosInimigo = Integer.parseInt(resposta.substring(a + 1, b));
+		dicasInimigo = Integer.parseInt(resposta.substring(b + 1, c));
+		jogadaDica = resposta.substring(c + 2);
 	}
 
 	private int posicao(String x, int inicio, char c) {

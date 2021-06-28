@@ -1,7 +1,7 @@
 package controleComponent;
 
+import conexaoComponent.ConnectionError;
 import conexaoComponent.ICommandOut;
-import conexaoComponent.InvalidMove;
 import marComponent.Mar.IMarRefactor;
 import viewComponent.ILogRefactor;
 
@@ -12,13 +12,13 @@ public class outController implements IMarListener {
 	Bomba bombaInimiga;
 
 	public Time time;
-	private ICommandOut conexao; 
+	private ICommandOut conexao;
 	private String Jogada;
 	private ILogRefactor logView;
 
 	public outController(ICommandOut conexao, Bomba bombaAliada) {
 		this.conexao = conexao;
-		this.bombaAliada = bombaAliada; 
+		this.bombaAliada = bombaAliada;
 	}
 
 	public void setMar(IMarRefactor mar) {
@@ -31,52 +31,53 @@ public class outController implements IMarListener {
 		boolean ultimaBomba = false;
 
 		if (!bombaAliada.isFimDeJogo()) {
-			if (bombaAliada.getTurno()) {
-				logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
-				if (bombaAliada.getBombas() > 0 && !mar.getCelula(i, j).isCelulaDestruida()) {
+			try {
+				if (bombaAliada.getTurno()) {
+					logView.updateLog("Atingiu a celula inimiga: " + "(" + i + ":" + j + ")");
+					if (bombaAliada.getBombas() > 0 && !mar.getCelula(i, j).isCelulaDestruida()) {
 
-					if (bombaAliada.dicaEquipada() && bombaAliada.temDica()) {
-						jogadaDica = true;
-						bombaAliada.usaDica();
-						mar.getCelula(i + 1, j).setCelulaRevelada(true);
-						mar.getCelula(i, j + 1).setCelulaRevelada(true);
-						mar.getCelula(i - 1, j).setCelulaRevelada(true);
-						mar.getCelula(i, j - 1).setCelulaRevelada(true);
-					}
-					char tipo = mar.getCelula(i, j).explode();
+						if (bombaAliada.dicaEquipada() && bombaAliada.temDica()) {
+							jogadaDica = true;
+							bombaAliada.usaDica();
+							mar.getCelula(i + 1, j).setCelulaRevelada(true);
+							mar.getCelula(i, j + 1).setCelulaRevelada(true);
+							mar.getCelula(i - 1, j).setCelulaRevelada(true);
+							mar.getCelula(i, j - 1).setCelulaRevelada(true);
+						}
+						char tipo = mar.getCelula(i, j).explode();
 
-					if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
-						isNavioDestruido = mar.getCelula(i, j).getNavio().navioDestruido();
+						if (tipo == 'S' || tipo == 'C' || tipo == 'N' || tipo == 'P')
+							isNavioDestruido = mar.getCelula(i, j).getNavio().navioDestruido();
 
-					ultimaBomba = (bombaAliada.getBombas() == 1);
+						ultimaBomba = (bombaAliada.getBombas() == 1);
 
-					int pontosPerdidos = bombaAliada.usaBomba(tipo, isNavioDestruido);
-					bombaInimiga.penalidadeRecebida(pontosPerdidos);
-					
-					bombaAliada.setTurno(false);
-					try {
-						Jogada = "(" + i + ":" + j + ")|(" + bombaAliada.getBombas() + ":" + bombaAliada.getPontos() + ":" + bombaAliada.getDicas() + ")|"+ jogadaDica;
+						int pontosPerdidos = bombaAliada.usaBomba(tipo, isNavioDestruido);
+						bombaInimiga.penalidadeRecebida(pontosPerdidos);
+
+						bombaAliada.setTurno(false);
+
+						Jogada = "(" + i + ":" + j + ")|(" + bombaAliada.getBombas() + ":" + bombaAliada.getPontos()
+								+ ":" + bombaAliada.getDicas() + ")|" + jogadaDica;
+
 						conexao.enviaDados(Jogada);
-					} catch (InvalidMove e) {
-						e.printStackTrace();
-					}
 
-				} else
-					logView.updateLog("Célula já destruída");
+					} else
+						logView.updateLog("Célula já destruída");
 
-				if (ultimaBomba || bombaAliada.getPontos() <= 0) {
-					
-					logView.updateLog("Acabaram os recursos :( ");
-					bombaAliada.setFimDeJogo();
-					try {
+					if (ultimaBomba || bombaAliada.getPontos() <= 0) {
+
+						logView.updateLog("Acabaram os recursos :( ");
+						bombaAliada.setFimDeJogo();
+
 						conexao.enviaDados("fimDeJogo");
-					} catch (InvalidMove e) {
-						e.printStackTrace();
-					}
-				}
 
-			} else {
-				logView.updateLog("Aguarde seu turno");
+					}
+
+				} else {
+					logView.updateLog("Aguarde seu turno");
+				}
+			} catch (ConnectionError e) {
+				e.printStackTrace();
 			}
 		}
 	}
