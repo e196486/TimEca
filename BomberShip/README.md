@@ -42,6 +42,7 @@
 [Slides Previa](https://drive.google.com/file/d/1fVwJ0_IudIibsqP890Q834rIGh3J3KBR/view?usp=sharing)
 
 ## Slides da Apresentação Final
+[Slides Final](https://docs.google.com/presentation/d/1MVm9XOiJjjfCv_QtpMoN8h7PFlYL07rtJpAgvyq1ePk/edit#slide=id.ge25f279ca5_1_378)
 
 ## Relatório de Evolução
 No processo de desenvolvimento do jogo, houve a necessidade de alterações na arquitetura inicial, assim como nas classes e interfaces utilizadas.
