@@ -151,22 +151,11 @@ public class Montador {
 				int x = Integer.parseInt(comandos[i][0].substring(0, 1));
 				int y = Integer.parseInt(comandos[i][0].substring(2, 3));
 				String sentido = comandos[i][1];
+				String tipo = comandos[i][2];
 
 				boolean a = true;
 
-				if (comandos[i][2].equals("S")) {
-					a = mar.insereSubmarino(x, y, sentido);
-				} else if (comandos[i][2].equals("C")) {
-					a = mar.insereCruzeiro(x, y, sentido);
-				} else if (comandos[i][2].equals("N")) {
-					a = mar.insereNavioTanque(x, y, sentido);
-				} else if (comandos[i][2].equals("P")) {
-					a = mar.inserePortaAviao(x, y, sentido);
-				} else if (comandos[i][2].equals("A")) {
-					a = mar.insereArmadilha(x, y);
-				} else if (comandos[i][2].equals("B")) {
-					a = mar.insereBauDoTesouro(x, y);
-				}
+				mar.insereNavio(tipo, sentido, x, y);
 
 				if (!a)
 					throw new InvalidMapContent("Há conflitos entre navios");

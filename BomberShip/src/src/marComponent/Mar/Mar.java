@@ -58,6 +58,24 @@ public class Mar implements IMarRefactor, IMarVisual{
 	public void insereCelula(Celula c, ImageIcon img) throws Exception {
 		insereCelula(c).SetImage(img);
 	}
+	
+	public boolean insereNavio(String tipo, String sentido, int x, int y) throws InvalidMapContent {
+		boolean a = false;
+		if (tipo.equals("S")) {
+			a = insereSubmarino(x, y, sentido);
+		} else if (tipo.equals("C")) {
+			a = insereCruzeiro(x, y, sentido);
+		} else if (tipo.equals("N")) {
+			a = insereNavioTanque(x, y, sentido);
+		} else if (tipo.equals("P")) {
+			a = inserePortaAviao(x, y, sentido);
+		} else if (tipo.equals("A")) {
+			a = insereArmadilha(x, y);
+		} else if (tipo.equals("B")) {
+			a = insereBauDoTesouro(x, y);
+		}
+		return a;
+	}
 
 	public boolean insereSubmarino(int x, int y, String sentido) throws InvalidMapContent {
 		if (sentido.equals("h")) {
