@@ -1,5 +1,25 @@
 # Projeto `BomberShip`
 
+# Estrutura de Arquivos e Pastas
+
+ 
+~~~
+├── README.md          <- apresentação do projeto
+│
+├── data               <- dados usados pelo jogo    
+│
+├── src                <- projeto em Java  
+│   │
+│   ├── src            <- arquivos-fonte do projeto (.java)
+│   │
+│   ├── bin            <- arquivos em bytecode (.class)
+│   │
+│   └── README.md      <- instruções básicas de instalação/execução
+│
+└── assets             <- mídias usadas no projeto
+~~~
+
+ 
 # Descrição Resumida do Jogo
 
 > É um jogo multiplayer em que o objetivo será afundar todos os navios inimigos e obter a maior pontuação.
@@ -39,6 +59,17 @@ Uma das principais dificuldades do grupo nos primeiros laboratórios era a comun
 # Link para os arquivos java
 [Componentes](https://github.com/e196486/TimEca/tree/master/BomberShip/src/src)
  
+# Destaques de Código
+
+> 
+
+~~~java
+// Recorte do seu código
+public void algoInteressante(…) {
+   …
+   trechoInteressante = 100;
+}
+~~~
 
 # Documentação dos Componentes
 
