@@ -36,7 +36,7 @@ public class outController implements IMarListener {
 
 					if (bombaAliada.dicaEquipada() && bombaAliada.temDica()) {
 						jogadaDica = true;
-						bombaAliada.usaDica("Você");
+						bombaAliada.usaDica();
 						mar.getCelula(i + 1, j).setCelulaRevelada(true);
 						mar.getCelula(i, j + 1).setCelulaRevelada(true);
 						mar.getCelula(i - 1, j).setCelulaRevelada(true);

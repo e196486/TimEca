@@ -101,15 +101,17 @@ public class Bomba {
 
 	public void setTurno(boolean turno) {
 		seuTurno = turno;
+		if (seuTurno && logView != null)
+			logView.updateLog("Sua vez...");
 	}
 
 	public Boolean getTurno() {
 		return seuTurno;
 	}
 
-	public void usaDica(String nomeJogador) {
+	public void usaDica() {
 		n_dicas--;
-		logView.updateDicas(n_dicas, nomeJogador);
+		logView.updateDicas(n_dicas, nomePersonagem);
 		itemView.setDicaUnclicked();
 	}
 
@@ -173,12 +175,12 @@ public class Bomba {
 	}
 
 	public void penalidadeRecebida(int pontos) {
-		if ((pontos/2) % 5 != 0)
+		if ((pontos / 2) % 5 != 0)
 			pontos += 5;
-			
-		n_pontos -= pontos/2;
-		String winLose = (pontos>0) ? " perdeu ":" ganhou ";  
-		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos/2) + " pontos nessa jogada.");
+
+		n_pontos -= pontos / 2;
+		String winLose = (pontos > 0) ? " perdeu " : " ganhou ";
+		logView.updateLog(nomePersonagem + winLose + Math.abs(pontos / 2) + " pontos nessa jogada.");
 		atualizaPontos();
 
 	}
@@ -205,7 +207,8 @@ public class Bomba {
 
 		switch (casoPenalidade) {
 
-		case 1: case 4:
+		case 1:
+		case 4:
 			valorPenalidade = (new Random().nextInt(ptsMaxRoubados) + 1) * 50;
 			tipoPenalidade = "ponto(s)";
 			pontos -= valorPenalidade;
@@ -234,7 +237,7 @@ public class Bomba {
 
 		atualizaPontos();
 		logView.updateLog("O tubarão roubou " + valorPenalidade + " " + tipoPenalidade + " de " + nomeJogador);
-		
+
 		n_pontos += pontos;
 		return pontos;
 	}
@@ -247,11 +250,11 @@ public class Bomba {
 
 	public boolean checaFimDeJogo() {
 		atualizaPontos();
-		 motivo =" ";
+		motivo = " ";
 
 		if (n_inimigos == 0) {
 			perdeu = false;
-			fimDeJogo = true; 
+			fimDeJogo = true;
 			motivo = nomePersonagem + " derrotou todos os seus inimigos !";
 		}
 
@@ -260,7 +263,7 @@ public class Bomba {
 			fimDeJogo = true;
 			motivo = nomePersonagem + " não tem mais como atirar !";
 		}
-		
+
 		if (n_pontos <= 0) {
 			perdeu = true;
 			fimDeJogo = true;
@@ -275,7 +278,7 @@ public class Bomba {
 		String Resultado = (perdeu) ? "perdeu! =(" : "ganhou!! =)";
 
 		return "\n Numero de pontos: " + n_pontos + "\n Numero de Bombas: " + n_bombas + "\n Numero de dicas: "
-				+ n_dicas + "\n você " + Resultado +"\n" + motivo;
+				+ n_dicas + "\n você " + Resultado + "\n" + motivo;
 	}
 
 	public boolean isFimDeJogo() {
@@ -286,7 +289,7 @@ public class Bomba {
 		fimDeJogo = true;
 	}
 
-	public int getPontos() { 
+	public int getPontos() {
 		return n_pontos;
 	}
 
